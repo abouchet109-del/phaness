@@ -1,32 +1,36 @@
-# SPEC — système vidéo Phaness
+# SPEC — système vidéo Phaness V2
 
-GOAL : qu'un prospect voie en 20 s que Phaness rend un sujet clair, et que les quatre formats sortent du même moule.
+GOAL : montrer en 26 à 28 s qu'un sujet technique devient clair, avec un niveau de motion design de showreel : vraie 3D, caméra toujours en mouvement, très peu de texte.
 
-OUTPUT : HyperFrames, 1920×1080, 30 i/s, 21 à 25 s, muet, texte français.
+OUTPUT : HyperFrames + three.js (WebGL), 1920×1080, 30 i/s, muet. Rendu web H.264 ≤ 6 Mo, affiche WebP 1280×720.
 
-TIME : intro 3,6 s · étapes (chevauchement de 0,25 s avec l'intro) · fin 3,8 s dont 1,0 s de montée des nuages et ≥ 2 s de tenue du logo.
+## Le moule commun (`_system/`)
 
-LOOK
-- Fond `#F5F7FB` en dégradé léger vers `#EEF2F8`, trois nuages lointains à faible contraste qui dérivent à ~2 px/s.
-- Encre `#0B1633` (titres, volumes sombres), secondaire `#4A5878`, accent `#E34234` : chiffre du compteur, barre de progression, trait sous le titre, et l'objet clé de chaque étape. Jamais deux focales vermillon concurrentes.
-- Geist variable. Titre d'intro 108 px / 660 / −4,5 %. Titre d'étape 84 px (70 px si long) / 640 / −3,5 %. Sous-titre 38–40 px / 420. Libellés 30 px. Plancher 28 px.
-- Matière : argile douce. Dégradé radial éclairé en haut à gauche, ombre portée dy 20–34 px, flou 20–30 px, opacité 0,13–0,16, ombre de contact floue sous chaque objet. Aucune arête vive (rayons ≥ 10 px, jointures arrondies).
-- Monde : chaque objet repose sur un socle-nuage.
+| Temps | Plan | Où |
+|---|---|---|
+| 0 – 2,4 s | Au-dessus d'une mer de nuages, une vallée mène vers une lumière vermillon sous les nuages. Surtitre (l'offre) et titre en mots qui se défloutent. | `openingKeys()`, `sky.setDawn()` |
+| 2,4 – 4,2 s | Plongée à travers le plafond de nuages (fondu blanc en bruit fbm), atterrissage sur l'île du sujet. | `ceilingWhite()` |
+| 4,2 – 21,6 s | Trois chapitres de 5 à 6 s : numéro vermillon + un mot, 1 à 3 étiquettes accrochées à des points 3D, au plus une phrase courte. | `rig()`, `PH.chapter/tag/words` |
+| 21,6 – 23 s | Remontée à travers les nuages. | `closingKeys()` |
+| 23 s – fin | L'œuf de lumière sort de la vallée et s'allume de l'intérieur, « phaness » s'écrit lettre à lettre dessous. | `sky.setEgg()`, `PH.letters` |
 
-GRILLE : colonne texte x 200–880 (dans la zone titre 80 %), scène x 940–1720, y 110–970. Compteur y 236, bloc titre y 430, progression y 900.
+`expliquer-pac` garde son découpage d'origine (28 s, œuf à 24 s).
 
-MOTION
-- Arrivées : `expo.out` 0,4 s pour le texte (flou 10 px → 0), ressorts `elastic.out(1, 0.6–0.85)` pour les objets (amortissement premium).
-- Sorties : flou 8 px + fondu, 0,2 s `power2.in`, 40 % plus courtes que les entrées.
-- Compteur : le chiffre roule (0,55 s `expo.inOut`) ; le segment de progression se remplit (0,7 s `expo.out`).
-- Mouvement continu seulement là où il a un sens : fluide, ventilateur, air (linéaires) ; nuages du fond.
-- Transitions : nuages qui s'envolent (intro → étapes), échange flouté sur une même scène (entre étapes), poussée caméra (radiateur), banc de nuages qui monte (→ fin).
+## Look
+- Ciel en dégradé (bleu `#8FA6D4` en haut, bande chaude `#FBE4DC` à l'horizon), nuages en argile blanche à ombres froides.
+- Sujets en argile douce (`clay`) et plastique (`plastic`) : bleu nuit `#0B1633`, blanc, brume `#DCE3F0`, vermillon `#E34234` pour l'élément clé de chaque plan. Jaune `#F2CF6B` seulement pour les marquages et gilets (usine).
+- Lumière : clé chaude, rim vermillon léger, hémisphère bleuté, ombres VSM douces, occlusion ambiante GTAO, profondeur de champ (Bokeh) sur les plans serrés, vignette et grain fin.
+- Geist variable pour tout le texte. Titre 112 px, chapitre 68 px, étiquettes 31 px, logo 128 px.
 
-SHOTS
-- Intro : format + titre + trait vermillon + sous-titre à gauche, nuages et sphère vermillon à droite.
-- Étapes : un objet par étape (PAS : triangle + zone, téléphone 15/18/112, trousse + pouls ; EPI : mannequin équipé pièce par pièce, puis « Pas d'EPI, pas de chantier. » ; PAC : schéma qui se construit, une pièce par étape, le fluide circule ; Radiateur : robinet, récipient et chiffon, clé, gouttes, manomètre 1–1,5 bar, chaleur qui revient).
-- Fin : « phaness » lettre à lettre, « Vidéo de démonstration ».
+## Motion
+- La caméra ne s'arrête jamais : orbites, plongées, travellings (`rig` interpole en sphérique autour d'une cible qui se déplace).
+- Objets : ressorts amortis (`E.spring`, ζ ≈ 0,6–0,8), éclatés, montées en échelle.
+- Texte : entrée 0,4–0,5 s `expo.out` avec flou de 10 px, sortie 0,2 s.
 
-BANNED : fond sombre, glow, néon, particules, dégradés violets, cartes en verre, trois cartes alignées, texte qui bouge pendant la lecture, logo en coin, boucles de respiration sur les titres.
+## Les quatre films
+- `expliquer-pac` : unité extérieure qui s'ouvre en vue éclatée, boucle du fluide (froid → chaud), pose sur support et raccordement, technicien, plongée dans le mur jusqu'au thermostat (21 → 19 °C, mode éco).
+- `securiser-usine` : atelier vu en plongée, nouvel arrivant équipé pièce par pièce (casque, lunettes, gilet, chaussures), allée piétonne et chariot élévateur au croisement, gyrophare, chevrons au sol jusqu'au point de rassemblement.
+- `accompagner-solaire` : soleil qui traverse le ciel, boussole plein sud, panneaux au sol qui s'inclinent à 30°, énergie qui court dans le câble jusqu'à l'onduleur (2,4 kW), téléphone qui trace la courbe de production du jour.
+- `former-electricite` : pile 12 V et colonne qui se remplit (tension), travelling le long du fil où les charges accélèrent jusqu'à l'ampèremètre 2 A (intensité), ampoule qui s'allume, 24 W, P = U × I (puissance).
 
-QA : chaque milieu d'étape (texte entier lisible, rien hors cadre), chaque raccord, la tenue finale du logo.
+BANNED : diaporama de cartes, texte qui défile, néon, fond sombre, plus de trois étiquettes par chapitre, logo en coin.

@@ -15,7 +15,7 @@ La vidéo de présentation et les démonstrations restent à fournir depuis l’
 | 3. Héros vidéo | Cadre prêt, film attendu | Définir PHANESS_PRESENTATION_VIDEO_URL et éventuellement PHANESS_PRESENTATION_POSTER_URL. Le prototype WebGL reste archivé, sans chargement sur le site. |
 | 4. Mise en page | Fait | Captures de contrôle à 1440 et 390 px dans docs/captures/recette-2026-10-29/. |
 | 5. Finitions | Code vérifié | Réservation testée avec page simulée ; contrôle du vrai Cal.com après réception du lien. Email et téléphone renseignés ; informations légales et Cal.com attendus. |
-| V2. Vidéos | Hors périmètre de cette session | Gérées sur l'autre PC. Ne pas créer, modifier ou rendre les vidéos sur ce Mac. |
+| V2. Vidéos | WIP sur le poste Windows, anciens rendus récupérés dans l’historique | Quatre anciens films sont rendus sur Windows, mais restent sur les anciens sujets et la DA bleu nuit/vermillon. Adapter aux nouveaux sujets et à la palette verte sur l’autre PC ; ne pas publier les anciens médias sous les nouveaux titres. Aucun rendu ou source vidéo modifié sur ce Mac. |
 | 6a. Recette | Validée hors médias et données manquantes | Mesures antérieures à la révision verte : mobile 98/100/100/100, ordinateur 100/100/100/100. Révision contrôlée visuellement à 390 et 1440 px ; refaire Lighthouse avec les médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
 | 7. Mise en ligne | Code et procédure prêts | 10 tests paquetage réussis ; ZIP de contrôle sans médias installé sur WordPress vierge. Vrai ZIP et installation finale attendent les médias, Cal.com et informations légales. |
@@ -50,3 +50,9 @@ Node ≥ 20.18. Session vérifiée sous Node 24.14.0, PHP 8.3 et WordPress 7.1.4
 2. Renseigner les informations validées et vérifier Cal.com réel.
 3. Exécuter synchronisation, tests et build ; tester le ZIP final dans un WordPress vierge.
 4. Suivre le guide IONOS, puis refaire la recette sur le domaine HTTPS.
+
+## État transmis par le poste vidéo
+
+Le commit `5be9afb`, intégré par `a2dded9`, contient les quatre sources V2 et les documents vidéo. Les quatre MP4 et affiches sont non versionnés et restent sur Windows (PAC 5,14 Mo ; usine 4,70 Mo ; solaire 5,88 Mo ; électricité 5,55 Mo). Le poste vidéo signalait une correction du plan Suivi solaire encore à rendre, une planche contact à produire, le nettoyage V1, la synchronisation et le ZIP non faits. Ces tâches décrivent l’ancien lot : les derniers sujets IA/EPI/rénovation/PAC et la palette verte priment avant la livraison finale. Consulter `videos/REVIEW.md` pour le détail historique.
+
+Les tests exécutés sur Windows signalaient 9/12 réussites, les trois échecs provenant de la création de liens symboliques sans droits (`EPERM`). Sur ce Mac, les 12 tests de la révision courante passent. Ne pas modifier la sécurité de Windows pour ce constat dans cette session.

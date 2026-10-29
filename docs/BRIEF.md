@@ -60,6 +60,7 @@ Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et l
    - Accompagner : utilisation d’une pompe à chaleur (`accompagner-solaire`).
 
    Les identifiants entre parenthèses sont les clés techniques historiques, conservées pour le poste de rendu. Les sujets précédents sont remplacés dans le brief : ne pas publier leurs anciens rendus sous les nouveaux titres. La création et l’adaptation des films restent réservées à l’autre PC.
+   État du poste Windows récupéré dans `a2dded9` : quatre films 3D de 26 à 28 s ont été rendus avec HyperFrames/three.js sur les anciens sujets (électricité, usine, PAC explicative et solaire). Ils utilisent encore la DA bleu nuit/vermillon et un œuf final. Les détails historiques restent dans `videos/SPEC.md` et `videos/REVIEW.md`. Ces rendus ne doivent pas être livrés sous les nouveaux titres ; le poste vidéo devra adapter les sujets et la palette aux dernières demandes.
 7. **Contact :** prise de rendez-vous, `contact@fanes.fr`, `07 69 86 01 61` (coordonnées fournies par l'utilisateur). La zone d'intervention est supprimée. Le lien Cal.com reste à fournir.
 8. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
 

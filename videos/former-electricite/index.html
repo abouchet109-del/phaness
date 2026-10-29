@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/phaness.css" />
+    <style>
+      @font-face {
+        font-family: "Geist";
+        src: url("assets/fonts/Geist-Variable.woff2") format("woff2");
+        font-weight: 100 900;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f5f7fb;
+        font-family: "Geist", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Phaness demo · Former: training capsule on voltage, current and power. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="26" data-width="1920" data-height="1080">
+      <div id="film" data-composition-id="film" data-composition-src="compositions/film.html"
+        data-start="0" data-duration="26" data-track-index="0" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index: 1"></div>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
