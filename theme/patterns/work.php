@@ -5,6 +5,34 @@
  * Categories: phaness
  * Inserter: no
  */
+
+// One entry per demo video: file name in assets/video/ (from videos/out/), offer, title, caption.
+$phaness_works = array(
+	array(
+		'slug'    => 'former-electricite',
+		'offer'   => 'Former',
+		'title'   => 'Protéger, alerter, secourir',
+		'caption' => 'Une capsule e-learning sur les trois réflexes du sauveteur, du danger à l\'arrivée des secours.',
+	),
+	array(
+		'slug'    => 'securiser-usine',
+		'offer'   => 'Sécuriser',
+		'title'   => 'Les EPI sur un chantier',
+		'caption' => 'Casque, lunettes, gants, chaussures, gilet : chaque équipement et son rôle, en un coup d\'œil.',
+	),
+	array(
+		'slug'    => 'expliquer-pac',
+		'offer'   => 'Expliquer et vendre',
+		'title'   => 'Comment fonctionne une pompe à chaleur air/eau',
+		'caption' => 'Le parcours de la chaleur, de l\'air extérieur jusqu\'aux radiateurs, montré en 3D.',
+	),
+	array(
+		'slug'    => 'accompagner-solaire',
+		'offer'   => 'Accompagner',
+		'title'   => 'Purger un radiateur',
+		'caption' => 'Un tutoriel en étapes numérotées, à suivre pas à pas.',
+	),
+);
 ?>
 <!-- wp:html -->
 <section class="ph-section ph-work-section" id="realisations" aria-labelledby="ph-work-title">
@@ -16,10 +44,9 @@
 		</header>
 		<div class="ph-grid ph-grid--2 ph-works">
 			<?php
-			phaness_video_card( 'former-pas', 'Former', 'Protéger, alerter, secourir', 'Une capsule e-learning sur les trois réflexes du sauveteur, du danger à l\'arrivée des secours.' );
-			phaness_video_card( 'securiser-epi', 'Sécuriser', 'Les EPI sur un chantier', 'Casque, lunettes, gants, chaussures, gilet : chaque équipement et son rôle, en un coup d\'œil.' );
-			phaness_video_card( 'expliquer-pac', 'Expliquer et vendre', 'Comment fonctionne une pompe à chaleur air/eau', 'Le parcours de la chaleur, de l\'air extérieur jusqu\'aux radiateurs, montré en 3D.' );
-			phaness_video_card( 'accompagner-radiateur', 'Accompagner', 'Purger un radiateur', 'Un tutoriel en étapes numérotées, à suivre pas à pas.' );
+			foreach ( $phaness_works as $work ) {
+				phaness_video_card( $work['slug'], $work['offer'], $work['title'], $work['caption'] );
+			}
 			?>
 		</div>
 		<p class="ph-note ph-works__note">Vidéos sans son. Vos projets peuvent inclure une voix off ou des sous-titres [À CONFIRMER].</p>

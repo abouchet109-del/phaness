@@ -6,10 +6,10 @@
  * Inserter: no
  */
 $phaness_offers = array(
-	array( 'Former', 'Capsules pédagogiques', 'Des modules courts pour transmettre un savoir et le faire retenir.', 'Protéger, alerter, secourir : les trois réflexes du sauveteur', 'former-pas' ),
-	array( 'Sécuriser', 'Procédures et sécurité', 'Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas.', 'Les équipements de protection individuelle sur un chantier', 'securiser-epi' ),
+	array( 'Former', 'Capsules pédagogiques', 'Des modules courts pour transmettre un savoir et le faire retenir.', 'Protéger, alerter, secourir : les trois réflexes du sauveteur', 'former-electricite' ),
+	array( 'Sécuriser', 'Procédures et sécurité', 'Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas.', 'Les équipements de protection individuelle sur un chantier', 'securiser-usine' ),
 	array( 'Expliquer et vendre', 'Produits et solutions techniques', 'Montrer ce qui ne se voit pas : le fonctionnement d\'un produit et ce qu\'il apporte.', 'Comment fonctionne une pompe à chaleur air/eau', 'expliquer-pac' ),
-	array( 'Accompagner', 'Tutoriels', 'Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin.', 'Purger un radiateur, étape par étape', 'accompagner-radiateur' ),
+	array( 'Accompagner', 'Tutoriels', 'Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin.', 'Purger un radiateur, étape par étape', 'accompagner-solaire' ),
 );
 ?>
 <!-- wp:html -->
