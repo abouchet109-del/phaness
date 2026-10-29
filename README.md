@@ -37,4 +37,4 @@ npm run build:zip    # produit dist/phaness.zip (en cours, voir docs/REPRISE.md)
 - [`CLAUDE.md`](CLAUDE.md) : les consignes pour Claude Code.
 
 ## État
-Les étapes 1 à 4 sont faites. Les étapes 5 et 7 et les vidéos V2 sont en cours, l'étape 6 reste à faire. Le détail est dans [`docs/REPRISE.md`](docs/REPRISE.md).
+Étapes 1 à 5 faites. Étapes 6 et 7 partielles. Vidéos V2 en pause : elles bloquent la mise en ligne. Détail dans [`docs/REPRISE.md`](docs/REPRISE.md).

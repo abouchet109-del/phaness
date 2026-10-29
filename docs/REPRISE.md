@@ -1,6 +1,6 @@
 # Reprise du projet (état au 2026-10-29, après reprise locale)
 
-La branche locale `main` a été avancée jusqu'au dernier push observé, `6a41035` (2026-10-29, 13:39). Les nouveaux changements de cette reprise sont encore locaux et non commités.
+Tout est poussé sur `main`. Les vidéos V2 sont à rendre sous Windows : HyperFrames plante sur Mac (Chrome SIGABRT).
 À lire d'abord : `CLAUDE.md`, `docs/BRIEF.md`, `docs/PLAN.md`, `docs/CONTENU.md`.
 
 ## État par étape
