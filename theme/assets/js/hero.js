@@ -143,20 +143,23 @@ export function mountHero(canvas, options = {}) {
   const o = Object.assign({ dpr: 1.5, quality: 1, minQuality: 0.5, layout: 'auto' }, options);
   const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
   const ptr = [0, 0], tgt = [0, 0];
-  let gl = null, U = {}, raf = 0, last = 0, time = o.time || 0, q = o.quality;
+  let gl = null, U = {}, raf = 0, compileRaf = 0, ready = false, last = 0, time = o.time || 0, q = o.quality;
   let frames = 0, acc = 0, warm = 0, prev = null, locked = false, onScreen = true, side = true, egg = [0.69, 0.5, 1], calm = [1, 0, 0.1, 0.55];
 
   const still = () => o.staticFrame || mq.matches;
 
   function init() {
+    ready = false;
     if (o.forceFallback) return false;
     const attrs = { alpha: true, premultipliedAlpha: true, antialias: false, depth: false, stencil: false, preserveDrawingBuffer: false };
     gl = canvas.getContext('webgl', attrs) || canvas.getContext('experimental-webgl', attrs);
     if (!gl) return false;
+    const context = gl;
+    const parallel = gl.getExtension('KHR_parallel_shader_compile');
     const sh = (type, src) => {
       const s = gl.createShader(type);
       gl.shaderSource(s, src); gl.compileShader(s);
-      return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+      return s;
     };
     const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
     if (!vs || !fs) return false;
@@ -164,22 +167,43 @@ export function mountHero(canvas, options = {}) {
     gl.attachShader(p, vs); gl.attachShader(p, fs);
     gl.bindAttribLocation(p, 0, 'a');
     gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) return false;
-    gl.useProgram(p);
-    for (const n of ['R', 'T', 'M', 'E', 'C', 'N']) U[n] = gl.getUniformLocation(p, n);
+    const finish = () => {
+      compileRaf = 0;
+      if (gl !== context || gl.isContextLost()) return;
+      // Asking for compile/link status too early blocks the main thread. Keep
+      // the CSS visual while the driver compiles the shader in the background.
+      if (parallel && !gl.getProgramParameter(p, parallel.COMPLETION_STATUS_KHR)) {
+        compileRaf = requestAnimationFrame(finish);
+        return;
+      }
+      const linked = gl.getProgramParameter(p, gl.LINK_STATUS);
+      gl.deleteShader(vs); gl.deleteShader(fs);
+      if (!linked) {
+        gl.deleteProgram(p);
+        gl = null;
+        resize();
+        return;
+      }
+      gl.useProgram(p);
+      for (const n of ['R', 'T', 'M', 'E', 'C', 'N']) U[n] = gl.getUniformLocation(p, n);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
-    gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
-    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, 256, 256, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, noiseData());
-    for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR],
-      [gl.TEXTURE_WRAP_S, gl.REPEAT], [gl.TEXTURE_WRAP_T, gl.REPEAT]]) gl.texParameteri(gl.TEXTURE_2D, k, v);
-    gl.uniform1i(U.N, 0);
-    canvas.style.background = '';
+      gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+      gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, 256, 256, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, noiseData());
+      for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR],
+        [gl.TEXTURE_WRAP_S, gl.REPEAT], [gl.TEXTURE_WRAP_T, gl.REPEAT]]) gl.texParameteri(gl.TEXTURE_2D, k, v);
+      gl.uniform1i(U.N, 0);
+      ready = true;
+      resize();
+      canvas.style.background = '';
+      update();
+    };
+    finish();
     return true;
   }
 
@@ -187,7 +211,7 @@ export function mountHero(canvas, options = {}) {
     const r = canvas.getBoundingClientRect();
     const cw = Math.max(1, r.width), ch = Math.max(1, r.height);
     side = o.layout === 'side' || (o.layout === 'auto' && cw >= 768 && cw > ch);
-    if (!gl) { canvas.style.background = fallbackBg(side); return; }
+    if (!gl || !ready) { canvas.style.background = fallbackBg(side); return; }
     const s = Math.min(window.devicePixelRatio || 1, o.dpr) * q;
     const w = Math.max(1, Math.round(cw * s)), h = Math.max(1, Math.round(ch * s));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
@@ -199,7 +223,7 @@ export function mountHero(canvas, options = {}) {
   }
 
   function draw() {
-    if (!gl || gl.isContextLost()) return;
+    if (!gl || !ready || gl.isContextLost()) return;
     gl.uniform2f(U.R, canvas.width, canvas.height);
     gl.uniform1f(U.T, still() ? (o.time || 4.2) : time);
     gl.uniform2f(U.M, ptr[0], ptr[1]);
@@ -233,7 +257,7 @@ export function mountHero(canvas, options = {}) {
   }
 
   function update() {
-    const run = gl && onScreen && !document.hidden && !still();
+    const run = gl && ready && onScreen && !document.hidden && !still();
     if (run && !raf) { last = performance.now(); warm = frames = 0; acc = 0; raf = requestAnimationFrame(frame); }
     if (!run && raf) { cancelAnimationFrame(raf); raf = 0; }
     if (!run) draw();
@@ -244,15 +268,15 @@ export function mountHero(canvas, options = {}) {
     tgt[1] = Math.max(-1, Math.min(1, 1 - (e.clientY / window.innerHeight) * 2));
   };
   const onOut = (e) => { if (!e.relatedTarget) tgt[0] = tgt[1] = 0; };
-  const onLost = (e) => { e.preventDefault(); cancelAnimationFrame(raf); raf = 0; gl = null; resize(); };
-  const onRestored = () => { if (init()) { resize(); update(); } };
+  const onLost = (e) => { e.preventDefault(); cancelAnimationFrame(raf); cancelAnimationFrame(compileRaf); raf = compileRaf = 0; ready = false; gl = null; resize(); };
+  const onRestored = () => { if (!init()) gl = null; resize(); update(); };
 
-  const io = new IntersectionObserver((en) => { onScreen = en[0].isIntersecting; update(); });
+  const io = window.IntersectionObserver ? new IntersectionObserver((en) => { onScreen = en[0].isIntersecting; update(); }) : null;
   const ro = window.ResizeObserver ? new ResizeObserver(resize) : null;
 
   if (!init()) gl = null;
   resize();
-  io.observe(canvas);
+  if (io) io.observe(canvas);
   if (ro) ro.observe(canvas); else window.addEventListener('resize', resize);
   window.addEventListener('pointermove', onMove, { passive: true });
   document.addEventListener('pointerout', onOut);
@@ -266,7 +290,8 @@ export function mountHero(canvas, options = {}) {
     get webgl() { return !!gl; },
     destroy() {
       cancelAnimationFrame(raf); raf = 0;
-      io.disconnect(); if (ro) ro.disconnect(); else window.removeEventListener('resize', resize);
+      cancelAnimationFrame(compileRaf); compileRaf = 0; ready = false;
+      if (io) io.disconnect(); if (ro) ro.disconnect(); else window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerout', onOut);
       document.removeEventListener('visibilitychange', update);

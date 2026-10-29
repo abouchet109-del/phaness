@@ -93,6 +93,8 @@ Décisions issues des étapes 1 à 3 :
 
 ## Objectifs qualité
 
+Périmètre confirmé le 2026-10-29 : terminer et vérifier le site sans créer, modifier ou rendre les vidéos sur ce Mac. Les rendus V2 sont produits sur un autre PC. Les mesures locales sans médias doivent être refaites avec les films et sur IONOS avant publication.
+
 - Lighthouse mobile ≥ 95 en performance, accessibilité, bonnes pratiques et SEO.
 - JavaScript du thème < 30 Ko compressé (hors widget Cal.com). LCP < 2 s en 4G.
 - Responsive de 360 px à 1920 px. Navigation au clavier. WCAG AA.

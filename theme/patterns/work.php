@@ -12,13 +12,13 @@ $phaness_works = array(
 		'slug'    => 'former-electricite',
 		'offer'   => 'Former',
 		'title'   => 'Tension, intensité et puissance',
-		'caption' => 'Une capsule de formation pour comprendre trois notions électriques.',
+		'caption' => 'Un exemple de capsule à intégrer dans un parcours de formation.',
 	),
 	array(
 		'slug'    => 'securiser-usine',
 		'offer'   => 'Sécuriser',
 		'title'   => 'Les consignes de sécurité en usine',
-		'caption' => 'Les consignes à connaître lors de l\'accueil d\'un nouvel arrivant.',
+		'caption' => 'Un support d\'accueil pour présenter les règles aux nouveaux arrivants.',
 	),
 	array(
 		'slug'    => 'expliquer-pac',
@@ -30,7 +30,7 @@ $phaness_works = array(
 		'slug'    => 'accompagner-solaire',
 		'offer'   => 'Accompagner',
 		'title'   => 'Régler une installation solaire',
-		'caption' => 'Un tutoriel pour régler et utiliser une installation solaire.',
+		'caption' => 'Un tutoriel à suivre pour prendre en main son équipement.',
 	),
 );
 ?>

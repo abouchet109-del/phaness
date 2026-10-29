@@ -6,8 +6,10 @@ Ce projet a été commencé avec Claude Code. Les règles sont les mêmes pour t
 3. Suis la section « Méthode de travail » de `CLAUDE.md` : vérifier avant de dire « fini », commit et push après chaque étape, mise à jour de tous les documents du dépôt (liste de contrôle du principe 5), et commit `WIP` poussé avant tout arrêt.
 
 ## Différences avec Claude Code
+- Dernière demande utilisateur (2026-10-29) : terminer le site hors vidéos, puis attendre une nouvelle session de modifications. Les films V2 sont gérés sur un autre PC. Ne pas créer, modifier ou rendre les vidéos sur ce Mac ; leur intégration finale attend leur réception.
 - Les skills HyperFrames de Claude ne sont pas disponibles. Le CLI est installé dans `videos/` (`cd videos && npm install`, puis `npx hyperframes --help`), et `videos/README.md` décrit la chaîne de rendu.
 - Les chemins `D:\...` concernent le PC Windows de l'utilisateur. Dans un bac à sable cloud Linux, ignore-les et garde les caches dans le dossier du projet ou `/tmp`.
+- Sur macOS, travailler dans la racine du clone actif et garder outils et dépendances dans le projet ou un dossier temporaire ; aucune installation globale.
 - Les rendus vidéo (`videos/out/`) et `node_modules/` ne sont pas versionnés : régénère-les (`npm install`, rendu HyperFrames, `npm run sync-videos`).
 
 ## Écriture : pas de texte « IA »

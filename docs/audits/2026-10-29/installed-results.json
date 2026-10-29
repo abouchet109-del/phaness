@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "ZIP control theme installed and activated",
+    "Configured email and phone produce links",
+    "No booking request before click",
+    "Booking dialog opens from mobile menu",
+    "Booking request occurs only after click",
+    "Booking source receives embed parameters",
+    "Booking dialog fits mobile viewport",
+    "Closing removes iframe source and restores mobile focus",
+    "Close button restores hero booking focus",
+    "Installed theme creates mentions-legales",
+    "Installed theme creates politique-de-confidentialite",
+    "No installed-theme JS error"
+  ],
+  "errors": []
+}

@@ -17,13 +17,28 @@ if (header && hero && 'IntersectionObserver' in window) {
 const toggle = document.querySelector('.ph-menu-toggle');
 if (toggle && header) {
   const label = toggle.querySelector('.ph-menu-toggle__label');
+  const nav = header.querySelector('.ph-nav');
+  const mobile = matchMedia('(max-width: 1023px)');
   const setOpen = (open) => {
     header.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     label.textContent = open ? toggle.dataset.closeLabel : toggle.dataset.openLabel;
+    if (nav) nav.inert = mobile.matches && !open;
   };
+  setOpen(false);
   toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
   header.querySelectorAll('.ph-nav a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  header.addEventListener('focusout', (event) => {
+    if (event.relatedTarget && !header.contains(event.relatedTarget)) setOpen(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (!header.contains(event.target)) setOpen(false);
+  });
+  mobile.addEventListener('change', () => {
+    const focusWasInNav = nav?.contains(document.activeElement);
+    setOpen(false);
+    if (mobile.matches && focusWasInNav) toggle.focus();
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && header.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
   });
@@ -127,18 +142,25 @@ if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.pr
 
   dialog.append(close, frame);
   document.body.append(dialog);
-  dialog.addEventListener('close', () => frame.removeAttribute('src'));
+  let opener;
+  dialog.addEventListener('close', () => {
+    frame.removeAttribute('src');
+    if (opener?.getClientRects().length && !opener.closest('[inert]')) opener.focus();
+    else if (toggle?.getClientRects().length) toggle.focus();
+  });
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
 
   bookingLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const bookingUrl = new URL(link.href, window.location.href);
       if (bookingUrl.protocol !== 'https:') return;
       event.preventDefault();
       bookingUrl.searchParams.set('embed', 'true');
       bookingUrl.searchParams.set('layout', 'month_view');
+      opener = link;
       frame.src = bookingUrl.href;
       dialog.showModal();
     });

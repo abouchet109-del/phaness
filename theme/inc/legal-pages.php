@@ -22,10 +22,23 @@ function phaness_legal_pages() {
 }
 
 /**
+ * Match a complete theme pattern reference, never an editor's surrounding copy.
+ */
+function phaness_is_legal_reference( $content, $pattern ) {
+	$blocks = parse_blocks( trim( $content ) );
+	return 1 === count( $blocks )
+		&& 'core/pattern' === $blocks[0]['blockName']
+		&& $pattern === ( $blocks[0]['attrs']['slug'] ?? '' )
+		&& empty( $blocks[0]['innerBlocks'] )
+		&& '' === trim( $blocks[0]['innerHTML'] );
+}
+
+/**
  * Create the legal pages that do not exist yet. Safe to run any number of times.
  */
 function phaness_ensure_legal_pages() {
 	foreach ( phaness_legal_pages() as $slug => $page ) {
+		$reference = '<!-- wp:pattern {"slug":"' . $page['pattern'] . '"} /-->';
 		$existing = get_posts(
 			array(
 				'name'           => $slug,
@@ -36,32 +49,27 @@ function phaness_ensure_legal_pages() {
 			)
 		);
 		if ( ! empty( $existing ) ) {
-			// Earlier WIP builds created pages with a pattern reference that was not
-			// expanded by WordPress. Repair only those empty/theme-owned pages; never
-			// replace copy that an editor has entered.
+			// Keep generated pages linked to the theme. Only migrate exact snapshots
+			// of the current pattern; an editor's custom content must remain intact.
 			$post = get_post( $existing[0] );
-			if ( $post && ( '' === trim( $post->post_content ) || false !== strpos( $post->post_content, $page['pattern'] ) ) ) {
-				$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $page['pattern'] );
-				if ( $pattern && ! empty( $pattern['content'] ) ) {
-					wp_update_post(
-						array(
-							'ID'           => $post->ID,
-							'post_content' => $pattern['content'],
-						)
-					);
-				}
+			$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $page['pattern'] );
+			if ( $post && ( '' === trim( $post->post_content ) || ( $pattern && trim( $post->post_content ) === trim( $pattern['content'] ) ) ) ) {
+				wp_update_post(
+					array(
+						'ID'           => $post->ID,
+						'post_content' => $reference,
+					)
+				);
 			}
 			continue;
 		}
-		$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $page['pattern'] );
-		$content = $pattern && ! empty( $pattern['content'] ) ? $pattern['content'] : '<!-- wp:pattern {"slug":"' . $page['pattern'] . '"} /-->';
 		wp_insert_post(
 			array(
 				'post_type'      => 'page',
 				'post_status'    => 'publish',
 				'post_name'      => $slug,
 				'post_title'     => $page['title'],
-				'post_content'   => $content,
+				'post_content'   => $reference,
 				'comment_status' => 'closed',
 				'ping_status'    => 'closed',
 			)
@@ -75,22 +83,21 @@ add_action( 'after_switch_theme', 'phaness_ensure_legal_pages' );
 
 // Safety net for a theme that was already active (or mounted) before this code existed: runs once.
 add_action( 'init', function () {
-	if ( 2 !== (int) get_option( 'phaness_legal_pages_version' ) ) {
+	if ( 3 !== (int) get_option( 'phaness_legal_pages_version' ) ) {
 		phaness_ensure_legal_pages();
-		update_option( 'phaness_legal_pages_version', 2, false );
+		update_option( 'phaness_legal_pages_version', 3, false );
 	}
 }, 20 );
 
-// A pattern reference is editor metadata, not a front-end block. Resolve old
-// references at render time as well, so existing installations show the page
-// while the one-time repair above updates their stored content.
+// Resolve theme-owned references before core renders the content. This keeps
+// the legal pages in sync with the theme without overwriting editor changes.
 add_filter( 'the_content', function ( $content ) {
 	if ( ! is_page() ) {
 		return $content;
 	}
 	$slug = get_post_field( 'post_name', get_queried_object_id() );
 	$pages = phaness_legal_pages();
-	if ( ! isset( $pages[ $slug ] ) || ( '' !== trim( $content ) && false === strpos( $content, $pages[ $slug ]['pattern'] ) ) ) {
+	if ( ! isset( $pages[ $slug ] ) || ( '' !== trim( $content ) && ! phaness_is_legal_reference( $content, $pages[ $slug ]['pattern'] ) ) ) {
 		return $content;
 	}
 	$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $pages[ $slug ]['pattern'] );

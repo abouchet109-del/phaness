@@ -14,8 +14,11 @@ Accroche : « Des vidéos explicatives professionnelles, simplement. » Mise en 
 ```bash
 npm install
 npm run dev          # WordPress local sur http://127.0.0.1:9400 (voir CLAUDE.md pour garder le cache sur D:)
+npm run dev:audit    # WordPress anonyme sur http://127.0.0.1:9401, pour Lighthouse et la recette
+npm test            # tests du héros WebGL et du paquetage
+npm run test:packaging # contrôle le ZIP dans des fixtures temporaires, sans rendre de vidéo
 npm run sync-videos  # copie videos/out/*.mp4|webp dans theme/assets/video/
-npm run build:zip    # produit dist/phaness.zip (en cours, voir docs/REPRISE.md)
+npm run build:zip    # produit dist/phaness.zip ; refuse les fichiers ou rendus manquants
 ```
 
 ## Arborescence
@@ -25,7 +28,7 @@ npm run build:zip    # produit dist/phaness.zip (en cours, voir docs/REPRISE.md)
 | `lab/hero/` | prototype autonome du héros WebGL et sa note d'intégration |
 | `videos/` | sources HyperFrames des vidéos de démo (rendus dans `videos/out/`, non versionnés) |
 | `scripts/` | synchronisation des vidéos, construction du zip |
-| `dev/` | blueprint de Playground |
+| `dev/` | blueprints Playground : développement connecté et audit anonyme |
 | `docs/` | brief, plan, textes, journal, reprise, captures |
 
 ## Documentation
@@ -33,8 +36,9 @@ npm run build:zip    # produit dist/phaness.zip (en cours, voir docs/REPRISE.md)
 - [`docs/PLAN.md`](docs/PLAN.md) : les étapes, avec le modèle et l'effort de chacune, et leur statut.
 - [`docs/CONTENU.md`](docs/CONTENU.md) : tous les textes du site.
 - [`docs/JOURNAL.md`](docs/JOURNAL.md) : ce qui a été fait, et quand.
+- [`docs/RECETTE.md`](docs/RECETTE.md) : contrôles, mesures Lighthouse et limites de validation.
 - [`docs/REPRISE.md`](docs/REPRISE.md) : où en est le projet et ce qu'il reste à faire.
 - [`CLAUDE.md`](CLAUDE.md) : les consignes pour Claude Code.
 
 ## État
-Étapes 1 à 5 faites. Étapes 6 et 7 partielles. Vidéos V2 en pause : elles bloquent la mise en ligne. Détail dans [`docs/REPRISE.md`](docs/REPRISE.md).
+Code et recette terminés dans le périmètre sans vidéos : Lighthouse mobile 98/100/100/100 et ordinateur 100/100/100/100. Paquetage couvert par 10 tests ; installation du thème et réservation simulée vérifiées sur WordPress vierge. La livraison finale attend les vidéos V2 produites sur l'autre PC, les coordonnées et les informations légales. Le ZIP final et la mise en ligne IONOS restent à faire après réception de ces éléments. Détail dans [`docs/REPRISE.md`](docs/REPRISE.md).

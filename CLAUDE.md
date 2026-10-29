@@ -23,6 +23,8 @@ Site vitrine one-page de Phaness (studio de vidéos explicatives B2B), thème Wo
 8. **Qualité visible** : premium et sobre, pas de « AI slop ». Les textes passent par le skill `avoid-ai-writing` (voir plus bas). Les vidéos visent un niveau showreel, pas un diaporama.
 
 ## Périmètre : le site, rien d'autre
+- Demande utilisateur du 2026-10-29 : finir le site hors vidéos. Les films V2 sont gérés sur un autre PC ; ne pas les produire ni les modifier sur ce Mac. Voir `docs/REPRISE.md` pour le périmètre déjà vérifié et les éléments attendus.
+- Hors Windows, le périmètre de travail est la racine du clone actif. Les outils restent locaux au projet ou dans un dossier temporaire, sans installation globale.
 - Travaille uniquement dans `D:\Projets\Phaness`. Ne modifie rien ailleurs sur le PC : ni réglages système, ni variables d'environnement globales, ni profil de shell, ni autres projets, ni désinstallations, ni paquets globaux.
 - Installe les dépendances uniquement dans le projet (`npm install` local, `npx`).
 - Si un outil télécharge un navigateur, ffmpeg ou un cache, oriente-le vers `D:\Tools\<outil>-cache`, par une variable d'environnement limitée à la commande. Jamais sur C:. Préviens avant toute écriture de plus de 500 Mo.
@@ -51,6 +53,8 @@ Site vitrine one-page de Phaness (studio de vidéos explicatives B2B), thème Wo
 - `npm run dev` : lance WordPress en local (Playground CLI) sur http://127.0.0.1:9400, thème `theme/` monté en direct et activé, connexion admin automatique (admin : `/wp-admin/`). Les modifications de `theme/` s'appliquent au rechargement de la page. Premier lancement : téléchargement de WordPress, comptez quelques minutes.
 - Pour que le cache et le site temporaire de Playground (≈ 200 Mo) restent sur D: : `USERPROFILE=D:\Tools\playground-cache HOME=D:\Tools\playground-cache npm run dev` (variables limitées à la commande).
 - Config Playground : `dev/blueprint.json`. Polices : `theme/assets/fonts/` (Geist variable, licence OFL).
+- `npm run dev:audit` : instance anonyme sur http://127.0.0.1:9401 (`dev/audit-blueprint.json`), pour Lighthouse et la recette sans barre d'administration.
+- `npm test` : tests du héros et du paquetage. `npm run test:packaging` : paquetage seul, dans des fixtures temporaires ; aucun média créé dans le projet. Le build retire l'ancien ZIP avant sa tentative et refuse les fichiers requis ou médias manquants.
 - Dépôt : https://github.com/abouchet109-del/phaness (privé), branche `main`.
 
 ## Écriture : pas de texte « IA »

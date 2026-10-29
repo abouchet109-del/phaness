@@ -1,0 +1,10 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "login": false,
+  "steps": [
+    { "step": "activateTheme", "themeFolderName": "phaness" },
+    { "step": "setSiteOptions", "options": { "blog_public": "1", "WPLANG": "fr_FR", "timezone_string": "Europe/Paris" } }
+  ]
+}

@@ -225,10 +225,10 @@ Tous les boutons ouvrent la prise de rendez-vous.
 
 | Offre | Titre | Légende |
 |---|---|---|
-| Former | Tension, intensité et puissance | Une capsule de formation pour comprendre trois notions électriques. |
-| Sécuriser | Les consignes de sécurité en usine | Les consignes à connaître lors de l'accueil d'un nouvel arrivant. |
+| Former | Tension, intensité et puissance | Un exemple de capsule à intégrer dans un parcours de formation. |
+| Sécuriser | Les consignes de sécurité en usine | Un support d'accueil pour présenter les règles aux nouveaux arrivants. |
 | Expliquer et vendre | Comment fonctionne une pompe à chaleur air/eau | Le parcours de la chaleur, de l'air extérieur jusqu'aux radiateurs, montré en 3D. |
-| Accompagner | Régler une installation solaire | Un tutoriel pour régler et utiliser une installation solaire. |
+| Accompagner | Régler une installation solaire | Un tutoriel à suivre pour prendre en main son équipement. |
 
 **Mention sous la grille** — ≤ 120
 > Vidéos sans son. Vos projets peuvent inclure une voix off ou des sous-titres [À CONFIRMER].

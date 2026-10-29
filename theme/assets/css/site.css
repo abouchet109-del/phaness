@@ -71,6 +71,7 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 	.is-open .ph-menu-toggle__bars::after { transform: translateY(-5px) rotate(-45deg); }
 	.ph-nav { position: absolute; top: calc(var(--ph-header-h) - 0.25rem); left: var(--ph-gutter); right: var(--ph-gutter); flex-direction: column; align-items: stretch; gap: 1rem; padding: 1rem; border-radius: var(--ph-r-lg); background: var(--ph-white); box-shadow: var(--ph-shadow-float); visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s; }
 	.ph-header.is-open .ph-nav { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+	.ph-nav { max-height: calc(100dvh - var(--ph-header-h) - 1rem); overflow-y: auto; box-sizing: border-box; }
 	.ph-header.is-open { background: rgba(245, 247, 251, 0.92); backdrop-filter: blur(16px); }
 	.ph-nav__list { flex-direction: column; }
 	.ph-nav__list a { padding: 0.875rem 1rem; font-size: 1.0625rem; border-radius: var(--ph-r-sm); }
@@ -298,7 +299,7 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 }
 
 /* Booking dialog: the iframe has no source until a visitor clicks a booking link. */
-.ph-booking { position: fixed; width: min(56rem, calc(100vw - 2rem)); height: min(46rem, calc(100dvh - 2rem)); max-width: 56rem; max-height: 46rem; padding: 3.5rem 0.5rem 0.5rem; overflow: hidden; border: 0; border-radius: var(--ph-r-lg); background: var(--ph-white); box-shadow: 0 32px 100px rgba(11, 22, 51, 0.35); }
+.ph-booking { box-sizing: border-box; position: fixed; width: min(56rem, calc(100vw - 2rem)); height: min(46rem, calc(100dvh - 2rem)); max-width: 56rem; max-height: 46rem; padding: 3.5rem 0.5rem 0.5rem; overflow: hidden; border: 0; border-radius: var(--ph-r-lg); background: var(--ph-white); box-shadow: 0 32px 100px rgba(11, 22, 51, 0.35); }
 .ph-booking::backdrop { background: rgba(11, 22, 51, 0.58); backdrop-filter: blur(4px); }
 .ph-booking__close { position: absolute; top: 0.75rem; right: 0.75rem; min-height: 2.5rem; padding: 0.5rem 1rem; border: 0; border-radius: var(--wp--custom--radius--pill); background: var(--ph-cloud); color: var(--ph-night); font: inherit; font-size: 0.9375rem; cursor: pointer; }
 .ph-booking__frame { display: block; width: 100%; height: 100%; border: 0; border-radius: var(--ph-r-md); background: var(--ph-white); }
