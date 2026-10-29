@@ -32,6 +32,6 @@ Site vitrine one-page de Phaness (studio de vidéos explicatives B2B), thème Wo
 - Node vient de `D:\Tools\nodejs` (≥ 20.18 requis). Si `npm` n'est pas reconnu, ajoute ce dossier au `PATH` de la session.
 - `npm install` : installe les dépendances du projet (dont `@wp-playground/cli`).
 - `npm run dev` : lance WordPress en local (Playground CLI) sur http://127.0.0.1:9400, thème `theme/` monté en direct et activé, connexion admin automatique (admin : `/wp-admin/`). Les modifications de `theme/` s'appliquent au rechargement de la page. Premier lancement : téléchargement de WordPress, comptez quelques minutes.
-- Pour que le cache de Playground reste sur D: : `USERPROFILE=D:\Tools\playground-cache HOME=D:\Tools\playground-cache npm run dev` (variables limitées à la commande).
+- Pour que le cache et le site temporaire de Playground (≈ 200 Mo) restent sur D: : `USERPROFILE=D:\Tools\playground-cache HOME=D:\Tools\playground-cache npm run dev` (variables limitées à la commande).
 - Config Playground : `dev/blueprint.json`. Polices : `theme/assets/fonts/` (Geist variable, licence OFL).
 - Dépôt : https://github.com/abouchet109-del/phaness (privé), branche `main`.
