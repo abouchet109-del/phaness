@@ -3,7 +3,7 @@
 Ce projet a été commencé avec Claude Code. Les règles sont les mêmes pour tout agent :
 1. Lis `CLAUDE.md` (règles du projet), puis `docs/REPRISE.md` (où on en est, ce qu'il reste à faire), `docs/BRIEF.md` et `docs/PLAN.md`.
 2. Reprends les étapes inachevées de `docs/REPRISE.md`, dans l'ordre : finir l'étape 5, finir les vidéos V2, finir l'étape 7, puis l'étape 6 (recette).
-3. Après chaque étape : commit et push, puis mise à jour de `docs/PLAN.md`, `docs/JOURNAL.md` et `docs/REPRISE.md`.
+3. Suis la section « Méthode de travail » de `CLAUDE.md` : vérifier avant de dire « fini », commit et push après chaque étape, mise à jour de `docs/PLAN.md`, `docs/JOURNAL.md` et `docs/REPRISE.md`, et commit `WIP` poussé avant tout arrêt.
 
 ## Différences avec Claude Code
 - Les skills HyperFrames de Claude ne sont pas disponibles. Le CLI est installé dans `videos/` (`cd videos && npm install`, puis `npx hyperframes --help`), et `videos/README.md` décrit la chaîne de rendu.
