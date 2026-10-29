@@ -4,7 +4,8 @@
   "private": true,
   "description": "Phaness one-page showcase site (custom WordPress block theme)",
   "scripts": {
-    "dev": "wp-playground-cli server --mount=./theme:/wordpress/wp-content/themes/phaness --blueprint=./dev/blueprint.json --login --port=9400"
+    "dev": "wp-playground-cli server --mount=./theme:/wordpress/wp-content/themes/phaness --blueprint=./dev/blueprint.json --login --port=9400",
+    "sync-videos": "node scripts/sync-videos.mjs"
   },
   "devDependencies": {
     "@wp-playground/cli": "^3.1.61"
