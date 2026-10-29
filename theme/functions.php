@@ -20,6 +20,13 @@ if ( ! defined( 'PHANESS_CONTACT_PHONE' ) ) {
 if ( ! defined( 'PHANESS_LEGAL_NAME' ) ) {
 	define( 'PHANESS_LEGAL_NAME', '' );
 }
+// The team supplies the introduction film separately. Keep its player unloaded until requested.
+if ( ! defined( 'PHANESS_PRESENTATION_VIDEO_URL' ) ) {
+	define( 'PHANESS_PRESENTATION_VIDEO_URL', '' );
+}
+if ( ! defined( 'PHANESS_PRESENTATION_POSTER_URL' ) ) {
+	define( 'PHANESS_PRESENTATION_POSTER_URL', '' );
+}
 
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wp-block-styles' );

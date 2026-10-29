@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="gear" x1=".15" y1="0" x2=".8" y2="1"><stop stop-color="#edf6ef"/><stop offset=".35" stop-color="#a5cfb5"/><stop offset=".7" stop-color="#448d67"/><stop offset="1" stop-color="#146143"/></linearGradient>
+    <radialGradient id="hole" cx="35%" cy="25%" r="80%"><stop stop-color="#fff"/><stop offset="1" stop-color="#d8e8dc"/></radialGradient>
+    <filter id="shadow" x="-40%" y="-30%" width="180%" height="190%"><feDropShadow dx="2" dy="7" stdDeviation="4" flood-color="#176447" flood-opacity=".2"/></filter>
+  </defs>
+  <g filter="url(#shadow)" fill="url(#gear)">
+    <path d="M55 16h18l3 12 9 4 11-6 13 13-6 11 4 9 12 3v18l-12 3-4 9 6 11-13 13-11-6-9 4-3 12H55l-3-12-9-4-11 6-13-13 6-11-4-9-12-3V62l12-3 4-9-6-11 13-13 11 6 9-4Z" transform="translate(0 -7)" stroke="#85b99b" stroke-width=".6" stroke-linejoin="round"/>
+    <circle cx="64" cy="64" r="23" fill="url(#hole)"/>
+  </g>
+</svg>

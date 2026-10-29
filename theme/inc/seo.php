@@ -7,8 +7,8 @@
 const PHANESS_SITE_NAME   = 'Phaness';
 const PHANESS_SEO_TITLE   = 'Phaness – Vidéos explicatives et tutoriels pour entreprises';
 const PHANESS_SEO_DESC    = 'Vidéos explicatives et tutoriels en motion design 3D pour la formation, le BTP, l\'industrie et l\'énergie. Clairs, faciles à renouveler. Devis sur mesure.';
-const PHANESS_OG_TITLE    = 'Phaness – Des vidéos explicatives professionnelles, simplement.';
-const PHANESS_OG_ALT      = 'Une lumière vermillon émerge d\'une forme organique dans les nuages.';
+const PHANESS_OG_TITLE    = 'Phaness – Donnez vie à vos idées en vidéo';
+const PHANESS_OG_ALT      = 'Phaness, studio vidéo pour les entreprises. Donnez vie à vos idées en vidéo.';
 const PHANESS_ORG_DESC    = 'Studio de vidéos explicatives et de tutoriels en motion design 3D pour les entreprises.';
 const PHANESS_LEGAL_DESCS = array(
 	'mentions-legales'             => 'Mentions légales du site phaness.fr : éditeur, hébergeur et propriété intellectuelle.',
@@ -64,7 +64,7 @@ add_action( 'wp_head', function () {
 	$description = phaness_meta_description();
 	$is_front    = is_front_page();
 	$title       = $is_front ? PHANESS_OG_TITLE : wp_get_document_title();
-	$image       = get_theme_file_uri( 'assets/img/og.png' );
+	$image       = add_query_arg( 'ver', wp_get_theme()->get( 'Version' ), get_theme_file_uri( 'assets/img/og.png' ) );
 
 	echo "\n<!-- Phaness SEO -->\n";
 	if ( '' !== $description ) {
@@ -105,8 +105,8 @@ add_action( 'wp_head', function () {
 		}
 	}
 
-	echo '<link rel="icon" type="image/svg+xml" href="' . esc_url( get_theme_file_uri( 'assets/img/favicon.svg' ) ) . "\">\n";
-	echo '<meta name="theme-color" content="#F5F7FB">' . "\n";
+	echo '<link rel="icon" type="image/svg+xml" href="' . esc_url( add_query_arg( 'ver', wp_get_theme()->get( 'Version' ), get_theme_file_uri( 'assets/img/favicon.svg' ) ) ) . "\">\n";
+	echo '<meta name="theme-color" content="#F5F7F4">' . "\n";
 
 	if ( $is_front ) {
 		$org = array(

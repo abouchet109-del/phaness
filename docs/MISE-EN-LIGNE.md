@@ -15,7 +15,9 @@ Les constantes `PHANESS_CAL_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHON
 
 Les autres informations légales se trouvent dans `theme/patterns/legal-mentions.php` et `theme/patterns/legal-privacy.php`. La raison sociale du pied de page se trouve dans `theme/patterns/footer.php`. Ces textes ne sont pas tous alimentés par `PHANESS_LEGAL_NAME` : remplacer chaque champ avec les informations validées de l'entreprise, puis reporter les textes dans `docs/CONTENU.md`. Ne pas renseigner de durée, de garantie ou d'identifiant supposé.
 
-Les pages créées par le thème restent liées à leurs patterns et reflètent leurs mises à jour. Une page dont le contenu a été personnalisé dans l'éditeur est conservée ; dans ce cas, vérifier et mettre à jour cette page séparément. Les séries de retours et la mention voix off/sous-titres restent aussi à confirmer dans les patterns correspondants et `docs/CONTENU.md`.
+Les pages créées par le thème restent liées à leurs patterns et reflètent leurs mises à jour. Une page dont le contenu a été personnalisé dans l'éditeur est conservée ; dans ce cas, vérifier et mettre à jour cette page séparément. La mention voix off/sous-titres reste à confirmer dans `theme/patterns/work.php` et `docs/CONTENU.md`. Le nombre de retours n'est plus affiché depuis le retrait de la section Méthode.
+
+La vidéo de présentation du héros est indépendante des quatre démonstrations. Définir `PHANESS_PRESENTATION_VIDEO_URL` dans `wp-config.php` avec son URL et, si disponible, `PHANESS_PRESENTATION_POSTER_URL` pour son affiche. Le lecteur utilise les commandes natives, sans lecture automatique, et attend une action du visiteur pour charger le film. Ne pas placer ce fichier directement dans le dossier synchronisé du thème, dont le contenu est remplacé par `sync-videos`.
 
 ## 1. Installer WordPress chez IONOS
 

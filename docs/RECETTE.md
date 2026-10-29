@@ -1,5 +1,23 @@
 # Recette locale — 2026-10-29
 
+## Nouvelle section bénéfices — thème 0.2.1
+
+La section « La vidéo explicative, enfin accessible » est remplacée par le titre, l’introduction et les trois cartes de l’image fournie par l’utilisateur. Les illustrations sont trois SVG décoratifs avec texte alternatif vide : ampoule, pile de disques et engrenage. Leur présence est obligatoire dans le build. Les textes restent en HTML, sélectionnables et accessibles.
+
+Contrôles à 1440, 768 et 390 px : textes exacts, trois illustrations chargées, aucun débordement horizontal, aucune erreur JavaScript ni ressource HTTP en erreur. PHP 8.3 : 17 fichiers valides ; `npm test` : 12 tests réussis. Captures de section [ordinateur](captures/pouvoir-video-2026-10-29/section-1440.png), [tablette](captures/pouvoir-video-2026-10-29/section-768.png), [mobile](captures/pouvoir-video-2026-10-29/section-390.png) et [résultats](captures/pouvoir-video-2026-10-29/checks.json). Les barres de navigation fixes sont masquées uniquement lors de la capture isolée de la section. Aucun nouvel audit Lighthouse ; les scores historiques plus bas ne concernent pas cette révision.
+
+## Révision verte — thème 0.2.0
+
+Nouvelle accroche, surtitre gris en majuscules, texte utilisateur, palette vert forêt et cadre de vidéo de présentation à la place du héros WebGL. Méthode, Notre différence et Pourquoi Phaness ? ne sont plus affichées ; le lien de menu Méthode et la zone d'intervention sont supprimés. Promesse, offres, secteurs et réalisations sont conservés.
+
+Contrôle sur le serveur de développement `9400`, connecté à l'administration : captures [1440 px](captures/vert-2026-10-29/desktop-1440.png) et [390 px](captures/vert-2026-10-29/mobile-390.png), pas de débordement horizontal, menu mobile accessible au clavier, toutes les ancres restantes résolues, six titres de niveau 1/2 attendus, aucun canvas ni œuf, aucune erreur ou alerte dans la console. Les styles calculés confirment le bouton vert `#176447` et le fond `#F5F7F4`.
+
+Contrastes calculés : texte principal/fond 14,86:1, secondaire/fond 6,06:1, bouton/blanc 7,12:1 et accent/blanc 5,39:1. Syntaxe PHP 8.3 des 17 fichiers vérifiée ; `npm test` : 12 tests réussis, dont les deux régressions du prototype WebGL archivé. Le site ne charge plus ce prototype. Favicon et Open Graph remplacés par une identité vidéo verte ; PNG de partage contrôlé à 1200 × 630.
+
+La vraie vidéo de présentation reste à fournir. Le lecteur HTML natif est prêt via `PHANESS_PRESENTATION_VIDEO_URL`, avec affiche facultative, sans lecture automatique ni préchargement du film. Aucun fichier vidéo n'a été créé ou modifié. Lighthouse n'a pas été relancé pour cette révision : **tous les scores ci-dessous concernent la version antérieure** et restent des traces de contrôle historiques.
+
+## Recette précédant la révision verte
+
 Le périmètre sans vidéos est vérifié. Les rendus V2 sont gérés sur un autre PC, conformément à la demande de l'utilisateur. Aucun fichier de `videos/` n'a été modifié.
 
 ## Environnement et résultats Lighthouse

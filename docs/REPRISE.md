@@ -1,6 +1,8 @@
 # Reprise du projet — 2026-10-29
 
-Le code hors vidéos est terminé et vérifié localement. Les résultats sont dans `docs/RECETTE.md`. Le prochain travail demandé par l'utilisateur sera une session de modifications ; la production vidéo est réservée à un autre PC.
+Dernière mise à jour : remplacement de la promesse par la section « Le pouvoir de la vidéo, au service de votre entreprise. », avec les trois bénéfices et illustrations de la référence utilisateur. Contrôles à 1440, 768 et 390 px dans `docs/captures/pouvoir-video-2026-10-29/`.
+
+Révision précédente : nouvelle accroche, palette verte, suppression de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL n'est plus chargé ; un cadre attend la vidéo de présentation de l'équipe. Le code hors vidéos est vérifié localement. Les résultats sont dans `docs/RECETTE.md`. Le prochain travail demandé par l'utilisateur sera une session de modifications ; la production vidéo est réservée à un autre PC.
 
 À lire : `CLAUDE.md`, `docs/BRIEF.md`, `docs/PLAN.md`, puis `docs/RECETTE.md`.
 
@@ -9,12 +11,12 @@ Le code hors vidéos est terminé et vérifié localement. Les résultats sont d
 | Étape | État | Restant |
 |---|---|---|
 | 1. Fondations | Fait | — |
-| 2. Textes | Fait ; légendes corrigées | Relecture utilisateur ; nombre de retours, voix off et sous-titres à confirmer. |
-| 3. Héros WebGL | Fait ; démarrage optimisé | Repli CSS pendant la compilation GPU, compatible sans IntersectionObserver. |
+| 2. Textes | Fait ; légendes corrigées | Voix off et sous-titres à confirmer. Le nombre de retours n'est plus affiché avec le retrait de la section Méthode. |
+| 3. Héros vidéo | Cadre prêt, film attendu | Définir PHANESS_PRESENTATION_VIDEO_URL et éventuellement PHANESS_PRESENTATION_POSTER_URL. Le prototype WebGL reste archivé, sans chargement sur le site. |
 | 4. Mise en page | Fait | Captures de contrôle à 1440 et 390 px dans docs/captures/recette-2026-10-29/. |
 | 5. Finitions | Code vérifié | Réservation testée avec page simulée ; contrôle du vrai Cal.com après réception du lien. Coordonnées et informations légales encore absentes. |
-| V2. Vidéos | **WIP, rendus faits sous Windows** | 4 MP4 + affiches dans `videos/out/` (non versionnés, sur le PC Windows). Reste : `sh render-all.sh accompagner-solaire` (correction du plan Suivi), `sh contact-sheet.sh` (après sync et build, sinon `sync-videos` copie la planche dans le thème), supprimer `videos/former-pas/`, `securiser-epi/`, `accompagner-radiateur/` et leurs rendus, `npm run sync-videos`, `npm run build:zip`. Aligner les exemples de `theme/patterns/offers.php` sur `CONTENU.md` §4. Détail dans `videos/REVIEW.md`. |
-| 6a. Recette | Validée hors médias et données manquantes | Lighthouse mobile 98/100/100/100 ; ordinateur 100/100/100/100. Refaire avec médias et sur IONOS. |
+| V2. Vidéos | **WIP, rendus faits sous Windows** | 4 MP4 + affiches dans `videos/out/` (non versionnés, sur le PC Windows). Reste : `sh render-all.sh accompagner-solaire` (correction du plan Suivi), `sh contact-sheet.sh` (après sync et build, sinon `sync-videos` copie la planche dans le thème), supprimer `videos/former-pas/`, `securiser-epi/`, `accompagner-radiateur/` et leurs rendus, `npm run sync-videos`, `npm run build:zip`. Aligner les exemples de `theme/patterns/offers.php` sur `CONTENU.md` §4. Rendus dans l'ancienne DA (bleu nuit, vermillon, œuf) : à repasser en vert pour suivre la révision du site. Détail dans `videos/REVIEW.md`. |
+| 6a. Recette | Validée hors médias et données manquantes | Mesures antérieures à la révision verte : mobile 98/100/100/100, ordinateur 100/100/100/100. Révision contrôlée visuellement à 390 et 1440 px ; refaire Lighthouse avec les médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
 | 7. Mise en ligne | Code et procédure prêts | 10 tests paquetage réussis ; ZIP de contrôle sans médias installé sur WordPress vierge. Vrai ZIP et installation finale attendent les médias et coordonnées. |
 
@@ -23,7 +25,8 @@ Le code hors vidéos est terminé et vérifié localement. Les résultats sont d
 - Email, téléphone et lien Cal.com.
 - Raison sociale, forme juridique, capital, siège, immatriculation/SIREN, TVA si applicable et responsable de publication.
 - Informations propres au traitement des données à compléter dans les pages légales : contacts, durées et garanties applicables.
-- Nombre de séries de retours, disponibilité de la voix off et des sous-titres.
+- Disponibilité de la voix off et des sous-titres.
+- Vidéo de présentation et, si souhaité, son affiche.
 - Les quatre MP4 et quatre affiches WebP, aux noms attendus par `theme/patterns/work.php`.
 
 Les valeurs absentes restent `[À FOURNIR]` ou `[À CONFIRMER]`. Ne pas les inventer. Voir `docs/MISE-EN-LIGNE.md` pour leur emplacement.
