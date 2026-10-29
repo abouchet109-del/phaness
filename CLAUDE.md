@@ -10,11 +10,14 @@ Site vitrine one-page de Phaness (studio de vidéos explicatives B2B), thème Wo
 2. **Une étape à la fois**, avec un critère « terminé quand » vérifiable (voir `docs/PLAN.md`).
 3. **Vérifier avant de dire « fini ».** Lance le site, regarde-le dans le navigateur (1440 et 390 px), console sans erreur. Pour une vidéo, regarde des images extraites. Dis ce qui n'a pas été vérifié.
 4. **Commit et push à la fin de chaque étape**, et à chaque étape intermédiaire stable. Le dépôt GitHub doit toujours permettre à un autre agent de reprendre.
-5. **Tenir la doc à jour après chaque étape** :
-   - `docs/PLAN.md` : le statut de l'étape ;
-   - `docs/JOURNAL.md` : une ligne avec la date, le modèle et le commit ;
-   - `docs/REPRISE.md` : ce qu'il reste à faire ;
-   - `docs/BRIEF.md` : les décisions.
+5. **Tenir à jour tous les documents du dépôt après chaque étape**, dans le même commit que le travail. Le dépôt doit toujours refléter l'avancée réelle du projet. Liste de contrôle :
+   - `docs/PLAN.md` : le statut de l'étape (fait, WIP, à faire) ;
+   - `docs/JOURNAL.md` : une entrée datée avec ce qui a été fait, le modèle utilisé, le commit, et ce qui n'a pas été vérifié ;
+   - `docs/REPRISE.md` : l'état par étape, ce qu'il reste à faire, ce que l'utilisateur doit fournir ;
+   - `docs/BRIEF.md` : toute décision prise (DA, structure, contenu, stack) ;
+   - `README.md` : la section « État », plus les commandes et l'arborescence si elles changent ;
+   - les docs du dossier touché, s'il en a : `docs/CONTENU.md` pour les textes, `videos/README.md` et `videos/REVIEW.md` pour les vidéos, `lab/hero/README.md` pour le héros, `docs/MISE-EN-LIGNE.md` pour la mise en ligne ;
+   - `CLAUDE.md` et `AGENTS.md`, si une règle ou une commande change.
 6. **Stopper proprement.** Si le contexte ou la limite d'usage approche, ou si tu dois t'arrêter, fais d'abord un commit `WIP` poussé, puis mets à jour `docs/REPRISE.md`.
 7. **Sous-sessions et sous-agents** : fixe toujours le modèle et l'effort selon la tâche, au plus économique sans perte de qualité. Haiku pour la lecture et les tests, Sonnet pour le code bien spécifié, Opus pour le jugement, la DA et la 3D. En parallèle, chaque session ne touche qu'à ses fichiers, et une seule session (la coordinatrice) tient `docs/BRIEF.md`, `docs/PLAN.md`, `docs/JOURNAL.md` et `docs/REPRISE.md`. Seule, tu les tiens toi-même.
 8. **Qualité visible** : premium et sobre, pas de « AI slop ». Les textes passent par le skill `avoid-ai-writing` (voir plus bas). Les vidéos visent un niveau showreel, pas un diaporama.
