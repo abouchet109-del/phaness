@@ -18,7 +18,7 @@ $phaness_home = esc_url( home_url( '/' ) );
 			<ul role="list">
 				<li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li>
 				<li><a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">Politique de confidentialité</a></li>
-				<li><a href="<?php echo $phaness_home; ?>#rendez-vous">Prendre rendez-vous</a></li>
+				<li><a href="<?php echo esc_url( phaness_booking_href() ); ?>"<?php echo phaness_booking_attributes(); ?>>Prendre rendez-vous</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -122,6 +122,21 @@ function phaness_cal_config() {
 	);
 }
 
+/**
+ * Booking destination. Until the team supplies its Cal.com URL, send visitors to the contact details.
+ */
+function phaness_booking_href() {
+	$config = phaness_cal_config();
+	return $config ? $config['url'] : home_url( '/#contact-details' );
+}
+
+/**
+ * Mark links that can open the Cal.com dialog. No third-party content loads before a click.
+ */
+function phaness_booking_attributes() {
+	return phaness_cal_config() ? ' data-booking' : '';
+}
+
 // Front page vs inner pages: inner pages keep the header on its solid background from the start.
 add_filter( 'body_class', function ( $classes ) {
 	$classes[] = is_front_page() ? 'ph-front' : 'ph-subpage';

@@ -11,14 +11,14 @@ $phaness_works = array(
 	array(
 		'slug'    => 'former-electricite',
 		'offer'   => 'Former',
-		'title'   => 'Protéger, alerter, secourir',
-		'caption' => 'Une capsule e-learning sur les trois réflexes du sauveteur, du danger à l\'arrivée des secours.',
+		'title'   => 'Tension, intensité et puissance',
+		'caption' => 'Une capsule de formation pour comprendre trois notions électriques.',
 	),
 	array(
 		'slug'    => 'securiser-usine',
 		'offer'   => 'Sécuriser',
-		'title'   => 'Les EPI sur un chantier',
-		'caption' => 'Casque, lunettes, gants, chaussures, gilet : chaque équipement et son rôle, en un coup d\'œil.',
+		'title'   => 'Les consignes de sécurité en usine',
+		'caption' => 'Les consignes à connaître lors de l\'accueil d\'un nouvel arrivant.',
 	),
 	array(
 		'slug'    => 'expliquer-pac',
@@ -29,8 +29,8 @@ $phaness_works = array(
 	array(
 		'slug'    => 'accompagner-solaire',
 		'offer'   => 'Accompagner',
-		'title'   => 'Purger un radiateur',
-		'caption' => 'Un tutoriel en étapes numérotées, à suivre pas à pas.',
+		'title'   => 'Régler une installation solaire',
+		'caption' => 'Un tutoriel pour régler et utiliser une installation solaire.',
 	),
 );
 ?>

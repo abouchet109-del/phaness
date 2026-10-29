@@ -44,6 +44,13 @@ for (const slug of slugs) {
   }
 }
 
+const missingVideos = warnings.filter((warning) => warning.startsWith('MISSING video file:'));
+if (missingVideos.length) {
+  console.error('\nTheme package not created: render and sync all four demo videos first.');
+  for (const warning of missingVideos) console.error(`  - ${warning}`);
+  process.exit(1);
+}
+
 // 3. Collect files
 async function walk(dir) {
   const out = [];

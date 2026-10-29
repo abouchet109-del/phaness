@@ -272,3 +272,38 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 	.ph-contact__card { padding: 2rem 1.25rem 1.25rem; border-radius: var(--ph-r-xl); }
 	.ph-contact__main { padding-inline: 0.5rem; }
 }
+
+/* Inner pages use the same fixed header, with a solid surface from the start. */
+.ph-subpage .ph-header { background: rgba(245, 247, 251, 0.94); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: 0 1px 0 rgba(220, 227, 240, 0.8), 0 12px 32px -20px rgba(11, 22, 51, 0.18); }
+
+/* Legal pages */
+.ph-legal { min-height: 65vh; padding-block: calc(var(--ph-header-h) + 4.5rem) clamp(4rem, 3rem + 5vw, 7rem); }
+.ph-legal__inner { max-width: 56rem; }
+.ph-legal h1 { margin-bottom: 2.5rem !important; font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem); font-weight: 600; line-height: 1.08; letter-spacing: -0.035em; }
+.ph-legal h2 { margin: 2.5rem 0 1rem !important; font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem); font-weight: 600; line-height: 1.2; }
+.ph-legal h3 { margin: 1.75rem 0 0.625rem !important; font-size: 1.125rem; font-weight: 600; }
+.ph-legal p, .ph-legal li { color: var(--ph-soft); line-height: 1.75; }
+.ph-legal p + p, .ph-legal p + ul, .ph-legal p + ol, .ph-legal ul + p, .ph-legal ul + ul { margin-top: 0.875rem; }
+.ph-legal ul, .ph-legal ol { padding-left: 1.5rem; }
+.ph-legal li + li { margin-top: 0.5rem; }
+.ph-legal a { color: var(--ph-verm-deep); text-underline-offset: 0.18em; }
+.ph-legal__updated { margin-top: 3rem !important; padding-top: 1.25rem; border-top: 1px solid var(--ph-mist); font-size: 0.875rem; }
+
+/* On-scroll reveals are added progressively by site.js; without JavaScript content stays visible. */
+.ph-reveal-ready .ph-reveal { opacity: 0; transform: translateY(1rem); transition: opacity 0.55s ease var(--ph-reveal-delay, 0ms), transform 0.55s cubic-bezier(0.2, 0.65, 0.3, 1) var(--ph-reveal-delay, 0ms); }
+.ph-reveal-ready .ph-reveal.is-visible { opacity: 1; transform: none; }
+@media (hover: hover) and (pointer: fine) {
+	.ph-offer, .ph-work { transition: transform 0.3s cubic-bezier(0.2, 0.65, 0.3, 1), box-shadow 0.3s ease; }
+	.ph-offer:hover, .ph-work:hover { transform: translateY(-4px); box-shadow: var(--ph-shadow-float); }
+}
+
+/* Booking dialog: the iframe has no source until a visitor clicks a booking link. */
+.ph-booking { position: fixed; width: min(56rem, calc(100vw - 2rem)); height: min(46rem, calc(100dvh - 2rem)); max-width: 56rem; max-height: 46rem; padding: 3.5rem 0.5rem 0.5rem; overflow: hidden; border: 0; border-radius: var(--ph-r-lg); background: var(--ph-white); box-shadow: 0 32px 100px rgba(11, 22, 51, 0.35); }
+.ph-booking::backdrop { background: rgba(11, 22, 51, 0.58); backdrop-filter: blur(4px); }
+.ph-booking__close { position: absolute; top: 0.75rem; right: 0.75rem; min-height: 2.5rem; padding: 0.5rem 1rem; border: 0; border-radius: var(--wp--custom--radius--pill); background: var(--ph-cloud); color: var(--ph-night); font: inherit; font-size: 0.9375rem; cursor: pointer; }
+.ph-booking__frame { display: block; width: 100%; height: 100%; border: 0; border-radius: var(--ph-r-md); background: var(--ph-white); }
+@media (max-width: 600px) { .ph-booking { width: calc(100vw - 1rem); height: calc(100dvh - 1rem); padding: 3.25rem 0.25rem 0.25rem; border-radius: var(--ph-r-md); } }
+@media (prefers-reduced-motion: reduce) {
+	.ph-reveal-ready .ph-reveal { opacity: 1; transform: none; transition: none; }
+	.ph-btn:hover, .ph-offer:hover, .ph-work:hover, .ph-work__play:hover .ph-work__play-icon { transform: none; }
+}

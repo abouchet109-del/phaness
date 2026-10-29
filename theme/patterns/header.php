@@ -20,7 +20,7 @@ $phaness_home = esc_url( home_url( '/' ) );
 				<li><a href="<?php echo $phaness_home; ?>#realisations">Réalisations</a></li>
 				<li><a href="<?php echo $phaness_home; ?>#contact">Contact</a></li>
 			</ul>
-			<a class="ph-btn ph-btn--primary ph-nav__cta" href="<?php echo $phaness_home; ?>#rendez-vous">Prendre rendez-vous</a>
+			<a class="ph-btn ph-btn--primary ph-nav__cta" href="<?php echo esc_url( phaness_booking_href() ); ?>"<?php echo phaness_booking_attributes(); ?>>Prendre rendez-vous</a>
 		</nav>
 		<button class="ph-menu-toggle" type="button" aria-expanded="false" aria-controls="ph-nav" data-open-label="Menu" data-close-label="Fermer le menu">
 			<span class="ph-menu-toggle__bars" aria-hidden="true"></span>

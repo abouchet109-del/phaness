@@ -64,7 +64,7 @@ add_action( 'wp_head', function () {
 	$description = phaness_meta_description();
 	$is_front    = is_front_page();
 	$title       = $is_front ? PHANESS_OG_TITLE : wp_get_document_title();
-	$image       = get_theme_file_uri( 'assets/img/og.jpg' );
+	$image       = get_theme_file_uri( 'assets/img/og.png' );
 
 	echo "\n<!-- Phaness SEO -->\n";
 	if ( '' !== $description ) {
@@ -82,6 +82,7 @@ add_action( 'wp_head', function () {
 		'og:description'  => $description,
 		'og:url'          => $canonical,
 		'og:image'        => $image,
+		'og:image:type'   => 'image/png',
 		'og:image:width'  => '1200',
 		'og:image:height' => '630',
 		'og:image:alt'    => PHANESS_OG_ALT,

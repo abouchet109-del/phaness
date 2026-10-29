@@ -80,7 +80,7 @@ $phaness_sectors = array(
 							<?php endforeach; ?>
 						</ul>
 					</div>
-					<a class="ph-btn ph-btn--primary" href="#rendez-vous"><?php echo esc_html( $s['cta'] ); ?></a>
+					<a class="ph-btn ph-btn--primary" href="<?php echo esc_url( phaness_booking_href() ); ?>"<?php echo phaness_booking_attributes(); ?>><?php echo esc_html( $s['cta'] ); ?></a>
 				</div>
 			</div>
 			<?php endforeach; ?>

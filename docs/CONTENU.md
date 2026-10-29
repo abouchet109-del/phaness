@@ -79,10 +79,10 @@ Les sections Promesse, Notre différence et Pourquoi Phaness ? n'ont pas d'ancre
 
 | Offre | Sous-titre | Texte | Exemple |
 |---|---|---|---|
-| **Former** | Capsules pédagogiques | Des modules courts pour transmettre un savoir et le faire retenir. | Protéger, alerter, secourir : les trois réflexes du sauveteur |
-| **Sécuriser** | Procédures et sécurité | Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas. | Les équipements de protection individuelle sur un chantier |
+| **Former** | Capsules pédagogiques | Des modules courts pour transmettre un savoir et le faire retenir. | Tension, intensité et puissance en électricité |
+| **Sécuriser** | Procédures et sécurité | Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas. | Les consignes de sécurité à l'accueil d'un nouvel arrivant en usine |
 | **Expliquer et vendre** | Produits et solutions techniques | Montrer ce qui ne se voit pas : le fonctionnement d'un produit et ce qu'il apporte. | Comment fonctionne une pompe à chaleur air/eau |
-| **Accompagner** | Tutoriels | Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin. | Purger un radiateur, étape par étape |
+| **Accompagner** | Tutoriels | Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin. | Régler et utiliser une installation solaire |
 
 Libellé devant l'exemple : `Exemple :`. Chaque exemple renvoie à la démonstration correspondante dans Réalisations.
 
@@ -225,10 +225,10 @@ Tous les boutons ouvrent la prise de rendez-vous.
 
 | Offre | Titre | Légende |
 |---|---|---|
-| Former | Protéger, alerter, secourir | Une capsule e-learning sur les trois réflexes du sauveteur, du danger à l'arrivée des secours. |
-| Sécuriser | Les EPI sur un chantier | Casque, lunettes, gants, chaussures, gilet : chaque équipement et son rôle, en un coup d'œil. |
+| Former | Tension, intensité et puissance | Une capsule de formation pour comprendre trois notions électriques. |
+| Sécuriser | Les consignes de sécurité en usine | Les consignes à connaître lors de l'accueil d'un nouvel arrivant. |
 | Expliquer et vendre | Comment fonctionne une pompe à chaleur air/eau | Le parcours de la chaleur, de l'air extérieur jusqu'aux radiateurs, montré en 3D. |
-| Accompagner | Purger un radiateur | Un tutoriel en étapes numérotées, à suivre pas à pas. |
+| Accompagner | Régler une installation solaire | Un tutoriel pour régler et utiliser une installation solaire. |
 
 **Mention sous la grille** — ≤ 120
 > Vidéos sans son. Vos projets peuvent inclure une voix off ou des sous-titres [À CONFIRMER].
