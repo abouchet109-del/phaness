@@ -15,6 +15,9 @@ Les sessions se sont arrêtées sur la limite d'usage. Tout le travail est pouss
 | 6. Recette | à faire | après 5 et V2 |
 | 7. Mise en ligne | **WIP** (commit `80a4f06`) | `scripts/build-zip.mjs` à vérifier, tester le zip dans un Playground vierge (port 9401), écrire `docs/MISE-EN-LIGNE.md` (guide IONOS) |
 
+## Règle d'écriture
+Tout texte du site passe par le skill `avoid-ai-writing` (`.claude/skills/avoid-ai-writing/`), voir `CLAUDE.md`.
+
 ## À fournir par l'utilisateur
 Email et téléphone, lien Cal.com (compte à créer par l'utilisateur), mentions légales (société, forme, capital, SIRET, siège, responsable de publication).
 

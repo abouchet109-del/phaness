@@ -9,3 +9,6 @@ Ce projet a été commencé avec Claude Code. Les règles sont les mêmes pour t
 - Les skills HyperFrames de Claude ne sont pas disponibles. Le CLI est installé dans `videos/` (`cd videos && npm install`, puis `npx hyperframes --help`), et `videos/README.md` décrit la chaîne de rendu.
 - Les chemins `D:\...` concernent le PC Windows de l'utilisateur. Dans un bac à sable cloud Linux, ignore-les et garde les caches dans le dossier du projet ou `/tmp`.
 - Les rendus vidéo (`videos/out/`) et `node_modules/` ne sont pas versionnés : régénère-les (`npm install`, rendu HyperFrames, `npm run sync-videos`).
+
+## Écriture : pas de texte « IA »
+Avant d'écrire ou de modifier un texte visible sur le site, lis et applique `.claude/skills/avoid-ai-writing/SKILL.md` (voix « professional »), en transposant ses motifs au français.

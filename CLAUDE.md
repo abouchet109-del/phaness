@@ -35,3 +35,7 @@ Site vitrine one-page de Phaness (studio de vidéos explicatives B2B), thème Wo
 - Pour que le cache et le site temporaire de Playground (≈ 200 Mo) restent sur D: : `USERPROFILE=D:\Tools\playground-cache HOME=D:\Tools\playground-cache npm run dev` (variables limitées à la commande).
 - Config Playground : `dev/blueprint.json`. Polices : `theme/assets/fonts/` (Geist variable, licence OFL).
 - Dépôt : https://github.com/abouchet109-del/phaness (privé), branche `main`.
+
+## Écriture : pas de texte « IA »
+- Pour tout texte visible sur le site (`docs/CONTENU.md`, `theme/patterns/`, pages légales, textes des vidéos), applique le skill `avoid-ai-writing` (dans `.claude/skills/avoid-ai-writing/`), voix « professional ».
+- Les motifs du skill sont surtout en anglais : transpose-les au français (pas de formules creuses, de superlatifs vides, de tirets en série, de « en somme », de triades systématiques).
