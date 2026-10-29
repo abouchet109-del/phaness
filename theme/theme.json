@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": { "contentSize": "720px", "wideSize": "1200px" },
+    "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "palette": [
+        { "slug": "night", "name": "Night", "color": "#0B1633" },
+        { "slug": "night-soft", "name": "Night soft", "color": "#4A5878" },
+        { "slug": "cloud", "name": "Cloud", "color": "#F5F7FB" },
+        { "slug": "white", "name": "White", "color": "#FFFFFF" },
+        { "slug": "mist", "name": "Mist", "color": "#DCE3F0" },
+        { "slug": "vermilion", "name": "Vermilion", "color": "#E34234" },
+        { "slug": "vermilion-deep", "name": "Vermilion deep", "color": "#C8372A" }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "defaultFontSizes": false,
+      "fontFamilies": [
+        {
+          "slug": "geist",
+          "name": "Geist",
+          "fontFamily": "Geist, system-ui, -apple-system, 'Segoe UI', sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Geist",
+              "fontWeight": "100 900",
+              "fontStyle": "normal",
+              "fontDisplay": "swap",
+              "src": ["file:./assets/fonts/Geist-Variable.woff2"]
+            }
+          ]
+        }
+      ],
+      "fontSizes": [
+        { "slug": "small", "name": "Small", "size": "0.875rem" },
+        { "slug": "base", "name": "Base", "size": "1.0625rem" },
+        { "slug": "medium", "name": "Medium", "size": "1.25rem", "fluid": { "min": "1.125rem", "max": "1.25rem" } },
+        { "slug": "large", "name": "Large", "size": "1.75rem", "fluid": { "min": "1.5rem", "max": "1.75rem" } },
+        { "slug": "x-large", "name": "X-large", "size": "2.5rem", "fluid": { "min": "1.875rem", "max": "2.5rem" } },
+        { "slug": "xx-large", "name": "XX-large", "size": "3.5rem", "fluid": { "min": "2.25rem", "max": "3.5rem" } },
+        { "slug": "display", "name": "Display", "size": "5rem", "fluid": { "min": "2.75rem", "max": "5rem" } }
+      ]
+    },
+    "spacing": {
+      "units": ["px", "rem", "%", "vw"],
+      "spacingSizes": [
+        { "slug": "10", "name": "XS", "size": "0.5rem" },
+        { "slug": "20", "name": "S", "size": "1rem" },
+        { "slug": "30", "name": "M", "size": "1.5rem" },
+        { "slug": "40", "name": "L", "size": "clamp(2rem, 4vw, 3rem)" },
+        { "slug": "50", "name": "XL", "size": "clamp(3rem, 7vw, 5rem)" },
+        { "slug": "60", "name": "XXL", "size": "clamp(4rem, 10vw, 8rem)" }
+      ]
+    },
+    "custom": {
+      "radius": { "sm": "0.75rem", "md": "1.5rem", "lg": "2.5rem", "pill": "999px" },
+      "shadow": { "soft": "0 12px 40px rgba(11, 22, 51, 0.08)" }
+    }
+  },
+  "styles": {
+    "color": { "background": "var(--wp--preset--color--cloud)", "text": "var(--wp--preset--color--night)" },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--geist)",
+      "fontSize": "var(--wp--preset--font-size--base)",
+      "lineHeight": "1.6"
+    },
+    "spacing": {
+      "padding": { "left": "var(--wp--preset--spacing--30)", "right": "var(--wp--preset--spacing--30)" },
+      "blockGap": "var(--wp--preset--spacing--30)"
+    },
+    "elements": {
+      "heading": {
+        "typography": { "fontWeight": "600", "lineHeight": "1.1" },
+        "color": { "text": "var(--wp--preset--color--night)" }
+      },
+      "link": {
+        "color": { "text": "var(--wp--preset--color--vermilion-deep)" },
+        ":hover": { "typography": { "textDecoration": "underline" } }
+      },
+      "button": {
+        "color": { "background": "var(--wp--preset--color--vermilion-deep)", "text": "var(--wp--preset--color--white)" },
+        "border": { "radius": "var(--wp--custom--radius--pill)" },
+        "typography": { "fontWeight": "500" }
+      }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}
