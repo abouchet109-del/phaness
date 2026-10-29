@@ -13,7 +13,7 @@
 
 - Accroche : **« Donnez vie à vos idées en vidéo »**
 - Promesse : « Le pouvoir de la vidéo, au service de votre entreprise. » Des vidéos conçues pour expliquer les produits, transmettre les savoir-faire et présenter les solutions.
-- Trois bénéfices validés par l'image utilisateur du 2026-10-29 : **Comprendre en images**, **Un budget maîtrisé**, **Du sur-mesure, avec une méthode**. Illustrations vertes : ampoule, pile de disques, engrenage. Cartes blanches arrondies, titre et introduction centrés. Texte exact dans `docs/CONTENU.md` §3.
+- Trois bénéfices validés par l'image utilisateur du 2026-10-29 : **Comprendre en images**, **Un budget maîtrisé**, **Du sur-mesure, avec une méthode**. Pictogrammes linéaires verts et arrondis : ampoule, pièces de monnaie, réglages. Cartes blanches arrondies, titre et introduction centrés. Texte exact dans `docs/CONTENU.md` §3.
 - Quatre offres : **Former** (capsules pédagogiques), **Sécuriser** (procédures, modes opératoires, sensibilisation sécurité / HSE), **Expliquer et vendre** (produits et solutions techniques), **Accompagner** (tutoriels d'installation, d'utilisation, d'entretien).
 - Différence : formats standardisés, logique de catalogue (5, 10, 20 vidéos par client), processus simplifié (brief, supports, script, production, retours limités, livraison).
 - Ton : vouvoiement, professionnel, rassurant, sans jargon.
@@ -43,7 +43,7 @@ Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et l
   | `accent-deep` | `#176447` | boutons et liens, contraste 7,12:1 sur blanc |
 
 - **Typographie :** Geist (licence OFL), auto-hébergée. Le logo est simplement le mot « phaness » écrit dans la police du site, en minuscules (validé).
-- **Style :** sobre et clair, grands arrondis, ombres douces, beaucoup d'espace. Le héros présente le texte à gauche et un cadre vidéo à droite, empilés sur mobile.
+- **Style :** sobre et clair, grands arrondis et ombres douces. Espacements resserrés et échelle typographique commune : titres de section 52 px sur ordinateur / 32 px sur mobile, titres de cartes 24 / 22 px et texte courant 17 px. Les sections ont 72 px de padding vertical sur ordinateur et 48 px sur mobile. Le héros présente le texte à gauche et un cadre vidéo à droite, empilés sur mobile.
 - **Motion :** apparitions au défilement et micro-interactions conservées. Le shader WebGL n'est plus chargé. Vidéo de présentation avec commandes natives, sans lecture automatique ; respect de `prefers-reduced-motion`.
 
 ## Structure de la one-page
@@ -51,21 +51,22 @@ Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et l
 1. **En-tête fixe :** « phaness », ancres vers les sections, bouton « Prendre rendez-vous ».
 2. **Héros :** surtitre gris « Studio vidéo pour les entreprises » en majuscules, titre gras « Donnez vie à vos idées en vidéo », sous-titre fourni par l'utilisateur, deux appels à l'action et emplacement de la vidéo de présentation.
 3. **Bénéfices :** « Le pouvoir de la vidéo, au service de votre entreprise. », introduction et trois cartes conformes à la référence utilisateur.
-4. **Nos vidéos :** les quatre offres, chacune avec un exemple concret.
+4. **Nos vidéos :** titre « Des vidéos pour vos équipes et vos clients », les quatre offres et les mêmes exemples que dans Nos réalisations.
 5. **Secteurs :** onglets Formation · BTP et industrie (sécurité, HSE) · Énergie et rénovation (chauffe-eau, pompes à chaleur, solaire) · Fabricants et installateurs. Un message propre à chaque cible.
-6. **Réalisations :** quatre vidéos de démonstration, une par offre, produites avec HyperFrames (étape V2). Leur but est de montrer le niveau technique du studio en motion design : mouvements de caméra, 3D, rotations, zooms, une DA poussée. Ce ne sont pas des diapositives animées.
-   - `expliquer-pac` : le fonctionnement, l'installation et les réglages d'une pompe à chaleur.
-   - `securiser-usine` : les consignes de sécurité d'une usine, pour l'accueil d'un nouvel arrivant.
-   - `accompagner-solaire` : un tutoriel de réglage et d'utilisation d'une installation solaire.
-   - `former-electricite` : une capsule de formation sur la tension, l'intensité et la puissance.
+6. **Nos réalisations :** titre seul, grille sans introduction, légendes descriptives ni texte sous la grille. Les films restent des démonstrations, identifiées comme telles. Derniers sujets demandés :
+   - Former : introduction à l’intelligence artificielle (`former-electricite`).
+   - Sécuriser : équipements de protection individuelle sur un chantier (`securiser-usine`).
+   - Expliquer et vendre : rénovation énergétique (`expliquer-pac`).
+   - Accompagner : utilisation d’une pompe à chaleur (`accompagner-solaire`).
 
-   La première version (V1, à plat, trop de texte) a été rejetée le 2026-10-29.
-7. **Contact :** prise de rendez-vous, email, téléphone. La zone d'intervention est supprimée. Les coordonnées seront fournies par l'équipe à la fin : `[À FOURNIR]` d'ici là.
+   Les identifiants entre parenthèses sont les clés techniques historiques, conservées pour le poste de rendu. Les sujets précédents sont remplacés dans le brief : ne pas publier leurs anciens rendus sous les nouveaux titres. La création et l’adaptation des films restent réservées à l’autre PC.
+7. **Contact :** prise de rendez-vous, `contact@fanes.fr`, `07 69 86 01 61` (coordonnées fournies par l'utilisateur). La zone d'intervention est supprimée. Le lien Cal.com reste à fournir.
 8. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
 
 Pas de FAQ (décision du 2026-10-29).
 
 Décisions issues des étapes 1 à 3 :
+- Les liens de navigation alignent le début du contenu à environ 16 px sous le menu fixe, avec compensation de la barre WordPress.
 - Le menu a quatre ancres : `#videos`, `#secteurs`, `#realisations`, `#contact`. Le lien Méthode est supprimé avec sa section.
 - Les pages légales sont à `/mentions-legales/` et `/politique-de-confidentialite/`.
 - Les exemples des quatre offres renvoient aux quatre démonstrations de Réalisations.

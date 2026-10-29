@@ -1,5 +1,13 @@
 # Recette locale — 2026-10-29
 
+## Harmonisation et contenus — thème 0.2.2
+
+Titres de section tous identiques en taille et graisse : 52 px / 600 à 1440 px, 39,232 px / 600 à 768 px et 32 px / 600 à 390 px. Titres de cartes communs 24 / 22 px ; corps de texte 17 px. Padding des sections 72 px sur ordinateur et 48 px sur tablette/mobile, écart sous les en-têtes 32 px. Pictogrammes linéaires 64 px à la place des illustrations en volume.
+
+Clics sur Nos vidéos, Secteurs et Réalisations testés à 1440, 768 et 390 px : début du contenu à 15,76–16,23 px sous le menu fixe, barre WordPress comprise. Aucun débordement, erreur JavaScript ou ressource manquante. Les liens des offres correspondent aux quatre titres de Nos réalisations ; introduction, légendes descriptives et mention sous la grille retirées. Email `mailto:contact@fanes.fr`, téléphone `tel:0769860161` et données structurées vérifiés. PHP 8.3 : 17 fichiers valides ; `npm test` : 12 tests réussis.
+
+[Mesures détaillées](captures/harmonisation-2026-10-29/checks.json), [bénéfices](captures/harmonisation-2026-10-29/benefices-1440.png), [offres](captures/harmonisation-2026-10-29/offres-1440.png), [arrivée Réalisations sur ordinateur](captures/harmonisation-2026-10-29/realisations-1440.png), [sur mobile](captures/harmonisation-2026-10-29/realisations-390.png). Aucun nouveau score Lighthouse. Les vrais films sur les nouveaux sujets attendent le poste vidéo ; aucun fichier de `videos/` modifié.
+
 ## Nouvelle section bénéfices — thème 0.2.1
 
 La section « La vidéo explicative, enfin accessible » est remplacée par le titre, l’introduction et les trois cartes de l’image fournie par l’utilisateur. Les illustrations sont trois SVG décoratifs avec texte alternatif vide : ampoule, pile de disques et engrenage. Leur présence est obligatoire dans le build. Les textes restent en HTML, sélectionnables et accessibles.

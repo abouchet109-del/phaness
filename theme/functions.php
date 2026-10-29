@@ -12,10 +12,10 @@ if ( ! defined( 'PHANESS_CAL_URL' ) ) {
 	define( 'PHANESS_CAL_URL', '' );
 }
 if ( ! defined( 'PHANESS_CONTACT_EMAIL' ) ) {
-	define( 'PHANESS_CONTACT_EMAIL', '' );
+	define( 'PHANESS_CONTACT_EMAIL', 'contact@fanes.fr' );
 }
 if ( ! defined( 'PHANESS_CONTACT_PHONE' ) ) {
-	define( 'PHANESS_CONTACT_PHONE', '' );
+	define( 'PHANESS_CONTACT_PHONE', '07 69 86 01 61' );
 }
 if ( ! defined( 'PHANESS_LEGAL_NAME' ) ) {
 	define( 'PHANESS_LEGAL_NAME', '' );
@@ -50,7 +50,7 @@ add_action( 'init', function () {
  * @param string $slug  File name in assets/video/ (without extension).
  * @param string $offer Offer label.
  * @param string $title Video title.
- * @param string $text  Caption.
+ * @param string $text  Optional caption.
  */
 function phaness_video_card( $slug, $offer, $title, $text ) {
 	$dir     = 'assets/video/' . $slug;
@@ -75,7 +75,9 @@ function phaness_video_card( $slug, $offer, $title, $text ) {
 		<div class="ph-work__body">
 			<p class="ph-work__offer"><?php echo esc_html( $offer ); ?></p>
 			<h3 class="ph-work__title"><?php echo esc_html( $title ); ?></h3>
-			<p class="ph-work__text"><?php echo esc_html( $text ); ?></p>
+			<?php if ( '' !== $text ) : ?>
+				<p class="ph-work__text"><?php echo esc_html( $text ); ?></p>
+			<?php endif; ?>
 		</div>
 	</article>
 	<?php

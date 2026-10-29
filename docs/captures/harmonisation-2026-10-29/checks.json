@@ -1,0 +1,273 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "admin": true,
+      "h2": [
+        {
+          "text": "Le pouvoir de la vidéo, au service de votre entreprise.",
+          "size": "52px",
+          "weight": "600"
+        },
+        {
+          "text": "Des vidéos pour vos équipes et vos clients",
+          "size": "52px",
+          "weight": "600"
+        },
+        {
+          "text": "Un message adapté à votre métier",
+          "size": "52px",
+          "weight": "600"
+        },
+        {
+          "text": "Nos réalisations",
+          "size": "52px",
+          "weight": "600"
+        },
+        {
+          "text": "Parlons de votre projet",
+          "size": "52px",
+          "weight": "600"
+        }
+      ],
+      "cards": [
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px",
+        "24px"
+      ],
+      "body": [
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px"
+      ],
+      "sections": [
+        "72px",
+        "72px",
+        "72px",
+        "72px",
+        "72px"
+      ],
+      "positions": [
+        {
+          "id": "videos",
+          "headTop": 120.1171875,
+          "barBottom": 104,
+          "gap": 16.1171875
+        },
+        {
+          "id": "secteurs",
+          "headTop": 120.1953125,
+          "barBottom": 104,
+          "gap": 16.1953125
+        },
+        {
+          "id": "realisations",
+          "headTop": 119.7578125,
+          "barBottom": 104,
+          "gap": 15.7578125
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "admin": true,
+      "h2": [
+        {
+          "text": "Le pouvoir de la vidéo, au service de votre entreprise.",
+          "size": "39.232px",
+          "weight": "600"
+        },
+        {
+          "text": "Des vidéos pour vos équipes et vos clients",
+          "size": "39.232px",
+          "weight": "600"
+        },
+        {
+          "text": "Un message adapté à votre métier",
+          "size": "39.232px",
+          "weight": "600"
+        },
+        {
+          "text": "Nos réalisations",
+          "size": "39.232px",
+          "weight": "600"
+        },
+        {
+          "text": "Parlons de votre projet",
+          "size": "39.232px",
+          "weight": "600"
+        }
+      ],
+      "cards": [
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px"
+      ],
+      "body": [
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px"
+      ],
+      "sections": [
+        "48px",
+        "48px",
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "positions": [
+        {
+          "id": "videos",
+          "headTop": 133.8671875,
+          "barBottom": 118,
+          "gap": 15.8671875
+        },
+        {
+          "id": "secteurs",
+          "headTop": 134.2265625,
+          "barBottom": 118,
+          "gap": 16.2265625
+        },
+        {
+          "id": "realisations",
+          "headTop": 133.8125,
+          "barBottom": 118,
+          "gap": 15.8125
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "admin": true,
+      "h2": [
+        {
+          "text": "Le pouvoir de la vidéo, au service de votre entreprise.",
+          "size": "32px",
+          "weight": "600"
+        },
+        {
+          "text": "Des vidéos pour vos équipes et vos clients",
+          "size": "32px",
+          "weight": "600"
+        },
+        {
+          "text": "Un message adapté à votre métier",
+          "size": "32px",
+          "weight": "600"
+        },
+        {
+          "text": "Nos réalisations",
+          "size": "32px",
+          "weight": "600"
+        },
+        {
+          "text": "Parlons de votre projet",
+          "size": "32px",
+          "weight": "600"
+        }
+      ],
+      "cards": [
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px",
+        "22px"
+      ],
+      "body": [
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px",
+        "17px"
+      ],
+      "sections": [
+        "48px",
+        "48px",
+        "48px",
+        "48px",
+        "48px"
+      ],
+      "positions": [
+        {
+          "id": "videos",
+          "headTop": 134.0546875,
+          "barBottom": 118,
+          "gap": 16.0546875
+        },
+        {
+          "id": "secteurs",
+          "headTop": 133.9140625,
+          "barBottom": 118,
+          "gap": 15.9140625
+        },
+        {
+          "id": "realisations",
+          "headTop": 134.125,
+          "barBottom": 118,
+          "gap": 16.125
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

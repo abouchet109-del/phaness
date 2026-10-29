@@ -15,17 +15,17 @@
 		</header>
 		<ul class="ph-grid ph-grid--3 ph-pillars" role="list">
 			<li class="ph-card ph-pillar">
-				<img class="ph-pillar__icon" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/benefit-clarity.svg' ) ); ?>" width="128" height="128" alt="" loading="lazy">
+				<img class="ph-pillar__icon" src="<?php echo esc_url( add_query_arg( 'ver', wp_get_theme()->get( 'Version' ), get_theme_file_uri( 'assets/img/benefit-clarity.svg' ) ) ); ?>" width="128" height="128" alt="" loading="lazy">
 				<h3 class="ph-card__title">Comprendre en images</h3>
 				<p>Un produit, un geste ou une procédure&nbsp;: l’animation rend visible ce qui est difficile à montrer.</p>
 			</li>
 			<li class="ph-card ph-pillar">
-				<img class="ph-pillar__icon" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/benefit-budget.svg' ) ); ?>" width="128" height="128" alt="" loading="lazy">
+				<img class="ph-pillar__icon" src="<?php echo esc_url( add_query_arg( 'ver', wp_get_theme()->get( 'Version' ), get_theme_file_uri( 'assets/img/benefit-budget.svg' ) ) ); ?>" width="128" height="128" alt="" loading="lazy">
 				<h3 class="ph-card__title">Un budget maîtrisé</h3>
 				<p>Des vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique.</p>
 			</li>
 			<li class="ph-card ph-pillar">
-				<img class="ph-pillar__icon" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/benefit-method.svg' ) ); ?>" width="128" height="128" alt="" loading="lazy">
+				<img class="ph-pillar__icon" src="<?php echo esc_url( add_query_arg( 'ver', wp_get_theme()->get( 'Version' ), get_theme_file_uri( 'assets/img/benefit-method.svg' ) ) ); ?>" width="128" height="128" alt="" loading="lazy">
 				<h3 class="ph-card__title">Du sur-mesure, avec une méthode</h3>
 				<p>Chaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré.</p>
 			</li>

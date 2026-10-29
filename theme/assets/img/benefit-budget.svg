@@ -1,12 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <defs>
-    <radialGradient id="pale" cx="34%" cy="20%" r="90%"><stop stop-color="#fff"/><stop offset=".5" stop-color="#e0ece0"/><stop offset="1" stop-color="#91b39c"/></radialGradient>
-    <radialGradient id="green" cx="34%" cy="20%" r="90%"><stop stop-color="#fff"/><stop offset=".32" stop-color="#c3e1ce"/><stop offset=".7" stop-color="#5aa37a"/><stop offset="1" stop-color="#146143"/></radialGradient>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="230%"><feDropShadow dx="2" dy="8" stdDeviation="5" flood-color="#254734" flood-opacity=".18"/></filter>
-  </defs>
-  <g filter="url(#shadow)">
-    <ellipse cx="64" cy="90" rx="41" ry="16" fill="url(#pale)"/>
-    <ellipse cx="64" cy="66" rx="41" ry="16" fill="url(#pale)"/>
-    <ellipse cx="64" cy="42" rx="41" ry="17" fill="url(#green)"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#247855" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <ellipse cx="25" cy="18" rx="17" ry="7"/>
+  <path d="M8 18v10c0 4 8 7 17 7 3 0 6-.3 8-1M8 28v10c0 4 8 7 17 7h3"/>
+  <ellipse cx="43" cy="39" rx="13" ry="6"/>
+  <path d="M30 39v10c0 4 6 7 13 7s13-3 13-7V39"/>
+  <path d="M8 38v10c0 4 8 7 17 7"/>
 </svg>

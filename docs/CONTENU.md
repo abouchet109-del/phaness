@@ -49,7 +49,7 @@ Le menu conserve quatre ancres : Nos vidéos, Secteurs, Réalisations et Contact
 
 ## 3. Le pouvoir de la vidéo — trois bénéfices
 
-Texte et disposition repris de l'image fournie par l'utilisateur le 2026-10-29. Aucun surtitre « Notre promesse ».
+Textes repris de l'image utilisateur du 2026-10-29. Dernière révision : pictogrammes linéaires sobres, titres de même taille que les autres sections, corps de texte commun. Aucun surtitre « Notre promesse ».
 
 **Titre (H2)** — centré, en gras, sur deux lignes sur ordinateur
 > Le pouvoir de la vidéo,
@@ -63,8 +63,8 @@ Texte et disposition repris de l'image fournie par l'utilisateur le 2026-10-29. 
 | Illustration | Titre | Texte |
 |---|---|---|
 | Ampoule | Comprendre en images | Un produit, un geste ou une procédure : l’animation rend visible ce qui est difficile à montrer. |
-| Pile de disques | Un budget maîtrisé | Des vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique. |
-| Engrenage | Du sur-mesure, avec une méthode | Chaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré. |
+| Pièces de monnaie | Un budget maîtrisé | Des vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique. |
+| Réglages | Du sur-mesure, avec une méthode | Chaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré. |
 
 ---
 
@@ -73,7 +73,7 @@ Texte et disposition repris de l'image fournie par l'utilisateur le 2026-10-29. 
 **Surtitre** — ≤ 20 : `Nos vidéos`
 
 **Titre (H2)** — ≤ 50
-> Quatre usages, une même exigence de clarté
+> Des vidéos pour vos équipes et vos clients
 
 **Introduction** — ≤ 140
 > Tutoriels et vidéos explicatives en motion design 3D, pensés pour vos équipes, vos apprenants et vos clients.
@@ -82,10 +82,10 @@ Texte et disposition repris de l'image fournie par l'utilisateur le 2026-10-29. 
 
 | Offre | Sous-titre | Texte | Exemple |
 |---|---|---|---|
-| **Former** | Capsules pédagogiques | Des modules courts pour transmettre un savoir et le faire retenir. | Tension, intensité et puissance en électricité |
-| **Sécuriser** | Procédures et sécurité | Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas. | Les consignes de sécurité à l'accueil d'un nouvel arrivant en usine |
-| **Expliquer et vendre** | Produits et solutions techniques | Montrer ce qui ne se voit pas : le fonctionnement d'un produit et ce qu'il apporte. | Comment fonctionne une pompe à chaleur air/eau |
-| **Accompagner** | Tutoriels | Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin. | Régler et utiliser une installation solaire |
+| **Former** | Capsules pédagogiques | Des modules courts pour transmettre un savoir et le faire retenir. | Introduction à l’intelligence artificielle |
+| **Sécuriser** | Procédures et sécurité | Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas. | Les équipements de protection individuelle sur un chantier |
+| **Expliquer et vendre** | Produits et solutions techniques | Montrer ce qui ne se voit pas : le fonctionnement d'un produit et ce qu'il apporte. | Comprendre la rénovation énergétique |
+| **Accompagner** | Tutoriels | Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin. | Utiliser une pompe à chaleur |
 
 Libellé devant l'exemple : `Exemple :`. Chaque exemple renvoie à la démonstration correspondante dans Réalisations.
 
@@ -159,29 +159,21 @@ Les anciennes sections 6 (Méthode), 7 (Notre différence) et 8 (Pourquoi Phanes
 
 ---
 
-## 9. Réalisations
+## 9. Nos réalisations
 
-**Surtitre** — ≤ 20 : `Réalisations`
+**Titre (H2)**
+> Nos réalisations
 
-**Titre (H2)** — ≤ 50
-> Quatre démonstrations, une par offre
+Sans surtitre, introduction, légende descriptive ni mention sous la grille. Les pastilles `Démonstration` restent présentes sur les films de démonstration.
 
-**Introduction** — ≤ 200
-> Ces vidéos sont des démonstrations réalisées par nos soins pour illustrer chaque offre. Elles ne correspondent pas à des commandes de clients.
-
-**Pastille sur chaque vidéo** — ≤ 16 : `Démonstration`
-
-**Vidéos** — titre ≤ 50, légende ≤ 110
-
-| Offre | Titre | Légende |
+| Offre | Titre affiché | Clé de fichier conservée |
 |---|---|---|
-| Former | Tension, intensité et puissance | Un exemple de capsule à intégrer dans un parcours de formation. |
-| Sécuriser | Les consignes de sécurité en usine | Un support d'accueil pour présenter les règles aux nouveaux arrivants. |
-| Expliquer et vendre | Comment fonctionne une pompe à chaleur air/eau | Le parcours de la chaleur, de l'air extérieur jusqu'aux radiateurs, montré en 3D. |
-| Accompagner | Régler une installation solaire | Un tutoriel à suivre pour prendre en main son équipement. |
+| Former | Introduction à l’intelligence artificielle | former-electricite |
+| Sécuriser | Les équipements de protection individuelle sur un chantier | securiser-usine |
+| Expliquer et vendre | Comprendre la rénovation énergétique | expliquer-pac |
+| Accompagner | Utiliser une pompe à chaleur | accompagner-solaire |
 
-**Mention sous la grille** — ≤ 120
-> Vidéos sans son. Vos projets peuvent inclure une voix off ou des sous-titres [À CONFIRMER].
+Les clés de fichiers restent stables pour le poste de rendu séparé. Les films finaux devront correspondre aux nouveaux sujets avant publication ; les anciens sujets ne doivent pas être livrés sous ces nouveaux titres.
 
 ---
 
@@ -204,8 +196,8 @@ Les anciennes sections 6 (Méthode), 7 (Notre différence) et 8 (Pourquoi Phanes
 
 | Libellé | Valeur |
 |---|---|
-| Email | `[À FOURNIR]` (lien `mailto:`) |
-| Téléphone | `[À FOURNIR]` (lien `tel:`) |
+| Email | `contact@fanes.fr` (lien `mailto:contact@fanes.fr`) |
+| Téléphone | `07 69 86 01 61` (lien `tel:0769860161`) |
 
 ---
 
@@ -239,7 +231,8 @@ Les anciennes sections 6 (Méthode), 7 (Notre différence) et 8 (Pourquoi Phanes
 - `name` : Phaness
 - `url` : https://phaness.fr
 - `description` : Studio de vidéos explicatives et de tutoriels en motion design 3D pour les entreprises.
-- `email`, `telephone` : `[À FOURNIR]`
+- `email` : `contact@fanes.fr`
+- `telephone` : `07 69 86 01 61`
 - `legalName` : `[À FOURNIR]` (entreprise porteuse)
 
 **Textes alternatifs et accessibilité**
@@ -375,7 +368,7 @@ Nous pouvons mettre à jour cette page. La date ci-dessous indique la dernière 
 
 | Section | Point à valider |
 |---|---|
-| 9. Réalisations, mention | Possibilité de voix off et de sous-titres dans les projets. |
+| Aucun engagement à confirmer affiché | La mention voix off/sous-titres a été retirée à la demande de simplification. |
 
 ## Décisions de rédaction (à reporter par la coordination)
 

@@ -5,17 +5,17 @@ Ce guide concerne une installation WordPress administrée par l'équipe. Les éc
 ## Avant de commencer
 
 - Avoir un domaine et une offre d'hébergement IONOS compatible avec WordPress.
-- Faire renseigner les coordonnées, le lien Cal.com et les champs légaux `[À FOURNIR]` aux emplacements indiqués ci-dessous.
+- Vérifier les coordonnées déjà renseignées, puis compléter le lien Cal.com et les champs légaux `[À FOURNIR]` aux emplacements indiqués ci-dessous.
 - Avoir rendu les quatre vidéos V2. Le paquetage s'arrête avec une liste des MP4 ou affiches manquants ; ne téléversez pas un ZIP incomplet.
 - Garder une sauvegarde de la base de données et des fichiers du site existant avant de remplacer le thème actif.
 
 ## Renseigner les informations de l'équipe
 
-Les constantes `PHANESS_CAL_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont définies avec des valeurs vides dans `theme/functions.php`. Elles peuvent être définies dans `wp-config.php` avant le chargement de WordPress pour préserver la configuration lors des mises à jour du thème. Utiliser le vrai lien HTTPS vers l'événement Cal.com ; aucun module tiers ne se charge avant le clic.
+Les constantes `PHANESS_CAL_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone ont été fournis par l’utilisateur : `contact@fanes.fr` et `07 69 86 01 61`. Cal.com et raison sociale restent vides. Elles peuvent être définies dans `wp-config.php` avant le chargement de WordPress pour préserver la configuration lors des mises à jour du thème. Utiliser le vrai lien HTTPS vers l'événement Cal.com ; aucun module tiers ne se charge avant le clic.
 
 Les autres informations légales se trouvent dans `theme/patterns/legal-mentions.php` et `theme/patterns/legal-privacy.php`. La raison sociale du pied de page se trouve dans `theme/patterns/footer.php`. Ces textes ne sont pas tous alimentés par `PHANESS_LEGAL_NAME` : remplacer chaque champ avec les informations validées de l'entreprise, puis reporter les textes dans `docs/CONTENU.md`. Ne pas renseigner de durée, de garantie ou d'identifiant supposé.
 
-Les pages créées par le thème restent liées à leurs patterns et reflètent leurs mises à jour. Une page dont le contenu a été personnalisé dans l'éditeur est conservée ; dans ce cas, vérifier et mettre à jour cette page séparément. La mention voix off/sous-titres reste à confirmer dans `theme/patterns/work.php` et `docs/CONTENU.md`. Le nombre de retours n'est plus affiché depuis le retrait de la section Méthode.
+Les pages créées par le thème restent liées à leurs patterns et reflètent leurs mises à jour. Une page dont le contenu a été personnalisé dans l'éditeur est conservée ; dans ce cas, vérifier et mettre à jour cette page séparément. La mention voix off/sous-titres a été retirée de la page. Le nombre de retours n'est plus affiché depuis le retrait de la section Méthode.
 
 La vidéo de présentation du héros est indépendante des quatre démonstrations. Définir `PHANESS_PRESENTATION_VIDEO_URL` dans `wp-config.php` avec son URL et, si disponible, `PHANESS_PRESENTATION_POSTER_URL` pour son affiche. Le lecteur utilise les commandes natives, sans lecture automatique, et attend une action du visiteur pour charger le film. Ne pas placer ce fichier directement dans le dossier synchronisé du thème, dont le contenu est remplacé par `sync-videos`.
 
@@ -37,7 +37,7 @@ Dans le projet local, avec Node.js installé :
 npm run build:zip
 ```
 
-Le fichier est créé dans `dist/phaness.zip`. Le script synchronise les rendus depuis `videos/out/`, vérifie les quatre MP4 et leurs affiches, puis crée une archive qui contient le dossier racine `phaness/`. Les huit fichiers attendus sont `former-electricite`, `securiser-usine`, `expliquer-pac` et `accompagner-solaire`, chacun avec les extensions `.mp4` et `.webp`.
+Le fichier est créé dans `dist/phaness.zip`. Le script synchronise les rendus depuis `videos/out/`, vérifie les quatre MP4 et leurs affiches, puis crée une archive qui contient le dossier racine `phaness/`. Les sujets demandés sont désormais introduction IA, EPI sur chantier, rénovation énergétique et utilisation d’une pompe à chaleur. Vérifier leur correspondance avec les rendus de l’autre PC ; les clés de fichiers historiques sont conservées et ne décrivent plus les sujets affichés. Les huit fichiers attendus sont `former-electricite`, `securiser-usine`, `expliquer-pac` et `accompagner-solaire`, chacun avec les extensions `.mp4` et `.webp`.
 
 Les fichiers obligatoires du thème et les médias doivent être présents et non vides. Une synchronisation impossible ou un fichier manquant arrête le build. L'ancienne archive et les fichiers temporaires du build sont retirés pour éviter de livrer un ZIP périmé. Les liens symboliques ne sont pas acceptés dans le paquet. La taille, le décodage et la qualité des vidéos restent à contrôler après leur réception.
 
