@@ -57,7 +57,13 @@ Usage sur le site : fil rouge visuel (une lumière qui émerge d'une forme organ
 6. **Méthode :** les étapes de production, animées.
 7. **Notre différence :** formats standardisés, logique de catalogue, processus simplifié, devis personnalisé.
 8. **Pourquoi Phaness ?** Le mythe en trois phrases.
-9. **Réalisations :** quatre vidéos de démonstration, une par offre, produites avec HyperFrames (étape V). L'équipe les remplacera ou les modifiera par la suite.
+9. **Réalisations :** quatre vidéos de démonstration, une par offre, produites avec HyperFrames (étape V2). Leur but est de montrer le niveau technique du studio en motion design : mouvements de caméra, 3D, rotations, zooms, une DA poussée. Ce ne sont pas des diapositives animées.
+   - `expliquer-pac` : le fonctionnement, l'installation et les réglages d'une pompe à chaleur.
+   - `securiser-usine` : les consignes de sécurité d'une usine, pour l'accueil d'un nouvel arrivant.
+   - `accompagner-solaire` : un tutoriel de réglage et d'utilisation d'une installation solaire.
+   - `former-electricite` : une capsule de formation sur la tension, l'intensité et la puissance.
+
+   La première version (V1, à plat, trop de texte) a été rejetée le 2026-10-29.
 10. **Contact :** prise de rendez-vous, email, téléphone. Les coordonnées seront fournies par l'équipe à la fin : `[À FOURNIR]` d'ici là.
 11. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
 
