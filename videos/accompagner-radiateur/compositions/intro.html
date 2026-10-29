@@ -1,0 +1,164 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .intro-text {
+      position: absolute;
+      left: var(--col-x);
+      top: 300px;
+      width: 1000px;
+    }
+    .intro-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 34px;
+      font-weight: 520;
+      letter-spacing: -0.005em;
+      color: var(--night-soft);
+    }
+    .intro-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ff7a6c 0%, #e34234 60%, #b8322a 100%);
+    }
+    .intro-title {
+      margin-top: 34px;
+      font-size: 108px;
+      line-height: 1;
+      font-weight: 660;
+      letter-spacing: -0.045em;
+      color: var(--night);
+    }
+    .intro-title span {
+      display: block;
+    }
+    .intro-stroke {
+      margin-top: 44px;
+      width: 150px;
+      height: 12px;
+      border-radius: 6px;
+      background: var(--vermilion);
+    }
+    .intro-sub {
+      margin-top: 40px;
+      width: 940px;
+      font-size: 40px;
+      line-height: 1.3;
+      font-weight: 420;
+      letter-spacing: -0.012em;
+      color: var(--night-soft);
+    }
+    .intro-clouds {
+      position: absolute;
+      left: 1080px;
+      top: 150px;
+      width: 760px;
+      height: 760px;
+    }
+    .intro-clouds svg {
+      position: absolute;
+      overflow: visible;
+    }
+  </style>
+  <div
+    id="root"
+    data-composition-id="intro"
+    data-width="1920"
+    data-height="1080"
+    data-composition-variables='[
+      {"id":"eyebrow","type":"string","label":"Format","default":"Capsule e-learning"},
+      {"id":"line1","type":"string","label":"Titre, ligne 1","default":"Titre de la"},
+      {"id":"line2","type":"string","label":"Titre, ligne 2","default":"vidéo"},
+      {"id":"subtitle","type":"string","label":"Sous-titre","default":"Une phrase qui annonce le sujet."}
+    ]'
+    data-layout-allow-overflow
+  >
+    <div class="intro-text">
+      <div id="intro-eyebrow" class="intro-eyebrow">
+        <i class="intro-dot"></i><span data-var-text="eyebrow">Capsule e-learning</span>
+      </div>
+      <h1 class="intro-title">
+        <span id="intro-line1" data-var-text="line1">Titre de la</span>
+        <span id="intro-line2" data-var-text="line2">vidéo</span>
+      </h1>
+      <div id="intro-stroke" class="intro-stroke"></div>
+      <p id="intro-sub" class="intro-sub" data-var-text="subtitle">Une phrase qui annonce le sujet.</p>
+    </div>
+
+    <!-- Soft clay clouds: the brand's "dans les nuages" world. -->
+    <div class="intro-clouds">
+      <svg width="0" height="0" style="position: absolute">
+        <defs>
+          <radialGradient id="intro-g" cx="36%" cy="22%" r="85%">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.55" stop-color="#f6f8fc" />
+            <stop offset="1" stop-color="#d6deeb" />
+          </radialGradient>
+          <linearGradient id="intro-base" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fdfdff" />
+            <stop offset="1" stop-color="#dbe2ee" />
+          </linearGradient>
+          <filter id="intro-soft" x="-30%" y="-30%" width="160%" height="190%">
+            <feDropShadow dx="0" dy="34" stdDeviation="28" flood-color="#0b1633" flood-opacity="0.13" />
+          </filter>
+          <g id="intro-cloud">
+            <circle cx="210" cy="170" r="110" fill="url(#intro-g)" />
+            <circle cx="380" cy="130" r="150" fill="url(#intro-g)" />
+            <circle cx="560" cy="180" r="100" fill="url(#intro-g)" />
+            <rect x="100" y="170" width="580" height="110" rx="55" fill="url(#intro-base)" />
+          </g>
+        </defs>
+      </svg>
+      <svg id="intro-c1" width="640" height="253" viewBox="0 0 760 300" style="left: 60px; top: 300px">
+        <use href="#intro-cloud" filter="url(#intro-soft)" />
+      </svg>
+      <svg id="intro-c2" width="380" height="150" viewBox="0 0 760 300" style="left: 380px; top: 90px">
+        <use href="#intro-cloud" filter="url(#intro-soft)" />
+      </svg>
+      <svg id="intro-c3" width="300" height="118" viewBox="0 0 760 300" style="left: 0px; top: 600px">
+        <use href="#intro-cloud" filter="url(#intro-soft)" />
+      </svg>
+      <!-- A vermilion clay sphere resting on the main cloud: the light of Phanes. -->
+      <svg id="intro-sun" width="170" height="170" viewBox="0 0 170 170" style="left: 330px; top: 196px">
+        <defs>
+          <radialGradient id="intro-sun-g" cx="34%" cy="28%" r="80%">
+            <stop offset="0" stop-color="#ff8a7c" />
+            <stop offset="0.5" stop-color="#e34234" />
+            <stop offset="1" stop-color="#a92c22" />
+          </radialGradient>
+        </defs>
+        <circle cx="85" cy="85" r="80" fill="url(#intro-sun-g)" filter="url(#intro-soft)" />
+        <ellipse cx="60" cy="52" rx="22" ry="14" fill="#ffffff" opacity="0.28" />
+      </svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const D = 3.6; // scene slot, matches the host's data-duration
+
+    // Clouds are already on screen at frame 0 (thumbnail), then settle with a soft spring.
+    tl.fromTo("#intro-c1", { y: 90, opacity: 0.6 }, { y: 0, opacity: 1, duration: 1.4, ease: "elastic.out(1, 0.85)" }, 0);
+    tl.fromTo("#intro-c2", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, ease: "elastic.out(1, 0.85)" }, 0.12);
+    tl.fromTo("#intro-c3", { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1.3, ease: "elastic.out(1, 0.85)" }, 0.22);
+    tl.fromTo("#intro-sun", { y: -260, scale: 0.85, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 1.1, ease: "elastic.out(1, 0.7)" }, 0.45);
+
+    // Title system: eyebrow, then each line blurs in, the vermilion stroke draws, the subtitle follows.
+    tl.fromTo("#intro-eyebrow", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 0.12);
+    tl.fromTo("#intro-line1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0.38);
+    tl.fromTo("#intro-line2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0.5);
+    tl.fromTo("#intro-stroke", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.8);
+    tl.fromTo("#intro-sub", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.out" }, 0.95);
+
+    // Exit: text blurs out, the clouds lift away to open the next scene.
+    tl.to(["#intro-eyebrow", "#intro-line1", "#intro-line2", "#intro-stroke", "#intro-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in", stagger: 0.02 }, D - 0.7);
+    tl.to("#intro-sun", { y: -720, duration: 0.5, ease: "power3.in" }, D - 0.55);
+    tl.to(["#intro-c2", "#intro-c1", "#intro-c3"], { y: -900, duration: 0.55, ease: "power3.in", stagger: 0.04 }, D - 0.6);
+
+    window.__timelines["intro"] = tl;
+  </script>
+</template>

@@ -1,0 +1,230 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .epi-final {
+      position: absolute;
+      left: var(--col-x);
+      top: 430px;
+      width: 760px;
+      font-size: 104px;
+      line-height: 1;
+      font-weight: 660;
+      letter-spacing: -0.045em;
+      color: var(--night);
+    }
+    .epi-final span {
+      display: block;
+    }
+    .epi-final em {
+      font-style: normal;
+      color: var(--vermilion);
+    }
+  </style>
+  <div id="root" data-composition-id="steps" data-width="1920" data-height="1080">
+    <div id="epi-counter" class="ph-counter">
+      <div id="epi-disc" class="ph-disc" data-layout-allow-overflow>
+        <div id="epi-digits" class="ph-digits"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+      <span id="epi-of" class="ph-of">/ 5</span>
+    </div>
+
+    <div id="epi-t1" class="ph-step clip" data-start="0" data-duration="2.9" data-track-index="1">
+      <h2 id="epi-t1-title" class="ph-step-title">Casque</h2>
+      <p id="epi-t1-sub" class="ph-step-sub">Contre les chocs et les chutes d’objets.</p>
+    </div>
+    <div id="epi-t2" class="ph-step clip" data-start="2.9" data-duration="2.9" data-track-index="1">
+      <h2 id="epi-t2-title" class="ph-step-title">Lunettes</h2>
+      <p id="epi-t2-sub" class="ph-step-sub">Contre les projections et les poussières.</p>
+    </div>
+    <div id="epi-t3" class="ph-step clip" data-start="5.8" data-duration="2.9" data-track-index="1">
+      <h2 id="epi-t3-title" class="ph-step-title">Gants</h2>
+      <p id="epi-t3-sub" class="ph-step-sub">Contre les coupures et les écorchures.</p>
+    </div>
+    <div id="epi-t4" class="ph-step clip" data-start="8.7" data-duration="2.9" data-track-index="1">
+      <h2 id="epi-t4-title" class="ph-step-title is-long">Chaussures de sécurité</h2>
+      <p id="epi-t4-sub" class="ph-step-sub">Contre l’écrasement et les perforations.</p>
+    </div>
+    <div id="epi-t5" class="ph-step clip" data-start="11.6" data-duration="2.9" data-track-index="1">
+      <h2 id="epi-t5-title" class="ph-step-title is-long">Gilet haute visibilité</h2>
+      <p id="epi-t5-sub" class="ph-step-sub">Pour être vu des engins et des véhicules.</p>
+    </div>
+    <div id="epi-final" class="epi-final clip" data-start="14.5" data-duration="3.8" data-track-index="1">
+      <span id="epi-f1">Pas d’EPI,</span>
+      <span id="epi-f2">pas de <em>chantier</em>.</span>
+    </div>
+
+    <div class="ph-progress">
+      <div class="ph-seg"><i id="epi-p1"></i></div>
+      <div class="ph-seg"><i id="epi-p2"></i></div>
+      <div class="ph-seg"><i id="epi-p3"></i></div>
+      <div class="ph-seg"><i id="epi-p4"></i></div>
+      <div class="ph-seg"><i id="epi-p5"></i></div>
+    </div>
+
+    <div class="ph-stage" data-layout-allow-overflow>
+      <svg viewBox="0 0 780 860">
+        <defs>
+          <radialGradient id="epi-cw" cx="36%" cy="22%" r="85%">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.55" stop-color="#f5f7fb" />
+            <stop offset="1" stop-color="#d3dbe9" />
+          </radialGradient>
+          <linearGradient id="epi-base" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fdfeff" />
+            <stop offset="1" stop-color="#d9e0ec" />
+          </linearGradient>
+          <radialGradient id="epi-verm" cx="34%" cy="26%" r="85%">
+            <stop offset="0" stop-color="#ff8576" />
+            <stop offset="0.5" stop-color="#e34234" />
+            <stop offset="1" stop-color="#a92c22" />
+          </radialGradient>
+          <radialGradient id="epi-night" cx="32%" cy="22%" r="90%">
+            <stop offset="0" stop-color="#3a4c78" />
+            <stop offset="0.55" stop-color="#16244a" />
+            <stop offset="1" stop-color="#0b1633" />
+          </radialGradient>
+          <radialGradient id="epi-denim" cx="32%" cy="20%" r="95%">
+            <stop offset="0" stop-color="#7d8fb6" />
+            <stop offset="0.6" stop-color="#4a5d8c" />
+            <stop offset="1" stop-color="#34446d" />
+          </radialGradient>
+          <radialGradient id="epi-white" cx="34%" cy="24%" r="90%">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.6" stop-color="#f1f4fa" />
+            <stop offset="1" stop-color="#cfd8e7" />
+          </radialGradient>
+          <radialGradient id="epi-skin" cx="34%" cy="26%" r="85%">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.55" stop-color="#e9eef6" />
+            <stop offset="1" stop-color="#bfcadf" />
+          </radialGradient>
+          <filter id="epi-soft" x="-40%" y="-40%" width="180%" height="200%">
+            <feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#0b1633" flood-opacity="0.15" />
+          </filter>
+          <filter id="epi-tight" x="-30%" y="-30%" width="160%" height="170%">
+            <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0b1633" flood-opacity="0.18" />
+          </filter>
+          <filter id="epi-blur" x="-50%" y="-200%" width="200%" height="500%">
+            <feGaussianBlur stdDeviation="14" />
+          </filter>
+        </defs>
+
+        <g id="epi-plinth" filter="url(#epi-soft)">
+          <circle cx="170" cy="720" r="95" fill="url(#epi-cw)" />
+          <circle cx="340" cy="690" r="125" fill="url(#epi-cw)" />
+          <circle cx="530" cy="705" r="110" fill="url(#epi-cw)" />
+          <circle cx="660" cy="740" r="78" fill="url(#epi-cw)" />
+          <rect x="70" y="725" width="660" height="110" rx="55" fill="url(#epi-base)" />
+        </g>
+        <ellipse cx="390" cy="770" rx="150" ry="16" fill="#0b1633" opacity="0.2" filter="url(#epi-blur)" />
+
+        <g id="epi-figure">
+        <!-- The worker: a faceless clay figure that gets equipped piece by piece. -->
+        <g id="epi-worker">
+          <!-- legs -->
+          <rect x="332" y="500" width="54" height="250" rx="27" fill="url(#epi-denim)" />
+          <rect x="394" y="500" width="54" height="250" rx="27" fill="url(#epi-denim)" />
+          <!-- bare feet (replaced by boots) -->
+          <ellipse cx="356" cy="756" rx="34" ry="16" fill="url(#epi-skin)" />
+          <ellipse cx="424" cy="756" rx="34" ry="16" fill="url(#epi-skin)" />
+          <!-- arms -->
+          <rect x="252" y="306" width="50" height="210" rx="25" fill="url(#epi-white)" transform="rotate(8 277 306)" />
+          <rect x="478" y="306" width="50" height="210" rx="25" fill="url(#epi-white)" transform="rotate(-8 503 306)" />
+          <circle cx="262" cy="522" r="25" fill="url(#epi-skin)" />
+          <circle cx="518" cy="522" r="25" fill="url(#epi-skin)" />
+          <!-- torso -->
+          <rect x="296" y="286" width="188" height="250" rx="64" fill="url(#epi-white)" filter="url(#epi-tight)" />
+          <!-- neck and head -->
+          <rect x="370" y="250" width="40" height="44" rx="16" fill="url(#epi-skin)" />
+          <circle cx="390" cy="210" r="62" fill="url(#epi-skin)" filter="url(#epi-tight)" />
+        </g>
+
+        <!-- 5. High-visibility vest -->
+        <g id="epi-vest">
+          <path d="M300 340 Q300 292 352 290 L366 290 L390 360 L414 290 L428 290 Q480 292 480 340 L480 500 Q480 532 448 532 L332 532 Q300 532 300 500 Z"
+            fill="url(#epi-verm)" filter="url(#epi-tight)" />
+          <rect x="300" y="420" width="180" height="18" fill="#ffffff" opacity="0.92" />
+          <rect x="300" y="462" width="180" height="18" fill="#ffffff" opacity="0.92" />
+        </g>
+        <!-- 4. Safety boots -->
+        <g id="epi-boots">
+          <path d="M318 712 H388 V752 Q388 772 368 772 H316 Q296 772 300 752 Q304 730 318 712 Z" fill="url(#epi-night)" filter="url(#epi-tight)" />
+          <path d="M392 712 H462 Q476 730 480 752 Q484 772 464 772 H412 Q392 772 392 752 Z" fill="url(#epi-night)" filter="url(#epi-tight)" />
+          <rect x="300" y="764" width="88" height="10" rx="5" fill="#e34234" />
+          <rect x="392" y="764" width="88" height="10" rx="5" fill="#e34234" />
+        </g>
+        <!-- 3. Gloves -->
+        <g id="epi-gloves">
+          <g id="epi-glove-l">
+            <rect x="236" y="486" width="52" height="24" rx="10" fill="url(#epi-night)" />
+            <circle cx="262" cy="526" r="30" fill="url(#epi-night)" filter="url(#epi-tight)" />
+          </g>
+          <g id="epi-glove-r">
+            <rect x="492" y="486" width="52" height="24" rx="10" fill="url(#epi-night)" />
+            <circle cx="518" cy="526" r="30" fill="url(#epi-night)" filter="url(#epi-tight)" />
+          </g>
+        </g>
+        <!-- 2. Safety glasses -->
+        <g id="epi-glasses">
+          <rect x="332" y="196" width="116" height="34" rx="17" fill="url(#epi-night)" filter="url(#epi-tight)" />
+          <path d="M346 206 H380" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.45" />
+        </g>
+        <!-- 1. Helmet -->
+        <g id="epi-helmet">
+          <path d="M318 196 Q318 122 390 118 Q462 122 462 196 Z" fill="url(#epi-verm)" filter="url(#epi-tight)" />
+          <rect x="302" y="186" width="176" height="20" rx="10" fill="url(#epi-verm)" />
+          <path d="M390 122 V186" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.28" />
+          <path d="M340 160 Q350 136 372 128" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.4" />
+        </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const S = [0, 2.9, 5.8, 8.7, 11.6]; // step starts (scene time), mirrored in each text block's data-start
+    const L = 2.9;
+    const F = 14.5; // final message
+
+    // ---- Shared step system (identical in every Phaness video) ----
+    function stepText(t, title, sub, last) {
+      tl.fromTo(title, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, t + 0.1);
+      tl.fromTo(sub, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.out" }, t + 0.25);
+      if (!last) tl.to([title, sub], { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in", stagger: 0.04 }, t + L - 0.3);
+    }
+    function stepCounter(t, i, seg) {
+      if (i > 0) tl.to("#epi-digits", { y: -128 * i, duration: 0.55, ease: "expo.inOut" }, t - 0.05);
+      tl.fromTo(seg, { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, t + 0.1);
+    }
+    tl.fromTo("#epi-disc", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "elastic.out(1, 0.75)" }, 0.05);
+    tl.fromTo("#epi-of", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 0.2);
+    tl.fromTo("#epi-plinth", { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: "elastic.out(1, 0.85)" }, 0);
+    tl.fromTo("#epi-worker", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "elastic.out(1, 0.8)" }, 0.05);
+
+    const segs = ["#epi-p1", "#epi-p2", "#epi-p3", "#epi-p4", "#epi-p5"];
+    segs.forEach((seg, i) => stepCounter(S[i], i, seg));
+    for (let i = 0; i < 5; i++) stepText(S[i], `#epi-t${i + 1}-title`, `#epi-t${i + 1}-sub`, false);
+
+    // ---- Each piece of equipment arrives on the figure ----
+    tl.fromTo("#epi-helmet", { y: -380, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "elastic.out(1, 0.65)" }, S[0] + 0.3);
+    tl.fromTo("#epi-glasses", { x: 300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, S[1] + 0.3);
+    tl.fromTo("#epi-glove-l", { scale: 0.2, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.7, ease: "elastic.out(1, 0.6)" }, S[2] + 0.3);
+    tl.fromTo("#epi-glove-r", { scale: 0.2, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.7, ease: "elastic.out(1, 0.6)" }, S[2] + 0.42);
+    tl.fromTo("#epi-boots", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "elastic.out(1, 0.7)" }, S[3] + 0.3);
+    tl.fromTo("#epi-vest", { scaleX: 0.4, opacity: 0, transformOrigin: "50% 50%" }, { scaleX: 1, opacity: 1, duration: 0.7, ease: "elastic.out(1, 0.7)" }, S[4] + 0.3);
+
+    // ---- Final message: the fully equipped figure, the rule in one line ----
+    tl.to("#epi-counter", { opacity: 0, filter: "blur(6px)", duration: 0.25, ease: "power2.in" }, F - 0.3);
+    tl.fromTo("#epi-f1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, F + 0.05);
+    tl.fromTo("#epi-f2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, F + 0.35);
+    tl.fromTo("#epi-figure",
+      { scale: 1, svgOrigin: "390 772" },
+      { scale: 1.05, duration: 0.5, ease: "elastic.out(1, 0.6)", immediateRender: false }, F + 0.1);
+
+    window.__timelines["steps"] = tl;
+  </script>
+</template>

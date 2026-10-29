@@ -1,0 +1,69 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8fafd 0%, #f5f7fb 55%, #eef2f8 100%);
+    }
+    .sky-far {
+      position: absolute;
+      inset: 0;
+    }
+    .sky-far svg {
+      position: absolute;
+      overflow: visible;
+    }
+  </style>
+  <div id="root" data-composition-id="sky" data-width="1920" data-height="1080" data-layout-allow-overflow>
+    <!-- Far, low-contrast clouds: the world behind drifts slowly while titles stay still. -->
+    <div id="sky-far" class="sky-far">
+      <svg id="sky-c1" width="760" height="300" viewBox="0 0 760 300" style="left: -120px; top: 690px; opacity: 0.85">
+        <defs>
+          <radialGradient id="sky-g" cx="38%" cy="22%" r="80%">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="0.6" stop-color="#f7f9fc" />
+            <stop offset="1" stop-color="#e3e9f3" />
+          </radialGradient>
+          <linearGradient id="sky-base" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fbfcfe" />
+            <stop offset="1" stop-color="#e6ebf4" />
+          </linearGradient>
+          <filter id="sky-soft" x="-30%" y="-30%" width="160%" height="180%">
+            <feDropShadow dx="0" dy="30" stdDeviation="30" flood-color="#0b1633" flood-opacity="0.06" />
+          </filter>
+        </defs>
+        <g filter="url(#sky-soft)">
+          <circle cx="210" cy="170" r="110" fill="url(#sky-g)" />
+          <circle cx="380" cy="130" r="150" fill="url(#sky-g)" />
+          <circle cx="560" cy="180" r="100" fill="url(#sky-g)" />
+          <rect x="100" y="170" width="580" height="110" rx="55" fill="url(#sky-base)" />
+        </g>
+      </svg>
+      <svg id="sky-c2" width="560" height="230" viewBox="0 0 760 300" style="left: 1500px; top: -40px; opacity: 0.7">
+        <g filter="url(#sky-soft)">
+          <circle cx="210" cy="170" r="110" fill="url(#sky-g)" />
+          <circle cx="380" cy="130" r="150" fill="url(#sky-g)" />
+          <circle cx="560" cy="180" r="100" fill="url(#sky-g)" />
+          <rect x="100" y="170" width="580" height="110" rx="55" fill="url(#sky-base)" />
+        </g>
+      </svg>
+      <svg id="sky-c3" width="420" height="170" viewBox="0 0 760 300" style="left: 760px; top: 960px; opacity: 0.6">
+        <g filter="url(#sky-soft)">
+          <circle cx="210" cy="170" r="110" fill="url(#sky-g)" />
+          <circle cx="380" cy="130" r="150" fill="url(#sky-g)" />
+          <circle cx="560" cy="180" r="100" fill="url(#sky-g)" />
+          <rect x="100" y="170" width="580" height="110" rx="55" fill="url(#sky-base)" />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Constant drift, the only motion in the backdrop (about 2 px/s, linear on purpose).
+    tl.fromTo("#sky-c1", { x: 0 }, { x: 70, duration: 30, ease: "none" }, 0);
+    tl.fromTo("#sky-c2", { x: 0 }, { x: -50, duration: 30, ease: "none" }, 0);
+    tl.fromTo("#sky-c3", { x: 0 }, { x: 40, duration: 30, ease: "none" }, 0);
+    window.__timelines["sky"] = tl;
+  </script>
+</template>

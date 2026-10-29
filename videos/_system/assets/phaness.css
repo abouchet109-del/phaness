@@ -1,0 +1,190 @@
+/* Phaness video system: shared tokens and layout for every demo video.
+   Source of truth lives in videos/_system/; run `node sync-system.mjs` to copy it into each video. */
+
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+:root {
+  --night: #0b1633;
+  --night-soft: #4a5878;
+  --cloud: #f5f7fb;
+  --white: #ffffff;
+  --mist: #dce3f0;
+  --vermilion: #e34234;
+  --vermilion-deep: #c8372a;
+  --font: "Geist", sans-serif;
+  /* Layout grid: text column on the left, visual stage on the right, all inside title-safe. */
+  --col-x: 200px;
+  --col-w: 680px;
+  --stage-x: 940px;
+  --stage-w: 780px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--cloud);
+  font-family: var(--font);
+  color: var(--night);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Step scene: counter, title block, progress, stage ---------- */
+
+.ph-counter {
+  position: absolute;
+  left: var(--col-x);
+  top: 236px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.ph-disc {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 32% 26%, #ffffff 0%, #f1f4fa 55%, #d9e1ee 100%);
+  box-shadow:
+    0 26px 48px rgba(11, 22, 51, 0.13),
+    0 6px 14px rgba(11, 22, 51, 0.06),
+    inset 0 -8px 18px rgba(11, 22, 51, 0.07),
+    inset 0 6px 10px rgba(255, 255, 255, 0.9);
+}
+
+.ph-digits {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 128px;
+}
+
+.ph-digits span {
+  display: block;
+  height: 128px;
+  line-height: 128px;
+  text-align: center;
+  font-size: 66px;
+  font-weight: 640;
+  letter-spacing: -0.03em;
+  color: var(--vermilion);
+}
+
+.ph-of {
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--night-soft);
+  letter-spacing: -0.01em;
+}
+
+.ph-step {
+  position: absolute;
+  left: var(--col-x);
+  top: 430px;
+  width: var(--col-w);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.ph-step-title {
+  font-size: 84px;
+  line-height: 1.02;
+  font-weight: 640;
+  letter-spacing: -0.035em;
+  color: var(--night);
+}
+
+.ph-step-title.is-long {
+  font-size: 70px;
+}
+
+.ph-step-sub {
+  font-size: 38px;
+  line-height: 1.3;
+  font-weight: 420;
+  letter-spacing: -0.012em;
+  color: var(--night-soft);
+}
+
+.ph-step-sub b {
+  font-weight: 620;
+  color: var(--night);
+}
+
+.ph-progress {
+  position: absolute;
+  left: var(--col-x);
+  top: 900px;
+  display: flex;
+  gap: 12px;
+}
+
+.ph-seg {
+  position: relative;
+  width: 72px;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--mist);
+  overflow: hidden;
+}
+
+.ph-seg i {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  background: var(--vermilion);
+  transform-origin: 0 50%;
+}
+
+.ph-stage {
+  position: absolute;
+  left: var(--stage-x);
+  top: 110px;
+  width: var(--stage-w);
+  height: 860px;
+}
+
+.ph-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Labels sitting on the part they name. */
+.ph-label {
+  font-family: var(--font);
+  font-size: 30px;
+  font-weight: 580;
+  letter-spacing: -0.01em;
+  fill: var(--night);
+}
+
+.ph-label-soft {
+  font-family: var(--font);
+  font-size: 30px;
+  font-weight: 460;
+  fill: var(--night-soft);
+}
+
+/* Never break a highlighted term across lines (e.g. "sur-accident"). */
+.ph-step-sub b,
+.ph-nowrap {
+  white-space: nowrap;
+}
