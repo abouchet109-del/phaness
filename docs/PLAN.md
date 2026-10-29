@@ -6,10 +6,10 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | # | Étape | Modèle | Effort | Dépend de | Fichiers touchés | Statut |
 |---|---|---|---|---|---|---|
 | 0 | Cadrage : brief, stack, plan | Opus | medium | — | `docs/BRIEF.md`, `docs/PLAN.md`, `CLAUDE.md` | fait |
-| 1 | Fondations : environnement local, squelette du thème, Git | Sonnet | medium | 0 | `theme/`, `package.json`, `.gitignore`, section Commandes de `CLAUDE.md` | à faire |
-| 2 | Rédaction de tous les textes | Opus | medium | 0 | `docs/CONTENU.md` | à faire |
-| 3 | Héros 3D WebGL (prototype autonome) | Opus | high | 0 | `lab/hero/` | à faire |
-| V | Vidéos de démonstration (HyperFrames) | Opus | medium | 0 | `videos/` | à faire |
+| 1 | Fondations : environnement local, squelette du thème, Git | Sonnet | medium | 0 | `theme/`, `package.json`, `.gitignore`, section Commandes de `CLAUDE.md` | fait |
+| 2 | Rédaction de tous les textes | Opus | medium | 0 | `docs/CONTENU.md` | fait (relecture utilisateur à faire) |
+| 3 | Héros 3D WebGL (prototype autonome) | Opus | high | 0 | `lab/hero/` | fait |
+| V | Vidéos de démonstration (HyperFrames) | Opus | medium | 0 | `videos/` | en cours |
 | 4 | Mise en page de la one-page dans le thème | Opus | medium | 1, 2, 3, V | `theme/` | à faire |
 | 5 | Animations, prise de RDV, pages légales, SEO | Sonnet | high | 4 | `theme/` | à faire |
 | 6a | Recette : audit Lighthouse, accessibilité, responsive | Haiku | low | 5 | `docs/RECETTE.md` | à faire |

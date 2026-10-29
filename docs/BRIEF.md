@@ -63,6 +63,14 @@ Usage sur le site : fil rouge visuel (une lumière qui émerge d'une forme organ
 
 Pas de FAQ (décision du 2026-10-29).
 
+Décisions issues des étapes 1 à 3 :
+- Le menu a cinq ancres : `#videos`, `#secteurs`, `#methode`, `#realisations`, `#contact`. Promesse, Notre différence et Pourquoi Phaness ? n'ont pas d'ancre.
+- Les pages légales sont à `/mentions-legales/` et `/politique-de-confidentialite/`.
+- Les exemples des quatre offres renvoient aux quatre démonstrations de Réalisations.
+- Aucun délai de production n'est annoncé.
+- Le bas du héros se fond dans `#F5F7FB` : la section qui le suit doit avoir ce fond.
+- En local, WordPress tourne sur http://127.0.0.1:9400 (`npm run dev`, voir `CLAUDE.md`). Le dépôt est https://github.com/abouchet109-del/phaness (privé).
+
 ## Stack
 
 - **WordPress** avec un **thème bloc sur mesure** (`phaness`). Pas de constructeur de page ni d'extension obligatoire. Tout est gratuit.
