@@ -1,5 +1,5 @@
-/* Phaness video system: shared tokens and layout for every demo video.
-   Source of truth lives in videos/_system/; run `node sync-system.mjs` to copy it into each video. */
+/* Phaness film system V2: overlay typography over the 3D canvas.
+   Source of truth: videos/_system/assets/. `node build.mjs` copies it into each film. */
 
 @font-face {
   font-family: "Geist";
@@ -12,179 +12,156 @@
   --night: #0b1633;
   --night-soft: #4a5878;
   --cloud: #f5f7fb;
-  --white: #ffffff;
   --mist: #dce3f0;
   --vermilion: #e34234;
-  --vermilion-deep: #c8372a;
   --font: "Geist", sans-serif;
-  /* Layout grid: text column on the left, visual stage on the right, all inside title-safe. */
-  --col-x: 200px;
-  --col-w: 680px;
-  --stage-x: 940px;
-  --stage-w: 780px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
+#film-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 1920px;
   height: 1080px;
-  overflow: hidden;
-  background: var(--cloud);
+}
+
+.ph-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   font-family: var(--font);
   color: var(--night);
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Step scene: counter, title block, progress, stage ---------- */
-
-.ph-counter {
-  position: absolute;
-  left: var(--col-x);
-  top: 236px;
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.ph-disc {
-  position: relative;
-  width: 128px;
-  height: 128px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: radial-gradient(circle at 32% 26%, #ffffff 0%, #f1f4fa 55%, #d9e1ee 100%);
-  box-shadow:
-    0 26px 48px rgba(11, 22, 51, 0.13),
-    0 6px 14px rgba(11, 22, 51, 0.06),
-    inset 0 -8px 18px rgba(11, 22, 51, 0.07),
-    inset 0 6px 10px rgba(255, 255, 255, 0.9);
-}
-
-.ph-digits {
+/* Opening title, centred over the sea of clouds */
+.ph-intro {
   position: absolute;
   left: 0;
-  top: 0;
-  width: 128px;
+  right: 0;
+  top: 380px;
+  text-align: center;
+}
+.ph-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 30px;
+  font-weight: 540;
+  letter-spacing: 0.01em;
+  color: var(--night-soft);
+}
+.ph-kicker i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vermilion);
+  box-shadow: 0 0 0 7px rgba(227, 66, 52, 0.14);
+}
+.ph-title {
+  margin-top: 26px;
+  font-size: 112px;
+  font-weight: 640;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.ph-word,
+.ph-letter {
+  display: inline-block;
+  white-space: pre;
 }
 
-.ph-digits span {
-  display: block;
-  height: 128px;
-  line-height: 128px;
-  text-align: center;
-  font-size: 66px;
+/* Chapter mark, top left in title-safe */
+.ph-chapter {
+  position: absolute;
+  left: 192px;
+  top: 128px;
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+}
+.ph-chapter .n {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--vermilion);
+  font-variant-numeric: tabular-nums;
+}
+.ph-chapter .w {
+  font-size: 68px;
+  font-weight: 630;
+  letter-spacing: -0.04em;
+}
+
+/* One key line, bottom left */
+.ph-line {
+  position: absolute;
+  left: 192px;
+  top: 862px;
+  font-size: 46px;
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  color: var(--night);
+}
+.ph-line b {
   font-weight: 640;
-  letter-spacing: -0.03em;
   color: var(--vermilion);
 }
 
-.ph-of {
-  font-size: 36px;
-  font-weight: 500;
-  color: var(--night-soft);
-  letter-spacing: -0.01em;
-}
-
-.ph-step {
+/* Labels pinned to 3D anchors: the anchor is moved by the scene, its children by GSAP */
+.anchor {
   position: absolute;
-  left: var(--col-x);
-  top: 430px;
-  width: var(--col-w);
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  width: 0;
+  height: 0;
 }
-
-.ph-step-title {
-  font-size: 84px;
-  line-height: 1.02;
-  font-weight: 640;
-  letter-spacing: -0.035em;
-  color: var(--night);
-}
-
-.ph-step-title.is-long {
-  font-size: 70px;
-}
-
-.ph-step-sub {
-  font-size: 38px;
-  line-height: 1.3;
-  font-weight: 420;
-  letter-spacing: -0.012em;
-  color: var(--night-soft);
-}
-
-.ph-step-sub b {
-  font-weight: 620;
-  color: var(--night);
-}
-
-.ph-progress {
+.ph-dot {
   position: absolute;
-  left: var(--col-x);
-  top: 900px;
-  display: flex;
-  gap: 12px;
+  left: -9px;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 5px solid var(--vermilion);
 }
-
-.ph-seg {
-  position: relative;
-  width: 72px;
-  height: 10px;
-  border-radius: 5px;
-  background: var(--mist);
-  overflow: hidden;
-}
-
-.ph-seg i {
+.ph-lead {
   position: absolute;
-  inset: 0;
-  border-radius: 5px;
-  background: var(--vermilion);
-  transform-origin: 0 50%;
-}
-
-.ph-stage {
-  position: absolute;
-  left: var(--stage-x);
-  top: 110px;
-  width: var(--stage-w);
-  height: 860px;
-}
-
-.ph-stage svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  top: 0;
   overflow: visible;
 }
-
-/* Labels sitting on the part they name. */
-.ph-label {
-  font-family: var(--font);
-  font-size: 30px;
-  font-weight: 580;
-  letter-spacing: -0.01em;
-  fill: var(--night);
+.ph-lead line {
+  stroke: var(--night);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.55;
 }
-
-.ph-label-soft {
-  font-family: var(--font);
-  font-size: 30px;
-  font-weight: 460;
-  fill: var(--night-soft);
-}
-
-/* Never break a highlighted term across lines (e.g. "sur-accident"). */
-.ph-step-sub b,
-.ph-nowrap {
+.ph-tag {
+  position: absolute;
   white-space: nowrap;
+  padding: 14px 26px 15px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px rgba(11, 22, 51, 0.1), 0 2px 6px rgba(11, 22, 51, 0.06);
+  font-size: 31px;
+  font-weight: 570;
+  letter-spacing: -0.015em;
+  color: var(--night);
+}
+.ph-tag.hot {
+  background: var(--vermilion);
+  color: #fff;
+}
+
+/* Closing logo */
+.ph-logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 712px;
+  text-align: center;
+  font-size: 128px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  color: var(--night);
 }

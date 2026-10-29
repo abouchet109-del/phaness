@@ -1,0 +1,113 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
+  </style>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="28" data-layout-allow-overlap>
+    <canvas id="film-canvas" width="1920" height="1080"></canvas>
+
+    <div class="ph-layer">
+      <!-- opening -->
+      <div class="ph-intro">
+        <div id="kicker" class="ph-kicker"><i></i><span>Expliquer</span></div>
+        <div id="title" class="ph-title">La pompe à chaleur air/eau</div>
+      </div>
+
+      <!-- 01 how it works -->
+      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">Fonctionnement</span></div>
+      <div class="anchor" data-anchor="evap" id="a-evap">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-60" y2="-70" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="right: 66px; top: -128px">Évaporateur</div>
+      </div>
+      <div class="anchor" data-anchor="comp" id="a-comp">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="0" y2="70" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: -130px; top: 76px">Compresseur</div>
+      </div>
+      <div class="anchor" data-anchor="cond" id="a-cond">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="60" y2="-70" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 66px; top: -128px">Condenseur</div>
+      </div>
+      <div class="anchor" data-anchor="valve" id="a-valve">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="0" y2="-62" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: -98px; top: -128px">Détendeur</div>
+      </div>
+
+      <!-- 02 installation -->
+      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">Installation</span></div>
+      <div class="anchor" data-anchor="support" id="a-support">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-70" y2="64" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="right: 76px; top: 40px">Sur support</div>
+      </div>
+      <div class="anchor" data-anchor="links" id="a-links">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="70" y2="-80" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 76px; top: -136px">Liaisons vers l’intérieur</div>
+      </div>
+      <div id="line-pro" class="ph-line">Mise en service par un <b>professionnel</b></div>
+
+      <!-- 03 settings -->
+      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">Réglages</span></div>
+      <div class="anchor" data-anchor="set" id="a-set">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="90" y2="-70" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag hot" style="left: 96px; top: -128px">Consigne 19 °C</div>
+      </div>
+      <div class="anchor" data-anchor="prog" id="a-prog">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-90" y2="70" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="right: 96px; top: 46px">Programmation</div>
+      </div>
+      <div class="anchor" data-anchor="eco" id="a-eco">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="90" y2="70" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 96px; top: 46px">Mode éco</div>
+      </div>
+
+      <!-- closing -->
+      <div id="logo" class="ph-logo">phaness</div>
+    </div>
+  </div>
+  <script src="assets/phaness-type.js"></script>
+  <script>
+    (function () {
+      var clock = { t: 0 };
+      var host = { clock: clock, render: null };
+      window.__phFilm = host;
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.to(clock, { t: 28, duration: 28, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+
+      PH.fade(tl, "#kicker", 0.45, 2.45);
+      PH.words(tl, "#title", 0.7, 2.5);
+
+      PH.chapter(tl, "#ch1", 4.7, 10.05);
+      PH.tag(tl, "#a-evap", 6.0, 10.0);
+      PH.tag(tl, "#a-comp", 6.7, 10.0);
+      PH.tag(tl, "#a-cond", 7.4, 10.0);
+      PH.tag(tl, "#a-valve", 8.1, 10.0);
+
+      PH.chapter(tl, "#ch2", 10.7, 15.75);
+      PH.tag(tl, "#a-support", 11.4, 15.6);
+      PH.tag(tl, "#a-links", 12.5, 15.6);
+      PH.words(tl, "#line-pro", 14.3, 15.75);
+
+      PH.chapter(tl, "#ch3", 16.9, 22.4);
+      PH.tag(tl, "#a-set", 17.9, 22.3);
+      PH.tag(tl, "#a-prog", 19.2, 22.3);
+      PH.tag(tl, "#a-eco", 20.5, 22.3);
+
+      PH.letters(tl, "#logo", 24.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["film"] = tl;
+    })();
+  </script>
+  <script src="assets/scene.js"></script>
+</template>

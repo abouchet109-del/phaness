@@ -22,24 +22,11 @@
     </style>
   </head>
   <body>
-    <!-- Phaness demo 3/4 · Expliquer: how an air-to-water heat pump works. -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="24.15" data-width="1920" data-height="1080">
-      <div id="sky" data-composition-id="sky" data-composition-src="compositions/sky.html"
-        data-start="0" data-duration="24.15" data-track-index="0" data-track-kind="graphics"
+    <!-- Phaness demo · Expliquer: an air-to-water heat pump (cycle, installation, settings). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="28" data-width="1920" data-height="1080">
+      <div id="film" data-composition-id="film" data-composition-src="compositions/film.html"
+        data-start="0" data-duration="28" data-track-index="0" data-track-kind="graphics"
         data-width="1920" data-height="1080" style="z-index: 1"></div>
-
-      <div id="steps" data-composition-id="steps" data-composition-src="compositions/steps.html"
-        data-start="3.35" data-duration="18.0" data-track-index="2" data-track-kind="graphics"
-        data-width="1920" data-height="1080" style="z-index: 2"></div>
-
-      <div id="intro" data-composition-id="intro" data-composition-src="compositions/intro.html"
-        data-start="0" data-duration="3.6" data-track-index="1" data-track-kind="graphics"
-        data-width="1920" data-height="1080" style="z-index: 3"
-        data-variable-values='{"eyebrow":"Explication technique · Énergie","line1":"La pompe à chaleur","line2":"air/eau","subtitle":"Comment elle puise la chaleur de l’air extérieur."}'></div>
-
-      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html"
-        data-start="20.35" data-duration="3.8" data-track-index="3" data-track-kind="graphics"
-        data-width="1920" data-height="1080" style="z-index: 4"></div>
     </div>
     <script>
       window.__timelines["main"] = gsap.timeline({ paused: true });
