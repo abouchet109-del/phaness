@@ -5,19 +5,20 @@
  * Categories: phaness
  * Inserter: no
  */
+$phaness_home = esc_url( home_url( '/' ) );
 ?>
 <!-- wp:html -->
 <div class="ph-footer">
 	<div class="ph-container ph-footer__inner">
 		<div class="ph-footer__brand">
-			<a class="ph-logo" href="#top">phaness</a>
+			<a class="ph-logo" href="<?php echo $phaness_home; ?>#top">phaness</a>
 			<p>Des vidéos explicatives professionnelles, simplement.</p>
 		</div>
 		<nav class="ph-footer__nav" aria-label="Liens du pied de page">
 			<ul role="list">
-				<li><a href="/mentions-legales/">Mentions légales</a></li>
-				<li><a href="/politique-de-confidentialite/">Politique de confidentialité</a></li>
-				<li><a href="#contact">Prendre rendez-vous</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/mentions-legales/' ) ); ?>">Mentions légales</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">Politique de confidentialité</a></li>
+				<li><a href="<?php echo $phaness_home; ?>#rendez-vous">Prendre rendez-vous</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -3,9 +3,28 @@
  * Phaness theme setup. Keep this file minimal: content lives in templates and patterns.
  */
 
+/**
+ * Site settings to fill in before going live. Empty means "[À FOURNIR]": the theme shows a clean fallback.
+ * Each one can also be defined earlier (wp-config.php) to override the value here.
+ */
+if ( ! defined( 'PHANESS_CAL_URL' ) ) {
+	// Cal.com booking page, e.g. https://cal.com/your-name/30min. Nothing is loaded from Cal.com before a visitor clicks.
+	define( 'PHANESS_CAL_URL', '' );
+}
+if ( ! defined( 'PHANESS_CONTACT_EMAIL' ) ) {
+	define( 'PHANESS_CONTACT_EMAIL', '' );
+}
+if ( ! defined( 'PHANESS_CONTACT_PHONE' ) ) {
+	define( 'PHANESS_CONTACT_PHONE', '' );
+}
+if ( ! defined( 'PHANESS_LEGAL_NAME' ) ) {
+	define( 'PHANESS_LEGAL_NAME', '' );
+}
+
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'responsive-embeds' );
+	add_theme_support( 'title-tag' );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
@@ -54,3 +73,57 @@ function phaness_video_card( $slug, $offer, $title, $text ) {
 	</article>
 	<?php
 }
+
+require_once get_theme_file_path( 'inc/cleanup.php' );
+require_once get_theme_file_path( 'inc/legal-pages.php' );
+require_once get_theme_file_path( 'inc/seo.php' );
+
+/**
+ * Contact value or the "[À FOURNIR]" placeholder, as safe HTML. $kind is 'email' or 'tel'.
+ */
+function phaness_contact_link( $kind ) {
+	if ( 'email' === $kind ) {
+		$value = trim( PHANESS_CONTACT_EMAIL );
+		if ( is_email( $value ) ) {
+			return '<a href="' . esc_url( 'mailto:' . $value ) . '">' . esc_html( $value ) . '</a>';
+		}
+	} else {
+		$value = trim( PHANESS_CONTACT_PHONE );
+		$dial  = preg_replace( '/[^\d+]/', '', $value );
+		if ( '' !== $dial ) {
+			return '<a href="' . esc_url( 'tel:' . $dial ) . '">' . esc_html( $value ) . '</a>';
+		}
+	}
+	return '<span class="ph-todo">[À FOURNIR]</span>';
+}
+
+/**
+ * Cal.com booking settings for the front end, or null while PHANESS_CAL_URL is empty.
+ * Accepts https://cal.com/name/event (or a self-hosted https://host/name/event).
+ */
+function phaness_cal_config() {
+	$url = trim( PHANESS_CAL_URL );
+	if ( '' === $url ) {
+		return null;
+	}
+	$parts = wp_parse_url( $url );
+	if ( empty( $parts['host'] ) || empty( $parts['path'] ) || 'https' !== ( $parts['scheme'] ?? '' ) ) {
+		return null;
+	}
+	$link = trim( $parts['path'], '/' );
+	if ( '' === $link ) {
+		return null;
+	}
+	$host = $parts['host'];
+	return array(
+		'url'    => esc_url_raw( $url ),
+		'link'   => $link,
+		'origin' => in_array( $host, array( 'cal.com', 'www.cal.com', 'app.cal.com' ), true ) ? 'https://app.cal.com' : 'https://' . $host,
+	);
+}
+
+// Front page vs inner pages: inner pages keep the header on its solid background from the start.
+add_filter( 'body_class', function ( $classes ) {
+	$classes[] = is_front_page() ? 'ph-front' : 'ph-subpage';
+	return $classes;
+} );
