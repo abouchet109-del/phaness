@@ -64,6 +64,7 @@ Usage sur le site : fil rouge visuel (une lumière qui émerge d'une forme organ
    - `former-electricite` : une capsule de formation sur la tension, l'intensité et la puissance.
 
    La première version (V1, à plat, trop de texte) a été rejetée le 2026-10-29.
+   V2 (2026-10-29) : une scène 3D three.js par film, rendue par HyperFrames, 26 à 28 s, muette. Moule commun : mer de nuages avec une lumière vermillon sous une vallée, plongée à travers les nuages, trois chapitres d'un mot avec une à trois étiquettes, remontée, puis l'œuf de lumière qui sort des nuages et le logo « phaness » dessous. Ciel bleu vers bande chaude, sujets en argile bleu nuit, blanc et vermillon. Détail dans `videos/SPEC.md`.
 10. **Contact :** prise de rendez-vous, email, téléphone. Les coordonnées seront fournies par l'équipe à la fin : `[À FOURNIR]` d'ici là.
 11. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
 

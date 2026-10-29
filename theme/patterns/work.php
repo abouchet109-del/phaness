@@ -11,26 +11,26 @@ $phaness_works = array(
 	array(
 		'slug'    => 'former-electricite',
 		'offer'   => 'Former',
-		'title'   => 'Tension, intensité et puissance',
-		'caption' => 'Un exemple de capsule à intégrer dans un parcours de formation.',
+		'title'   => 'Tension, intensité, puissance',
+		'caption' => 'Un circuit en 3D, de la pile à l\'ampoule, pour arriver à la formule P = U × I.',
 	),
 	array(
 		'slug'    => 'securiser-usine',
 		'offer'   => 'Sécuriser',
-		'title'   => 'Les consignes de sécurité en usine',
-		'caption' => 'Un support d\'accueil pour présenter les règles aux nouveaux arrivants.',
+		'title'   => 'Premier jour à l\'usine',
+		'caption' => 'Pour un nouvel arrivant : ses équipements, les allées piétonnes, l\'évacuation vers le point de rassemblement.',
 	),
 	array(
 		'slug'    => 'expliquer-pac',
 		'offer'   => 'Expliquer et vendre',
-		'title'   => 'Comment fonctionne une pompe à chaleur air/eau',
-		'caption' => 'Le parcours de la chaleur, de l\'air extérieur jusqu\'aux radiateurs, montré en 3D.',
+		'title'   => 'La pompe à chaleur air/eau',
+		'caption' => 'Le cycle du fluide frigorigène vu de l\'intérieur, la pose de l\'unité extérieure, le réglage du thermostat.',
 	),
 	array(
 		'slug'    => 'accompagner-solaire',
 		'offer'   => 'Accompagner',
-		'title'   => 'Régler une installation solaire',
-		'caption' => 'Un tutoriel à suivre pour prendre en main son équipement.',
+		'title'   => 'Votre installation solaire',
+		'caption' => 'Orienter et incliner les panneaux, lire l\'onduleur, puis suivre la production du jour sur téléphone.',
 	),
 );
 ?>

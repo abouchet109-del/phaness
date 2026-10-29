@@ -1,27 +1,60 @@
-# REVIEW — 4 vidéos de démonstration (étape V)
+# REVIEW — 4 vidéos de démonstration V2
 
-## Livrables (rendus le 29/10/2026)
+## Livrables (rendus le 29/10/2026 sous Windows)
 
-| Vidéo | Durée | Poids MP4 | Affiche |
-|---|---|---|---|
-| `out/former-pas.mp4` | 21,17 s | 1,03 Mo | `out/former-pas.webp` (étape 3, Secourir) |
-| `out/securiser-epi.mp4` | 24,47 s | 1,15 Mo | `out/securiser-epi.webp` (« Pas d'EPI, pas de chantier. ») |
-| `out/expliquer-pac.mp4` | 24,17 s | 1,49 Mo | `out/expliquer-pac.webp` (cycle complet) |
-| `out/accompagner-radiateur.mp4` | 24,57 s | 1,47 Mo | `out/accompagner-radiateur.webp` (manomètre) |
+| Vidéo | Durée | Poids MP4 | CRF | Affiche |
+|---|---|---|---|---|
+| `out/expliquer-pac.mp4` | 28,0 s | 5,14 Mo | 22 | `out/expliquer-pac.webp` (vue éclatée, cycle du fluide) |
+| `out/securiser-usine.mp4` | 26,0 s | 4,70 Mo | 24 | `out/securiser-usine.webp` (nouvel arrivant équipé) |
+| `out/accompagner-solaire.mp4` | 26,0 s | 5,88 Mo | 22 | `out/accompagner-solaire.webp` (panneaux inclinés, boussole) |
+| `out/former-electricite.mp4` | 26,0 s | 5,55 Mo | 22 | `out/former-electricite.webp` (pile et colonne de tension) |
 
-Tous : H.264 High, yuv420p, 1920×1080, 30 i/s, faststart (moov avant mdat), sans piste audio, CRF 20. Affiches 1280×720.
+Tous : H.264 High, yuv420p, 1920×1080, 30 i/s, faststart, sans piste audio. Affiches WebP 1280×720. Planche contact `out/planche.webp` : pas encore générée (`sh contact-sheet.sh`).
 
-## Ce qui a été mesuré
-- `hyperframes check` sur les 4 projets : 0 erreur. Avertissements gardés volontairement : `film_silent` (muet demandé faute de musique à licence claire), `content_overlap` pendant la montée des nuages de fin (le texte est en train d'être recouvert), `timeline_track_too_dense` (un bloc de texte par étape, voulu).
-- ffprobe sur chaque MP4 (codec, format pixel, taille, cadence, durée) et position des atomes moov/mdat.
-- Images décodées des MP4 finaux à chaque étape : textes complets, rien de coupé, rien hors cadre.
+## Ce qui a été vérifié
+- `hyperframes check` sur les 4 projets : 0 erreur de lint, de runtime ou de mise en page. Avertissement restant : un message de compilation de shader (précision double) émis par le pilote, sans effet visible.
+- Images extraites des MP4 finaux de usine, solaire et électricité (10 par film) : textes entiers, aucune étiquette hors cadre, œuf et logo visibles à la fin. PAC : vérifié sur captures HyperFrames avant le rendu final, pas sur le MP4.
+- ffprobe : codec, format de pixel, taille, cadence, durée ; atome `moov` avant `mdat`.
+
+## Affirmations techniques à faire valider par un spécialiste
+
+### Pompe à chaleur (`expliquer-pac`)
+- Le cycle à quatre organes, dans l'ordre détendeur → évaporateur → compresseur → condenseur, et le code couleur froid (bleu) / chaud (vermillon) du fluide.
+- L'air extérieur traverse l'évaporateur ; l'eau chaude part vers l'intérieur par une liaison aller (vermillon) et revient par une liaison retour.
+- Unité extérieure posée sur un support (pieds) et non au sol nu.
+- « Mise en service par un professionnel » : vérifier la formulation réglementaire (manipulation des fluides frigorigènes, attestation de capacité).
+- Consigne de 19 °C, programmation confort de 6 h à 8 h et de 17 h à 22 h (exemple affiché sur l'anneau), mode éco.
+
+### Usine (`securiser-usine`)
+- Équipements montrés : casque, lunettes, gilet haute visibilité, chaussures de sécurité. Ils dépendent du site et du poste ; à adapter au client.
+- Allée piétonne délimitée par des bandes jaunes ; chariot élévateur sur une allée séparée ; passage piéton zébré au croisement.
+- « Au croisement, stop. » : règle de priorité à confirmer selon le protocole de circulation du site.
+- Gyrophare d'alarme sur une machine, chevrons lumineux au sol vers la sortie : signalisation illustrative.
+- Le pictogramme du point de rassemblement est stylisé (bleu nuit, quatre flèches). Le pictogramme normalisé (ISO 7010 E007) est vert : à remplacer pour un usage réel.
+
+### Solaire (`accompagner-solaire`)
+- Orientation plein sud et inclinaison de 30° comme réglage de référence en France métropolitaine.
+- Les panneaux sont montés au sol sur un axe réglable pour rendre l'inclinaison visible ; la plupart des installations résidentielles sont fixes en toiture.
+- Écran de l'onduleur : « En production », 2,4 kW (valeur d'exemple).
+- Application de suivi : 18,6 kWh produits dans la journée, courbe en cloche de 6 h à 20 h (valeurs d'exemple).
+- « Lancez vos appareils en journée. » : conseil d'autoconsommation, valable sans batterie de stockage.
+
+### Électricité (`former-electricite`)
+- Pile de 12 V, intensité de 2 A, puissance de 24 W : P = U × I (12 × 2 = 24).
+- La colonne qui se remplit représente la tension par analogie (différence de niveau ou de pression). À valider comme choix pédagogique.
+- Les charges circulent depuis la borne du haut de la pile vers l'ampoule (sens conventionnel du courant). Le sens réel des électrons est inverse : à préciser si la capsule sert à un public technique.
+- L'ampèremètre est placé en série sur le fil.
 
 ## Choix créatifs
-- Un seul système : intro (format, titre, trait vermillon), compteur qui roule dans un disque d'argile, barre de progression segmentée, socle-nuage sous chaque objet, fin « phaness » sur un banc de nuages.
-- Titres d'étape à l'impératif avec vouvoiement (PAS, radiateur) ou en nom d'équipement (EPI), schéma qui se construit pièce par pièce (PAC).
-- Ajouts de texte hors brief, à valider : sous-titres des EPI (« Contre les chocs et les chutes d'objets », etc.), « Le détendeur abaisse la pression et relance le cycle », libellés « Urgences » pour le 112 et « Chauffage » sur le schéma, sous-titres d'intro.
+- Un seul moule : mer de nuages, lumière sous la vallée, plongée à travers le plafond, trois chapitres d'un mot, remontée, œuf de lumière et logo.
+- Très peu de texte : un titre, trois mots de chapitre, une à trois étiquettes par chapitre, au plus une phrase par film.
+- Toujours une caméra en mouvement : orbites autour des objets, plongées, travelling le long du fil (électricité), passage à travers le mur (PAC).
 
-## Points faibles, à reprendre avec plus de temps
-- Radiateur : l'étape 1 (bouton tourné, chaleur qui disparaît) reste discrète ; le robinet thermostatique est stylisé.
-- Le récipient sous la vis de purge flotte (pas de main qui le tient).
-- Pas d'aperçu Studio ouvert : l'utilisateur était absent. `sh hf.sh preview` depuis un dossier de vidéo l'ouvre.
+## Points faibles restants
+- Solaire, chapitre « Suivi » du MP4 actuel : la phrase « Lancez vos appareils en journée. » passe sur la maison et l'arbre, et le titre sur le toit. Correction faite dans `src/scene.js` (plan tourné vers les nuages, téléphone à droite), vérifiée en capture, **pas encore re-rendue** : `sh render-all.sh accompagner-solaire`.
+- Électricité : l'aiguille de l'ampèremètre passe sur la valeur « 2,0 A » (texture `drawDial`).
+- Lumière de l'ampoule assez discrète ; teinte rosée générale du ciel sur les plans de fin.
+- Films muets : pas de musique ni de bruitages.
+- Personnages sans visage, animation de marche simple (jambes et bras en balancier).
+- Les écrans (onduleur, téléphone, thermostat) sont des textures 2D posées sur des volumes.
+- La plongée d'ouverture passe par un plan blanc de quelques images (traversée des nuages).

@@ -79,10 +79,10 @@ Les sections Promesse, Notre différence et Pourquoi Phaness ? n'ont pas d'ancre
 
 | Offre | Sous-titre | Texte | Exemple |
 |---|---|---|---|
-| **Former** | Capsules pédagogiques | Des modules courts pour transmettre un savoir et le faire retenir. | Tension, intensité et puissance en électricité |
-| **Sécuriser** | Procédures et sécurité | Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas. | Les consignes de sécurité à l'accueil d'un nouvel arrivant en usine |
-| **Expliquer et vendre** | Produits et solutions techniques | Montrer ce qui ne se voit pas : le fonctionnement d'un produit et ce qu'il apporte. | Comment fonctionne une pompe à chaleur air/eau |
-| **Accompagner** | Tutoriels | Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin. | Régler et utiliser une installation solaire |
+| **Former** | Capsules pédagogiques | Des modules courts pour transmettre un savoir et le faire retenir. | Tension, intensité et puissance, sur un circuit en 3D |
+| **Sécuriser** | Procédures et sécurité | Modes opératoires, consignes HSE, sensibilisation : les bons gestes, montrés pas à pas. | Premier jour à l'usine : l'accueil sécurité d'un nouvel arrivant |
+| **Expliquer et vendre** | Produits et solutions techniques | Montrer ce qui ne se voit pas : le fonctionnement d'un produit et ce qu'il apporte. | La pompe à chaleur air/eau, du cycle au réglage |
+| **Accompagner** | Tutoriels | Installation, utilisation, entretien : des tutoriels que vos clients revoient quand ils en ont besoin. | Régler et suivre une installation solaire |
 
 Libellé devant l'exemple : `Exemple :`. Chaque exemple renvoie à la démonstration correspondante dans Réalisations.
 
@@ -225,10 +225,10 @@ Tous les boutons ouvrent la prise de rendez-vous.
 
 | Offre | Titre | Légende |
 |---|---|---|
-| Former | Tension, intensité et puissance | Un exemple de capsule à intégrer dans un parcours de formation. |
-| Sécuriser | Les consignes de sécurité en usine | Un support d'accueil pour présenter les règles aux nouveaux arrivants. |
-| Expliquer et vendre | Comment fonctionne une pompe à chaleur air/eau | Le parcours de la chaleur, de l'air extérieur jusqu'aux radiateurs, montré en 3D. |
-| Accompagner | Régler une installation solaire | Un tutoriel à suivre pour prendre en main son équipement. |
+| Former | Tension, intensité, puissance | Un circuit en 3D, de la pile à l'ampoule, pour arriver à la formule P = U × I. |
+| Sécuriser | Premier jour à l'usine | Pour un nouvel arrivant : ses équipements, les allées piétonnes, l'évacuation vers le point de rassemblement. |
+| Expliquer et vendre | La pompe à chaleur air/eau | Le cycle du fluide frigorigène vu de l'intérieur, la pose de l'unité extérieure, le réglage du thermostat. |
+| Accompagner | Votre installation solaire | Orienter et incliner les panneaux, lire l'onduleur, puis suivre la production du jour sur téléphone. |
 
 **Mention sous la grille** — ≤ 120
 > Vidéos sans son. Vos projets peuvent inclure une voix off ou des sous-titres [À CONFIRMER].

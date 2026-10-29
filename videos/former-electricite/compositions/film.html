@@ -1,0 +1,81 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
+    .ph-formula { position: absolute; left: 192px; top: 400px; font-size: 140px; font-weight: 650; letter-spacing: -0.04em; color: var(--night); }
+    .ph-example { top: 580px; color: var(--night-soft); }
+  </style>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="26" data-layout-allow-overlap>
+    <canvas id="film-canvas" width="1920" height="1080" data-layout-allow-overflow></canvas>
+
+    <div class="ph-layer">
+      <!-- opening -->
+      <div class="ph-intro">
+        <div id="kicker" class="ph-kicker"><i></i><span>Former</span></div>
+        <div id="title" class="ph-title">Tension, intensité, puissance</div>
+      </div>
+
+      <!-- 01 voltage -->
+      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">La tension</span></div>
+      <div class="anchor" data-anchor="volt" id="a-volt">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="-50" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 86px; top: -108px">U, en volts</div>
+      </div>
+
+      <!-- 02 current -->
+      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">L’intensité</span></div>
+      <div class="anchor" data-anchor="amp" id="a-amp">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="-50" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 86px; top: -108px">I, en ampères</div>
+      </div>
+
+      <!-- 03 power -->
+      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">La puissance</span></div>
+      <div class="anchor" data-anchor="watt" id="a-watt">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="50" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="right: 86px; top: 22px">P, en watts</div>
+      </div>
+      <div id="formula" class="ph-formula">P = U × I</div>
+      <div id="example" class="ph-line ph-example">12 V × 2 A = <b>24 W</b></div>
+
+      <!-- closing -->
+      <div id="logo" class="ph-logo">phaness</div>
+    </div>
+  </div>
+  <script src="assets/phaness-type.js"></script>
+  <script>
+    (function () {
+      var clock = { t: 0 };
+      var host = { clock: clock, render: null };
+      window.__phFilm = host;
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.to(clock, { t: 26, duration: 26, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+
+      PH.fade(tl, "#kicker", 0.45, 2.3);
+      PH.words(tl, "#title", 0.7, 2.35);
+
+      PH.chapter(tl, "#ch1", 4.6, 10.0);
+      PH.tag(tl, "#a-volt", 6.4, 9.9);
+
+      PH.chapter(tl, "#ch2", 10.9, 15.8);
+      PH.tag(tl, "#a-amp", 14.2, 15.7);
+
+      PH.chapter(tl, "#ch3", 16.4, 21.3);
+      PH.tag(tl, "#a-watt", 17.6, 19.4);
+      PH.words(tl, "#formula", 19.6, 21.4, { stagger: 0.12 });
+      PH.words(tl, "#example", 20.2, 21.4);
+
+      PH.letters(tl, "#logo", 23.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["film"] = tl;
+    })();
+  </script>
+  <script src="assets/scene.js"></script>
+</template>

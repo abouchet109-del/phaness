@@ -13,7 +13,7 @@ Le code hors vidéos est terminé et vérifié localement. Les résultats sont d
 | 3. Héros WebGL | Fait ; démarrage optimisé | Repli CSS pendant la compilation GPU, compatible sans IntersectionObserver. |
 | 4. Mise en page | Fait | Captures de contrôle à 1440 et 390 px dans docs/captures/recette-2026-10-29/. |
 | 5. Finitions | Code vérifié | Réservation testée avec page simulée ; contrôle du vrai Cal.com après réception du lien. Coordonnées et informations légales encore absentes. |
-| V2. Vidéos | Hors périmètre de cette session | Gérées sur l'autre PC. Ne pas créer, modifier ou rendre les vidéos sur ce Mac. |
+| V2. Vidéos | **WIP, rendus faits sous Windows** | 4 MP4 + affiches dans `videos/out/` (non versionnés, sur le PC Windows). Reste : `sh render-all.sh accompagner-solaire` (correction du plan Suivi), `sh contact-sheet.sh` (après sync et build, sinon `sync-videos` copie la planche dans le thème), supprimer `videos/former-pas/`, `securiser-epi/`, `accompagner-radiateur/` et leurs rendus, `npm run sync-videos`, `npm run build:zip`. Aligner les exemples de `theme/patterns/offers.php` sur `CONTENU.md` §4. Détail dans `videos/REVIEW.md`. |
 | 6a. Recette | Validée hors médias et données manquantes | Lighthouse mobile 98/100/100/100 ; ordinateur 100/100/100/100. Refaire avec médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
 | 7. Mise en ligne | Code et procédure prêts | 10 tests paquetage réussis ; ZIP de contrôle sans médias installé sur WordPress vierge. Vrai ZIP et installation finale attendent les médias et coordonnées. |

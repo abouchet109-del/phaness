@@ -17,6 +17,8 @@ const ARR = V(3.0, 0, 1.4); // ground-mounted array (pivot below its centre)
 const TILT = THREE.MathUtils.degToRad(30);
 const INV = V(-0.86, 1.7, -0.9); // inverter on the house's right wall
 const PH = V(0.9, 2.7, 3.6); // phone
+const PH_YAW = -0.96; // the phone turns to face the camera (shot from the south-west, house out of frame)
+const PH_OFF = V(Math.cos(PH_YAW), 0, -Math.sin(PH_YAW)).multiplyScalar(-1.9); // phone on the right third
 
 run(async (stage, anchors) => {
   const { scene } = stage;
@@ -118,8 +120,8 @@ run(async (stage, anchors) => {
     { t: 11.6, tgt: [0.6, 0.6, -0.2], az: 30, el: 28, dist: 7.5, fov: 30, dof: 6, e: "io" },
     { t: 12.6, tgt: [INV.x + 0.1, INV.y, INV.z], az: 78, el: 6, dist: 4.4, fov: 30, dof: 9, e: "io" },
     { t: T.ch2End, tgt: [INV.x + 0.1, INV.y + 0.05, INV.z], az: 98, el: 2, dist: 3.9, fov: 30, dof: 9, e: "sine" },
-    { t: 17.4, tgt: [PH.x - 1.9, PH.y, PH.z], az: -14, el: 6, dist: 7.2, fov: 30, dof: 8, e: "io4" },
-    { t: T.ch3End, tgt: [PH.x - 1.9, PH.y + 0.05, PH.z], az: 10, el: 2, dist: 6.6, fov: 30, dof: 8, e: "sine" },
+    { t: 17.4, tgt: [PH.x + PH_OFF.x, PH.y, PH.z + PH_OFF.z], az: -64, el: 6, dist: 7.2, fov: 30, dof: 8, e: "io4" },
+    { t: T.ch3End, tgt: [PH.x + PH_OFF.x, PH.y + 0.05, PH.z + PH_OFF.z], az: -48, el: 2, dist: 6.6, fov: 30, dof: 8, e: "sine" },
     ...P.closingKeys(T.egg, T.end),
   ]);
 
@@ -169,7 +171,7 @@ run(async (stage, anchors) => {
     const pk = E.spring(seg(t, T.phone, T.phone + 1.0), 0.7, 9);
     phone.scale.setScalar(Math.max(0.0001, pk));
     phone.visible = t > T.phone - 0.05;
-    phoneBody.rotation.set((1 - pk) * 0.6, (1 - pk) * -2.2 + Math.sin(t * 0.9) * 0.05, (1 - pk) * 0.2);
+    phoneBody.rotation.set((1 - pk) * 0.6, PH_YAW + (1 - pk) * -2.2 + Math.sin(t * 0.9) * 0.05, (1 - pk) * 0.2);
     phone.position.y = PH.y + (1 - clamp(pk)) * -1.2;
     const ck = ease(t, T.chart, T.chartEnd, E.io);
     appTex.update({ k: Math.round(ck * 60) / 60 });

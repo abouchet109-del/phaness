@@ -9,7 +9,7 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | 1 | Fondations : environnement local, squelette du thème, Git | Sonnet | medium | 0 | `theme/`, `package.json`, `.gitignore`, section Commandes de `CLAUDE.md` | fait |
 | 2 | Rédaction de tous les textes | Opus | medium | 0 | `docs/CONTENU.md` | fait (relecture utilisateur à faire) |
 | 3 | Héros 3D WebGL (prototype autonome) | Opus | high | 0 | `lab/hero/` | fait |
-| V | Vidéos de démonstration (HyperFrames) | Opus | medium | 0 | `videos/` | V2 gérées sur un autre PC ; hors périmètre de la session Mac |
+| V | Vidéos de démonstration (HyperFrames + three.js) | Opus | high | 0 | `videos/` | V2 WIP : 4 films rendus sous Windows ; reste re-rendu solaire, planche, suppression V1, sync-videos, build:zip |
 | 4 | Mise en page de la one-page dans le thème | Opus | medium | 1, 2, 3, V | `theme/` | fait |
 | 5 | Animations, prise de RDV, pages légales, SEO | Sonnet | high | 4 | `theme/` | code vérifié ; vrai Cal.com et coordonnées attendus |
 | 6a | Recette : audit Lighthouse, accessibilité, responsive | Haiku | low | 5 | `docs/RECETTE.md` | validée sans vidéos : mobile 98/100/100/100, ordinateur 100/100/100/100 ; mouvement réduit vérifié |
@@ -39,15 +39,15 @@ Logique subtile (shader) et contraintes de performance.
 - WebGL natif, sans bibliothèque. Pause hors écran, résolution plafonnée, image de repli, version fixe si `prefers-reduced-motion`.
 - **Terminé quand** le prototype tient 60 images/s sur un portable moyen, pèse moins de 15 Ko, et qu'une capture d'écran est jointe au rapport.
 
-### V. Vidéos de démonstration — Opus, medium
-Production créative avec HyperFrames (skill `hyperframes`).
-- Quatre vidéos de 15 à 25 s, une par offre, en 16:9, dans la DA du brief (3D douce, nuages, bleu nuit, blanc, vermillon) :
-  1. **Former** : capsule e-learning « Protéger, Alerter, Secourir », les trois réflexes du sauveteur.
-  2. **Sécuriser** : les équipements de protection individuelle sur un chantier (casque, lunettes, gants, chaussures de sécurité, gilet haute visibilité).
-  3. **Expliquer et vendre** : comment fonctionne une pompe à chaleur air/eau.
-  4. **Accompagner** : tutoriel « Purger un radiateur » en étapes numérotées.
+### V. Vidéos de démonstration — Opus, high (V2)
+Production créative avec HyperFrames (skill `hyperframes`) et une scène three.js par film. La V1 (à plat, effet diaporama) a été rejetée le 2026-10-29.
+- Quatre films de 26 à 28 s, une par offre, en 16:9, niveau showreel : vraie 3D, caméra en mouvement, très peu de texte, même moule (nuages, plongée, trois chapitres, œuf de lumière et logo). Détail dans `videos/SPEC.md`.
+  1. **Former** (`former-electricite`) : tension, intensité, puissance.
+  2. **Sécuriser** (`securiser-usine`) : accueil sécurité d'un nouvel arrivant en usine.
+  3. **Expliquer et vendre** (`expliquer-pac`) : pompe à chaleur air/eau, cycle, installation, réglages.
+  4. **Accompagner** (`accompagner-solaire`) : régler et suivre une installation solaire.
 - Texte à l'écran, sans voix off. Aucune API ni service payant, aucun compte à créer.
-- Sources dans `videos/<nom>/`, rendus dans `videos/out/<nom>.mp4` (H.264, ≤ 4 Mo chacun) avec une image d'affiche `videos/out/<nom>.webp`.
+- Sources dans `videos/<nom>/`, rendus dans `videos/out/<nom>.mp4` (H.264, faststart, ≤ 6 Mo chacun), affiche `videos/out/<nom>.webp` (1280×720) et planche `videos/out/planche.webp`.
 - **Terminé quand** les quatre MP4 sont rendus et vérifiés image par image.
 
 ### 4. Mise en page — Opus, medium
