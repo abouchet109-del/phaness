@@ -9,9 +9,11 @@ Ce guide concerne une installation WordPress administrée par l'équipe. Les éc
 - Avoir rendu les quatre vidéos V2. Le paquetage s'arrête avec une liste des MP4 ou affiches manquants ; ne téléversez pas un ZIP incomplet.
 - Garder une sauvegarde de la base de données et des fichiers du site existant avant de remplacer le thème actif.
 
+L’utilisateur a choisi Calendly et fournira le lien à la prochaine étape. Les mentions et le module Cal.com décrits plus bas sont ceux de l’implémentation existante ; ils devront être adaptés lors de l’intégration de Calendly avant publication.
+
 ## Renseigner les informations de l'équipe
 
-Les constantes `PHANESS_CAL_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone ont été fournis par l’utilisateur : `contact@fanes.fr` et `07 69 86 01 61`. Cal.com et raison sociale restent vides. Elles peuvent être définies dans `wp-config.php` avant le chargement de WordPress pour préserver la configuration lors des mises à jour du thème. Utiliser le vrai lien HTTPS vers l'événement Cal.com ; aucun module tiers ne se charge avant le clic.
+Les constantes `PHANESS_CAL_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone ont été fournis par l’utilisateur : `contact@phanes.fr` et `07 69 86 01 61`. Cal.com et raison sociale restent vides. Elles peuvent être définies dans `wp-config.php` avant le chargement de WordPress pour préserver la configuration lors des mises à jour du thème. Utiliser le vrai lien HTTPS vers l'événement Cal.com ; aucun module tiers ne se charge avant le clic.
 
 Les autres informations légales se trouvent dans `theme/patterns/legal-mentions.php` et `theme/patterns/legal-privacy.php`. La raison sociale du pied de page se trouve dans `theme/patterns/footer.php`. Ces textes ne sont pas tous alimentés par `PHANESS_LEGAL_NAME` : remplacer chaque champ avec les informations validées de l'entreprise, puis reporter les textes dans `docs/CONTENU.md`. Ne pas renseigner de durée, de garantie ou d'identifiant supposé.
 

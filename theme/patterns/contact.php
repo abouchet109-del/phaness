@@ -21,7 +21,7 @@
 				<?php if ( phaness_cal_config() ) : ?>
 					<p class="ph-note">Le module de réservation Cal.com se charge au clic. En savoir plus dans notre <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">politique de confidentialité</a>.</p>
 				<?php else : ?>
-					<p class="ph-note">Lien Cal.com : <span class="ph-todo">[À FOURNIR]</span></p>
+					<p class="ph-note">Lien de réservation : <span class="ph-todo">[À FOURNIR]</span></p>
 				<?php endif; ?>
 			</div>
 			<dl class="ph-contact__details" id="contact-details">

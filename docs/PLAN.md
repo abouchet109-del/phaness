@@ -24,6 +24,8 @@ Mise à jour suivante : la section Promesse est remplacée par « Le pouvoir de 
 
 Révision suivante (thème 0.2.2) : espacement réduit, ancres à environ 16 px sous la navigation, typographie commune, pictogrammes linéaires. Offres et Nos réalisations affichent les nouveaux sujets (IA, EPI, rénovation énergétique, utilisation PAC). Email et téléphone renseignés ; lien Cal.com et informations légales attendus.
 
+Correction suivante : email `contact@phanes.fr`, onglet Énergie et rénovation recentré sur une présentation générale des solutions et de leurs bénéfices, exemples et bouton actualisés. L’utilisateur fournira ensuite un lien Calendly ; adapter le module de réservation après réception.
+
 ## Détail
 
 ### 1. Fondations — Sonnet, medium

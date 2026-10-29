@@ -27,11 +27,11 @@ $phaness_sectors = array(
 	array(
 		'slug'     => 'energie',
 		'tab'      => 'Énergie et rénovation',
-		'title'    => 'Faire comprendre vos équipements à vos clients',
-		'issue'    => 'Pompe à chaleur, chauffe-eau thermodynamique, panneaux solaires : vos produits sont techniques. Vos clients hésitent souvent parce qu\'ils ne voient pas comment ils fonctionnent.',
-		'do'       => 'Nous montrons l\'intérieur de vos équipements en 3D : les composants, les flux, le fonctionnement selon les saisons. Vos commerciaux et vos installateurs disposent d\'un support clair pour expliquer et rassurer.',
-		'examples' => array( 'Comment fonctionne une pompe à chaleur air/eau', 'Le chauffe-eau thermodynamique, expliqué simplement', 'Du toit à la prise : le parcours de l\'électricité solaire' ),
-		'cta'      => 'Faites comprendre vos produits',
+		'title'    => 'Présenter vos solutions et leurs bénéfices',
+		'issue'    => 'Vos visiteurs veulent savoir ce que le solaire ou la rénovation énergétique peuvent changer pour eux : leur consommation, leur budget et leur impact environnemental.',
+		'do'       => 'Nous présentons le principe de vos solutions avec des images simples, puis ce qu’elles peuvent apporter au quotidien. Une vidéo donne une vue d’ensemble du projet et de ses bénéfices, à découvrir directement sur votre site.',
+		'examples' => array( 'Le solaire : du soleil à l’énergie du foyer', 'La rénovation énergétique, en quelques repères', 'Économies d’énergie et impact environnemental' ),
+		'cta'      => 'Parlons de vos solutions',
 	),
 	array(
 		'slug'     => 'fabricants',

@@ -1,6 +1,8 @@
 # Reprise du projet — 2026-10-29
 
-Dernière mise à jour (thème 0.2.2) : espacements réduits, titres et textes harmonisés, pictogrammes linéaires, ancres du menu rapprochées du contenu. Nouveau titre des offres : « Des vidéos pour vos équipes et vos clients ». « Nos réalisations » ne conserve que son titre et les films, avec les nouveaux sujets : introduction IA, EPI chantier, rénovation énergétique et utilisation d’une pompe à chaleur. Les coordonnées sont renseignées : contact@fanes.fr et 07 69 86 01 61.
+Dernière correction : email `contact@phanes.fr` et onglet Énergie et rénovation réécrit pour présenter simplement les solutions et leurs bénéfices. Le prochain ajout demandé est le lien Calendly que l’utilisateur fournira ; ne pas confondre ce choix avec le module Cal.com existant, à adapter à réception du lien.
+
+Révision précédente (thème 0.2.2) : espacements réduits, titres et textes harmonisés, pictogrammes linéaires, ancres du menu rapprochées du contenu. Nouveau titre des offres : « Des vidéos pour vos équipes et vos clients ». « Nos réalisations » ne conserve que son titre et les films, avec les nouveaux sujets : introduction IA, EPI chantier, rénovation énergétique et utilisation d’une pompe à chaleur. Les coordonnées sont renseignées : contact@phanes.fr et 07 69 86 01 61.
 
 La vidéo de présentation et les démonstrations restent à fournir depuis l’autre PC. Les clés de fichiers historiques sont conservées : voir le tableau de correspondance dans `docs/CONTENU.md` §9 avant livraison des nouveaux rendus.
 
@@ -22,7 +24,7 @@ La vidéo de présentation et les démonstrations restent à fournir depuis l’
 
 ## Informations à recevoir
 
-- Lien Cal.com. Email et téléphone sont déjà renseignés selon la demande utilisateur.
+- Lien Calendly, annoncé pour la prochaine étape. Adapter ensuite le module Cal.com actuel. Email et téléphone sont renseignés selon la dernière demande utilisateur.
 - Raison sociale, forme juridique, capital, siège, immatriculation/SIREN, TVA si applicable et responsable de publication.
 - Informations propres au traitement des données à compléter dans les pages légales : contacts, durées et garanties applicables.
 - Vidéo de présentation et, si souhaité, son affiche.

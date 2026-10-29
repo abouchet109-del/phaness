@@ -1,5 +1,11 @@
 # Recette locale — 2026-10-29
 
+## Correction email et présentation Énergie et rénovation
+
+Adresse corrigée selon la dernière demande utilisateur : `contact@phanes.fr`, vérifiée dans le lien mailto et les données structurées. Le panneau Énergie et rénovation présente maintenant le principe général des solutions et leurs bénéfices pour le visiteur (consommation, budget, impact environnemental), avec trois exemples grand public. Titre : « Présenter vos solutions et leurs bénéfices » ; bouton : « Parlons de vos solutions ».
+
+Rendu à 1440 et 390 px vérifié, onglet actif et contenu visible, pas de débordement horizontal ni exception JavaScript. Syntaxe PHP 8.3 : 17 fichiers valides. [Capture ordinateur](captures/energie-2026-10-29/secteur-1440.png), [mobile](captures/energie-2026-10-29/secteur-390.png), [contrôles](captures/energie-2026-10-29/checks.json). Le lien Calendly est attendu pour la prochaine étape ; aucune réservation ni intégration réelle de ce service n’est annoncée comme vérifiée. Aucun nouvel audit Lighthouse ni modification des vidéos.
+
 ## Harmonisation et contenus — thème 0.2.2
 
 Titres de section tous identiques en taille et graisse : 52 px / 600 à 1440 px, 39,232 px / 600 à 768 px et 32 px / 600 à 390 px. Titres de cartes communs 24 / 22 px ; corps de texte 17 px. Padding des sections 72 px sur ordinateur et 48 px sur tablette/mobile, écart sous les en-têtes 32 px. Pictogrammes linéaires 64 px à la place des illustrations en volume.

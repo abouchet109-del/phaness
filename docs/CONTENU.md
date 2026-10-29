@@ -132,14 +132,14 @@ Tous les boutons ouvrent la prise de rendez-vous.
 ### Onglet 3 — Énergie et rénovation
 
 - **Onglet :** Énergie et rénovation
-- **Titre :** Faire comprendre vos équipements à vos clients
-- **Votre enjeu :** Pompe à chaleur, chauffe-eau thermodynamique, panneaux solaires : vos produits sont techniques. Vos clients hésitent souvent parce qu'ils ne voient pas comment ils fonctionnent.
-- **Ce que nous faisons :** Nous montrons l'intérieur de vos équipements en 3D : les composants, les flux, le fonctionnement selon les saisons. Vos commerciaux et vos installateurs disposent d'un support clair pour expliquer et rassurer.
+- **Titre :** Présenter vos solutions et leurs bénéfices
+- **Votre enjeu :** Vos visiteurs veulent savoir ce que le solaire ou la rénovation énergétique peuvent changer pour eux : leur consommation, leur budget et leur impact environnemental.
+- **Ce que nous faisons :** Nous présentons le principe de vos solutions avec des images simples, puis ce qu’elles peuvent apporter au quotidien. Une vidéo donne une vue d’ensemble du projet et de ses bénéfices, à découvrir directement sur votre site.
 - **Exemples de vidéos :**
-  - Comment fonctionne une pompe à chaleur air/eau
-  - Le chauffe-eau thermodynamique, expliqué simplement
-  - Du toit à la prise : le parcours de l'électricité solaire
-- **Bouton :** Faites comprendre vos produits
+  - Le solaire : du soleil à l’énergie du foyer
+  - La rénovation énergétique, en quelques repères
+  - Économies d’énergie et impact environnemental
+- **Bouton :** Parlons de vos solutions
 
 ### Onglet 4 — Fabricants et installateurs
 
@@ -196,7 +196,7 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 
 | Libellé | Valeur |
 |---|---|
-| Email | `contact@fanes.fr` (lien `mailto:contact@fanes.fr`) |
+| Email | `contact@phanes.fr` (lien `mailto:contact@phanes.fr`) |
 | Téléphone | `07 69 86 01 61` (lien `tel:0769860161`) |
 
 ---
@@ -231,7 +231,7 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 - `name` : Phaness
 - `url` : https://phaness.fr
 - `description` : Studio de vidéos explicatives et de tutoriels en motion design 3D pour les entreprises.
-- `email` : `contact@fanes.fr`
+- `email` : `contact@phanes.fr`
 - `telephone` : `07 69 86 01 61`
 - `legalName` : `[À FOURNIR]` (entreprise porteuse)
 

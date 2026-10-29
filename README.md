@@ -41,7 +41,7 @@ npm run build:zip    # produit dist/phaness.zip ; refuse les fichiers ou rendus 
 - [`CLAUDE.md`](CLAUDE.md) : les consignes pour Claude Code.
 
 ## État
-Révision visuelle du 2026-10-29 : nouvelle accroche, palette verte, retrait de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. L'œuf est remplacé par un cadre pour la vidéo de présentation de l'équipe, encore à fournir. Le thème est en version 0.2.2. Espacements et typographie harmonisés, icônes linéaires, nouveaux sujets vidéo et coordonnées renseignées (contact@fanes.fr, 07 69 86 01 61). La section « Le pouvoir de la vidéo, au service de votre entreprise. » reprend le titre, les textes et les trois cartes de la référence fournie par l'utilisateur.
+Révision visuelle du 2026-10-29 : nouvelle accroche, palette verte, retrait de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. L'œuf est remplacé par un cadre pour la vidéo de présentation de l'équipe, encore à fournir. Le thème est en version 0.2.2. Espacements et typographie harmonisés, icônes linéaires, nouveaux sujets vidéo et coordonnées renseignées (contact@phanes.fr, 07 69 86 01 61). La section « Le pouvoir de la vidéo, au service de votre entreprise. » reprend le titre, les textes et les trois cartes de la référence fournie par l'utilisateur.
 
 Les scores Lighthouse ci-dessous concernent la version précédant cette révision ; les contrôles visuels actuels sont décrits dans `docs/RECETTE.md`.
 

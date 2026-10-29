@@ -12,7 +12,7 @@ if ( ! defined( 'PHANESS_CAL_URL' ) ) {
 	define( 'PHANESS_CAL_URL', '' );
 }
 if ( ! defined( 'PHANESS_CONTACT_EMAIL' ) ) {
-	define( 'PHANESS_CONTACT_EMAIL', 'contact@fanes.fr' );
+	define( 'PHANESS_CONTACT_EMAIL', 'contact@phanes.fr' );
 }
 if ( ! defined( 'PHANESS_CONTACT_PHONE' ) ) {
 	define( 'PHANESS_CONTACT_PHONE', '07 69 86 01 61' );
