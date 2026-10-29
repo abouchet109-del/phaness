@@ -1,6 +1,8 @@
 # Reprise du projet — 2026-10-29
 
-Dernière révision demandée : nouvelle accroche, palette verte, suppression de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL n'est plus chargé ; un cadre attend la vidéo de présentation de l'équipe. Le code hors vidéos est vérifié localement. Les résultats sont dans `docs/RECETTE.md`. Le prochain travail demandé par l'utilisateur sera une session de modifications ; la production vidéo est réservée à un autre PC.
+Dernière mise à jour : remplacement de la promesse par la section « Le pouvoir de la vidéo, au service de votre entreprise. », avec les trois bénéfices et illustrations de la référence utilisateur. Contrôles à 1440, 768 et 390 px dans `docs/captures/pouvoir-video-2026-10-29/`.
+
+Révision précédente : nouvelle accroche, palette verte, suppression de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL n'est plus chargé ; un cadre attend la vidéo de présentation de l'équipe. Le code hors vidéos est vérifié localement. Les résultats sont dans `docs/RECETTE.md`. Le prochain travail demandé par l'utilisateur sera une session de modifications ; la production vidéo est réservée à un autre PC.
 
 À lire : `CLAUDE.md`, `docs/BRIEF.md`, `docs/PLAN.md`, puis `docs/RECETTE.md`.
 

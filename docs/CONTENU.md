@@ -47,23 +47,24 @@ Le menu conserve quatre ancres : Nos vidéos, Secteurs, Réalisations et Contact
 
 ---
 
-## 3. Promesse — les 3 piliers
+## 3. Le pouvoir de la vidéo — trois bénéfices
 
-**Surtitre** — ≤ 20 : `Notre promesse`
+Texte et disposition repris de l'image fournie par l'utilisateur le 2026-10-29. Aucun surtitre « Notre promesse ».
 
-**Titre (H2)** — ≤ 50
-> La vidéo explicative, enfin accessible
+**Titre (H2)** — centré, en gras, sur deux lignes sur ordinateur
+> Le pouvoir de la vidéo,
+> au service de votre entreprise.
 
-**Introduction** — ≤ 160
-> Nous rendons la production de vidéos explicatives simple et facile à renouveler, pour que la vidéo devienne un outil du quotidien.
+**Introduction**
+> Des vidéos conçues pour expliquer vos produits, transmettre vos savoir-faire et présenter vos solutions.
 
-**Piliers** — titre ≤ 16, texte ≤ 130 chacun
+**Cartes** — trois colonnes sur ordinateur, empilées sur mobile ; illustrations vertes décoratives
 
-| Pilier | Texte |
-|---|---|
-| **Clarté** | Nous rendons compréhensible ce qui est complexe : un geste, une procédure, un produit. Chaque vidéo va à l'essentiel. |
-| **Accessibilité** | Des vidéos professionnelles, sans tournage ni coûts d'une production audiovisuelle classique. |
-| **Standardisation** | Nous réutilisons des structures et des méthodes communes. Chaque nouvelle vidéo se produit plus vite. |
+| Illustration | Titre | Texte |
+|---|---|---|
+| Ampoule | Comprendre en images | Un produit, un geste ou une procédure : l’animation rend visible ce qui est difficile à montrer. |
+| Pile de disques | Un budget maîtrisé | Des vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique. |
+| Engrenage | Du sur-mesure, avec une méthode | Chaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré. |
 
 ---
 

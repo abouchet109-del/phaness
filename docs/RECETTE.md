@@ -1,5 +1,11 @@
 # Recette locale — 2026-10-29
 
+## Nouvelle section bénéfices — thème 0.2.1
+
+La section « La vidéo explicative, enfin accessible » est remplacée par le titre, l’introduction et les trois cartes de l’image fournie par l’utilisateur. Les illustrations sont trois SVG décoratifs avec texte alternatif vide : ampoule, pile de disques et engrenage. Leur présence est obligatoire dans le build. Les textes restent en HTML, sélectionnables et accessibles.
+
+Contrôles à 1440, 768 et 390 px : textes exacts, trois illustrations chargées, aucun débordement horizontal, aucune erreur JavaScript ni ressource HTTP en erreur. PHP 8.3 : 17 fichiers valides ; `npm test` : 12 tests réussis. Captures de section [ordinateur](captures/pouvoir-video-2026-10-29/section-1440.png), [tablette](captures/pouvoir-video-2026-10-29/section-768.png), [mobile](captures/pouvoir-video-2026-10-29/section-390.png) et [résultats](captures/pouvoir-video-2026-10-29/checks.json). Les barres de navigation fixes sont masquées uniquement lors de la capture isolée de la section. Aucun nouvel audit Lighthouse ; les scores historiques plus bas ne concernent pas cette révision.
+
 ## Révision verte — thème 0.2.0
 
 Nouvelle accroche, surtitre gris en majuscules, texte utilisateur, palette vert forêt et cadre de vidéo de présentation à la place du héros WebGL. Méthode, Notre différence et Pourquoi Phaness ? ne sont plus affichées ; le lien de menu Méthode et la zone d'intervention sont supprimés. Promesse, offres, secteurs et réalisations sont conservés.

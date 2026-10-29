@@ -20,6 +20,8 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 
 Demandée et implémentée : accroche « Donnez vie à vos idées en vidéo », surtitre gris, sous-titre utilisateur, palette verte, retrait des sections Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL devient un emplacement de vidéo de présentation. La promesse, les quatre offres, les secteurs et les réalisations sont conservés. Les descriptions historiques des étapes ci-dessous documentent la construction initiale ; les décisions actuelles sont dans `BRIEF.md`.
 
+Mise à jour suivante : la section Promesse est remplacée par « Le pouvoir de la vidéo, au service de votre entreprise. » et trois cartes (Comprendre en images, Un budget maîtrisé, Du sur-mesure, avec une méthode), conformément à la référence visuelle utilisateur. Contrôles responsive et syntaxe validés ; thème 0.2.1.
+
 ## Détail
 
 ### 1. Fondations — Sonnet, medium

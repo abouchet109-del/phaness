@@ -1,0 +1,66 @@
+{
+  "layouts": [
+    {
+      "viewport": 1440,
+      "scroll": 1440,
+      "columns": "434.664px 434.664px 434.664px",
+      "images": [
+        {
+          "loaded": true,
+          "alt": ""
+        },
+        {
+          "loaded": true,
+          "alt": ""
+        },
+        {
+          "loaded": true,
+          "alt": ""
+        }
+      ],
+      "text": "Le pouvoir de la vidéo,\nau service de votre entreprise.\n\nDes vidéos conçues pour expliquer vos produits, transmettre vos savoir-faire\net présenter vos solutions.\n\nComprendre en images\n\nUn produit, un geste ou une procédure : l’animation rend visible ce qui est difficile à montrer.\n\nUn budget maîtrisé\n\nDes vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique.\n\nDu sur-mesure, avec une méthode\n\nChaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré."
+    },
+    {
+      "viewport": 768,
+      "scroll": 768,
+      "columns": "222.508px 222.508px 222.516px",
+      "images": [
+        {
+          "loaded": true,
+          "alt": ""
+        },
+        {
+          "loaded": true,
+          "alt": ""
+        },
+        {
+          "loaded": true,
+          "alt": ""
+        }
+      ],
+      "text": "Le pouvoir de la vidéo,\nau service de votre entreprise.\n\nDes vidéos conçues pour expliquer vos produits, transmettre vos savoir-faire\net présenter vos solutions.\n\nComprendre en images\n\nUn produit, un geste ou une procédure : l’animation rend visible ce qui est difficile à montrer.\n\nUn budget maîtrisé\n\nDes vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique.\n\nDu sur-mesure, avec une méthode\n\nChaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré."
+    },
+    {
+      "viewport": 390,
+      "scroll": 390,
+      "columns": "358px",
+      "images": [
+        {
+          "loaded": true,
+          "alt": ""
+        },
+        {
+          "loaded": true,
+          "alt": ""
+        },
+        {
+          "loaded": true,
+          "alt": ""
+        }
+      ],
+      "text": "Le pouvoir de la vidéo,\nau service de votre entreprise.\n\nDes vidéos conçues pour expliquer vos produits, transmettre vos savoir-faire\net présenter vos solutions.\n\nComprendre en images\n\nUn produit, un geste ou une procédure : l’animation rend visible ce qui est difficile à montrer.\n\nUn budget maîtrisé\n\nDes vidéos animées sans les contraintes d’un tournage, ni la logistique d’une production classique.\n\nDu sur-mesure, avec une méthode\n\nChaque vidéo s’adapte à votre contenu et à votre identité, grâce à un processus de production structuré."
+    }
+  ],
+  "errors": [],
+  "responses": []
+}

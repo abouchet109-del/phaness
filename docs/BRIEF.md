@@ -12,8 +12,8 @@
 ## Positionnement et ton
 
 - Accroche : **« Donnez vie à vos idées en vidéo »**
-- Promesse : rendre la production de vidéos explicatives accessible et facile à renouveler. Pas « des vidéos moins chères ».
-- Trois piliers : **Clarté** (rendre compréhensible ce qui est complexe), **Accessibilité** (vidéos pro sans les coûts d'une production audiovisuelle classique), **Standardisation** (structures et méthodes réutilisées pour livrer plus vite).
+- Promesse : « Le pouvoir de la vidéo, au service de votre entreprise. » Des vidéos conçues pour expliquer les produits, transmettre les savoir-faire et présenter les solutions.
+- Trois bénéfices validés par l'image utilisateur du 2026-10-29 : **Comprendre en images**, **Un budget maîtrisé**, **Du sur-mesure, avec une méthode**. Illustrations vertes : ampoule, pile de disques, engrenage. Cartes blanches arrondies, titre et introduction centrés. Texte exact dans `docs/CONTENU.md` §3.
 - Quatre offres : **Former** (capsules pédagogiques), **Sécuriser** (procédures, modes opératoires, sensibilisation sécurité / HSE), **Expliquer et vendre** (produits et solutions techniques), **Accompagner** (tutoriels d'installation, d'utilisation, d'entretien).
 - Différence : formats standardisés, logique de catalogue (5, 10, 20 vidéos par client), processus simplifié (brief, supports, script, production, retours limités, livraison).
 - Ton : vouvoiement, professionnel, rassurant, sans jargon.
@@ -50,7 +50,7 @@ Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et l
 
 1. **En-tête fixe :** « phaness », ancres vers les sections, bouton « Prendre rendez-vous ».
 2. **Héros :** surtitre gris « Studio vidéo pour les entreprises » en majuscules, titre gras « Donnez vie à vos idées en vidéo », sous-titre fourni par l'utilisateur, deux appels à l'action et emplacement de la vidéo de présentation.
-3. **Promesse :** les trois piliers.
+3. **Bénéfices :** « Le pouvoir de la vidéo, au service de votre entreprise. », introduction et trois cartes conformes à la référence utilisateur.
 4. **Nos vidéos :** les quatre offres, chacune avec un exemple concret.
 5. **Secteurs :** onglets Formation · BTP et industrie (sécurité, HSE) · Énergie et rénovation (chauffe-eau, pompes à chaleur, solaire) · Fabricants et installateurs. Un message propre à chaque cible.
 6. **Réalisations :** quatre vidéos de démonstration, une par offre, produites avec HyperFrames (étape V2). Leur but est de montrer le niveau technique du studio en motion design : mouvements de caméra, 3D, rotations, zooms, une DA poussée. Ce ne sont pas des diapositives animées.
