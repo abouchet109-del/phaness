@@ -28,8 +28,8 @@ run(async (stage, anchors) => {
   // house wall with a window
   const wallMat = clay(0xfbfbfd, { rough: 0.85, rim: 0.1 });
   const wall = mesh(P.rbox(10, 5.6, 0.8, 0.38), wallMat, { parent: scene, pos: [1.4, 2.8, -3.0] });
-  mesh(P.rbox(2.6, 2.2, 0.3, 0.14), clay(PAL.mist, { rough: 0.7 }), { parent: scene, pos: [4.2, 3.4, -2.62] });
-  mesh(P.rbox(2.2, 1.8, 0.2, 0.1), plastic(PAL.glass, { rough: 0.15, coat: 1, rim: 0.3 }), { parent: scene, pos: [4.2, 3.4, -2.5] });
+  mesh(P.rbox(2.6, 2.2, 0.3, 0.14), clay(0xffffff, { rough: 0.7 }), { parent: scene, pos: [4.2, 3.4, -2.62] });
+  mesh(P.rbox(2.2, 1.8, 0.2, 0.1), plastic(0xa9badc, { rough: 0.12, coat: 1, rim: 0.2, env: 1.6 }), { parent: scene, pos: [4.2, 3.4, -2.5] });
   // wall sleeve where the links go in
   const sleeve = mesh(P.cyl(0.32, 0.32, 0.2, 40), clay(PAL.mist), { parent: scene, pos: [2.35, 0.95, -2.55], rot: [Math.PI / 2, 0, 0] });
 
@@ -178,21 +178,18 @@ run(async (stage, anchors) => {
   anchors.eco = () => TH.clone().add(V(0.12, -0.32, 0.2));
 
   // ------------------------------------------------ camera
-  const egg = P.EGG_POS;
   const cam = P.rig([
-    { t: 0, tgt: [0, P.CEIL_Y + 1.8, -24], az: 0, el: 7, dist: 32, fov: 32, dof: 3 },
-    { t: T.dive, tgt: [0, P.CEIL_Y + 1.4, -20], az: 0, el: 10, dist: 27, fov: 32, dof: 3, e: "sine" },
+    ...P.openingKeys(T.dive),
     { t: T.land, tgt: [0.1, 1.5, 0], az: -32, el: 24, dist: 13, fov: 30, dof: 4, e: "io4" },
-    { t: 6.2, tgt: [0, 2.1, 0.3], az: -22, el: 15, dist: 11.5, fov: 30, dof: 5, e: "out" },
-    { t: T.ch1End, tgt: [0, 2.1, 0.3], az: 22, el: 10, dist: 10.6, fov: 30, dof: 5, e: "sine" },
+    { t: 6.2, tgt: [0, 2.35, 0.3], az: -22, el: 15, dist: 11.5, fov: 30, dof: 5, e: "out" },
+    { t: T.ch1End, tgt: [0, 2.35, 0.3], az: 22, el: 10, dist: 10.6, fov: 30, dof: 5, e: "sine" },
     { t: 11.8, tgt: [0.9, 1.3, -0.6], az: 38, el: 19, dist: 12.5, fov: 30, dof: 5 },
     { t: 15.6, tgt: [1.1, 1.2, -0.9], az: 50, el: 13, dist: 11.2, fov: 30, dof: 5, e: "sine" },
     { t: T.wallIn, tgt: [2.3, 0.95, -2.55], az: 34, el: 6, dist: 0.5, fov: 36, dof: 2, e: "in" },
     { t: T.wallIn, tgt: [TH.x, TH.y, TH.z], az: -6, el: 3, dist: 0.7, fov: 36, dof: 8 },
     { t: 17.4, tgt: [TH.x, TH.y - 0.1, TH.z], az: -20, el: 7, dist: 4.4, fov: 30, dof: 9, e: "out4" },
     { t: T.ch3End, tgt: [TH.x, TH.y - 0.1, TH.z], az: 18, el: 3, dist: 3.9, fov: 30, dof: 9, e: "sine" },
-    { t: T.egg, tgt: [egg[0], egg[1] - 0.2, egg[2]], az: 0, el: 5, dist: 11.5, fov: 30, dof: 6, e: "io4" },
-    { t: T.end, tgt: [egg[0], egg[1] - 0.1, egg[2]], az: 0, el: 4, dist: 10.4, fov: 30, dof: 6, e: "sine" },
+    ...P.closingKeys(T.egg, T.end),
   ]);
 
   function pose(name, k) {
@@ -264,11 +261,9 @@ run(async (stage, anchors) => {
     disp.update({ temp: Math.round(temp * 20) / 20, prog: Math.round(progK * 48) / 48, eco: Math.round(ecoK * 20) / 20 });
     radHalo.material.opacity = 0.55 * (1 - 0.55 * ecoK);
 
-    // the egg rises out of the sea at the end
-    const rise = ease(t, T.egg - 0.6, T.egg + 0.9, E.out4);
-    sky.eggHolder.position.y = egg[1] - 2.6 + rise * 2.6;
-    sky.egg.set(ease(t, T.egg - 0.2, T.egg + 1.6, E.io));
-    sky.egg.group.rotation.y = t * 0.25;
+    // the light under the clouds (opening), the egg rising out of them (closing)
+    sky.setDawn(ease(t, 0, 0.9, E.out) * (1 - ease(t, T.dive, T.dive + 0.8, E.io)));
+    sky.setEgg(ease(t, T.egg - 0.6, T.egg + 0.9, E.out4), ease(t, T.egg - 0.2, T.egg + 1.6, E.io));
 
     const wallWhite = ease(t, T.wallIn - 0.3, T.wallIn, E.in2) * (1 - ease(t, T.wallIn, T.wallIn + 0.55, E.out));
     return Math.max(P.ceilingWhite(c.pos.y), wallWhite);

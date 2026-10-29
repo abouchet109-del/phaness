@@ -229,12 +229,13 @@ export const FONT = '"Geist", "Inter", sans-serif';
 
 // ---------------------------------------------------------------- the stage
 const SKY = [
-  [0.0, "#d6dff0"],
-  [0.3, "#e6ecf6"],
-  [0.47, "#f6f6f8"],
-  [0.5, "#fbefec"],
-  [0.53, "#f3f5fa"],
-  [1.0, "#dfe6f2"],
+  [0.0, "#8fa6d4"],
+  [0.22, "#b4c4e4"],
+  [0.4, "#dbe3f2"],
+  [0.48, "#f7efec"],
+  [0.5, "#fbe4dc"],
+  [0.53, "#eef1f8"],
+  [1.0, "#cdd7ea"],
 ];
 function skyTexture() {
   const c = document.createElement("canvas");
@@ -255,8 +256,8 @@ const FinishShader = {
   uniforms: {
     tDiffuse: { value: null },
     uFrame: { value: 0 },
-    uGrain: { value: 0.035 },
-    uVig: { value: 0.22 },
+    uGrain: { value: 0.022 },
+    uVig: { value: 0.34 },
     uWhite: { value: 0 },
     uRes: { value: new THREE.Vector2(1920, 1080) },
   },
@@ -271,7 +272,7 @@ const FinishShader = {
       vec4 c = texture2D(tDiffuse, vUv);
       vec2 q = vUv - 0.5;
       float v = smoothstep(0.35, 0.95, length(q * vec2(1.0, 0.82)) * 1.25);
-      c.rgb = mix(c.rgb, c.rgb * vec3(0.9, 0.93, 0.98), v * uVig * 2.0);
+      c.rgb = mix(c.rgb, c.rgb * vec3(0.84, 0.88, 0.97), v * uVig * 2.0);
       if (uWhite > 0.0) {
         float n = fbm(vUv * vec2(3.2, 1.8) + vec2(0.0, uWhite * 0.6));
         float thr = uWhite * 1.6 - 0.3;
@@ -279,7 +280,8 @@ const FinishShader = {
         vec3 w = mix(vec3(0.972, 0.978, 0.99), vec3(0.93, 0.945, 0.975), vUv.y * 0.4 + n * 0.3);
         c.rgb = mix(c.rgb, w, m);
       }
-      float g = hash(floor(vUv * uRes) + vec2(uFrame * 17.0, uFrame * 31.0)) - 0.5;
+      vec2 px = mod(floor(vUv * uRes) + vec2(mod(uFrame * 37.0, 251.0), mod(uFrame * 61.0, 241.0)), 1024.0);
+      float g = fract(sin(dot(px, vec2(12.9898, 78.233))) * 43758.5453) - 0.5;
       c.rgb += g * uGrain;
       gl_FragColor = vec4(c.rgb, 1.0);
     }`,
@@ -298,7 +300,7 @@ export function createStage(canvas, o = {}) {
 
   const scene = new THREE.Scene();
   scene.background = skyTexture();
-  scene.fog = new THREE.Fog(0xf3f5fa, 40, 140);
+  scene.fog = new THREE.Fog(0xe9edf6, 55, 170);
   const pmrem = new THREE.PMREMGenerator(renderer);
   const room = new RoomEnvironment();
   scene.environment = pmrem.fromScene(room, 0.04).texture;
@@ -306,9 +308,9 @@ export function createStage(canvas, o = {}) {
 
   const camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 600);
 
-  const hemi = new THREE.HemisphereLight(0xffffff, 0xc9d3e8, o.hemi ?? 1.25);
+  const hemi = new THREE.HemisphereLight(0xffffff, 0xa9b8d8, o.hemi ?? 1.0);
   scene.add(hemi);
-  const key = new THREE.DirectionalLight(0xfff3ea, o.key ?? 2.6);
+  const key = new THREE.DirectionalLight(0xfff1e6, o.key ?? 3.1);
   key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
   key.shadow.radius = 10;
@@ -316,7 +318,7 @@ export function createStage(canvas, o = {}) {
   key.shadow.bias = -0.0004;
   key.shadow.normalBias = 0.02;
   scene.add(key, key.target);
-  const rim = new THREE.DirectionalLight(PAL.verm, o.rim ?? 1.6);
+  const rim = new THREE.DirectionalLight(PAL.verm, o.rim ?? 1.1);
   scene.add(rim, rim.target);
   const fill = new THREE.DirectionalLight(0xdfe7ff, 0.5);
   scene.add(fill, fill.target);
@@ -336,7 +338,7 @@ export function createStage(canvas, o = {}) {
   const gtao = new GTAOPass(scene, camera, W, H);
   Math.random = realRandom;
   gtao.output = GTAOPass.OUTPUT.Default;
-  gtao.blendIntensity = o.ao ?? 0.9;
+  gtao.blendIntensity = o.ao ?? 1.0;
   gtao.updateGtaoMaterial({ radius: 0.55, distanceExponent: 1.6, thickness: 1.4, scale: 1.0, samples: 16, distanceFallOff: 1.0 });
   gtao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 6, rings: 2, samples: 16 });
   const baseHide = gtao._overrideVisibility.bind(gtao);
@@ -359,7 +361,7 @@ export function createStage(canvas, o = {}) {
 
   const focusPt = new THREE.Vector3();
   const stage = {
-    THREE, renderer, scene, camera, composer, gtao, bokeh, finish, key, rim, hemi, fill,
+    THREE, renderer, scene, camera, composer, gtao, bokeh, finish, key, rim, hemi, fill, keyDir,
     // place the camera; dof = aperture (0 = sharp), focus defaults to the target distance
     setCamera(pos, look, fov = 30, dof = 0, focus = null, roll = 0) {
       camera.position.copy(pos);
@@ -454,7 +456,7 @@ export function cloudField(parent, o) {
     }
   }
   const mat = clay(o.color ?? 0xffffff, {
-    rough: 0.92, sheen: 0.8, sheenColor: 0xffffff, rim: o.rim ?? 0.12, emissive: o.emissive ?? 0xe9eef8, emissiveIntensity: o.glow ?? 0.18, env: 0.6,
+    rough: 0.92, sheen: 0.8, sheenColor: 0xffffff, rim: o.rim ?? 0.02, emissive: o.emissive ?? 0xe9eef8, emissiveIntensity: o.glow ?? 0.12, env: 0.6,
   });
   const inst = new THREE.InstancedMesh(puffGeo, mat, items.length);
   inst.castShadow = o.cast ?? false;
@@ -558,8 +560,8 @@ export function buildEgg(parent) {
   const g = group(parent);
   const uGlow = { value: 0 };
   const mat = new THREE.MeshPhysicalMaterial({
-    color: col(0xfffaf7), roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.12,
-    iridescence: 0.45, iridescenceIOR: 1.35, iridescenceThicknessRange: [180, 520],
+    color: col(0xfff6f2), roughness: 0.32, clearcoat: 1, clearcoatRoughness: 0.18,
+    iridescence: 0.25, iridescenceIOR: 1.35, iridescenceThicknessRange: [180, 520],
     sheen: 0.6, sheenColor: col(0xffe0d8), sheenRoughness: 0.5, envMapIntensity: 1.2,
   });
   mat.onBeforeCompile = (sh) => {
@@ -574,20 +576,20 @@ export function buildEgg(parent) {
         {
           vec3 vd = normalize(vViewPosition);
           float facing = clamp(dot(normalize(normal), vd), 0.0, 1.0);
-          float core = exp(-pow(length(vObj - vec3(0.0, -0.35, 0.0)) * 1.55, 2.0));
-          float inner = pow(facing, 1.6) * core;
-          vec3 hot = mix(vec3(0.89, 0.26, 0.2), vec3(1.0, 0.62, 0.5), smoothstep(0.3, 0.85, inner));
-          hot = mix(hot, vec3(1.0, 0.95, 0.9), smoothstep(0.75, 1.0, inner));
-          gl_FragColor.rgb = mix(gl_FragColor.rgb, hot * 1.4, clamp(inner * uGlow, 0.0, 0.92));
+          float core = exp(-pow(length(vObj - vec3(0.0, -0.2, 0.0)) * 1.05, 2.0));
+          float inner = pow(facing, 1.1) * core;
+          vec3 hot = mix(vec3(0.89, 0.26, 0.2), vec3(1.0, 0.62, 0.5), smoothstep(0.12, 0.55, inner));
+          hot = mix(hot, vec3(1.0, 0.96, 0.92), smoothstep(0.5, 0.92, inner));
+          gl_FragColor.rgb = mix(gl_FragColor.rgb, hot * 1.3, clamp(inner * uGlow * 1.25, 0.0, 0.94));
           float edge = pow(1.0 - facing, 2.5);
-          gl_FragColor.rgb += vec3(1.0, 0.55, 0.45) * edge * 0.35 * uGlow;
+          gl_FragColor.rgb += vec3(1.0, 0.55, 0.45) * edge * 0.35 * uGlow + hot * inner * uGlow * 0.3;
         }`,
       );
   };
   mat.customProgramCacheKey = () => "phaness-egg";
   const egg = mesh(eggGeometry(), mat, { parent: g, receive: false });
   egg.castShadow = false;
-  const light = new THREE.PointLight(PAL.verm, 0, 14, 1.6);
+  const light = new THREE.PointLight(0xff8a6a, 0, 9, 2);
   light.position.set(0, -0.9, 0.6);
   g.add(light);
   const h1 = halo(g, 0xf7b3a2, 7, 0.0);
@@ -596,50 +598,80 @@ export function buildEgg(parent) {
     group: g, egg, mat, halo: h1, light,
     set(glow) {
       uGlow.value = glow;
-      light.intensity = 30 * glow;
+      light.intensity = 10 * glow;
       h1.material.opacity = 0.55 * glow;
     },
   };
 }
 
 // ---------------------------------------------------------------- the sky above the ceiling (opening + closing)
-// Ceiling of clouds at CEIL_Y; the subject lives below, the egg sits on the ceiling top.
+// Ceiling of clouds at CEIL_Y; the subject lives below. A valley in the clouds leads to the egg:
+// in the opening a vermilion light glows under the valley, in the closing the egg rises out of it.
 export const CEIL_Y = 22;
+export const EGG_POS = [0, CEIL_Y + 3.2, -18];
+const valley = (x, z) => z > EGG_POS[2] + 2.2 && Math.abs(x - EGG_POS[0]) < 2.6 + (z - EGG_POS[2]) * 0.42;
 export function buildSky(stage, o = {}) {
   const scene = stage.scene;
   const root = group(scene);
-  // the ceiling: a thick band of puffs; its top is the sea of clouds seen in the opening and the closing
   const ceil = cloudField(root, {
     seed: 11, clusters: 420, radius: 70, y: CEIL_Y, jitterY: 2.2, min: 2.2, max: 5.5, squash: 0.62, drift: 0.25,
-    center: o.center ?? [0, 0, -10], glow: 0.22,
+    center: o.center ?? [0, 0, -10], glow: 0.16, avoid: (x, z) => valley(x, z) && z > EGG_POS[2] + 9,
   });
   const top = cloudField(root, {
     seed: 12, clusters: 260, radius: 90, y: CEIL_Y + 1.6, jitterY: 0.8, min: 2.5, max: 6.5, squash: 0.55, drift: 0.3,
-    center: o.center ?? [0, 0, -10], glow: 0.25, avoid: (x, z) => Math.hypot(x - EGG_POS[0], z - EGG_POS[2]) < 2.6,
+    center: o.center ?? [0, 0, -10], glow: 0.18,
+    avoid: (x, z) => Math.hypot(x - EGG_POS[0], z - EGG_POS[2]) < 3.4 || valley(x, z),
   });
   const eggHolder = group(root, EGG_POS);
   const egg = buildEgg(eggHolder);
+  egg.group.scale.setScalar(1.5);
+  // the light under the clouds (opening)
+  const dawn = new THREE.PointLight(0xff7a5c, 0, 30, 1.6);
+  dawn.position.set(EGG_POS[0], CEIL_Y + 1.2, EGG_POS[2] + 1);
+  root.add(dawn);
+  const dawnHalo = halo(root, 0xf7a593, 11, 0);
+  dawnHalo.position.set(EGG_POS[0], CEIL_Y + 2.4, EGG_POS[2] - 1);
   return {
     ceil, top, egg, eggHolder,
+    // rise 0..1 lifts the egg out of the clouds; glow 0..1 lights it from inside
+    setEgg(rise, glow) {
+      eggHolder.position.y = EGG_POS[1] - 3.6 + rise * 3.6;
+      egg.set(glow);
+    },
+    setDawn(k) {
+      dawn.intensity = 45 * k;
+      dawnHalo.material.opacity = 0.0 * k;
+    },
     update(t, camY = 0) {
       const near = camY > CEIL_Y - 14;
-      ceil.mesh.visible = near;
-      top.mesh.visible = near;
-      eggHolder.visible = near;
+      root.visible = near;
       if (near) {
         ceil.update(t);
         top.update(t);
+        egg.group.rotation.y = t * 0.25;
       }
     },
   };
 }
-export const EGG_POS = [0, CEIL_Y + 3.2, -18];
+// Shared camera keys: the opening (over the valley, then the dive) and the closing (on the egg).
+export function openingKeys(tDive) {
+  return [
+    { t: 0, tgt: [0, CEIL_Y + 2.6, EGG_POS[2]], az: -4, el: 9, dist: 31, fov: 30, dof: 1.5 },
+    { t: tDive, tgt: [0, CEIL_Y + 1.6, EGG_POS[2] + 2], az: 3, el: 15, dist: 24, fov: 30, dof: 1.5, e: "sine" },
+  ];
+}
+export function closingKeys(tEgg, tEnd) {
+  return [
+    { t: tEgg, tgt: [EGG_POS[0], EGG_POS[1] - 1.0, EGG_POS[2]], az: -6, el: 11, dist: 17, fov: 30, dof: 2, e: "io4" },
+    { t: tEnd, tgt: [EGG_POS[0], EGG_POS[1] - 1.1, EGG_POS[2]], az: 4, el: 10, dist: 15.6, fov: 30, dof: 2, e: "sine" },
+  ];
+}
 // Whiteness while the camera crosses the ceiling band.
 export function ceilingWhite(camY) {
   const a = CEIL_Y - 2.5, b = CEIL_Y + 3.5;
   if (camY < a - 1.5 || camY > b + 1.5) return 0;
   const mid = (a + b) / 2, half = (b - a) / 2 + 1.5;
-  return smooth(clamp(1 - Math.abs(camY - mid) / half)) * 1.15;
+  return smooth(clamp(1 - Math.abs(camY - mid) / half)) * 1.05;
 }
 
 // ---------------------------------------------------------------- a clay figurine (worker, technician)

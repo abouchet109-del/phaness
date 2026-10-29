@@ -1,0 +1,89 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
+  </style>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="26" data-layout-allow-overlap>
+    <canvas id="film-canvas" width="1920" height="1080"></canvas>
+
+    <div class="ph-layer">
+      <!-- opening -->
+      <div class="ph-intro">
+        <div id="kicker" class="ph-kicker"><i></i><span>Sécuriser</span></div>
+        <div id="title" class="ph-title">Premier jour à l’usine</div>
+      </div>
+
+      <!-- 01 PPE -->
+      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">Équipement</span></div>
+      <div class="anchor" data-anchor="helmet" id="a-helmet">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="70" y2="-60" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 76px; top: -118px">Casque</div>
+      </div>
+      <div class="anchor" data-anchor="vest" id="a-vest">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="-30" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="right: 86px; top: -62px">Gilet</div>
+      </div>
+      <div class="anchor" data-anchor="shoes" id="a-shoes">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="40" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="left: 86px; top: 12px">Chaussures</div>
+      </div>
+
+      <!-- 02 traffic -->
+      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">Circulation</span></div>
+      <div class="anchor" data-anchor="lane" id="a-lane">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-40" y2="80" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag" style="right: 0px; top: 86px">Allée piétonne</div>
+      </div>
+      <div id="line-stop" class="ph-line">Au croisement, <b>stop</b>.</div>
+
+      <!-- 03 evacuation -->
+      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">Évacuation</span></div>
+      <div class="anchor" data-anchor="asm" id="a-asm">
+        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="-50" /></svg>
+        <div class="ph-dot"></div>
+        <div class="ph-tag hot" style="right: 86px; top: -108px">Point de rassemblement</div>
+      </div>
+
+      <!-- closing -->
+      <div id="logo" class="ph-logo">phaness</div>
+    </div>
+  </div>
+  <script src="assets/phaness-type.js"></script>
+  <script>
+    (function () {
+      var clock = { t: 0 };
+      var host = { clock: clock, render: null };
+      window.__phFilm = host;
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.to(clock, { t: 26, duration: 26, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+
+      PH.fade(tl, "#kicker", 0.45, 2.3);
+      PH.words(tl, "#title", 0.7, 2.35);
+
+      PH.chapter(tl, "#ch1", 4.6, 10.0);
+      PH.tag(tl, "#a-helmet", 5.9, 9.9);
+      PH.tag(tl, "#a-vest", 7.5, 9.9);
+      PH.tag(tl, "#a-shoes", 8.3, 9.9);
+
+      PH.chapter(tl, "#ch2", 10.6, 15.8);
+      PH.tag(tl, "#a-lane", 11.0, 13.0);
+      PH.words(tl, "#line-stop", 12.3, 15.6);
+
+      PH.chapter(tl, "#ch3", 16.5, 21.4);
+      PH.tag(tl, "#a-asm", 19.0, 21.4);
+
+      PH.letters(tl, "#logo", 23.7);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["film"] = tl;
+    })();
+  </script>
+  <script src="assets/scene.js"></script>
+</template>
