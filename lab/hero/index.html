@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phaness — prototype du héros</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { --night: #0B1633; --night-soft: #4A5878; --cloud: #F5F7FB; --verm-deep: #C8372A; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--cloud); color: var(--night);
+    font-family: Geist, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden; }
+  .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .bar { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center;
+    padding: 28px clamp(20px, 5vw, 72px); font-size: 15px; }
+  .logo { font-weight: 600; font-size: 22px; letter-spacing: -.02em; }
+  .bar nav { display: flex; gap: 32px; color: var(--night-soft); }
+  .copy { position: relative; z-index: 1; max-width: 560px; padding: 0 clamp(20px, 5vw, 72px);
+    margin-top: calc(50vh - 240px); }
+  .eyebrow { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--night-soft); margin: 0 0 20px; }
+  h1 { font-size: clamp(38px, 4.6vw, 64px); line-height: 1.04; letter-spacing: -.035em; margin: 0 0 24px; font-weight: 600; }
+  .copy p.lead { font-size: 19px; line-height: 1.55; color: var(--night-soft); margin: 0 0 36px; max-width: 30em; }
+  .cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 999px;
+    font-size: 16px; font-weight: 500; text-decoration: none; }
+  .btn.primary { background: var(--verm-deep); color: #fff; box-shadow: 0 10px 30px -12px rgba(200,55,42,.6); }
+  .btn.ghost { color: var(--night); background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px #DCE3F0; }
+  .stats { position: fixed; right: 12px; bottom: 12px; z-index: 2; font: 12px/1.4 ui-monospace, monospace;
+    background: rgba(11,22,51,.8); color: #fff; padding: 6px 10px; border-radius: 8px; }
+  @media (max-width: 767px) {
+    .bar nav { display: none; }
+    .copy { margin-top: 0; position: absolute; left: 0; right: 0; bottom: 40px; }
+    h1 { font-size: 38px; }
+    .copy p.lead { font-size: 17px; margin-bottom: 28px; }
+    .btn { height: 50px; }
+  }
+</style>
+</head>
+<body>
+<section class="hero">
+  <canvas id="hero" aria-hidden="true"></canvas>
+  <header class="bar">
+    <span class="logo">phaness</span>
+    <nav><span>Offres</span><span>Secteurs</span><span>Méthode</span><span>Contact</span></nav>
+  </header>
+  <div class="copy">
+    <p class="eyebrow">Vidéos explicatives 3D</p>
+    <h1>Rendez visible ce qui est complexe.</h1>
+    <p class="lead">Texte factice du héros : une phrase qui présente le studio et ce qu'il apporte aux équipes B2B.</p>
+    <div class="cta">
+      <a class="btn primary" href="#">Prendre rendez-vous</a>
+      <a class="btn ghost" href="#">Voir les réalisations</a>
+    </div>
+  </div>
+</section>
+<script type="module">
+  import { mountHero } from './hero.js';
+  const qs = new URLSearchParams(location.search);
+  const stats = qs.has('debug') ? Object.assign(document.createElement('div'), { className: 'stats' }) : null;
+  if (stats) document.body.append(stats);
+  const dbg = stats && document.createElement('canvas').getContext('webgl');
+  const ext = dbg && dbg.getExtension('WEBGL_debug_renderer_info');
+  const gpu = ext ? dbg.getParameter(ext.UNMASKED_RENDERER_WEBGL) : '';
+  window.hero = mountHero(document.getElementById('hero'), {
+    forceFallback: qs.has('fallback'),
+    staticFrame: qs.has('static'),
+    time: +qs.get('t') || 0,
+    onStats: stats && ((s) => {
+      window.heroStats = s;
+      stats.textContent = `${s.fps.toFixed(0)} fps · q ${s.quality.toFixed(2)} · ${s.width}×${s.height}`;
+      document.title = `stats ${stats.textContent} · ${gpu}`;
+    }),
+  });
+  // ?ptr=x,y (0..1) simulates a pointer position, for screenshots
+  const ptr = qs.get('ptr');
+  if (ptr) {
+    const [x, y] = ptr.split(',').map(Number);
+    dispatchEvent(new PointerEvent('pointermove', { clientX: x * innerWidth, clientY: y * innerHeight }));
+  }
+</script>
+</body>
+</html>
