@@ -5,15 +5,17 @@ Ce guide concerne une installation WordPress administrée par l'équipe. Les éc
 ## Avant de commencer
 
 - Avoir un domaine et une offre d'hébergement IONOS compatible avec WordPress.
-- Vérifier les coordonnées déjà renseignées, puis compléter le lien Cal.com et les champs légaux `[À FOURNIR]` aux emplacements indiqués ci-dessous.
+- Vérifier les coordonnées déjà renseignées, puis compléter les champs légaux `[À FOURNIR]` aux emplacements indiqués ci-dessous.
 - Avoir rendu les quatre vidéos V2. Le paquetage s'arrête avec une liste des MP4 ou affiches manquants ; ne téléversez pas un ZIP incomplet.
 - Garder une sauvegarde de la base de données et des fichiers du site existant avant de remplacer le thème actif.
 
-L’utilisateur a choisi Calendly et fournira le lien à la prochaine étape. Les mentions et le module Cal.com décrits plus bas sont ceux de l’implémentation existante ; ils devront être adaptés lors de l’intégration de Calendly avant publication.
+## Renseigner les informations de l’équipe
 
-## Renseigner les informations de l'équipe
+Le lien Calendly fourni est configuré : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Les huit boutons de rendez-vous/contact l’utilisent. Le module s’ouvre au clic dans une fenêtre et propose un lien « Ouvrir Calendly » ; sans JavaScript, les liens mènent directement à la page de réservation.
 
-Les constantes `PHANESS_CAL_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone ont été fournis par l’utilisateur : `contact@phanes.fr` et `07 69 86 01 61`. Cal.com et raison sociale restent vides. Elles peuvent être définies dans `wp-config.php` avant le chargement de WordPress pour préserver la configuration lors des mises à jour du thème. Utiliser le vrai lien HTTPS vers l'événement Cal.com ; aucun module tiers ne se charge avant le clic.
+Les constantes `PHANESS_BOOKING_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone : `contact@phanes.fr` et `07 69 86 01 61`. La raison sociale reste vide. Pour conserver la configuration lors des mises à jour, ces constantes peuvent être définies dans `wp-config.php` avant WordPress. L’ancienne constante `PHANESS_CAL_URL` est remplacée par `PHANESS_BOOKING_URL`.
+
+L’iframe native suit la [documentation Calendly](https://calendly.com/help/how-to-embed-calendly-with-an-iframe), sans script externe ajouté au site. Les choix de cookies du service restent disponibles. Les mentions du fournisseur sont reprises de sa [politique de confidentialité](https://calendly.com/legal/privacy-notice) ; compléter les champs légaux et la garantie applicable au contrat de l’entreprise avant publication.
 
 Les autres informations légales se trouvent dans `theme/patterns/legal-mentions.php` et `theme/patterns/legal-privacy.php`. La raison sociale du pied de page se trouve dans `theme/patterns/footer.php`. Ces textes ne sont pas tous alimentés par `PHANESS_LEGAL_NAME` : remplacer chaque champ avec les informations validées de l'entreprise, puis reporter les textes dans `docs/CONTENU.md`. Ne pas renseigner de durée, de garantie ou d'identifiant supposé.
 
@@ -55,7 +57,7 @@ Le modèle `front-page.html` du thème construit la page d'accueil. Après activ
 
 - Ouvrir la page d'accueil sur ordinateur et téléphone, puis suivre les quatre liens de démonstration et lancer chaque vidéo.
 - Vérifier les pages Mentions légales et Politique de confidentialité, et remplacer chaque `[À FOURNIR]` par les informations validées.
-- Cliquer sur l'adresse email, le téléphone et les boutons de rendez-vous ; vérifier le chargement Cal.com seulement après le clic.
+- Cliquer sur l'adresse email, le téléphone et les boutons de rendez-vous ; vérifier le chargement Calendly seulement après le clic.
 - Vérifier les liens du pied de page, l'aperçu Open Graph et le cadenas HTTPS.
 - Refaire Lighthouse mobile et ordinateur sur le domaine HTTPS, après ajout des vidéos. Les résultats locaux sans médias sont conservés dans `docs/RECETTE.md` ; ils ne remplacent pas le contrôle de l'hébergement final.
 - Dans **Extensions**, garder les extensions nécessaires à l'hébergement, à la sécurité et aux sauvegardes. Désactiver seulement celles qui sont inutilisées ou ajoutent des fonctions redondantes, après vérification de leur rôle.

@@ -116,7 +116,7 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
   }
 }
 
-// Cal.com is embedded only after a visitor activates a booking link.
+// Calendly is embedded only after a visitor activates a booking link.
 const bookingLinks = document.querySelectorAll('[data-booking]');
 if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.prototype.showModal) {
   const dialog = document.createElement('dialog');
@@ -126,17 +126,22 @@ if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.pr
   const close = document.createElement('button');
   close.className = 'ph-booking__close';
   close.type = 'button';
+  close.autofocus = true;
   close.textContent = 'Fermer';
   close.addEventListener('click', () => dialog.close());
+
+  const external = document.createElement('a');
+  external.className = 'ph-booking__external';
+  external.textContent = 'Ouvrir Calendly';
+  external.target = '_blank';
+  external.rel = 'noopener noreferrer';
 
   const frame = document.createElement('iframe');
   frame.className = 'ph-booking__frame';
   frame.title = 'Prendre rendez-vous avec Phaness';
   frame.loading = 'lazy';
   frame.referrerPolicy = 'strict-origin-when-cross-origin';
-  frame.allow = 'payment';
-
-  dialog.append(close, frame);
+  dialog.append(external, close, frame);
   document.body.append(dialog);
   let opener;
   dialog.addEventListener('close', () => {
@@ -154,9 +159,8 @@ if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.pr
       const bookingUrl = new URL(link.href, window.location.href);
       if (bookingUrl.protocol !== 'https:') return;
       event.preventDefault();
-      bookingUrl.searchParams.set('embed', 'true');
-      bookingUrl.searchParams.set('layout', 'month_view');
       opener = link;
+      external.href = bookingUrl.href;
       frame.src = bookingUrl.href;
       dialog.showModal();
     });

@@ -1,5 +1,13 @@
 # Recette locale — 2026-10-29
 
+## Calendly — thème 0.2.3
+
+Les huit liens de rendez-vous/contact utilisent exactement l’URL fournie : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Chaque bouton a été activé dans le navigateur de contrôle, y compris les quatre onglets Secteurs. Ouverture de la fenêtre, source de l’iframe, lien d’ouverture séparée, fermeture et retour du focus vérifiés. Les liens restent utilisables sans JavaScript. Sur les deux pages légales, les deux boutons d’en-tête/pied de page utilisent également cette URL.
+
+Aucune requête Calendly ni source d’iframe avant clic. Les requêtes Gravatar de la barre d’administration WordPress ne font pas partie de ce constat. En session réelle, Calendly répond HTTP 200 et affiche « Appel de découverte Phaness » ; la bannière de choix des cookies du service est conservée. Aucun formulaire de rendez-vous n’a été rempli et aucune réservation n’a été créée.
+
+[Contrôles](captures/calendly-2026-10-29/checks.json), [fenêtre ordinateur](captures/calendly-2026-10-29/calendly-desktop.png) et [mobile](captures/calendly-2026-10-29/calendly-mobile.png). Syntaxe PHP 8.3 : 17 fichiers valides ; JavaScript valide ; 12 tests du projet réussis. Les mentions de confidentialité sont passées à Calendly ; les champs propres à l’entreprise restent à compléter. L’intégration utilise une iframe native selon la [documentation Calendly](https://calendly.com/help/how-to-embed-calendly-with-an-iframe), sans SDK chargé sur le site. Aucun nouveau Lighthouse.
+
 ## Correction email et présentation Énergie et rénovation
 
 Adresse corrigée selon la dernière demande utilisateur : `contact@phanes.fr`, vérifiée dans le lien mailto et les données structurées. Le panneau Énergie et rénovation présente maintenant le principe général des solutions et leurs bénéfices pour le visiteur (consommation, budget, impact environnemental), avec trois exemples grand public. Titre : « Présenter vos solutions et leurs bénéfices » ; bouton : « Parlons de vos solutions ».

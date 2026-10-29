@@ -61,7 +61,7 @@ Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et l
 
    Les identifiants entre parenthèses sont les clés techniques historiques, conservées pour le poste de rendu. Les sujets précédents sont remplacés dans le brief : ne pas publier leurs anciens rendus sous les nouveaux titres. La création et l’adaptation des films restent réservées à l’autre PC.
    État du poste Windows récupéré dans `a2dded9` : quatre films 3D de 26 à 28 s ont été rendus avec HyperFrames/three.js sur les anciens sujets (électricité, usine, PAC explicative et solaire). Ils utilisent encore la DA bleu nuit/vermillon et un œuf final. Les détails historiques restent dans `videos/SPEC.md` et `videos/REVIEW.md`. Ces rendus ne doivent pas être livrés sous les nouveaux titres ; le poste vidéo devra adapter les sujets et la palette aux dernières demandes.
-7. **Contact :** prise de rendez-vous, `contact@phanes.fr`, `07 69 86 01 61` (coordonnées fournies par l'utilisateur). La zone d'intervention est supprimée. Le lien Cal.com reste à fournir.
+7. **Contact :** prise de rendez-vous, `contact@phanes.fr`, `07 69 86 01 61` (coordonnées fournies par l'utilisateur). La zone d'intervention est supprimée. Le lien de rendez-vous est https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness.
 8. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
 
 Pas de FAQ (décision du 2026-10-29).
@@ -84,8 +84,8 @@ Décisions issues des étapes 1 à 3 :
 - **Héros :** lecteur vidéo HTML natif configuré par `PHANESS_PRESENTATION_VIDEO_URL` et, éventuellement, `PHANESS_PRESENTATION_POSTER_URL`. En leur absence, un cadre de présentation est affiché. Le prototype WebGL est conservé en archive mais n'est plus chargé par le site.
 - **Vidéos de démonstration :** sources HyperFrames (HTML) dans `videos/`, rendus MP4 optimisés pour le web dans `videos/out/`, non versionnés : on les régénère à partir des sources.
 - **Animations :** IntersectionObserver et transitions CSS. GSAP (gratuit) seulement si une section le justifie.
-- **Prise de rendez-vous :** l’utilisateur fournira un lien Calendly lors de la prochaine étape. Le module Cal.com existant reste à adapter après réception de ce lien ; aucun service tiers n’est chargé avant action du visiteur.
-- **Aucun outil de mesure d'audience,** donc pas de bandeau cookies. Polices auto-hébergées (RGPD).
+- **Prise de rendez-vous :** Calendly, lien fourni par l’utilisateur : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Les huit boutons de rendez-vous/contact partagent ce lien. Fenêtre avec iframe chargée au clic, fermeture avec retour du focus et lien d’ouverture séparée. Sans JavaScript, navigation directe vers Calendly.
+- **Aucun outil de mesure d’audience installé par Phaness.** Les choix de cookies Calendly restent disponibles dans son module, chargé après un clic. Polices auto-hébergées.
 - **Local :** WordPress Playground CLI (Node ≥ 20.18, sans PHP, MySQL ni Docker), tout sur D:.
 - **Versionnement :** Git et dépôt GitHub privé.
 
@@ -94,6 +94,6 @@ Décisions issues des étapes 1 à 3 :
 Périmètre confirmé le 2026-10-29 : terminer et vérifier le site sans créer, modifier ou rendre les vidéos sur ce Mac. Les rendus V2 sont produits sur un autre PC. Les mesures locales sans médias doivent être refaites avec les films et sur IONOS avant publication.
 
 - Lighthouse mobile ≥ 95 en performance, accessibilité, bonnes pratiques et SEO.
-- JavaScript du thème < 30 Ko compressé (hors widget Cal.com). LCP < 2 s en 4G.
+- JavaScript du thème < 30 Ko compressé (hors service Calendly). LCP < 2 s en 4G.
 - Responsive de 360 px à 1920 px. Navigation au clavier. WCAG AA.
 - SEO de base : titre, meta description, Open Graph, données structurées `Organization`.

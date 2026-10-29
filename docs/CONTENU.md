@@ -187,10 +187,10 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 **Texte** — ≤ 160
 > Chaque projet est différent. Réservez un premier échange : nous établissons ensuite un devis personnalisé selon vos besoins.
 
-**Bouton** — ≤ 20 : `Prendre rendez-vous` → lien Cal.com `[À FOURNIR]`
+**Bouton** — ≤ 20 : `Prendre rendez-vous` → [https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness](https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness)
 
 **Note sous le bouton** — ≤ 140
-> Le module de réservation Cal.com se charge au clic. En savoir plus dans notre [politique de confidentialité](/politique-de-confidentialite/).
+> La réservation sur Calendly s’ouvre au clic. En savoir plus dans notre [politique de confidentialité](/politique-de-confidentialite/).
 
 **Coordonnées**
 
@@ -335,13 +335,13 @@ Nous ne vendons ni ne louons vos données. Nous ne les utilisons pas à des fins
 
 Vos données ne sont accessibles qu'aux personnes de [À FOURNIR : raison sociale] qui en ont besoin, et aux sous-traitants suivants :
 - **IONOS SARL** (France), hébergeur du site.
-- **Cal.com, Inc.**, éditeur de l'outil de prise de rendez-vous, qui agit comme sous-traitant pour notre compte. Cal.com étant établi aux États-Unis, vos données peuvent y être transférées. Ce transfert est encadré par [À FOURNIR : garantie applicable, par exemple adhésion au Data Privacy Framework UE–États-Unis ou clauses contractuelles types de la Commission européenne].
+- **Calendly, LLC** fournit le service de réservation et traite les données nécessaires au rendez-vous pour notre compte. Des transferts vers les États-Unis peuvent intervenir. Garantie applicable à notre contrat : [À FOURNIR]. Voir la [politique de confidentialité de Calendly](https://calendly.com/legal/privacy-notice).
 
 **Cookies et traceurs**
 
-- Ce site ne dépose **aucun cookie de mesure d'audience** ni de publicité. C'est pourquoi aucun bandeau cookies ne s'affiche.
+- Phaness n’installe aucun outil de mesure d’audience ni de publicité. Les choix de cookies du service de réservation sont gérés dans Calendly.
 - Les polices de caractères sont hébergées sur notre serveur : aucune donnée n'est transmise à un service de polices tiers.
-- Le module de réservation Cal.com n'est chargé que lorsque vous cliquez sur « Prendre rendez-vous ». Cal.com peut alors déposer les cookies strictement nécessaires au fonctionnement de la réservation. Si vous ne cliquez pas, aucun contenu de Cal.com n'est chargé.
+- Calendly se charge après un clic de réservation et propose ses propres choix de cookies selon votre région. Aucun contenu Calendly n’est chargé avant ce clic.
 - Les cookies techniques de WordPress ne concernent que les personnes qui administrent le site.
 
 **Vos droits**

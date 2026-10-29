@@ -329,9 +329,10 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 }
 
 /* Booking dialog: the iframe has no source until a visitor clicks a booking link. */
-.ph-booking { box-sizing: border-box; position: fixed; width: min(56rem, calc(100vw - 2rem)); height: min(46rem, calc(100dvh - 2rem)); max-width: 56rem; max-height: 46rem; padding: 3.5rem 0.5rem 0.5rem; overflow: hidden; border: 0; border-radius: var(--ph-r-lg); background: var(--ph-white); box-shadow: 0 32px 100px rgba(20, 37, 29, 0.35); }
+.ph-booking { box-sizing: border-box; position: fixed; width: min(56rem, calc(100vw - 2rem)); height: min(52rem, calc(100dvh - 2rem)); max-width: 56rem; max-height: 52rem; padding: 3.5rem 0.5rem 0.5rem; overflow: hidden; border: 0; border-radius: var(--ph-r-lg); background: var(--ph-white); box-shadow: 0 32px 100px rgba(20, 37, 29, 0.35); }
 .ph-booking::backdrop { background: rgba(20, 37, 29, 0.58); backdrop-filter: blur(4px); }
 .ph-booking__close { position: absolute; top: 0.75rem; right: 0.75rem; min-height: 2.5rem; padding: 0.5rem 1rem; border: 0; border-radius: var(--wp--custom--radius--pill); background: var(--ph-cloud); color: var(--ph-night); font: inherit; font-size: 0.9375rem; cursor: pointer; }
+.ph-booking__external { position: absolute; top: 0.75rem; left: 1rem; display: inline-flex; align-items: center; min-height: 2.5rem; color: var(--ph-accent-deep); font-size: 0.875rem; text-underline-offset: 0.2em; }
 .ph-booking__frame { display: block; width: 100%; height: 100%; border: 0; border-radius: var(--ph-r-md); background: var(--ph-white); }
 @media (max-width: 600px) { .ph-booking { width: calc(100vw - 1rem); height: calc(100dvh - 1rem); padding: 3.25rem 0.25rem 0.25rem; border-radius: var(--ph-r-md); } }
 @media (prefers-reduced-motion: reduce) {

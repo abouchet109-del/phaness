@@ -1,0 +1,60 @@
+{
+  "checks": [
+    "Eight booking links rendered",
+    "All links use the exact supplied URL",
+    "No Calendly request or iframe source before click",
+    "Booking link 1 opens correct iframe",
+    "Booking link 1 has external fallback",
+    "Booking link 1 restores focus",
+    "Booking link 2 opens correct iframe",
+    "Booking link 2 has external fallback",
+    "Booking link 2 restores focus",
+    "Booking link 3 opens correct iframe",
+    "Booking link 3 has external fallback",
+    "Booking link 3 restores focus",
+    "Booking link 4 opens correct iframe",
+    "Booking link 4 has external fallback",
+    "Booking link 4 restores focus",
+    "Booking link 5 opens correct iframe",
+    "Booking link 5 has external fallback",
+    "Booking link 5 restores focus",
+    "Booking link 6 opens correct iframe",
+    "Booking link 6 has external fallback",
+    "Booking link 6 restores focus",
+    "Booking link 7 opens correct iframe",
+    "Booking link 7 has external fallback",
+    "Booking link 7 restores focus",
+    "Booking link 8 opens correct iframe",
+    "Booking link 8 has external fallback",
+    "Booking link 8 restores focus",
+    "Dialog fits mobile viewport",
+    "Mobile menu booking returns focus to toggle",
+    "No runtime exception in local dialog tests",
+    "Booking links also work without JavaScript"
+  ],
+  "real": {
+    "status": 200,
+    "eventVisible": true,
+    "frameUrls": [
+      "https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness?month=2026-10"
+    ],
+    "eventTitle": "Appel de découverte Phaness",
+    "mobile": {
+      "bounds": {
+        "viewport": 390,
+        "left": 8,
+        "right": 382,
+        "width": 374,
+        "top": 8,
+        "bottom": 836,
+        "height": 844
+      },
+      "dimensions": {
+        "width": 366,
+        "scrollWidth": 366
+      },
+      "eventVisible": true,
+      "closeRestoresFocus": true
+    }
+  }
+}

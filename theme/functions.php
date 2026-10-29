@@ -7,9 +7,9 @@
  * Site settings to fill in before going live. Empty means "[À FOURNIR]": the theme shows a clean fallback.
  * Each one can also be defined earlier (wp-config.php) to override the value here.
  */
-if ( ! defined( 'PHANESS_CAL_URL' ) ) {
-	// Cal.com booking page, e.g. https://cal.com/your-name/30min. Nothing is loaded from Cal.com before a visitor clicks.
-	define( 'PHANESS_CAL_URL', '' );
+if ( ! defined( 'PHANESS_BOOKING_URL' ) ) {
+	// Calendly is loaded only after a visitor activates a booking link.
+	define( 'PHANESS_BOOKING_URL', 'https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness' );
 }
 if ( ! defined( 'PHANESS_CONTACT_EMAIL' ) ) {
 	define( 'PHANESS_CONTACT_EMAIL', 'contact@phanes.fr' );
@@ -107,11 +107,10 @@ function phaness_contact_link( $kind ) {
 }
 
 /**
- * Cal.com booking settings for the front end, or null while PHANESS_CAL_URL is empty.
- * Accepts https://cal.com/name/event (or a self-hosted https://host/name/event).
+ * HTTPS booking destination, or null when it is empty or invalid.
  */
-function phaness_cal_config() {
-	$url = trim( PHANESS_CAL_URL );
+function phaness_booking_config() {
+	$url = trim( PHANESS_BOOKING_URL );
 	if ( '' === $url ) {
 		return null;
 	}
@@ -123,27 +122,24 @@ function phaness_cal_config() {
 	if ( '' === $link ) {
 		return null;
 	}
-	$host = $parts['host'];
 	return array(
-		'url'    => esc_url_raw( $url ),
-		'link'   => $link,
-		'origin' => in_array( $host, array( 'cal.com', 'www.cal.com', 'app.cal.com' ), true ) ? 'https://app.cal.com' : 'https://' . $host,
+		'url' => esc_url_raw( $url ),
 	);
 }
 
 /**
- * Booking destination. Until the team supplies its Cal.com URL, send visitors to the contact details.
+ * Booking destination, with a contact fallback if booking is disabled.
  */
 function phaness_booking_href() {
-	$config = phaness_cal_config();
+	$config = phaness_booking_config();
 	return $config ? $config['url'] : home_url( '/#contact-details' );
 }
 
 /**
- * Mark links that can open the Cal.com dialog. No third-party content loads before a click.
+ * Mark links that can open the booking dialog. Nothing external loads before a click.
  */
 function phaness_booking_attributes() {
-	return phaness_cal_config() ? ' data-booking' : '';
+	return phaness_booking_config() ? ' data-booking' : '';
 }
 
 // Front page vs inner pages: inner pages keep the header on its solid background from the start.

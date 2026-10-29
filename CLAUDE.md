@@ -2,6 +2,8 @@
 
 Site vitrine one-page de Phaness (studio de vidéos explicatives B2B), thème WordPress sur mesure, mis en ligne sur phaness.fr (IONOS).
 
+Réservation : Calendly est configuré via PHANESS_BOOKING_URL ; huit boutons partagent le lien fourni. Chargement au clic uniquement et ouverture séparée disponible.
+
 Révision courante : identité verte, accroche « Donnez vie à vos idées en vidéo », héros réservé à la présentation vidéo de l'équipe. Méthode, Notre différence et Pourquoi Phaness ? sont retirées de la page ; le prototype WebGL est archivé et ne se charge plus. Les décisions actuelles sont dans `docs/BRIEF.md`.
 
 ## Avant de commencer
