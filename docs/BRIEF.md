@@ -11,7 +11,7 @@
 
 ## Positionnement et ton
 
-- Accroche : **« Des vidéos explicatives professionnelles, simplement. »**
+- Accroche : **« Donnez vie à vos idées en vidéo »**
 - Promesse : rendre la production de vidéos explicatives accessible et facile à renouveler. Pas « des vidéos moins chères ».
 - Trois piliers : **Clarté** (rendre compréhensible ce qui est complexe), **Accessibilité** (vidéos pro sans les coûts d'une production audiovisuelle classique), **Standardisation** (structures et méthodes réutilisées pour livrer plus vite).
 - Quatre offres : **Former** (capsules pédagogiques), **Sécuriser** (procédures, modes opératoires, sensibilisation sécurité / HSE), **Expliquer et vendre** (produits et solutions techniques), **Accompagner** (tutoriels d'installation, d'utilisation, d'entretien).
@@ -26,55 +26,51 @@ Phanès est le dieu primordial de la cosmogonie orphique. Il naît de l'œuf cos
 
 Lien avec la marque : Phaness fait apparaître et rend visible ce qui était complexe ou caché (un produit, une procédure, un savoir-faire).
 
-Usage sur le site : fil rouge visuel (une lumière qui émerge d'une forme organique dans les nuages) et une courte section « Pourquoi Phaness ? ».
+Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et la section « Pourquoi Phaness ? » sont retirés du site ; le héros est réservé à la vidéo de présentation de l'équipe.
 
 ## Direction artistique
 
-- **Fond clair.** Bleu nuit pour le texte et les surfaces fortes, blanc « nuage » pour les fonds, accent **vermillon**.
-- Tokens de départ (à valider à l'étape de mise en page) :
+- **Fond clair, palette verte** (demande utilisateur du 2026-10-29). Texte vert très sombre, neutres gris et fonds légèrement teintés ; accents vert forêt.
 
   | Token | Valeur | Usage |
   |---|---|---|
-  | `night` | `#0B1633` | texte principal, surfaces sombres |
-  | `night-soft` | `#4A5878` | texte secondaire |
-  | `cloud` | `#F5F7FB` | fond de page |
-  | `white` | `#FFFFFF` | cartes, surfaces |
-  | `mist` | `#DCE3F0` | bordures, ombres douces |
-  | `vermilion` | `#E34234` | accent décoratif, lumière (contraste 4,1:1 sur blanc : grands textes et éléments graphiques seulement) |
-  | `vermilion-deep` | `#C8372A` | boutons et textes en vermillon (contraste 5,2:1 sur blanc, conforme AA) |
+  | `night` | `#14251D` | texte principal |
+  | `night-soft` | `#52615A` | texte secondaire |
+  | `cloud` | `#F5F7F4` | fond de page |
+  | `white` | `#FFFFFF` | cartes et surfaces |
+  | `mist` | `#DDE5DF` | bordures |
+  | `accent` | `#247855` | accents verts, contraste 5,39:1 sur blanc |
+  | `accent-deep` | `#176447` | boutons et liens, contraste 7,12:1 sur blanc |
 
 - **Typographie :** Geist (licence OFL), auto-hébergée. Le logo est simplement le mot « phaness » écrit dans la police du site, en minuscules (validé).
-- **Style :** 3D organique, doux, « dans les nuages ». Formes sans arêtes, lumière diffuse, ombres très douces, grands arrondis, beaucoup d'espace.
-- **Motion :** léger, mais il doit montrer le niveau technique. Un héros 3D en temps réel (WebGL), des apparitions au défilement, quelques micro-interactions. Respect de `prefers-reduced-motion`.
+- **Style :** sobre et clair, grands arrondis, ombres douces, beaucoup d'espace. Le héros présente le texte à gauche et un cadre vidéo à droite, empilés sur mobile.
+- **Motion :** apparitions au défilement et micro-interactions conservées. Le shader WebGL n'est plus chargé. Vidéo de présentation avec commandes natives, sans lecture automatique ; respect de `prefers-reduced-motion`.
 
 ## Structure de la one-page
 
 1. **En-tête fixe :** « phaness », ancres vers les sections, bouton « Prendre rendez-vous ».
-2. **Héros :** accroche, sous-titre, appel à prendre rendez-vous, visuel 3D organique.
+2. **Héros :** surtitre gris « Studio vidéo pour les entreprises » en majuscules, titre gras « Donnez vie à vos idées en vidéo », sous-titre fourni par l'utilisateur, deux appels à l'action et emplacement de la vidéo de présentation.
 3. **Promesse :** les trois piliers.
 4. **Nos vidéos :** les quatre offres, chacune avec un exemple concret.
 5. **Secteurs :** onglets Formation · BTP et industrie (sécurité, HSE) · Énergie et rénovation (chauffe-eau, pompes à chaleur, solaire) · Fabricants et installateurs. Un message propre à chaque cible.
-6. **Méthode :** les étapes de production, animées.
-7. **Notre différence :** formats standardisés, logique de catalogue, processus simplifié, devis personnalisé.
-8. **Pourquoi Phaness ?** Le mythe en trois phrases.
-9. **Réalisations :** quatre vidéos de démonstration, une par offre, produites avec HyperFrames (étape V2). Leur but est de montrer le niveau technique du studio en motion design : mouvements de caméra, 3D, rotations, zooms, une DA poussée. Ce ne sont pas des diapositives animées.
+6. **Réalisations :** quatre vidéos de démonstration, une par offre, produites avec HyperFrames (étape V2). Leur but est de montrer le niveau technique du studio en motion design : mouvements de caméra, 3D, rotations, zooms, une DA poussée. Ce ne sont pas des diapositives animées.
    - `expliquer-pac` : le fonctionnement, l'installation et les réglages d'une pompe à chaleur.
    - `securiser-usine` : les consignes de sécurité d'une usine, pour l'accueil d'un nouvel arrivant.
    - `accompagner-solaire` : un tutoriel de réglage et d'utilisation d'une installation solaire.
    - `former-electricite` : une capsule de formation sur la tension, l'intensité et la puissance.
 
    La première version (V1, à plat, trop de texte) a été rejetée le 2026-10-29.
-10. **Contact :** prise de rendez-vous, email, téléphone. Les coordonnées seront fournies par l'équipe à la fin : `[À FOURNIR]` d'ici là.
-11. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
+7. **Contact :** prise de rendez-vous, email, téléphone. La zone d'intervention est supprimée. Les coordonnées seront fournies par l'équipe à la fin : `[À FOURNIR]` d'ici là.
+8. **Pied de page :** mentions légales et politique de confidentialité. Informations légales `[À FOURNIR]`.
 
 Pas de FAQ (décision du 2026-10-29).
 
 Décisions issues des étapes 1 à 3 :
-- Le menu a cinq ancres : `#videos`, `#secteurs`, `#methode`, `#realisations`, `#contact`. Promesse, Notre différence et Pourquoi Phaness ? n'ont pas d'ancre.
+- Le menu a quatre ancres : `#videos`, `#secteurs`, `#realisations`, `#contact`. Le lien Méthode est supprimé avec sa section.
 - Les pages légales sont à `/mentions-legales/` et `/politique-de-confidentialite/`.
 - Les exemples des quatre offres renvoient aux quatre démonstrations de Réalisations.
 - Aucun délai de production n'est annoncé.
-- Le bas du héros se fond dans `#F5F7FB` : la section qui le suit doit avoir ce fond.
+- Le héros et la promesse partagent le fond `#F5F7F4`.
 - En local, WordPress tourne sur http://127.0.0.1:9400 (`npm run dev`, voir `CLAUDE.md`). Le dépôt est https://github.com/abouchet109-del/phaness (privé).
 
 ## Stack
@@ -83,7 +79,7 @@ Décisions issues des étapes 1 à 3 :
 - **Le contenu de la one-page vit dans le thème** (`templates/front-page.html` et des patterns). Mettre en ligne revient donc à téléverser un zip du thème, sans base de données à migrer.
 - `theme.json` porte les tokens (couleurs, typo, espacements).
 - CSS et JavaScript natifs (modules ES), sans bundler au départ.
-- **Héros :** shader WebGL natif, sans three.js, codé par nous (remplaçable plus tard par une boucle 3D de l'équipe). Image de repli, pause hors écran, résolution plafonnée.
+- **Héros :** lecteur vidéo HTML natif configuré par `PHANESS_PRESENTATION_VIDEO_URL` et, éventuellement, `PHANESS_PRESENTATION_POSTER_URL`. En leur absence, un cadre de présentation est affiché. Le prototype WebGL est conservé en archive mais n'est plus chargé par le site.
 - **Vidéos de démonstration :** sources HyperFrames (HTML) dans `videos/`, rendus MP4 optimisés pour le web dans `videos/out/`, non versionnés : on les régénère à partir des sources.
 - **Animations :** IntersectionObserver et transitions CSS. GSAP (gratuit) seulement si une section le justifie.
 - **Prise de rendez-vous :** Cal.com (offre gratuite), chargé au clic, donc aucun cookie tiers avant une action du visiteur.

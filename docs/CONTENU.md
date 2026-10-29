@@ -19,23 +19,25 @@
 | Lien d'évitement (clavier) | Aller au contenu | ≤ 20 |
 | Ancre 1 → `#videos` | Nos vidéos | ≤ 14 |
 | Ancre 2 → `#secteurs` | Secteurs | ≤ 14 |
-| Ancre 3 → `#methode` | Méthode | ≤ 14 |
-| Ancre 4 → `#realisations` | Réalisations | ≤ 14 |
-| Ancre 5 → `#contact` | Contact | ≤ 14 |
+| Ancre 3 → `#realisations` | Réalisations | ≤ 14 |
+| Ancre 4 → `#contact` | Contact | ≤ 14 |
 | Bouton | Prendre rendez-vous | ≤ 20 |
 | Menu mobile (ouvrir / fermer) | Menu / Fermer le menu | ≤ 16 |
 
-Les sections Promesse, Notre différence et Pourquoi Phaness ? n'ont pas d'ancre dans le menu : cinq liens suffisent et tiennent sur une ligne dès 1024 px.
+Le menu conserve quatre ancres : Nos vidéos, Secteurs, Réalisations et Contact. Les sections Méthode, Notre différence et Pourquoi Phaness ? ont été retirées à la demande de l'utilisateur.
 
 ---
 
 ## 2. Héros
 
-**Titre (H1, imposé)** — cible : 1 ligne sur ordinateur, 3 au maximum sur mobile
-> Des vidéos explicatives professionnelles, simplement.
+**Surtitre** — petit, gris, en majuscules
+> Studio vidéo pour les entreprises
 
-**Sous-titre** — cible : ≤ 140 caractères
-> Formations, procédures, produits techniques : nous en faisons des vidéos animées claires, faciles à produire et à renouveler.
+**Titre (H1, imposé)** — en gras, retours à la ligne selon la largeur
+> Donnez vie à vos idées en vidéo
+
+**Sous-titre** — texte fourni par l'utilisateur
+> Tutoriel, formation, procédure, présentation de produit : Nous réalisons des vidéos animées adaptées à vos besoins et à votre activité.
 
 **Bouton principal** → ouvre la prise de rendez-vous — cible : ≤ 20
 > Prendre rendez-vous
@@ -152,60 +154,7 @@ Tous les boutons ouvrent la prise de rendez-vous.
 
 ---
 
-## 6. Méthode — 6 étapes
-
-**Surtitre** — ≤ 20 : `Méthode`
-
-**Titre (H2)** — ≤ 50
-> Une méthode simple, en six étapes
-
-**Introduction** — ≤ 120
-> Vous savez à tout moment où en est votre vidéo.
-
-**Étapes** — nom ≤ 24, phrase ≤ 110 chacune
-
-| # | Étape | Phrase |
-|---|---|---|
-| 1 | **Brief** | Nous échangeons sur votre objectif, votre public et le message à faire passer. |
-| 2 | **Collecte des supports** | Vous nous transmettez vos documents existants : notices, procédures, plans, photos. |
-| 3 | **Script** | Nous rédigeons le script et le découpage, que vous validez avant toute animation. |
-| 4 | **Production** | Nous réalisons l'animation en motion design 3D, à partir de nos formats standardisés. |
-| 5 | **Retours** | Vous regroupez vos remarques en [À CONFIRMER : nombre] séries de retours, fixées dès le devis. |
-| 6 | **Livraison** | Vous recevez la vidéo finale, prête à diffuser sur vos supports. |
-
----
-
-## 7. Notre différence
-
-**Surtitre** — ≤ 20 : `Notre différence`
-
-**Titre (H2)** — ≤ 56
-> Pensé pour produire régulièrement, pas une seule fois
-
-**Introduction** — ≤ 160
-> Une vidéo isolée coûte cher à produire. Une série construite sur des bases communes se renouvelle facilement.
-
-**Points** — titre ≤ 28, texte ≤ 130 chacun
-
-| Point | Texte |
-|---|---|
-| **Formats standardisés** | Des structures de vidéo déjà conçues, que nous adaptons à votre sujet et à votre charte. |
-| **Logique de catalogue** | Nous pensons vos vidéos en série, par exemple 5, 10 ou 20 vidéos, pour couvrir un sujet de bout en bout. |
-| **Processus simplifié** | Six étapes claires, des validations au bon moment et des retours encadrés. |
-| **Devis personnalisé** | Pas de grille tarifaire figée : un devis établi selon vos besoins et le volume de vidéos. |
-
----
-
-## 8. Pourquoi Phaness ?
-
-**Titre (H2)** — ≤ 24
-> Pourquoi Phaness ?
-
-**Le mythe** — 3 phrases, ≤ 260
-> Dans la mythologie orphique, Phanès est le premier-né : il surgit d'un œuf cosmique. Sa lumière rend le monde visible. Son nom vient du grec *phainein*, « faire apparaître, mettre en lumière ».
-
-**Le lien avec la marque** — ≤ 160
-> C'est notre métier : faire apparaître ce qui était complexe ou caché. Un produit, une procédure, un savoir-faire, rendus visibles.
+Les anciennes sections 6 (Méthode), 7 (Notre différence) et 8 (Pourquoi Phaness ?) ne sont plus affichées depuis la révision du 2026-10-29. Leurs patterns restent archivés dans le thème.
 
 ---
 
@@ -256,7 +205,6 @@ Tous les boutons ouvrent la prise de rendez-vous.
 |---|---|
 | Email | `[À FOURNIR]` (lien `mailto:`) |
 | Téléphone | `[À FOURNIR]` (lien `tel:`) |
-| Zone d'intervention | `[À FOURNIR]` (facultatif, par ex. « partout en France, à distance ») |
 
 ---
 
@@ -265,7 +213,7 @@ Tous les boutons ouvrent la prise de rendez-vous.
 | Élément | Texte | Cible |
 |---|---|---|
 | Logo | phaness | — |
-| Phrase | Des vidéos explicatives professionnelles, simplement. | ≤ 60 |
+| Phrase | Donnez vie à vos idées en vidéo | ≤ 60 |
 | Lien | Mentions légales → `/mentions-legales/` | — |
 | Lien | Politique de confidentialité → `/politique-de-confidentialite/` | — |
 | Lien | Prendre rendez-vous | — |
@@ -282,9 +230,9 @@ Tous les boutons ouvrent la prise de rendez-vous.
 > Vidéos explicatives et tutoriels en motion design 3D pour la formation, le BTP, l'industrie et l'énergie. Clairs, faciles à renouveler. Devis sur mesure.
 
 **Open Graph**
-- `og:title` : Phaness – Des vidéos explicatives professionnelles, simplement.
+- `og:title` : Phaness – Donnez vie à vos idées en vidéo
 - `og:description` : reprend la meta description.
-- `og:image` : visuel du héros, 1200 × 630, texte alternatif « Une lumière vermillon émerge d'une forme organique dans les nuages. »
+- `og:image` : visuel du héros, 1200 × 630, texte alternatif « Phaness, studio vidéo pour les entreprises. Donnez vie à vos idées en vidéo. »
 
 **Données structurées `Organization`**
 - `name` : Phaness
@@ -294,7 +242,7 @@ Tous les boutons ouvrent la prise de rendez-vous.
 - `legalName` : `[À FOURNIR]` (entreprise porteuse)
 
 **Textes alternatifs et accessibilité**
-- Visuel du héros (image de repli) : « Une lumière vermillon émerge d'une forme organique dans les nuages. »
+- Image Open Graph : « Phaness, studio vidéo pour les entreprises. Donnez vie à vos idées en vidéo. »
 - Chaque vidéo : `aria-label` = « Vidéo de démonstration : » + titre de la vidéo.
 - Onglets Secteurs : `aria-label` du groupe = « Choisir un secteur ».
 
@@ -426,13 +374,12 @@ Nous pouvons mettre à jour cette page. La date ci-dessous indique la dernière 
 
 | Section | Point à valider |
 |---|---|
-| 6. Méthode, étape 5 | Nombre de séries de retours inclus. |
 | 9. Réalisations, mention | Possibilité de voix off et de sous-titres dans les projets. |
 
 ## Décisions de rédaction (à reporter par la coordination)
 
-- Cinq ancres dans le menu ; Promesse, Notre différence et Pourquoi Phaness ? accessibles au défilement seulement.
+- Quatre ancres dans le menu ; Méthode, Notre différence et Pourquoi Phaness ? retirées de la page.
 - Slugs des pages légales : `/mentions-legales/` et `/politique-de-confidentialite/`.
 - Les exemples de Nos vidéos reprennent les quatre démonstrations de l'étape V, pour que chaque offre renvoie à une vidéo visible.
 - Aucun délai de production n'est annoncé : la Standardisation est formulée « plus vite », sans durée.
-- « Logique de catalogue (5, 10, 20 vidéos) » vient du brief et est donc repris tel quel.
+- Le héros accueille la vidéo de présentation fournie par l'équipe ; aucun œuf ni shader n'est affiché. Le cadre de prévisualisation reste visible tant que le film manque.

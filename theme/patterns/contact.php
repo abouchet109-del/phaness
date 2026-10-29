@@ -33,10 +33,6 @@
 					<dt>Téléphone</dt>
 					<dd><?php echo phaness_contact_link( 'tel' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></dd>
 				</div>
-				<div>
-					<dt>Zone d'intervention</dt>
-					<dd>[À FOURNIR]</dd>
-				</div>
 			</dl>
 		</div>
 	</div>

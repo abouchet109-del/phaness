@@ -20,7 +20,6 @@ $phaness_home = esc_url( home_url( '/' ) );
 			<ul class="ph-nav__list">
 				<li><a href="<?php echo $phaness_home; ?>#videos">Nos vidéos</a></li>
 				<li><a href="<?php echo $phaness_home; ?>#secteurs">Secteurs</a></li>
-				<li><a href="<?php echo $phaness_home; ?>#methode">Méthode</a></li>
 				<li><a href="<?php echo $phaness_home; ?>#realisations">Réalisations</a></li>
 				<li><a href="<?php echo $phaness_home; ?>#contact">Contact</a></li>
 			</ul>

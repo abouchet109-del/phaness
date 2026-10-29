@@ -12,7 +12,7 @@ $phaness_home = esc_url( home_url( '/' ) );
 	<div class="ph-container ph-footer__inner">
 		<div class="ph-footer__brand">
 			<a class="ph-logo" href="<?php echo $phaness_home; ?>#top">phaness</a>
-			<p>Des vidéos explicatives professionnelles, simplement.</p>
+			<p>Donnez vie à vos idées en vidéo</p>
 		</div>
 		<nav class="ph-footer__nav" aria-label="Liens du pied de page">
 			<ul role="list">

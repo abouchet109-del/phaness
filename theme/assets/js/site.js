@@ -1,8 +1,4 @@
-// Phaness front page: hero mount, header state, mobile menu, demo videos.
-import { mountHero } from './hero.js';
-
-const canvas = document.querySelector('[data-hero]');
-if (canvas) mountHero(canvas);
+// Phaness front page: header state, mobile menu, demo videos and booking.
 
 // Header: transparent over the hero, frosted once the hero scrolls away.
 const header = document.querySelector('[data-header]');

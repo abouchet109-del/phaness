@@ -1,5 +1,17 @@
 # Recette locale — 2026-10-29
 
+## Révision verte — thème 0.2.0
+
+Nouvelle accroche, surtitre gris en majuscules, texte utilisateur, palette vert forêt et cadre de vidéo de présentation à la place du héros WebGL. Méthode, Notre différence et Pourquoi Phaness ? ne sont plus affichées ; le lien de menu Méthode et la zone d'intervention sont supprimés. Promesse, offres, secteurs et réalisations sont conservés.
+
+Contrôle sur le serveur de développement `9400`, connecté à l'administration : captures [1440 px](captures/vert-2026-10-29/desktop-1440.png) et [390 px](captures/vert-2026-10-29/mobile-390.png), pas de débordement horizontal, menu mobile accessible au clavier, toutes les ancres restantes résolues, six titres de niveau 1/2 attendus, aucun canvas ni œuf, aucune erreur ou alerte dans la console. Les styles calculés confirment le bouton vert `#176447` et le fond `#F5F7F4`.
+
+Contrastes calculés : texte principal/fond 14,86:1, secondaire/fond 6,06:1, bouton/blanc 7,12:1 et accent/blanc 5,39:1. Syntaxe PHP 8.3 des 17 fichiers vérifiée ; `npm test` : 12 tests réussis, dont les deux régressions du prototype WebGL archivé. Le site ne charge plus ce prototype. Favicon et Open Graph remplacés par une identité vidéo verte ; PNG de partage contrôlé à 1200 × 630.
+
+La vraie vidéo de présentation reste à fournir. Le lecteur HTML natif est prêt via `PHANESS_PRESENTATION_VIDEO_URL`, avec affiche facultative, sans lecture automatique ni préchargement du film. Aucun fichier vidéo n'a été créé ou modifié. Lighthouse n'a pas été relancé pour cette révision : **tous les scores ci-dessous concernent la version antérieure** et restent des traces de contrôle historiques.
+
+## Recette précédant la révision verte
+
 Le périmètre sans vidéos est vérifié. Les rendus V2 sont gérés sur un autre PC, conformément à la demande de l'utilisateur. Aucun fichier de `videos/` n'a été modifié.
 
 ## Environnement et résultats Lighthouse

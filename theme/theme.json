@@ -14,17 +14,17 @@
         {
           "slug": "night",
           "name": "Night",
-          "color": "#0B1633"
+          "color": "#14251D"
         },
         {
           "slug": "night-soft",
           "name": "Night soft",
-          "color": "#4A5878"
+          "color": "#52615A"
         },
         {
           "slug": "cloud",
           "name": "Cloud",
-          "color": "#F5F7FB"
+          "color": "#F5F7F4"
         },
         {
           "slug": "white",
@@ -34,17 +34,17 @@
         {
           "slug": "mist",
           "name": "Mist",
-          "color": "#DCE3F0"
+          "color": "#DDE5DF"
         },
         {
-          "slug": "vermilion",
-          "name": "Vermilion",
-          "color": "#E34234"
+          "slug": "accent",
+          "name": "Forest",
+          "color": "#247855"
         },
         {
-          "slug": "vermilion-deep",
-          "name": "Vermilion deep",
-          "color": "#C8372A"
+          "slug": "accent-deep",
+          "name": "Forest deep",
+          "color": "#176447"
         }
       ]
     },
@@ -176,9 +176,9 @@
         "pill": "999px"
       },
       "shadow": {
-        "soft": "0 1px 2px rgba(11, 22, 51, 0.04), 0 18px 48px -16px rgba(11, 22, 51, 0.12)",
-        "float": "0 2px 6px rgba(11, 22, 51, 0.04), 0 32px 80px -24px rgba(11, 22, 51, 0.18)",
-        "glow": "0 10px 30px -8px rgba(227, 66, 52, 0.45)"
+        "soft": "0 1px 2px rgba(20, 37, 29, 0.04), 0 18px 48px -16px rgba(20, 37, 29, 0.12)",
+        "float": "0 2px 6px rgba(20, 37, 29, 0.04), 0 32px 80px -24px rgba(20, 37, 29, 0.18)",
+        "glow": "0 10px 30px -8px rgba(36, 120, 85, 0.45)"
       },
       "gutter": "clamp(1rem, 4vw, 2.5rem)"
     }
@@ -212,7 +212,7 @@
       },
       "link": {
         "color": {
-          "text": "var(--wp--preset--color--vermilion-deep)"
+          "text": "var(--wp--preset--color--accent-deep)"
         },
         ":hover": {
           "typography": {
@@ -222,7 +222,7 @@
       },
       "button": {
         "color": {
-          "background": "var(--wp--preset--color--vermilion-deep)",
+          "background": "var(--wp--preset--color--accent-deep)",
           "text": "var(--wp--preset--color--white)"
         },
         "border": {

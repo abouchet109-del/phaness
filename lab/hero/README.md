@@ -1,5 +1,7 @@
 # Héros 3D — note d'intégration (étape 4)
 
+**Prototype archivé depuis la révision verte du 2026-10-29.** Le site ne charge plus ce héros ni son œuf : son accueil attend la vidéo de présentation fournie par l'équipe. Cette note documente le prototype conservé pour l'historique, pas le héros actuel.
+
 Œuf lumineux dans une mer de nuages : un seul fragment shader WebGL1, sans bibliothèque. `hero.js` est un module ES de 12,4 Ko non compressé.
 
 ## API

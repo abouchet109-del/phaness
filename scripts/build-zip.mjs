@@ -21,7 +21,7 @@ const REQUIRED = [
   'inc/cleanup.php', 'inc/legal-pages.php', 'inc/seo.php',
   'assets/css/site.css', 'assets/js/site.js', 'assets/js/hero.js',
   'assets/fonts/Geist-Variable.woff2', 'assets/fonts/OFL.txt',
-  'assets/img/favicon.svg', 'assets/img/og.png',
+  'assets/img/favicon.svg', 'assets/img/og.png', 'assets/img/og.svg',
   ...['header', 'footer', 'hero', 'promise', 'offers', 'sectors', 'method', 'difference',
     'why', 'work', 'contact', 'legal-mentions', 'legal-privacy'].map((name) => `patterns/${name}.php`),
 ];

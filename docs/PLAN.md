@@ -16,6 +16,10 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | 6b | Corrections issues de la recette | Sonnet | medium | 6a | `theme/` | faites pour le périmètre hors vidéos ; voir RECETTE.md |
 | 7 | Mise en ligne sur IONOS | Sonnet | medium | 6b | `scripts/`, `docs/MISE-EN-LIGNE.md` | paquetage testé et ZIP de contrôle installé ; livraison finale attend médias et coordonnées |
 
+## Révision visuelle du 2026-10-29
+
+Demandée et implémentée : accroche « Donnez vie à vos idées en vidéo », surtitre gris, sous-titre utilisateur, palette verte, retrait des sections Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL devient un emplacement de vidéo de présentation. La promesse, les quatre offres, les secteurs et les réalisations sont conservés. Les descriptions historiques des étapes ci-dessous documentent la construction initiale ; les décisions actuelles sont dans `BRIEF.md`.
+
 ## Détail
 
 ### 1. Fondations — Sonnet, medium
