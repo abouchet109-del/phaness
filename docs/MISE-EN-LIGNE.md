@@ -21,7 +21,7 @@ Les autres informations légales se trouvent dans `theme/patterns/legal-mentions
 
 Les pages créées par le thème restent liées à leurs patterns et reflètent leurs mises à jour. Une page dont le contenu a été personnalisé dans l'éditeur est conservée ; dans ce cas, vérifier et mettre à jour cette page séparément. La mention voix off/sous-titres a été retirée de la page. Le nombre de retours n'est plus affiché depuis le retrait de la section Méthode.
 
-La vidéo de présentation du héros est indépendante des quatre démonstrations. Définir `PHANESS_PRESENTATION_VIDEO_URL` dans `wp-config.php` avec son URL et, si disponible, `PHANESS_PRESENTATION_POSTER_URL` pour son affiche. Le lecteur utilise les commandes natives, sans lecture automatique, et attend une action du visiteur pour charger le film. Ne pas placer ce fichier directement dans le dossier synchronisé du thème, dont le contenu est remplacé par `sync-videos`.
+La vidéo de présentation du héros est le film `presentation-phaness` livré dans le thème : `npm run build:zip` refuse une archive sans lui. Pour la remplacer sans toucher au thème, définir `PHANESS_PRESENTATION_VIDEO_URL` et, si disponible, `PHANESS_PRESENTATION_POSTER_URL` dans `wp-config.php`. Le lecteur utilise les commandes natives, sans lecture automatique, et attend une action du visiteur pour charger le film. Le ZIP pèse environ 24 Mo : vérifier que la limite de téléversement de WordPress chez IONOS l'accepte.
 
 ## 1. Installer WordPress chez IONOS
 

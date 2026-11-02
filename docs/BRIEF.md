@@ -99,3 +99,5 @@ Périmètre confirmé le 2026-10-29 : terminer et vérifier le site sans créer,
 - JavaScript du thème < 30 Ko compressé (hors service Calendly). LCP < 2 s en 4G.
 - Responsive de 360 px à 1920 px. Navigation au clavier. WCAG AA.
 - SEO de base : titre, meta description, Open Graph, données structurées `Organization`.
+
+Décision du 2026-11-02 : la DA des vidéos V3 est la « table de storyboard » (feuilles blanches, fil vert continu, plan-séquence, palette du site), décrite dans `videos/SPEC.md`. Le jaune `#E6A817` n'y sert qu'à la signalisation de chantier. Le film de marque est livré dans le thème et affiché dans le héros, au format 16:9.

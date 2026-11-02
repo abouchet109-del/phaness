@@ -376,4 +376,4 @@ Nous pouvons mettre à jour cette page. La date ci-dessous indique la dernière 
 - Slugs des pages légales : `/mentions-legales/` et `/politique-de-confidentialite/`.
 - Les exemples de Nos vidéos reprennent les quatre démonstrations de l'étape V, pour que chaque offre renvoie à une vidéo visible.
 - Aucun délai de production n'est annoncé : la Standardisation est formulée « plus vite », sans durée.
-- Le héros accueille la vidéo de présentation fournie par l'équipe ; aucun œuf ni shader n'est affiché. Le cadre de prévisualisation reste visible tant que le film manque.
+- Le héros accueille le film de marque `presentation-phaness` (40 s) ; aucun œuf ni shader n'est affiché. Le cadre de prévisualisation ne revient que si le fichier manque.

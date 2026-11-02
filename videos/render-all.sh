@@ -14,6 +14,10 @@ mkdir -p "$HERE/out" "$MASTERS"
 poster_time() {
   case "$1" in
     presentation-phaness) echo 21.6 ;;
+    former-electricite) echo 9.9 ;;
+    securiser-usine) echo 13.7 ;;
+    expliquer-pac) echo 23.95 ;;
+    accompagner-solaire) echo 13.4 ;;
     *) echo 12.0 ;; # replace with the film's strongest settled frame
   esac
 }

@@ -47,4 +47,4 @@ Les scores Lighthouse ci-dessous concernent la version précédant cette révisi
 
 Code et recette terminés dans le périmètre sans vidéos : Lighthouse mobile 98/100/100/100 et ordinateur 100/100/100/100. Paquetage couvert par 10 tests ; installation du thème et réservation simulée vérifiées sur WordPress vierge. La livraison finale attend les vidéos V2 produites sur l'autre PC, les informations légales. Le ZIP final et la mise en ligne IONOS restent à faire après réception de ces éléments. Détail dans [`docs/REPRISE.md`](docs/REPRISE.md).
 
-Vidéos V3 en cours depuis le 2026-11-02 : cinq films dans la DA verte, scripts et règles dans [`videos/SCRIPTS.md`](videos/SCRIPTS.md).
+Vidéos V3 rendues en 1080p et branchées sur le site le 2026-11-02 : cinq films dans la DA verte, scripts et règles dans [`videos/SCRIPTS.md`](videos/SCRIPTS.md). Restent la relecture des films, les informations légales et la mise en ligne.

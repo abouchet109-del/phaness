@@ -33,3 +33,15 @@ La feuille « Former » : le personnage reste petit à côté des marches. Avec 
 ## Films métier
 
 À venir : chaque session ajoute ici sa section, ou la donne à la coordinatrice.
+
+## Bilan V3 (2026-11-02)
+
+| Film | Durée | Poids | Affiche | Revue |
+|---|---|---|---|---|
+| `presentation-phaness` | 40 s | 4,7 Mo | 21,6 s | ci-dessus |
+| `former-electricite` | 30 s | 5,2 Mo | 9,9 s | `former-electricite/REVIEW.md` |
+| `securiser-usine` | 30 s | 4,3 Mo | 13,7 s | `securiser-usine/REVIEW.md` |
+| `expliquer-pac` | 30 s | 5,6 Mo | 23,95 s | `expliquer-pac/REVIEW.md` |
+| `accompagner-solaire` | 30 s | 5,3 Mo | 13,4 s | `accompagner-solaire/REVIEW.md` |
+
+Contrôlés sur images extraites, pas en lecture continue. Validation par l'utilisateur à venir.

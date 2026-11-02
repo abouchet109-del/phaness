@@ -99,7 +99,7 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 .ph-hero__title { font-size: clamp(2.5rem, 1.4rem + 3.1vw, 4.5rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.045em; text-wrap: balance; }
 .ph-hero__lead { margin-top: 1.5rem; max-width: 34rem; font-size: clamp(1.0625rem, 0.95rem + 0.3vw, 1.1875rem); line-height: 1.65; color: var(--ph-soft); }
 .ph-hero .ph-actions { margin-top: 2rem; }
-.ph-presentation { overflow: hidden; aspect-ratio: 16 / 10; border: 1px solid var(--ph-mist); border-radius: var(--ph-r-lg); background: #183e2d; box-shadow: var(--ph-shadow-float); }
+.ph-presentation { overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid var(--ph-mist); border-radius: var(--ph-r-lg); background: #183e2d; box-shadow: var(--ph-shadow-float); }
 .ph-presentation__video { display: block; width: 100%; height: 100%; object-fit: contain; background: #14251d; }
 .ph-presentation__placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem; height: 100%; background: linear-gradient(135deg, #284c38, #142e21); color: #f3f7f4; }
 .ph-presentation__placeholder p { font-size: 0.9375rem; font-weight: 500; letter-spacing: 0.02em; }

@@ -9,7 +9,7 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | 1 | Fondations : environnement local, squelette du thème, Git | Sonnet | medium | 0 | `theme/`, `package.json`, `.gitignore`, section Commandes de `CLAUDE.md` | fait |
 | 2 | Rédaction de tous les textes | Opus | medium | 0 | `docs/CONTENU.md` | fait (relecture utilisateur à faire) |
 | 3 | Héros 3D WebGL (prototype autonome) | Opus | high | 0 | `lab/hero/` | fait |
-| V | Vidéos de démonstration (HyperFrames) | Opus | high | 0 | `videos/` | V3 en cours : 5 films (film de marque et 4 films métier) dans la DA verte, sobre, scripts dans `videos/SCRIPTS.md` ; validation en 1080p, 4K après coup |
+| V | Vidéos de démonstration (HyperFrames) | Opus | high | 0 | `videos/` | V3 rendue en 1080p : film de marque et 4 films métier branchés sur le site, à relire par l'utilisateur ; 4K après coup si le budget le permet |
 | 4 | Mise en page de la one-page dans le thème | Opus | medium | 1, 2, 3, V | `theme/` | fait |
 | 5 | Animations, prise de RDV, pages légales, SEO | Sonnet | high | 4 | `theme/` | Calendly réel et huit liens vérifiés ; informations légales attendues |
 | 6a | Recette : audit Lighthouse, accessibilité, responsive | Haiku | low | 5 | `docs/RECETTE.md` | validée sans vidéos : mobile 98/100/100/100, ordinateur 100/100/100/100 ; mouvement réduit vérifié |

@@ -7,6 +7,13 @@
  */
 $phaness_presentation_url = esc_url( PHANESS_PRESENTATION_VIDEO_URL );
 $phaness_presentation_poster = esc_url( PHANESS_PRESENTATION_POSTER_URL );
+// Fall back to the brand film shipped with the theme.
+if ( ! $phaness_presentation_url && file_exists( get_theme_file_path( 'assets/video/presentation-phaness.mp4' ) ) ) {
+	$phaness_presentation_url = esc_url( get_theme_file_uri( 'assets/video/presentation-phaness.mp4' ) );
+	if ( ! $phaness_presentation_poster && file_exists( get_theme_file_path( 'assets/video/presentation-phaness.webp' ) ) ) {
+		$phaness_presentation_poster = esc_url( get_theme_file_uri( 'assets/video/presentation-phaness.webp' ) );
+	}
+}
 ?>
 <!-- wp:html -->
 <section class="ph-hero" id="top" aria-labelledby="ph-hero-title">

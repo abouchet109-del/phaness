@@ -15,6 +15,7 @@ const FOLDER = 'phaness';
 const temporaryFile = `${outFile}.tmp`;
 // The approved V2 catalogue must stay complete even if work.php cannot be parsed.
 const VIDEO_SLUGS = ['former-electricite', 'securiser-usine', 'expliquer-pac', 'accompagner-solaire'];
+const BRAND_FILM = 'presentation-phaness';
 const REQUIRED = [
   'style.css', 'theme.json', 'functions.php',
   'templates/front-page.html', 'templates/index.html', 'parts/header.html', 'parts/footer.html',
@@ -73,13 +74,13 @@ async function main() {
   } catch (error) {
     errors.push(`Cannot read patterns/work.php: ${error.code ?? error.message}`);
   }
-  for (const slug of VIDEO_SLUGS) {
+  for (const slug of [...VIDEO_SLUGS, BRAND_FILM]) {
     for (const ext of ['mp4', 'webp']) {
       await requireFile(`assets/video/${slug}.${ext}`);
     }
   }
   if (errors.length) {
-    throw new Error(`Theme package not created; required files and all four rendered demos must be present:\n${errors.map((error) => `  - ${error}`).join('\n')}`);
+    throw new Error(`Theme package not created; required files, all four rendered demos and the brand film must be present:\n${errors.map((error) => `  - ${error}`).join('\n')}`);
   }
 
   // 3. Collect files

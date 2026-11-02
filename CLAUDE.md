@@ -27,7 +27,7 @@ Révision courante : identité verte, accroche « Donnez vie à vos idées en vi
 8. **Qualité visible** : premium et sobre, pas de « AI slop ». Les textes passent par le skill `avoid-ai-writing` (voir plus bas). Les vidéos visent un niveau showreel, pas un diaporama.
 
 ## Périmètre : le site, rien d'autre
-- Demande utilisateur du 2026-10-29 : finir le site hors vidéos. Les films V2 sont gérés sur un autre PC ; ne pas les produire ni les modifier sur ce Mac. Voir `docs/REPRISE.md` pour le périmètre déjà vérifié et les éléments attendus.
+- Les vidéos sont produites sur le PC Windows, d'après `videos/SCRIPTS.md` et `videos/SPEC.md`. Ne pas les rendre sur un autre poste sans demande de l'utilisateur. Voir `docs/REPRISE.md` pour l'état et les éléments attendus.
 - Hors Windows, le périmètre de travail est la racine du clone actif. Les outils restent locaux au projet ou dans un dossier temporaire, sans installation globale.
 - Travaille uniquement dans `D:\Projets\Phaness`. Ne modifie rien ailleurs sur le PC : ni réglages système, ni variables d'environnement globales, ni profil de shell, ni autres projets, ni désinstallations, ni paquets globaux.
 - Installe les dépendances uniquement dans le projet (`npm install` local, `npx`).

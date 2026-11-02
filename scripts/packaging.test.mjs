@@ -11,7 +11,7 @@ import { inflateRawSync } from 'node:zlib';
 
 const repository = join(dirname(fileURLToPath(import.meta.url)), '..');
 const slugs = ['former-electricite', 'securiser-usine', 'expliquer-pac', 'accompagner-solaire'];
-const media = slugs.flatMap((slug) => ['mp4', 'webp'].map((ext) => `${slug}.${ext}`));
+const media = [...slugs, 'presentation-phaness'].flatMap((slug) => ['mp4', 'webp'].map((ext) => `${slug}.${ext}`));
 
 // Independent bit-at-a-time reference; no Node 22-only zlib.crc32 dependency.
 function referenceCrc32(data) {
