@@ -1,0 +1,95 @@
+/* Phaness video system V3: tokens, table, sheets, type, shared parts. Sizes are CSS px at 1920x1080. */
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+}
+
+:root {
+  --ink: #14251d;
+  --ink-2: #52615a;
+  --ground: #f5f7f4;
+  --sheet: #ffffff;
+  --mist: #dde5df;
+  --green: #247855;
+  --green-deep: #176447;
+  --signal: #e6a817; /* functional only: site signage. Never in brand elements. */
+  --shadow: 0 2px 4px rgba(20, 37, 29, 0.06), 0 24px 56px rgba(20, 37, 29, 0.1);
+  --shadow-high: 0 6px 12px rgba(20, 37, 29, 0.1), 0 48px 90px rgba(20, 37, 29, 0.2);
+}
+
+/* Camera rig: #lens carries the travel blur, #stage the perspective, #world the camera transform. */
+#lens { position: absolute; inset: 0; overflow: hidden; background: var(--ground); }
+#stage { position: absolute; inset: 0; perspective: 2200px; perspective-origin: 50% 50%; }
+#world {
+  --x: 960; --y: 540; --z: 1; --rx: 0deg; --ry: 0deg; --rz: 0deg;
+  position: absolute; left: 0; top: 0;
+  transform-origin: 0 0;
+  transform-style: preserve-3d;
+  transform: translate(960px, 540px) scale3d(var(--z), var(--z), var(--z))
+    rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz))
+    translate(calc(var(--x) * -1px), calc(var(--y) * -1px));
+}
+
+/* The table: ground colour and registration crosses every 160 px. */
+.ph-table {
+  position: absolute; left: -2000px; top: -2000px; right: -2000px; bottom: -2000px;
+  transform: translateZ(-2px);
+  background-color: var(--ground);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cpath d='M80 72v16M72 80h16' stroke='%23C9D4CD' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* A storyboard sheet lying on the table. Its content is flat; lifted objects are direct children of #world. */
+.ph-sheet {
+  position: absolute; width: 1920px; height: 1080px;
+  background: var(--sheet); border-radius: 10px; box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.ph-sheet.deep { background: var(--green-deep); color: #fff; }
+.ph-sheet.deep .ph-h1 { color: #fff; }
+.ph-sheet.deep .ph-body { color: var(--mist); }
+.ph-sheet > * { position: absolute; }
+
+/* SVG overlays in world coordinates (thread, flood). */
+.ph-layer { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.ph-line { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ph-thread { fill: none; stroke: var(--green); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Moving tip of the thread. Set offset-path through PH.thread. */
+.ph-head {
+  position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 5px, var(--green) 5.5px);
+  offset-rotate: 0deg; offset-anchor: 50% 50%; offset-distance: 0%;
+}
+
+/* Type. Floor is 30 px: nothing smaller on screen. */
+.ph-h1 { font-size: 100px; font-weight: 560; letter-spacing: -0.035em; line-height: 1.02; color: var(--ink); }
+.ph-body { font-size: 40px; font-weight: 420; letter-spacing: -0.012em; line-height: 1.25; color: var(--ink-2); }
+.ph-tag { font-size: 30px; font-weight: 520; letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); white-space: nowrap; }
+.ph-word { display: inline-block; white-space: pre; }
+
+/* Material details. */
+.ph-hatch { background-image: repeating-linear-gradient(135deg, var(--green) 0 3px, transparent 3px 15px); }
+.ph-hatch-ink { background-image: repeating-linear-gradient(135deg, var(--ink) 0 3px, transparent 3px 15px); }
+.ph-hazard { background-image: repeating-linear-gradient(135deg, var(--ink) 0 26px, transparent 26px 52px); }
+
+/* Validation node: green disc, white check. */
+.ph-node { position: absolute; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; background: var(--green); }
+.ph-node svg { position: absolute; inset: 0; }
+.ph-node path { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Isometric object. .ph-iso holds the tilt; animate rotation (around the vertical) and scale on .ph-iso-z.
+   --lift must exceed 0.83 x half the object's diagonal, or the sheet plane cuts its rear half.
+   Slab: a real 3D plate, top face plus the two faces seen at rotation -45. Animate z, x, y on the slab. */
+.ph-iso { position: absolute; width: 0; height: 0; transform-style: preserve-3d; transform: translateZ(var(--lift, 300px)) rotateX(56deg); }
+.ph-iso-z { position: absolute; width: 0; height: 0; transform-style: preserve-3d; }
+.ph-slab { --t: 20px; --side-a: #c9d4cd; --side-b: #aebbb3; position: absolute; transform-style: preserve-3d; }
+.ph-slab > .top { position: absolute; inset: 0; overflow: hidden; }
+.ph-slab > .a { position: absolute; left: 0; top: 100%; width: 100%; height: var(--t); background: var(--side-a); transform-origin: top; transform: rotateX(-90deg); }
+.ph-slab > .b { position: absolute; left: 0; top: 0; width: var(--t); height: 100%; background: var(--side-b); transform-origin: left; transform: rotateY(90deg); }
+
+/* Common ending: screen-space green flood, logo, signature. */
+.ph-end { position: absolute; inset: 0; background: var(--green-deep); clip-path: circle(0px at 960px 540px); }
+.ph-logo { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 190px; font-weight: 600; letter-spacing: -0.05em; line-height: 1; color: #fff; }
+.ph-sign { position: absolute; left: 0; right: 0; top: 620px; text-align: center; font-size: 46px; font-weight: 420; letter-spacing: -0.012em; color: var(--mist); }

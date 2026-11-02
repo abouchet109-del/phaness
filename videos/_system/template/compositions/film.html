@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    /* Film styles here. Sheet positions in world px: 1920x1080, 240 px apart. */
+  </style>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="30" data-layout-allow-overlap data-layout-allow-overflow>
+    <div id="lens" data-layout-allow-overflow><div id="stage" data-layout-allow-overflow>
+      <div id="world" data-layout-allow-overflow>
+        <div class="ph-table" data-layout-allow-overflow></div>
+
+        <div class="ph-sheet" id="s1" style="left: 240px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1" id="s1-title" style="left: 120px; top: 120px">Titre</div>
+          <div class="ph-body" id="s1-body" style="left: 120px; top: 240px; width: 640px">Une phrase courte.</div>
+        </div>
+
+        <!-- Thread above the sheets. Lifted objects (phone, plates) are direct children of #world, higher in z. -->
+        <svg class="ph-layer" width="4320" height="1560" style="transform: translateZ(2px)" data-layout-allow-overflow>
+          <path id="thread" class="ph-thread" />
+        </svg>
+        <div id="head" class="ph-head" style="transform: translateZ(3px)"></div>
+      </div>
+    </div></div>
+    <div id="end" class="ph-end"><div class="ph-logo">phaness</div><div class="ph-sign">Donnez vie à vos idées en vidéo.</div></div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const cam = PH.camera(tl, { x: 1200, y: 780, z: 0.93 });
+    const th = PH.thread(tl, {
+      paths: ["#thread"],
+      head: "#head",
+      segs: [["start", "M 240 780 L 1200 780"]],
+    });
+
+    th.show(0.2).to(0.2, 1.2, "start");
+    PH.words(tl, "#s1-title", 0.6);
+    PH.rise(tl, "#s1-body", 1.0);
+
+    PH.outro(tl, 27.2);
+    tl.to({}, { duration: 0.001 }, 29.99);
+    window.__timelines["film"] = tl;
+  </script>
+</template>

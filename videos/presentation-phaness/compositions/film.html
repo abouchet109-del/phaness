@@ -1,0 +1,428 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    /* 1 complexity: documents scattered under the knot, then tidied into a row */
+    .doc { position: absolute; width: 260px; height: 340px; background: #fff; border-radius: 6px; box-shadow: var(--shadow-high); overflow: hidden; }
+    .doc i { position: absolute; left: 24px; height: 8px; border-radius: 4px; background: var(--mist); }
+    .doc i.h { height: 14px; background: var(--ink); }
+    .doc svg { position: absolute; left: 0; top: 0; }
+
+    /* 2 former */
+    .step { position: absolute; }
+    .step .ph-tag { position: absolute; left: 28px; bottom: 22px; }
+    #st1 { left: 340px; top: 880px; width: 440px; height: 120px; background: var(--mist); }
+    #st2 { left: 780px; top: 680px; width: 400px; height: 320px; background: #eef2ef; }
+    #st3 { left: 1180px; top: 480px; width: 400px; height: 520px; background: var(--green); }
+    #st3 .ph-tag { color: #fff; }
+
+    /* 4 expliquer: real 3D plates */
+    .plate { left: -280px; top: -280px; width: 560px; height: 560px; }
+    #p-top { --t: 22px; --side-a: #cfd9d2; --side-b: #aebbb3; }
+    #p-mid { --t: 10px; --side-a: #9eb3a7; --side-b: #7d9486; }
+    #p-base { --t: 38px; --side-a: #0d1a14; --side-b: #0a1410; }
+    .plate .top svg { position: absolute; inset: 0; }
+
+    /* 5 accompagner: phone */
+    #phone { position: absolute; left: 2765px; top: 1810px; width: 390px; height: 800px; border-radius: 58px; background: var(--ink); box-shadow: var(--shadow-high); transform: translateZ(70px); }
+    #screen { position: absolute; left: 12px; top: 12px; width: 366px; height: 776px; border-radius: 47px; background: #fff; overflow: hidden; }
+    #screen > * { position: absolute; }
+    #screen-off { inset: 0; background: var(--ink); }
+    .ui-label { font-size: 30px; font-weight: 520; letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+    #sw { left: 268px; top: 134px; width: 72px; height: 42px; border-radius: 21px; background: var(--mist); }
+    #sw-fill { inset: 0; border-radius: 21px; background: var(--green); opacity: 0; position: absolute; }
+    #sw-dot { position: absolute; left: 4px; top: 4px; width: 34px; height: 34px; border-radius: 50%; background: #fff; }
+    #track { left: 28px; top: 300px; width: 310px; height: 10px; border-radius: 5px; background: var(--mist); }
+    #track-fill { position: absolute; left: 0; top: 0; width: 310px; height: 10px; border-radius: 5px; background: var(--green); transform-origin: left; }
+    #knob { left: 66px; top: 287px; width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 3px solid var(--green); box-sizing: border-box; }
+    .bar { width: 44px; bottom: 0; background: var(--mist); transform-origin: bottom; border-radius: 4px 4px 0 0; }
+    #bars { left: 28px; top: 372px; width: 310px; height: 230px; }
+    #bars > * { position: absolute; }
+    #btn { left: 28px; top: 650px; width: 310px; height: 92px; border-radius: 26px; background: var(--ink); color: #fff; font-size: 32px; font-weight: 540; }
+    #btn-ok { position: absolute; inset: 0; border-radius: 26px; background: var(--green); opacity: 0; }
+    #btn span { position: absolute; left: 0; right: 0; top: 27px; text-align: center; }
+    #touch { left: 0; top: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: rgba(20, 37, 29, 0.16); border: 2px solid rgba(20, 37, 29, 0.42); box-sizing: border-box; opacity: 0; }
+
+    /* 6 votre sujet */
+    #ask { left: 400px; right: 400px; top: 340px; text-align: center; }
+    #play { left: 912px; top: 500px; width: 96px; height: 96px; border-radius: 50%; background: var(--green); }
+    #play svg { position: absolute; inset: 0; }
+    #bar6 { left: 460px; top: 790px; width: 1000px; height: 8px; border-radius: 4px; background: var(--mist); }
+  </style>
+
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="40" data-layout-allow-overlap data-layout-allow-overflow>
+    <div id="lens" data-layout-allow-overflow><div id="stage" data-layout-allow-overflow>
+      <div id="world" data-layout-allow-overflow>
+        <div class="ph-table" data-layout-allow-overflow></div>
+
+        <!-- Sheet 0: the subject -->
+        <div class="ph-sheet" style="left: 240px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t0a" style="left: 120px; top: 290px; width: 800px">Votre sujet est complexe.</div>
+          <div class="ph-h1" id="t0b" style="left: 120px; top: 290px; width: 800px">Nous en faisons un film clair.</div>
+        </div>
+
+        <!-- Sheet 1: former -->
+        <div class="ph-sheet" style="left: 2400px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t1" style="left: 120px; top: 120px">Former</div>
+          <div class="ph-body" id="b1" style="left: 120px; top: 240px; width: 700px">Transmettre un savoir,<br />et le faire retenir.</div>
+          <div id="base1" style="left: 120px; top: 1000px; width: 1680px; height: 3px; background: var(--ink)"></div>
+          <div class="step" id="st1"><div class="ph-tag">Comprendre</div></div>
+          <div class="step" id="st2"><div class="ph-hatch" style="position: absolute; inset: 0; opacity: 0.32"></div><div class="ph-tag">Essayer</div></div>
+          <div class="step" id="st3"><div class="ph-tag">Retenir</div></div>
+          <div class="ph-node" id="n1" style="left: 720px; top: 824px"><svg viewBox="0 0 72 72"><path d="M21 37 L31 47 L51 27" /></svg></div>
+          <div class="ph-node" id="n2" style="left: 1120px; top: 624px"><svg viewBox="0 0 72 72"><path d="M21 37 L31 47 L51 27" /></svg></div>
+          <div class="ph-node" id="n3" style="left: 1520px; top: 424px"><svg viewBox="0 0 72 72"><path d="M21 37 L31 47 L51 27" /></svg></div>
+          <svg id="fig1" viewBox="0 0 200 520" width="77" height="200" style="left: 0; top: 0" data-layout-allow-overflow>
+            <g fill="none" stroke="#14251d" stroke-linecap="round">
+              <path d="M57 150 L34 282" stroke-width="28" /><path d="M143 150 L166 282" stroke-width="28" />
+              <path d="M80 300 L76 486" stroke-width="38" /><path d="M120 300 L124 486" stroke-width="38" />
+            </g>
+            <rect x="50" y="118" width="100" height="190" rx="38" fill="#14251d" /><circle cx="100" cy="66" r="42" fill="#14251d" />
+          </svg>
+        </div>
+
+        <!-- Sheet 2: securiser -->
+        <div class="ph-sheet" style="left: 4560px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t2" style="left: 120px; top: 340px">Sécuriser</div>
+          <div class="ph-body" id="b2" style="left: 120px; top: 460px; width: 600px">Les bons gestes,<br />montrés pas à pas.</div>
+          <div id="ground2" class="ph-hatch-ink" style="left: 1070px; top: 800px; width: 420px; height: 34px; opacity: 0.5; border-radius: 17px"></div>
+          <svg id="cone-l" viewBox="0 0 110 130" width="110" height="130" style="left: 1020px; top: 690px">
+            <path d="M42 8 h26 l26 104 h-78 z" fill="#14251d" /><path d="M32 52 h46 l6 24 h-58 z" fill="#fff" /><rect x="4" y="110" width="102" height="16" rx="5" fill="#14251d" />
+          </svg>
+          <svg id="cone-r" viewBox="0 0 110 130" width="110" height="130" style="left: 1430px; top: 690px">
+            <path d="M42 8 h26 l26 104 h-78 z" fill="#14251d" /><path d="M32 52 h46 l6 24 h-58 z" fill="#fff" /><rect x="4" y="110" width="102" height="16" rx="5" fill="#14251d" />
+          </svg>
+          <svg id="f2" viewBox="0 0 200 520" width="208" height="540" style="left: 1176px; top: 288px" data-layout-allow-overflow>
+            <g fill="none" stroke="#14251d" stroke-linecap="round">
+              <path d="M57 150 L34 282" stroke-width="28" /><path d="M143 150 L166 282" stroke-width="28" />
+              <path d="M80 300 L76 486" stroke-width="38" /><path d="M120 300 L124 486" stroke-width="38" />
+            </g>
+            <rect x="50" y="118" width="100" height="190" rx="38" fill="#14251d" /><circle cx="100" cy="66" r="42" fill="#14251d" />
+            <g id="f2-boots">
+              <rect x="50" y="466" width="50" height="36" rx="12" fill="#247855" /><rect x="100" y="466" width="50" height="36" rx="12" fill="#247855" />
+            </g>
+            <g id="f2-vest">
+              <path d="M56 136 Q56 118 76 118 L88 118 L100 150 L112 118 L124 118 Q144 118 144 136 L150 306 L50 306 Z" fill="#247855" />
+              <path d="M52 216 H148 M51 262 H149" stroke="#fff" stroke-width="12" />
+            </g>
+            <g id="f2-helmet">
+              <path d="M56 58 A44 44 0 0 1 144 58 Z" fill="#247855" /><rect x="44" y="52" width="112" height="14" rx="7" fill="#176447" /><rect x="92" y="10" width="16" height="30" rx="6" fill="#176447" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Sheet 3: expliquer et vendre -->
+        <div class="ph-sheet deep" style="left: 4560px; top: 1680px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t3" style="left: 120px; top: 770px">Expliquer et vendre</div>
+          <div class="ph-body" id="b3" style="left: 120px; top: 885px; width: 1150px">Montrer ce qui ne se voit pas, et ce que cela apporte.</div>
+          <div id="stack-shadow" style="left: 680px; top: 260px; width: 560px; height: 560px; background: rgba(5, 25, 16, 0.42); filter: blur(34px); transform: scale(0.84, 0.47) rotate(45deg)"></div>
+          <svg class="ph-layer" id="leaders" width="1920" height="1080" style="left: 0; top: 0">
+            <path id="lead-a" class="ph-line" stroke="#fff" stroke-width="3" d="M1453 227 H1530" />
+            <path id="lead-b" class="ph-line" stroke="#fff" stroke-width="3" d="M1243 369 H1530" />
+            <path id="lead-c" class="ph-line" stroke="#fff" stroke-width="3" d="M1303 500 H1530" />
+          </svg>
+          <div class="ph-tag" id="l-a" style="left: 1544px; top: 209px; color: #fff">Le produit</div>
+          <div class="ph-tag" id="l-b" style="left: 1544px; top: 351px; color: #fff">Comment il marche</div>
+          <div class="ph-tag" id="l-c" style="left: 1544px; top: 482px; color: #fff">Ce qu’il apporte</div>
+        </div>
+
+        <!-- Sheet 4: accompagner -->
+        <div class="ph-sheet" style="left: 2400px; top: 1680px" data-layout-allow-overflow>
+          <div id="phone-shadow" style="left: 400px; top: 170px; width: 360px; height: 770px; border-radius: 60px; background: rgba(20, 37, 29, 0.2); filter: blur(30px)"></div>
+          <div class="ph-h1" id="t4" style="left: 1040px; top: 300px">Accompagner</div>
+          <div class="ph-body" id="b4" style="left: 1040px; top: 420px; width: 700px">Des tutoriels que vos clients revoient quand ils en ont besoin.</div>
+        </div>
+
+        <!-- Sheet 5: yours -->
+        <div class="ph-sheet" style="left: 240px; top: 1680px" data-layout-allow-overflow>
+          <div class="ph-h1" id="ask">Et votre sujet ?</div>
+          <div id="play"><svg viewBox="0 0 96 96"><path d="M39 30 L68 48 L39 66 Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round" /></svg></div>
+          <div id="bar6"></div>
+        </div>
+
+        <!-- Documents, tidied on sheet 0 -->
+        <div class="doc" id="d1" style="left: 360px; top: 860px"><i class="h" style="top: 30px; width: 130px"></i><i style="top: 66px; width: 212px"></i><i style="top: 86px; width: 190px"></i><i style="top: 106px; width: 204px"></i><i style="top: 126px; width: 160px"></i><i style="top: 160px; width: 212px"></i><i style="top: 180px; width: 196px"></i><i style="top: 200px; width: 208px"></i><i style="top: 220px; width: 120px"></i><i style="top: 254px; width: 200px"></i><i style="top: 274px; width: 170px"></i></div>
+        <div class="doc" id="d2" style="left: 660px; top: 860px"><i class="h" style="top: 30px; width: 90px"></i><svg width="260" height="340" fill="none" stroke="#52615a" stroke-width="3"><circle cx="90" cy="130" r="44" /><circle cx="176" cy="196" r="28" /><path d="M122 160 L154 180 M60 240 H200 M60 240 V180 M200 240 V224" /></svg><div class="ph-hatch" style="position: absolute; left: 24px; top: 262px; width: 212px; height: 50px; opacity: 0.5"></div></div>
+        <div class="doc" id="d3" style="left: 960px; top: 860px"><i class="h" style="top: 30px; width: 150px"></i><svg width="260" height="340" fill="none" stroke="#dde5df" stroke-width="3"><path d="M24 70 H236 V310 H24 Z M24 118 H236 M24 166 H236 M24 214 H236 M24 262 H236 M95 70 V310 M165 70 V310" /></svg></div>
+
+        <!-- Protective ring fill, grows into the next sheet -->
+        <svg class="ph-layer" id="flood-svg" width="6720" height="3000" style="transform: translateZ(1px)" data-layout-allow-overflow>
+          <circle id="flood" cx="5840" cy="800" r="0" fill="#176447" />
+        </svg>
+
+        <!-- The thread, one path through the whole table, with a white copy for the green sheet -->
+        <svg class="ph-layer" id="thread-svg" width="6720" height="3000" style="transform: translateZ(2px)" data-layout-allow-overflow>
+          <defs><clipPath id="clip3"><rect x="4560" y="1680" width="1920" height="1080" /></clipPath></defs>
+          <path id="thread" class="ph-thread" />
+          <g clip-path="url(#clip3)"><path id="thread-w" class="ph-thread" style="stroke: #fff" /></g>
+        </svg>
+        <div id="head" class="ph-head" style="transform: translateZ(3px)"></div>
+
+        <!-- Check on the ring -->
+        <div class="ph-node" id="n4" style="left: 6109px; top: 531px; transform: translateZ(3px)"><svg viewBox="0 0 72 72"><path d="M21 37 L31 47 L51 27" /></svg></div>
+
+        <!-- Exploded product -->
+        <div class="ph-iso" style="--lift: 300px; left: 5520px; top: 2186px"><div id="stack" class="ph-iso-z">
+          <div class="ph-slab plate" id="p-base">
+            <div class="top" style="background: #14251d">
+              <svg viewBox="0 0 560 560" fill="none" stroke="#52615a" stroke-width="4"><rect x="36" y="36" width="488" height="488" rx="14" /><path d="M100 110 H460 M100 170 H460 M100 230 H460 M100 290 H460 M100 350 H460 M100 410 H460 M100 470 H460" stroke-width="3" /></svg>
+            </div><div class="a"></div><div class="b"></div>
+          </div>
+          <div class="ph-slab plate" id="p-mid">
+            <div class="top" style="background: #dde5df">
+              <svg viewBox="0 0 560 560" fill="none">
+                <path d="M60 90 H200 V200 M60 150 H140 V300 H250 M500 470 H360 V360 M500 410 H420 V270 H330 M90 500 V360 H180" stroke="#247855" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="60" y="400" width="130" height="90" rx="8" fill="#14251d" /><rect x="380" y="70" width="120" height="120" rx="8" fill="#14251d" /><rect x="394" y="84" width="92" height="92" rx="4" fill="#52615a" />
+                <circle cx="280" cy="280" r="118" fill="#fff" stroke="#14251d" stroke-width="5" />
+                <g id="fan"><path d="M280 280 Q240 200 280 176 Q330 214 280 280 M280 280 Q360 240 384 280 Q346 330 280 280 M280 280 Q320 360 280 384 Q230 346 280 280 M280 280 Q200 320 176 280 Q214 230 280 280" fill="#247855" /></g>
+                <circle cx="280" cy="280" r="16" fill="#14251d" />
+              </svg>
+            </div><div class="a"></div><div class="b"></div>
+          </div>
+          <div class="ph-slab plate" id="p-top">
+            <div class="top" style="background: #fff">
+              <svg viewBox="0 0 560 560" fill="none" stroke="#14251d"><rect x="130" y="130" width="300" height="300" rx="150" stroke-width="4" /><path d="M170 240 H390 M150 280 H410 M170 320 H390 M200 200 H360 M200 360 H360" stroke-width="10" stroke-linecap="round" /><circle cx="490" cy="70" r="16" fill="#247855" stroke="none" /><circle cx="70" cy="70" r="8" stroke-width="3" /><circle cx="70" cy="490" r="8" stroke-width="3" /><circle cx="490" cy="490" r="8" stroke-width="3" /></svg>
+            </div><div class="a"></div><div class="b"></div>
+          </div>
+        </div></div>
+
+        <!-- Phone -->
+        <div id="phone">
+          <div id="screen">
+            <div class="ui-label" style="left: 28px; top: 54px; font-size: 34px; font-weight: 600">Mise en route</div>
+            <div class="ui-label" style="left: 28px; top: 138px">Activer</div>
+            <div id="sw"><div id="sw-fill"></div><div id="sw-dot"></div></div>
+            <div class="ui-label" style="left: 28px; top: 232px">Réglage</div>
+            <div id="track"><div id="track-fill"></div></div>
+            <div id="knob"></div>
+            <div id="bars">
+              <div class="bar" id="b-1" style="left: 0; height: 60px"></div>
+              <div class="bar" id="b-2" style="left: 66px; height: 92px"></div>
+              <div class="bar" id="b-3" style="left: 132px; height: 128px"></div>
+              <div class="bar" id="b-4" style="left: 198px; height: 170px"></div>
+              <div class="bar" id="b-5" style="left: 266px; height: 214px"></div>
+            </div>
+            <div id="btn"><div id="btn-ok"></div><span id="btn-a">Valider</span><span id="btn-b">C’est réglé</span></div>
+            <div id="touch"></div>
+            <div id="screen-off"></div>
+          </div>
+        </div>
+
+        <!-- Knot, above the documents until it is straight -->
+        <svg class="ph-layer" id="knot-svg" width="6720" height="3000" data-layout-allow-overflow>
+          <path id="knot" class="ph-thread" style="stroke: #14251d" />
+        </svg>
+      </div>
+    </div></div>
+
+    <div id="end" class="ph-end"><div class="ph-logo">phaness</div><div class="ph-sign">Donnez vie à vos idées en vidéo.</div></div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const E = PH.EASE;
+
+    // Layout: six sheets, 1920x1080, in two rows, read as an S.
+    const P = [[240, 240], [2400, 240], [4560, 240], [4560, 1680], [2400, 1680], [240, 1680]];
+    const v = (i, x, y) => `${P[i][0] + x} ${P[i][1] + y}`;
+    const rest = (i, o = {}) => ({ x: P[i][0] + 960, y: P[i][1] + 540, z: 0.93, rx: 0, ry: 0, rz: 0, ...o });
+    const cam = PH.camera(tl, { x: 1235, y: 780, z: 1 });
+
+    // The knot. q=0 tangled, q=1 straight line along sheet 0. The two ends pull first, the core lets go last.
+    const knot = document.querySelector("#knot");
+    const knotD = (q) => {
+      const N = 900;
+      let d = "";
+      for (let i = 0; i <= N; i++) {
+        const s = i / N, a = 2 * Math.PI * s;
+        const x0 = 1560 + 300 * Math.sin(a * 3 + 0.6) + 150 * Math.sin(a * 13 + 1.2) + 70 * Math.sin(a * 29);
+        const y0 = 780 + 235 * Math.cos(a * 4 + 0.2) + 135 * Math.cos(a * 11 + 2.1) + 60 * Math.sin(a * 31 + 0.5);
+        const x1 = 360 + 1800 * s, y1 = 780;
+        const delay = 0.55 * (1 - Math.abs(2 * s - 1));
+        let k = Math.min(1, Math.max(0, (q - delay) / 0.45));
+        k = k * k * (3 - 2 * k);
+        d += (i ? "L" : "M") + (x0 + (x1 - x0) * k).toFixed(1) + " " + (y0 + (y1 - y0) * k).toFixed(1);
+      }
+      return d;
+    };
+    knot.setAttribute("d", knotD(0));
+    knot.setAttribute("pathLength", "1");
+    gsap.set("#knot", { attr: { "stroke-dasharray": "1 1.01", "stroke-dashoffset": 0.62 } });
+    gsap.set("#knot-svg", { z: 36 });
+    tl.to("#knot", { attr: { "stroke-dashoffset": 0 }, duration: 2.5, ease: "power1.inOut" }, 0);
+    const kq = { q: 0 };
+    tl.to(kq, { q: 1, duration: 1.5, ease: "power2.inOut", onUpdate: () => knot.setAttribute("d", knotD(kq.q)) }, 2.95);
+    tl.to("#knot", { stroke: "#247855", duration: 0.7, ease: "none" }, 3.3);
+    tl.to("#knot-svg", { z: 2, duration: 0.5, ease: E.move }, 4.1);
+
+    // The main thread, from the end of the straightened knot to the empty frame.
+    const th = PH.thread(tl, {
+      paths: ["#thread", "#thread-w"],
+      head: "#head",
+      segs: [
+        ["s0", `M ${v(0, 1920, 540)} L ${v(1, 240, 540)} Q ${v(1, 300, 540)} ${v(1, 300, 600)} L ${v(1, 300, 820)} Q ${v(1, 300, 880)} ${v(1, 360, 880)}`],
+        ["s1", `L ${v(1, 750, 880)}`],
+        ["s2", `Q ${v(1, 780, 880)} ${v(1, 780, 850)} L ${v(1, 780, 710)} Q ${v(1, 780, 680)} ${v(1, 810, 680)} L ${v(1, 1150, 680)}`],
+        ["s3", `Q ${v(1, 1180, 680)} ${v(1, 1180, 650)} L ${v(1, 1180, 510)} Q ${v(1, 1180, 480)} ${v(1, 1210, 480)} L ${v(1, 1550, 480)}`],
+        ["s4", `Q ${v(1, 1580, 480)} ${v(1, 1580, 450)} L ${v(1, 1580, 200)} Q ${v(1, 1580, 140)} ${v(1, 1640, 140)} L ${v(2, 640, 140)} C ${v(2, 800, 140)} ${v(2, 900, 360)} ${v(2, 900, 560)}`],
+        ["ring", `A 380 380 0 0 0 ${v(2, 1280, 940)} A 380 380 0 0 0 ${v(2, 1660, 560)} A 380 380 0 0 0 ${v(2, 1280, 180)} A 380 380 0 0 0 ${v(2, 900, 560)} A 380 380 0 0 0 ${v(2, 1280, 940)}`],
+        ["down", `C ${v(2, 1500, 940)} ${v(2, 1860, 960)} ${v(2, 1860, 1120)} L ${v(3, 1860, 950)} Q ${v(3, 1860, 1010)} ${v(3, 1800, 1010)} L ${v(3, 700, 1010)}`],
+        ["port", `L ${v(4, 720, 1010)} Q ${v(4, 560, 1010)} ${v(4, 560, 930)}`],
+        ["under", `L ${v(4, 560, 600)} Q ${v(4, 560, 560)} ${v(4, 520, 560)} L ${v(4, 340, 560)}`],
+        ["toFrame", `L ${v(5, 1520, 560)}`],
+        ["frame", `L ${v(5, 1520, 257)} Q ${v(5, 1520, 225)} ${v(5, 1488, 225)} L ${v(5, 432, 225)} Q ${v(5, 400, 225)} ${v(5, 400, 257)} L ${v(5, 400, 823)} Q ${v(5, 400, 855)} ${v(5, 432, 855)} L ${v(5, 1488, 855)} Q ${v(5, 1520, 855)} ${v(5, 1520, 823)} L ${v(5, 1520, 560)}`],
+      ],
+    });
+
+    // ---- Beat 0: "your subject is complex" (0 - 5.8)
+    gsap.set("#d1", { x: 800, y: -470, z: 30, rotation: -11, scale: 1.3 });
+    gsap.set("#d2", { x: 900, y: -490, z: 22, rotation: 8, scale: 1.2 });
+    gsap.set("#d3", { x: 560, y: -170, z: 14, rotation: 4, scale: 1.15 });
+    PH.words(tl, "#t0a", 0.4, { stagger: 0.1 });
+    PH.out(tl, "#t0a", 2.85);
+    tl.to("#d1", { x: 0, y: 0, z: 1, rotation: 0, scale: 1, duration: 1.15, ease: E.move }, 3.15);
+    tl.to("#d2", { x: 0, y: 0, z: 1, rotation: 0, scale: 1, duration: 1.15, ease: E.move }, 3.25);
+    tl.to("#d3", { x: 0, y: 0, z: 1, rotation: 0, scale: 1, duration: 1.15, ease: E.move }, 3.35);
+    tl.to("#d1,#d2,#d3", { boxShadow: "0 1px 2px rgba(20,37,29,.08), 0 10px 24px rgba(20,37,29,.1)", duration: 0.9, ease: "none" }, 3.3);
+    cam.to(2.95, { x: 1200, y: 780, z: 0.93 }, 1.5);
+    gsap.set("#t0b", { opacity: 1 });
+    PH.ink(tl, "#t0b", 3.95);
+
+    // ---- Beat 1: former (5.8 - 11.4)
+    th.show(4.4);
+    cam.travel(5.75, rest(1, { x: P[1][0] + 900, y: P[1][1] + 590, z: 0.98 }), 1.25, { via: { z: 0.72, rz: -3 } });
+    cam.to(7.0, rest(1), 3.2, E.soft);
+    th.to(5.6, 1.35, "s1");
+    PH.words(tl, "#t1", 6.6);
+    PH.rise(tl, "#b1", 6.95);
+    PH.grow(tl, "#base1", 6.5, { dir: "right", dur: 1.1 });
+    PH.grow(tl, "#st1", 6.7);
+    PH.grow(tl, "#st2", 7.75);
+    PH.grow(tl, "#st3", 8.75);
+    th.to(7.65, 0.75, "s2").to(8.65, 0.75, "s3");
+
+    const Y = (t) => t - 200 + 6; // figure stands on tread t
+    gsap.set("#fig1", { x: 450, y: Y(880) - 90, opacity: 0, transformOrigin: "50% 100%" });
+    tl.to("#fig1", { opacity: 1, duration: 0.12, ease: "none" }, 6.95);
+    tl.to("#fig1", { y: Y(880), duration: 0.42, ease: "power2.in" }, 6.95);
+    PH.pop(tl, "#n1", 7.4);
+    const hop = (at, x, t) => {
+      tl.to("#fig1", { x, duration: 0.6, ease: "power1.inOut" }, at);
+      tl.to("#fig1", { keyframes: [{ y: Y(t) - 46, duration: 0.36, ease: "power2.out" }, { y: Y(t), duration: 0.24, ease: "power2.in" }] }, at);
+      tl.to("#fig1", { keyframes: [{ scaleY: 0.93, duration: 0.07, ease: "power1.out" }, { scaleY: 1, duration: 0.2, ease: "power2.out" }] }, at + 0.6);
+    };
+    hop(8.0, 890, 680);
+    PH.pop(tl, "#n2", 8.72);
+    hop(9.0, 1290, 480);
+    PH.pop(tl, "#n3", 9.72);
+
+    // ---- Beat 2: securiser (11.2 - 16.5)
+    th.to(10.9, 1.6, "s4");
+    cam.travel(11.3, rest(2, { ry: -7, rx: 4 }), 1.25, { via: { z: 0.76, rx: 22, rz: 2.5 } });
+    cam.to(12.55, rest(2), 2.8, "power2.out");
+    PH.letters(tl, "#t2", 12.3, { stagger: 0.035 });
+    PH.rise(tl, "#b2", 12.65);
+    th.to(12.5, 1.5, "ring", { ease: "power2.inOut" });
+    gsap.set("#f2", { transformOrigin: "50% 100%" });
+    tl.from("#f2", { scaleY: 0, opacity: 0, duration: 0.55, ease: E.land }, 12.2);
+    PH.pop(tl, "#cone-l", 12.75, { origin: "50% 100%" });
+    PH.pop(tl, "#cone-r", 12.9, { origin: "50% 100%" });
+    PH.grow(tl, "#ground2", 12.5, { dir: "right", dur: 0.6 });
+    gsap.set("#f2-helmet", { y: -120, opacity: 0 });
+    tl.to("#f2-helmet", { opacity: 1, duration: 0.08, ease: "none" }, 13.3);
+    tl.to("#f2-helmet", { y: 0, duration: 0.42, ease: "bounce.out" }, 13.3);
+    PH.grow(tl, "#f2-vest", 13.85, { dir: "down", dur: 0.5 });
+    PH.grow(tl, "#f2-boots", 14.3, { dir: "right", dur: 0.4 });
+    PH.pop(tl, "#n4", 14.75);
+
+    // The ring fills and becomes the next world.
+    tl.to("#flood", { attr: { r: 2500 }, duration: 1.05, ease: "power3.in" }, 16.05);
+    tl.to("#n4", { scale: 0, duration: 0.2, ease: E.exit }, 16.0);
+    cam.travel(16.35, rest(3, { z: 1.005 }), 1.25, { via: { z: 0.84, rx: 12 }, blur: 3 });
+    tl.set("#flood-svg", { opacity: 0 }, 17.75);
+    th.to(16.2, 1.7, "down", { ease: "power2.inOut" });
+
+    // ---- Beat 3: expliquer et vendre (17.5 - 23.4)
+    const plateZ = { base: 0, mid: 38, top: 47 };
+    gsap.set("#p-base", { z: plateZ.base });
+    gsap.set("#p-mid", { z: plateZ.mid });
+    gsap.set("#p-top", { z: plateZ.top });
+    gsap.set("#stack", { rotation: -68, scale: 0.62 });
+    PH.words(tl, "#t3", 17.7, { stagger: 0.07 });
+    PH.rise(tl, "#b3", 18.15);
+    tl.to("#stack", { rotation: -45, scale: 0.726, duration: 1.6, ease: E.move }, 17.9);
+    tl.to("#p-mid", { z: 130, x: -50, y: -50, duration: 1.25, ease: "back.out(1.15)" }, 18.45);
+    tl.to("#p-top", { z: 259, x: 95, y: 95, duration: 1.35, ease: "back.out(1.15)" }, 18.35);
+    tl.to("#fan", { rotation: 980, svgOrigin: "280 280", duration: 7.2, ease: "none" }, 17.4);
+    PH.draw(tl, "#lead-a", 19.6, { dur: 0.3 });
+    PH.rise(tl, "#l-a", 19.72, { dur: 0.5, y: 0 });
+    PH.draw(tl, "#lead-b", 20.1, { dur: 0.3 });
+    PH.rise(tl, "#l-b", 20.22, { dur: 0.5, y: 0 });
+    PH.draw(tl, "#lead-c", 20.6, { dur: 0.3 });
+    PH.rise(tl, "#l-c", 20.72, { dur: 0.5, y: 0 });
+
+    // Labels go, plates close, the thread pulls the camera along.
+    tl.to("#l-a,#l-b,#l-c,#lead-a,#lead-b,#lead-c", { opacity: 0, duration: 0.2, ease: "power2.in" }, 22.75);
+    tl.to("#p-top", { z: plateZ.top, x: 0, y: 0, duration: 0.6, ease: E.exit }, 22.8);
+    tl.to("#p-mid", { z: plateZ.mid, x: 0, y: 0, duration: 0.6, ease: E.exit }, 22.85);
+
+    // ---- Beat 4: accompagner (24.4 - 30.2)
+    th.to(23.0, 1.55, "port", { ease: "power2.inOut" });
+    cam.travel(23.3, rest(4, { ry: 9, rx: 5 }), 1.3, { via: { z: 0.7, rz: -2 } });
+    cam.to(24.6, rest(4, { ry: 1.5, rx: 1 }), 5.4, E.soft);
+    gsap.set("#phone", { z: 70 });
+    gsap.set("#track-fill", { scaleX: 0.12 });
+    gsap.set("#bars .bar", { scaleY: 0.18 });
+    gsap.set("#btn-b", { opacity: 0 });
+
+    tl.to("#screen-off", { opacity: 0, duration: 0.5, ease: "power2.out" }, 24.5);
+    PH.words(tl, "#t4", 24.6);
+    PH.rise(tl, "#b4", 25.0);
+
+    const T = (x, y) => ({ x, y });
+    gsap.set("#touch", T(300, 500));
+    tl.to("#touch", { opacity: 1, duration: 0.2, ease: "none" }, 25.4);
+    tl.to("#touch", { ...T(304, 155), duration: 0.5, ease: E.move }, 25.4);
+    tl.to("#touch", { scale: 0.82, duration: 0.09, ease: "power2.out" }, 25.92);
+    tl.to("#touch", { scale: 1, duration: 0.18, ease: "power2.out" }, 26.01);
+    tl.to("#sw-dot", { x: 30, duration: 0.26, ease: "power3.inOut" }, 25.94);
+    tl.to("#sw-fill", { opacity: 1, duration: 0.2, ease: "none" }, 25.94);
+
+    tl.to("#touch", { ...T(84, 305), duration: 0.45, ease: E.move }, 26.3);
+    tl.to("#touch", { scale: 0.82, duration: 0.09, ease: "power2.out" }, 26.75);
+    tl.to("#touch", { x: 290, duration: 1.0, ease: "power2.inOut" }, 26.85);
+    tl.to("#knob", { x: 206, duration: 1.0, ease: "power2.inOut" }, 26.85);
+    tl.to("#track-fill", { scaleX: 0.78, duration: 1.0, ease: "power2.inOut" }, 26.85);
+    tl.to("#bars .bar", { scaleY: 1, backgroundColor: "#247855", duration: 0.75, stagger: 0.06, ease: "power3.out" }, 26.95);
+    tl.to("#touch", { scale: 1, duration: 0.15, ease: "power2.out" }, 27.85);
+
+    tl.to("#touch", { ...T(183, 696), duration: 0.5, ease: E.move }, 28.0);
+    tl.to("#touch", { scale: 0.82, duration: 0.09, ease: "power2.out" }, 28.5);
+    tl.to("#touch", { scale: 1, opacity: 0, duration: 0.25, ease: "power2.out" }, 28.59);
+    tl.to("#btn-ok", { opacity: 1, duration: 0.2, ease: "none" }, 28.52);
+    tl.to("#btn-a", { opacity: 0, duration: 0.12, ease: "none" }, 28.52);
+    tl.to("#btn-b", { opacity: 1, duration: 0.2, ease: "none" }, 28.6);
+
+    // ---- Beat 5: the whole table (30.2 - 33.7): every shot was a sheet of one storyboard.
+    th.to(29.9, 0.7, "under", { ease: "power2.in" });
+    th.to(30.6, 1.1, "toFrame", { ease: "none" });
+    th.to(31.7, 1.5, "frame", { ease: "power2.inOut" });
+    cam.travel(30.2, { x: 3360, y: 1500, z: 0.272, rx: 0, ry: 0, rz: 0 }, 1.9, { via: { rx: 16, rz: -3 }, blur: 2 });
+
+    // ---- Beat 6: yours (33.7 - 37.1)
+    gsap.set("#play", { scale: 0 });
+    gsap.set("#ask", { opacity: 1 });
+    PH.grow(tl, "#bar6", 32.6, { dir: "right", dur: 0.7 });
+    th.hideHead(33.0);
+    cam.travel(33.55, rest(5, { z: 1 }), 1.5, { via: { rx: 10 }, blur: 2 });
+    PH.ink(tl, "#ask", 34.85, { stagger: 0.14 });
+    tl.to("#play", { scale: 1, duration: 0.55, ease: E.spring }, 35.55);
+    tl.to("#play", { scale: 0.9, duration: 0.1, ease: "power2.out" }, 36.95);
+
+    // ---- Beat 7: common ending
+    PH.outro(tl, 37.05, { x: 960, y: 548 });
+
+    tl.to({}, { duration: 0.001 }, 39.99);
+    window.__timelines["film"] = tl;
+  </script>
+</template>

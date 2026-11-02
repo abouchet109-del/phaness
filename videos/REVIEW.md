@@ -1,60 +1,35 @@
-# REVIEW — 4 vidéos de démonstration V2
+# REVIEW : vidéos V3
 
-## Livrables (rendus le 29/10/2026 sous Windows)
+## `presentation-phaness` (rendu du 2026-11-02, Windows)
 
-| Vidéo | Durée | Poids MP4 | CRF | Affiche |
-|---|---|---|---|---|
-| `out/expliquer-pac.mp4` | 28,0 s | 5,14 Mo | 22 | `out/expliquer-pac.webp` (vue éclatée, cycle du fluide) |
-| `out/securiser-usine.mp4` | 26,0 s | 4,70 Mo | 24 | `out/securiser-usine.webp` (nouvel arrivant équipé) |
-| `out/accompagner-solaire.mp4` | 26,0 s | 5,88 Mo | 22 | `out/accompagner-solaire.webp` (panneaux inclinés, boussole) |
-| `out/former-electricite.mp4` | 26,0 s | 5,55 Mo | 22 | `out/former-electricite.webp` (pile et colonne de tension) |
+| Fichier | Valeur |
+|---|---|
+| `out/presentation-phaness.mp4` | 40,0 s, 1000 images, 4,68 Mo, CRF 20, H.264 High, yuv420p, 1920×1080, 25 i/s, faststart, sans piste audio |
+| `out/presentation-phaness.webp` | affiche 1280×720, image à 21,6 s (vue éclatée) |
 
-Tous : H.264 High, yuv420p, 1920×1080, 30 i/s, faststart, sans piste audio. Affiches WebP 1280×720. Planche contact `out/planche.webp` : pas encore générée (`sh contact-sheet.sh`).
+Plafond de 8 Mo non atteint : le CRF de départ suffit, l'image reste nette. Un rendu prend environ 1 min 30 sur ce PC.
 
-## Ce qui a été vérifié
-- `hyperframes check` sur les 4 projets : 0 erreur de lint, de runtime ou de mise en page. Avertissement restant : un message de compilation de shader (précision double) émis par le pilote, sans effet visible.
-- Images extraites des MP4 finaux de usine, solaire et électricité (10 par film) : textes entiers, aucune étiquette hors cadre, œuf et logo visibles à la fin. PAC : vérifié sur captures HyperFrames avant le rendu final, pas sur le MP4.
-- ffprobe : codec, format de pixel, taille, cadence, durée ; atome `moov` avant `mdat`.
+### Choix créatifs
+- **DA « table de storyboard » :** un plan-séquence sur six feuilles, en 2D vectoriel avec perspective CSS, relié par un fil. Écarté : WebGL, plus lourd à tenir pour quatre sujets variés.
+- **Idée du film :** le nœud noir (le sujet complexe) se tire en ligne droite verte. Cette ligne construit chaque offre, puis le grand recul à 32 s montre que tout était un storyboard, avant le cadre vide « Et votre sujet ? », qui invite à se projeter.
+- **Transitions :** recul et inclinaison en suivant le fil (trois fois), anneau qui se remplit et devient la feuille suivante, bord de feuille où le fil change de couleur, poussée vers le cadre vide, vert qui s'ouvre depuis le bouton de lecture.
 
-## Affirmations techniques à faire valider par un spécialiste
+### Contrôlé
+- `hyperframes check` : 0 erreur. Avertissements gardés : `film_silent` (muet voulu), `composition_file_too_large` (une composition par film, pour le plan-séquence), `text_occluded` et `contrast_aa_failure` sur des textes masqués par la fin commune ou vus au grand recul, `text_below_floor` sur des textes réduits au grand recul.
+- Images extraites du MP4 final : planche de 16 images, plus 3 images en pleine taille (15 s, 21,6 s, 33 s). Images fixes de milieux de déplacement avant rendu.
+- ffprobe : codec, format, taille, cadence, durée, absence d'audio.
+- Verrou de `render-all.sh` : présent pendant un rendu, retiré après un échec volontaire (film inexistant, code de sortie 1).
+- Gabarit `_system/template/` : `check` sans erreur et images fixes sur une copie temporaire. `build.mjs --new` n'a pas été exécuté : il aurait effacé un dossier métier.
 
-### Pompe à chaleur (`expliquer-pac`)
-- Le cycle à quatre organes, dans l'ordre détendeur → évaporateur → compresseur → condenseur, et le code couleur froid (bleu) / chaud (vermillon) du fluide.
-- L'air extérieur traverse l'évaporateur ; l'eau chaude part vers l'intérieur par une liaison aller (vermillon) et revient par une liaison retour.
-- Unité extérieure posée sur un support (pieds) et non au sol nu.
-- « Mise en service par un professionnel » : vérifier la formulation réglementaire (manipulation des fluides frigorigènes, attestation de capacité).
-- Consigne de 19 °C, programmation confort de 6 h à 8 h et de 17 h à 22 h (exemple affiché sur l'anneau), mode éco.
+### Non vérifié
+- Le mouvement n'a pas été regardé en temps réel : seules des images fixes ont été vues. Fluidité et lecture des sauts du personnage restent à juger à l'œil.
+- Le skill `avoid-ai-writing` n'a pas été exécuté en entier : les textes viennent surtout du site ; les lignes nouvelles (voir `presentation-phaness/DECOUPAGE.md`) ont été relues à la main.
+- Rendu 4K, affichage sur téléphone, intégration au héros du site.
+- Aucun second regard extérieur sur le film.
 
-### Usine (`securiser-usine`)
-- Équipements montrés : casque, lunettes, gilet haute visibilité, chaussures de sécurité. Ils dépendent du site et du poste ; à adapter au client.
-- Allée piétonne délimitée par des bandes jaunes ; chariot élévateur sur une allée séparée ; passage piéton zébré au croisement.
-- « Au croisement, stop. » : règle de priorité à confirmer selon le protocole de circulation du site.
-- Gyrophare d'alarme sur une machine, chevrons lumineux au sol vers la sortie : signalisation illustrative.
-- Le pictogramme du point de rassemblement est stylisé (bleu nuit, quatre flèches). Le pictogramme normalisé (ISO 7010 E007) est vert : à remplacer pour un usage réel.
+### Point faible
+La feuille « Former » : le personnage reste petit à côté des marches. Avec plus de temps, serrer le cadrage sur lui pendant les sauts.
 
-### Solaire (`accompagner-solaire`)
-- Orientation plein sud et inclinaison de 30° comme réglage de référence en France métropolitaine.
-- Les panneaux sont montés au sol sur un axe réglable pour rendre l'inclinaison visible ; la plupart des installations résidentielles sont fixes en toiture.
-- Écran de l'onduleur : « En production », 2,4 kW (valeur d'exemple).
-- Application de suivi : 18,6 kWh produits dans la journée, courbe en cloche de 6 h à 20 h (valeurs d'exemple).
-- « Lancez vos appareils en journée. » : conseil d'autoconsommation, valable sans batterie de stockage.
+## Films métier
 
-### Électricité (`former-electricite`)
-- Pile de 12 V, intensité de 2 A, puissance de 24 W : P = U × I (12 × 2 = 24).
-- La colonne qui se remplit représente la tension par analogie (différence de niveau ou de pression). À valider comme choix pédagogique.
-- Les charges circulent depuis la borne du haut de la pile vers l'ampoule (sens conventionnel du courant). Le sens réel des électrons est inverse : à préciser si la capsule sert à un public technique.
-- L'ampèremètre est placé en série sur le fil.
-
-## Choix créatifs
-- Un seul moule : mer de nuages, lumière sous la vallée, plongée à travers le plafond, trois chapitres d'un mot, remontée, œuf de lumière et logo.
-- Très peu de texte : un titre, trois mots de chapitre, une à trois étiquettes par chapitre, au plus une phrase par film.
-- Toujours une caméra en mouvement : orbites autour des objets, plongées, travelling le long du fil (électricité), passage à travers le mur (PAC).
-
-## Points faibles restants
-- Solaire, chapitre « Suivi » du MP4 actuel : la phrase « Lancez vos appareils en journée. » passe sur la maison et l'arbre, et le titre sur le toit. Correction faite dans `src/scene.js` (plan tourné vers les nuages, téléphone à droite), vérifiée en capture, **pas encore re-rendue** : `sh render-all.sh accompagner-solaire`.
-- Électricité : l'aiguille de l'ampèremètre passe sur la valeur « 2,0 A » (texture `drawDial`).
-- Lumière de l'ampoule assez discrète ; teinte rosée générale du ciel sur les plans de fin.
-- Films muets : pas de musique ni de bruitages.
-- Personnages sans visage, animation de marche simple (jambes et bras en balancier).
-- Les écrans (onduleur, téléphone, thermostat) sont des textures 2D posées sur des volumes.
-- La plongée d'ouverture passe par un plan blanc de quelques images (traversée des nuages).
+À venir : chaque session ajoute ici sa section, ou la donne à la coordinatrice.

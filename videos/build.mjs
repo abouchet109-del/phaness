@@ -1,28 +1,30 @@
-// Build every film: copy the shared system (_system/assets) into <film>/assets and bundle
-// <film>/src/scene.js (three.js + the shared engine) into <film>/assets/scene.js.
-// Usage: node build.mjs [film ...]
-import { cpSync, existsSync } from "node:fs";
+// Copy the shared system (_system/assets) into each film's assets/. Films load it from there.
+// Usage: node build.mjs [film ...]            default: the five V3 films that have an index.html
+//        node build.mjs --new <film>          empty the film folder and start it from _system/template
+import { cpSync, existsSync, mkdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { build } from "esbuild";
 
 const root = dirname(fileURLToPath(import.meta.url));
-const FILMS = ["expliquer-pac", "securiser-usine", "accompagner-solaire", "former-electricite"];
-const names = process.argv.slice(2).length ? process.argv.slice(2) : FILMS;
+const FILMS = ["presentation-phaness", "former-electricite", "securiser-usine", "expliquer-pac", "accompagner-solaire"];
+const args = process.argv.slice(2);
 
-for (const film of names) {
+if (args[0] === "--new") {
+  const film = args[1];
+  if (!FILMS.includes(film)) throw new Error(`Unknown film: ${film}`);
   const dir = join(root, film);
-  if (!existsSync(join(dir, "src", "scene.js"))) continue;
+  rmSync(dir, { recursive: true, force: true });
+  mkdirSync(dir, { recursive: true });
+  cpSync(join(root, "_system", "template"), dir, { recursive: true });
+  writeFileSync(join(dir, "meta.json"), JSON.stringify({ id: film, name: film, createdAt: new Date().toISOString() }, null, 2) + "\n");
+  args.splice(0, 2, film);
+}
+
+for (const film of args.length ? args : FILMS) {
+  const dir = join(root, film);
+  if (!existsSync(join(dir, "index.html"))) continue;
+  // V2 folders still hold a bundled three.js scene: leave them alone until they are restarted.
+  if (existsSync(join(dir, "src", "scene.js"))) continue;
   cpSync(join(root, "_system", "assets"), join(dir, "assets"), { recursive: true });
-  await build({
-    entryPoints: [join(dir, "src", "scene.js")],
-    outfile: join(dir, "assets", "scene.js"),
-    bundle: true,
-    format: "iife",
-    minify: true,
-    target: "es2020",
-    legalComments: "none",
-    logLevel: "warning",
-  });
   console.log(`built ${film}`);
 }
