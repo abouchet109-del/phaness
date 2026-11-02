@@ -1,101 +1,405 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    /* One house section, same drawing on every sheet. Local coordinates: 1060 x 1080, ground at y=950. */
+    .ground { left: 0; right: 0; top: 948px; height: 4px; background: var(--mist); }
+    .house { left: 0; top: 0; overflow: visible; }
+    .flats * { fill: var(--mist); }
+    .lines path { fill: none; stroke: var(--ink); }
+    .wins rect { fill: #fff; stroke: var(--ink); stroke-width: 5; }
+    .tint { fill: #247855; fill-opacity: 0.13; }
+    .mark { width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; background: #fff; border: 8px solid var(--green); box-sizing: border-box; }
+    .label { background: #fff; padding: 2px 10px; border-radius: 6px; }
+    .dot { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--green); offset-rotate: 0deg; offset-anchor: 50% 50%; }
+    #loupe, #loupe-sh, #unit, #unit-sh { position: absolute; left: 0; top: 0; }
+    #loupe-sh { width: 200px; height: 200px; border-radius: 50%; background: rgba(20, 37, 29, 0.28); filter: blur(16px); }
+    #unit-sh { width: 120px; height: 200px; border-radius: 12px; background: rgba(20, 37, 29, 0.32); filter: blur(22px); }
+    .plate { position: absolute; top: 0; overflow: visible; }
   </style>
-  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="28" data-layout-allow-overlap>
-    <canvas id="film-canvas" width="1920" height="1080" data-layout-allow-overflow></canvas>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="30" data-layout-allow-overlap data-layout-allow-overflow>
+    <div id="lens" data-layout-allow-overflow><div id="stage" data-layout-allow-overflow>
+      <div id="world" data-layout-allow-overflow>
+        <div class="ph-table" data-layout-allow-overflow></div>
 
-    <div class="ph-layer">
-      <!-- opening -->
-      <div class="ph-intro">
-        <div id="kicker" class="ph-kicker"><i></i><span>Expliquer</span></div>
-        <div id="title" class="ph-title">La pompe à chaleur air/eau</div>
-      </div>
+        <!-- Sheet 0: understand -->
+        <div class="ph-sheet" id="s0" style="left: 240px; top: 240px" data-layout-allow-overflow>
+          <div class="ground"></div>
+          <svg class="house" width="1060" height="1080" style="left: 860px" data-layout-allow-overflow><g class="base"></g></svg>
+          <div class="ph-h1" id="t0" style="left: 120px; top: 120px">Comprendre</div>
+          <div class="ph-body" id="b0" style="left: 120px; top: 240px; width: 530px">Avant les travaux, un regard sur toute la maison.</div>
+          <div class="mark" id="m1" style="left: 1150px; top: 220px"></div>
+          <div class="ph-tag label" id="l1" style="left: 1020px; top: 150px">Toit</div>
+          <div class="mark" id="m2" style="left: 961px; top: 730px"></div>
+          <div class="ph-tag label" id="l2" style="left: 770px; top: 660px">Fenêtres</div>
+          <div class="mark" id="m3" style="left: 1160px; top: 460px"></div>
+          <div class="ph-tag label" id="l3" style="left: 1190px; top: 438px">Air</div>
+          <div class="mark" id="m4" style="left: 1500px; top: 760px"></div>
+          <div class="ph-tag label" id="l4" style="left: 1400px; top: 680px">Chauffage</div>
+        </div>
 
-      <!-- 01 how it works -->
-      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">Fonctionnement</span></div>
-      <div class="anchor" data-anchor="evap" id="a-evap">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-60" y2="70" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="right: 66px; top: 76px">Évaporateur</div>
-      </div>
-      <div class="anchor" data-anchor="comp" id="a-comp">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="0" y2="70" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: -130px; top: 76px">Compresseur</div>
-      </div>
-      <div class="anchor" data-anchor="cond" id="a-cond">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="60" y2="-70" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 66px; top: -128px">Condenseur</div>
-      </div>
-      <div class="anchor" data-anchor="valve" id="a-valve">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="0" y2="-62" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: -98px; top: -128px">Détendeur</div>
-      </div>
+        <!-- Sheet 1: reduce the losses -->
+        <div class="ph-sheet" id="s1" style="left: 2400px; top: 240px" data-layout-allow-overflow>
+          <div class="ground"></div>
+          <svg class="house" id="h1" width="1060" height="1080" style="left: 860px" data-layout-allow-overflow>
+            <g class="base"></g>
+            <mask id="mb1" maskUnits="userSpaceOnUse" x="0" y="0" width="1060" height="1080">
+              <path class="mw" d="M 77 950 V 319 L 470 92 L 863 319 V 950" fill="none" stroke="#fff" stroke-width="34" />
+              <path class="mf" d="M 60 937 H 880" fill="none" stroke="#fff" stroke-width="34" />
+            </mask>
+            <g id="band1" mask="url(#mb1)"></g>
+            <rect class="w-on" x="88" y="650" width="26" height="130" />
+            <rect class="w-on" x="88" y="410" width="26" height="100" />
+            <rect class="w-on" x="826" y="410" width="26" height="100" />
+            <rect class="w-on" x="826" y="650" width="26" height="130" />
+            <g id="leaks"></g>
+          </svg>
+          <div class="ph-h1" id="t1" style="left: 120px; top: 120px; width: 500px">Réduire les pertes</div>
+          <div class="ph-body" id="b1" style="left: 120px; top: 350px">D'abord l'enveloppe : toit, murs,<br />fenêtres et plancher.</div>
+        </div>
 
-      <!-- 02 installation -->
-      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">Installation</span></div>
-      <div class="anchor" data-anchor="support" id="a-support">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-70" y2="64" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="right: 76px; top: 40px">Sur support</div>
-      </div>
-      <div id="line-pro" class="ph-line">Mise en service par un <b>professionnel</b></div>
+        <!-- Sheet 2: renew the air -->
+        <div class="ph-sheet" id="s2" style="left: 4560px; top: 240px" data-layout-allow-overflow>
+          <div class="ground"></div>
+          <svg class="house" width="1060" height="1080" style="left: 860px" data-layout-allow-overflow>
+            <g class="base"></g>
+            <g class="fill-band-mute"></g>
+            <g class="fill-vmc"></g>
+            <path id="air-up" class="ph-line" stroke="#247855" stroke-width="6" />
+          </svg>
+          <div class="ph-h1" id="t2" style="left: 120px; top: 150px; width: 600px">Renouveler l'air</div>
+          <div class="ph-body" id="b2" style="left: 120px; top: 380px; width: 620px">L'air neuf entre dans les pièces, l'air usé ressort.</div>
+          <div class="ph-tag label" id="l5" style="left: 990px; top: 640px">Air neuf</div>
+          <div class="ph-tag label" id="l6" style="left: 1560px; top: 110px">Air usé</div>
+        </div>
 
-      <!-- 03 settings -->
-      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">Réglages</span></div>
-      <div class="anchor" data-anchor="set" id="a-set">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="90" y2="-70" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag hot" style="left: 96px; top: -128px">Consigne 19 °C</div>
-      </div>
-      <div class="anchor" data-anchor="eco" id="a-eco">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="90" y2="70" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 96px; top: 46px">Mode éco</div>
-      </div>
+        <!-- Sheet 3: adapt the heating -->
+        <div class="ph-sheet" id="s3" style="left: 4560px; top: 1680px" data-layout-allow-overflow>
+          <div class="ground"></div>
+          <svg class="house" width="1060" height="1080" style="left: 120px" data-layout-allow-overflow>
+            <g class="base"></g>
+            <g class="fill-tints"></g>
+            <g class="fill-band-mute"></g>
+            <g class="fill-air-mute"></g>
+            <g class="fill-rads-off"></g>
+            <g id="rads3"></g>
+            <path class="heat3 ph-line" d="M 530 705 V 548 H 480" stroke="#247855" stroke-width="6" />
+            <path class="heat3 ph-line" d="M 530 548 H 590" stroke="#247855" stroke-width="6" />
+            <path class="heat3 ph-line" d="M 590 895 H 610" stroke="#247855" stroke-width="6" />
+            <rect x="470" y="705" width="120" height="200" rx="10" fill="none" stroke="#52615a" stroke-width="4" stroke-dasharray="12 10" />
+          </svg>
+          <div class="ph-h1" id="t3" style="left: 1120px; top: 120px; width: 560px">Adapter le chauffage</div>
+          <div class="ph-body" id="b3" style="left: 1120px; top: 350px">Un équipement à la mesure<br />d'une maison mieux isolée.</div>
+        </div>
 
-      <!-- closing -->
-      <div id="logo" class="ph-logo">phaness</div>
-    </div>
+        <!-- Sheet 4: comfort, then the call -->
+        <div class="ph-sheet" id="s4" style="left: 2400px; top: 1680px" data-layout-allow-overflow>
+          <div class="ground"></div>
+          <svg class="house" width="1060" height="1080" style="left: 120px" data-layout-allow-overflow>
+            <g class="base"></g>
+            <g class="fill-tints"></g>
+            <g id="f1"><g transform="translate(-40 -208) scale(0.4)"><use href="#fig" /></g></g>
+            <g id="f2"><g transform="translate(-32 -166) scale(0.32)"><use href="#fig" /></g></g>
+          </svg>
+          <div class="ph-h1" id="t4" style="left: 1120px; top: 300px; width: 520px">Améliorer le confort</div>
+          <div class="ph-body" id="b4" style="left: 1120px; top: 530px">Une maison plus agréable<br />à vivre, pièce après pièce.</div>
+          <div class="ph-h1" id="t5" style="left: 1120px; top: 400px; width: 680px">Et chez vous ?</div>
+          <div class="ph-body" id="b5" style="left: 1120px; top: 530px">Un projet adapté<br />à votre logement.</div>
+        </div>
+
+        <!-- Thread above the sheets. Lifted objects are direct children of #world, higher in z. -->
+        <svg class="ph-layer" width="6800" height="3000" style="transform: translateZ(2px)" data-layout-allow-overflow>
+          <defs>
+            <g id="fig">
+              <g fill="none" stroke="#14251d" stroke-linecap="round">
+                <path d="M57 150 L34 282" stroke-width="28" />
+                <path d="M143 150 L166 282" stroke-width="28" />
+                <path d="M80 300 L76 486" stroke-width="38" />
+                <path d="M120 300 L124 486" stroke-width="38" />
+              </g>
+              <rect x="50" y="118" width="100" height="190" rx="38" fill="#14251d" />
+              <circle cx="100" cy="66" r="42" fill="#14251d" />
+            </g>
+          </defs>
+          <path id="thread" class="ph-thread" />
+        </svg>
+        <div id="head" class="ph-head" style="transform: translateZ(3px)"></div>
+        <div id="dots"></div>
+
+        <!-- Lifted: the magnifier -->
+        <div id="loupe-sh"></div>
+        <svg id="loupe" width="340" height="340" viewBox="-170 -170 340 340" data-layout-allow-overflow>
+          <path d="M 76 76 L 150 150" fill="none" stroke="#14251d" stroke-width="24" stroke-linecap="round" />
+          <circle r="100" fill="#247855" fill-opacity="0.1" stroke="#14251d" stroke-width="12" />
+        </svg>
+
+        <!-- Lifted: the heating unit, oversized first -->
+        <div id="unit-sh"></div>
+        <svg id="unit" width="120" height="200" viewBox="0 0 120 200" data-layout-allow-overflow>
+          <rect x="3" y="3" width="114" height="194" rx="10" fill="#fff" stroke="#14251d" stroke-width="5" />
+          <rect x="20" y="24" width="80" height="34" rx="6" fill="#dde5df" />
+          <circle id="unit-on" cx="60" cy="41" r="10" fill="#c9d4cd" />
+          <path d="M 22 104 H 98 M 22 124 H 98 M 22 144 H 98 M 22 164 H 98" fill="none" stroke="#14251d" stroke-width="5" stroke-linecap="round" />
+        </svg>
+
+        <!-- Lifted: the three layers that land on the last house -->
+        <svg class="plate" id="p-band" width="1060" height="1080" style="left: 2520px; top: 1680px" data-layout-allow-overflow><g class="fill-band-live"></g></svg>
+        <svg class="plate" id="p-air" width="1060" height="1080" style="left: 2520px; top: 1680px" data-layout-allow-overflow><g class="fill-air-live"></g><g class="fill-vmc"></g></svg>
+        <svg class="plate" id="p-heat" width="1060" height="1080" style="left: 2520px; top: 1680px" data-layout-allow-overflow>
+          <path class="ph-line" d="M 530 705 V 548 H 480 M 530 548 H 590 M 590 895 H 610 M 470 895 H 84" stroke="#247855" stroke-width="6" />
+          <g class="fill-rads-on"></g>
+          <rect x="470" y="705" width="120" height="200" rx="10" fill="#fff" stroke="#14251d" stroke-width="5" />
+          <rect x="487" y="726" width="80" height="34" rx="6" fill="#dde5df" />
+          <circle cx="527" cy="743" r="10" fill="#247855" />
+          <path d="M 489 806 H 565 M 489 826 H 565 M 489 846 H 565 M 489 866 H 565" fill="none" stroke="#14251d" stroke-width="5" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div></div>
+    <div id="end" class="ph-end"><div class="ph-logo">phaness</div><div class="ph-sign">Donnez vie à vos idées en vidéo.</div></div>
   </div>
-  <script src="assets/phaness-type.js"></script>
+
   <script>
-    (function () {
-      var clock = { t: 0 };
-      var host = { clock: clock, render: null };
-      window.__phFilm = host;
-      window.__hf = window.__hf || {};
-      window.__hf.buildReady = window.__hf.buildReady || {};
-      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+    const tl = gsap.timeline({ paused: true });
+    const E = PH.EASE;
 
-      var tl = gsap.timeline({ paused: true });
-      tl.to(clock, { t: 28, duration: 28, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+    // Layout: five sheets in an S. The house sits right of the text on the top row, left of it on the bottom row.
+    const P = [[240, 240], [2400, 240], [4560, 240], [4560, 1680], [2400, 1680]];
+    const HX = [860, 860, 860, 120, 120];
+    const v = (i, x, y) => `${P[i][0] + x} ${P[i][1] + y}`;
+    const h = (i, x, y) => `${P[i][0] + HX[i] + x} ${P[i][1] + y}`;
+    const rest = (i, o = {}) => ({ x: P[i][0] + 960, y: P[i][1] + 540, z: 0.93, rx: 0, ry: 0, rz: 0, ...o });
+    const $all = (s) => document.querySelectorAll(s);
+    const put = (s, html) => $all(s).forEach((el) => { el.innerHTML = html; });
 
-      PH.fade(tl, "#kicker", 0.45, 2.45);
-      PH.words(tl, "#title", 0.7, 2.5);
+    // The house and its layers, shared by every sheet.
+    put(".base", `
+      <g class="flats">
+        <rect x="130" y="835" width="170" height="70" rx="12" /><rect x="130" y="790" width="30" height="115" rx="10" />
+        <path d="M 319 905 V 775 H 325 V 905 Z" /><path d="M 300 775 L 344 775 L 334 738 L 310 738 Z" />
+        <rect x="680" y="825" width="130" height="80" rx="4" /><rect x="690" y="650" width="120" height="70" rx="4" />
+        <rect x="130" y="510" width="220" height="50" rx="10" /><rect x="130" y="470" width="18" height="90" rx="6" />
+        <rect x="690" y="505" width="120" height="55" rx="20" /><rect x="796" y="478" width="8" height="30" rx="3" />
+      </g>
+      <g fill="#fff">
+        <rect x="722" y="825" width="4" height="80" /><rect x="766" y="825" width="4" height="80" /><rect x="748" y="650" width="4" height="70" />
+        <rect x="156" y="517" width="62" height="24" rx="8" />
+      </g>
+      <g class="lines">
+        <path d="M 101 925 V 340" stroke-width="22" />
+        <path d="M 80 345 L 470 120 L 860 345" stroke-width="22" stroke-linejoin="round" stroke-linecap="round" />
+        <path d="M 839 340 V 925" stroke-width="22" />
+        <path d="M 90 915 H 850" stroke-width="20" />
+        <path d="M 112 569 H 828" stroke-width="18" />
+        <path d="M 112 351 H 828" stroke-width="12" />
+        <path d="M 440 578 V 760" stroke-width="12" />
+        <path d="M 560 357 V 450" stroke-width="12" />
+      </g>
+      <g class="wins">
+        <rect x="88" y="650" width="26" height="130" /><rect x="88" y="410" width="26" height="100" />
+        <rect x="826" y="410" width="26" height="100" /><rect x="826" y="650" width="26" height="130" />
+      </g>`);
+    const band = (p) => `
+      <path class="bw" d="M 77 924 V 319 L 470 92 L 863 319 V 924" fill="none" stroke="${p}" stroke-width="26" stroke-dasharray="6 8" />
+      <path class="bf" d="M 64 937 H 876" fill="none" stroke="${p}" stroke-width="26" stroke-dasharray="6 8" />`;
+    const airMain = "M 64 620 L 340 620 C 420 620 380 830 470 830 L 590 830 C 650 830 650 800 650 760 L 650 345";
+    const airUp = "M 64 385 L 470 385 C 530 385 520 470 580 470 L 625 470 Q 650 470 650 445";
+    const air = (c) => `<path class="ph-line" d="${airMain}" stroke="${c}" stroke-width="6" /><path class="ph-line" d="${airUp}" stroke="${c}" stroke-width="6" />`;
+    const rad = (x, y, w, hh, c) => {
+      let ribs = "";
+      for (let k = x + 14; k < x + w - 6; k += 14) ribs += `M ${k} ${y} V ${y + hh} `;
+      return `<rect x="${x}" y="${y}" width="${w}" height="${hh}" rx="6" fill="${c}" /><path d="${ribs}" stroke="#fff" stroke-width="4" fill="none" />`;
+    };
+    const RADS = [[350, 830, 80, 65], [610, 830, 60, 65], [400, 490, 80, 60], [590, 490, 50, 60]];
+    put(".fill-band-mute", band("#c9d4cd"));
+    put(".fill-band-live", band("#247855"));
+    put(".fill-air-mute", air("#c9d4cd"));
+    put(".fill-air-live", air("#247855"));
+    put(".fill-rads-off", RADS.map((r) => rad(...r, "#c9d4cd")).join(""));
+    put(".fill-rads-on", RADS.map((r) => rad(...r, "#247855")).join(""));
+    put("#rads3", RADS.map((r) => `<g class="r-on">${rad(...r, "#247855")}</g>`).join(""));
+    put("#band1", band("#247855"));
+    put(".fill-vmc", `
+      <rect x="610" y="285" width="120" height="58" rx="8" fill="#fff" stroke="#14251d" stroke-width="5" />
+      <circle cx="690" cy="314" r="22" fill="#dde5df" />
+      <g class="fan"><path d="M 690 314 Q 676 296 690 292 Q 704 296 690 314 Q 712 314 712 328 Q 700 338 690 314 Q 668 328 668 314 Q 672 302 690 314" fill="#14251d" /></g>
+      <rect x="636" y="152" width="28" height="44" fill="#fff" stroke="#14251d" stroke-width="5" /><rect x="626" y="140" width="48" height="13" rx="4" fill="#14251d" />`);
+    put(".fill-tints", `
+      <rect class="tint" x="112" y="578" width="328" height="327" /><rect class="tint" x="440" y="578" width="388" height="327" />
+      <rect class="tint" x="112" y="357" width="448" height="203" /><rect class="tint" x="560" y="357" width="268" height="203" />`);
+    document.querySelector("#air-up").setAttribute("d", airUp);
 
-      PH.chapter(tl, "#ch1", 4.7, 10.05);
-      PH.tag(tl, "#a-evap", 6.0, 10.0);
-      PH.tag(tl, "#a-comp", 6.7, 10.0);
-      PH.tag(tl, "#a-cond", 7.4, 10.0);
-      PH.tag(tl, "#a-valve", 8.1, 10.0);
+    // Green window frames on sheet 1.
+    $all(".w-on").forEach((r) => { r.setAttribute("fill", "#fff"); r.setAttribute("stroke", "#247855"); r.setAttribute("stroke-width", "7"); });
 
-      PH.chapter(tl, "#ch2", 10.7, 15.75);
-      PH.tag(tl, "#a-support", 11.4, 15.6);
-      PH.words(tl, "#line-pro", 14.3, 15.75);
+    // Heat escaping on sheet 1: dashed grey arrows that flow until the insulation reaches them.
+    const LEAKS = [
+      [120, 730, -30, 730, 6.44], [120, 470, -30, 470, 6.67], [270, 235, 200, 114, 6.92], [400, 160, 330, 39, 7.01],
+      [620, 207, 690, 86, 7.14], [820, 470, 970, 470, 7.42], [820, 730, 970, 730, 7.66], [300, 900, 300, 1030, 8.15], [640, 900, 640, 1030, 8.42],
+    ];
+    put("#leaks", LEAKS.map(([x0, y0, x1, y1]) => {
+      const a = Math.atan2(y1 - y0, x1 - x0), s = 26;
+      const pt = (ang, r) => `${x1 + r * Math.cos(ang)} ${y1 + r * Math.sin(ang)}`;
+      return `<g class="leak"><path class="flow" d="M ${x0} ${y0} L ${x1 - 16 * Math.cos(a)} ${y1 - 16 * Math.sin(a)}" fill="none" stroke="#52615a" stroke-width="12" stroke-dasharray="24 16" />
+        <path d="M ${pt(a, s)} L ${pt(a + 2.4, s)} L ${pt(a - 2.4, s)} Z" fill="#52615a" /></g>`;
+    }).join(""));
 
-      PH.chapter(tl, "#ch3", 16.9, 22.4);
-      PH.tag(tl, "#a-set", 17.9, 22.3);
-      PH.tag(tl, "#a-eco", 20.5, 22.3);
+    const cam = PH.camera(tl, rest(0, { z: 1.02, ry: -4 }));
+    const th = PH.thread(tl, {
+      paths: ["#thread"],
+      head: "#head",
+      segs: [
+        ["a_ground", `M ${v(0, 0, 950)} L ${h(0, 84, 950)}`],
+        ["a_env", `L ${h(0, 84, 326)} L ${h(0, 470, 104)} L ${h(0, 856, 326)} L ${h(0, 856, 950)}`],
+        ["b_ground", `L ${h(1, 64, 950)}`],
+        ["b_env", `L ${h(1, 64, 312)} L ${h(1, 470, 77)} L ${h(1, 876, 312)} L ${h(1, 876, 950)}`],
+        ["c_ground", `L ${h(2, 0, 950)} Q ${h(2, 40, 950)} ${h(2, 40, 910)} L ${h(2, 40, 660)} Q ${h(2, 40, 620)} ${h(2, 80, 620)}`],
+        ["c_room", `L ${h(2, 340, 620)} C ${h(2, 420, 620)} ${h(2, 380, 830)} ${h(2, 470, 830)} L ${h(2, 590, 830)} C ${h(2, 650, 830)} ${h(2, 650, 800)} ${h(2, 650, 760)}`],
+        ["c_up", `L ${h(2, 650, 120)}`],
+        ["c_arc", `C ${h(2, 650, 40)} ${h(2, 750, 30)} ${h(2, 830, 30)} L ${v(2, 1900, 30)} C ${v(2, 1980, 30)} ${v(2, 2000, 90)} ${v(2, 2000, 200)} L ${v(3, 2000, 760)} C ${v(3, 2000, 900)} ${v(3, 1960, 950)} ${v(3, 1820, 950)}`],
+        ["d_in", `L ${h(3, 545, 950)} Q ${h(3, 530, 950)} ${h(3, 530, 935)} L ${h(3, 530, 895)}`],
+        ["d_floor", `L ${h(3, 64, 895)}`],
+        ["d_out", `C ${h(3, 30, 895)} ${h(3, 30, 950)} ${h(3, -10, 950)} L ${v(3, 0, 950)} L ${v(4, 1920, 950)}`],
+        ["e_end", `L ${h(4, 876, 950)}`],
+      ],
+    });
 
-      PH.letters(tl, "#logo", 24.7);
+    // ---- Sheet 0: the thread draws the house, the magnifier looks it over (0 - 4.3)
+    gsap.set("#s0 .flats, #s0 .wins", { opacity: 0 });
+    th.show(0.15).to(0.15, 0.95, "a_ground", { ease: "power2.in" }).to(1.1, 1.3, "a_env", { ease: "power1.inOut" });
+    PH.letters(tl, "#t0", 0.35, { stagger: 0.04 });
+    PH.ink(tl, "#b0", 0.95);
+    const L0 = $all("#s0 .lines path");
+    [[1.15, 0.45], [1.5, 0.55], [1.95, 0.42], [2.05, 0.4], [2.15, 0.4], [2.25, 0.35], [2.3, 0.3], [2.35, 0.3]].forEach(([at, dur], i) => PH.draw(tl, L0[i], at, { dur }));
+    tl.to("#s0 .flats, #s0 .wins", { opacity: 1, duration: 0.5, ease: "none" }, 2.0);
+    cam.to(0, rest(0), 4.3, E.soft);
 
-      window.__timelines = window.__timelines || {};
-      window.__timelines["film"] = tl;
-    })();
+    const LOUPE = [[290, 220, 2.0], [101, 730, 2.55], [300, 460, 3.1], [640, 760, 3.65]];
+    const lp = (x, y) => ({ x: P[0][0] + HX[0] + x, y: P[0][1] + y });
+    const LOUPE_DX = -170, LOUPE_DY = -170, SH_DX = -60, SH_DY = -40;
+    gsap.set("#loupe", { x: lp(760, 1250).x + LOUPE_DX, y: lp(760, 1250).y + LOUPE_DY, z: 70 });
+    gsap.set("#loupe-sh", { x: lp(760, 1250).x + SH_DX, y: lp(760, 1250).y + SH_DY, z: 1, opacity: 0 });
+    tl.to("#loupe-sh", { opacity: 1, duration: 0.3, ease: "none" }, 1.5);
+    LOUPE.forEach(([x, y, at], i) => {
+      const p = lp(x, y), d = i ? 0.42 : 0.55;
+      tl.to("#loupe", { x: p.x + LOUPE_DX, y: p.y + LOUPE_DY, duration: d, ease: E.move }, at - d);
+      tl.to("#loupe-sh", { x: p.x + SH_DX, y: p.y + SH_DY, duration: d, ease: E.move }, at - d);
+      PH.pop(tl, `#m${i + 1}`, at - 0.08, { dur: 0.3 });
+      PH.rise(tl, `#l${i + 1}`, at + 0.16, { dur: 0.35, y: 12 });
+    });
+    const gone = lp(760, 1250);
+    tl.to("#loupe", { x: gone.x + LOUPE_DX, y: gone.y + LOUPE_DY, duration: 0.45, ease: E.exit }, 3.9);
+    tl.to("#loupe-sh", { x: gone.x + SH_DX, y: gone.y + SH_DY, duration: 0.45, ease: E.exit }, 3.9);
+    tl.set("#loupe, #loupe-sh", { opacity: 0 }, 4.36);
+
+    // ---- Sheet 1: losses, then the insulation follows the thread (4.3 - 9.4)
+    th.to(4.1, 1.5, "b_ground");
+    cam.travel(4.3, rest(1, { z: 0.9, ry: 5 }), 1.2, { via: { z: 0.62, rx: 14, rz: -3 } });
+    cam.to(5.5, rest(1, { z: 0.96 }), 3.9, E.soft);
+    $all("#leaks .leak").forEach((g, i) => {
+      const [x0, y0, , , at] = LEAKS[i];
+      gsap.set(g, { svgOrigin: `${x0} ${y0}` });
+      tl.to(g.querySelector(".flow"), { attr: { "stroke-dashoffset": -40 * 8 }, duration: at - 3.8, ease: "none" }, 3.8);
+      tl.to(g, { scale: 0, duration: 0.28, ease: E.exit }, at);
+    });
+    PH.words(tl, "#t1", 5.5);
+    PH.rise(tl, "#b1", 5.9);
+    th.to(5.9, 2.2, "b_env", { ease: "power1.inOut" });
+    PH.draw(tl, "#mb1 .mw", 5.92, { dur: 2.2, ease: "power1.inOut" });
+    PH.draw(tl, "#mb1 .mf", 7.95, { dur: 0.75, ease: E.move });
+    gsap.set(".w-on", { opacity: 0 });
+    [6.42, 6.65, 7.4, 7.64].forEach((at, i) => tl.to($all(".w-on")[i], { opacity: 1, duration: 0.2, ease: "none" }, at));
+
+    // ---- Sheet 2: the thread becomes the air path, dots run along it (9.4 - 14.6)
+    th.to(9.2, 1.55, "c_ground");
+    cam.travel(9.4, rest(2, { z: 0.9, ry: -5 }), 1.2, { via: { z: 0.6, rx: 14, rz: 3 } });
+    cam.to(10.6, { x: P[2][0] + 1000, y: P[2][1] + 440, z: 1, ry: 0 }, 3.9, E.soft);
+    PH.rise(tl, "#t2", 10.7);
+    PH.words(tl, "#b2", 11.1);
+    PH.rise(tl, "#l5", 11.0, { dur: 0.35, y: 12 });
+    th.to(10.75, 1.0, "c_room", { ease: "power1.inOut" });
+    PH.draw(tl, "#air-up", 11.2, { dur: 0.8, ease: "power1.inOut" });
+    th.to(11.8, 1.1, "c_up", { ease: "power1.inOut" });
+    PH.rise(tl, "#l6", 12.75, { dur: 0.35, y: 12 });
+    $all("#s2 .fan, #p-air .fan").forEach((f) => gsap.set(f, { svgOrigin: "690 314" }));
+    tl.to("#s2 .fan", { rotation: 900, duration: 3.2, ease: "power1.in" }, 11.8);
+    tl.to("#s2 .fan", { rotation: 2300, duration: 2, ease: "none" }, 15);
+
+    const shift = (i, d) => d.replace(/(-?\d+) (-?\d+)/g, (_, x, y) => `${+x + P[i][0] + HX[i]} ${+y + P[i][1]}`);
+    const dotMain = shift(2, "M 40 620 L 340 620 C 420 620 380 830 470 830 L 590 830 C 650 830 650 800 650 760 L 650 120 C 650 40 750 30 830 30");
+    const dotUp = shift(2, "M 64 385 L 470 385 C 530 385 520 470 580 470 L 625 470 Q 650 470 650 445 L 650 120 C 650 40 750 30 830 30");
+    const dots = document.querySelector("#dots");
+    gsap.set(dots, { z: 3 });
+    const spawn = (path, at, dur) => {
+      const d = document.createElement("div");
+      d.className = "dot";
+      d.style.offsetPath = `path("${path}")`;
+      dots.appendChild(d);
+      gsap.set(d, { offsetDistance: "0%", opacity: 0 });
+      tl.set(d, { opacity: 1 }, at);
+      tl.to(d, { offsetDistance: "100%", duration: dur, ease: "none" }, at);
+      tl.to(d, { backgroundColor: "#52615a", duration: 0.25, ease: "none" }, at + dur * 0.42);
+      tl.set(d, { opacity: 0 }, at + dur);
+    };
+    for (let i = 0; i < 12; i++) spawn(dotMain, 11.7 + i * 0.22, 2.5);
+    for (let i = 0; i < 7; i++) spawn(dotUp, 12.0 + i * 0.34, 2.1);
+
+    // ---- Sheet 3: the oversized unit shrinks into its slot, the circuit heats the rooms (14.6 - 19.7)
+    th.to(14.2, 1.5, "c_arc");
+    cam.travel(14.6, rest(3, { rx: 8 }), 1.3, { via: { z: 0.5, rx: 22, rz: -4 } });
+    cam.to(15.9, rest(3, { z: 0.97 }), 3.8, E.soft);
+    const ux = P[3][0] + HX[3] + 470, uy = P[3][1] + 705;
+    gsap.set("#unit", { x: ux - 240, y: uy, z: 72, scale: 3.1, transformOrigin: "50% 100%" });
+    gsap.set("#unit-sh", { x: ux - 214, y: uy + 26, z: 1, scale: 3.1, transformOrigin: "50% 100%" });
+    tl.to("#unit", { x: ux, scale: 1, z: 4, duration: 0.95, ease: "power3.inOut" }, 16.25);
+    tl.to("#unit-sh", { scale: 1, x: ux, y: uy, opacity: 0, duration: 0.95, ease: "power3.inOut" }, 16.25);
+    PH.ink(tl, "#t3", 16.0);
+    PH.rise(tl, "#b3", 16.4);
+    th.to(15.7, 1.5, "d_in", { ease: "power2.out" });
+    tl.to("#unit-on", { attr: { fill: "#247855" }, duration: 0.2, ease: "none" }, 17.15);
+    th.to(17.25, 0.95, "d_floor", { ease: "power1.inOut" });
+    PH.draw(tl, ".heat3", 17.3, { dur: 0.7, stagger: 0.12, ease: "power1.inOut" });
+    const rads3 = $all("#rads3 .r-on");
+    gsap.set(rads3, { opacity: 0 });
+    [17.8, 17.5, 17.9, 18.05].forEach((at, i) => tl.to(rads3[i], { opacity: 1, duration: 0.25, ease: "none" }, at));
+    const tints = (sel, at) => {
+      const O = ["112 905", "440 905", "112 560", "560 560"];
+      $all(`${sel} .tint`).forEach((r, i) => {
+        gsap.set(r, { svgOrigin: O[i], scaleY: 0 });
+        tl.to(r, { scaleY: 1, duration: 0.9, ease: E.land }, at + [0.15, 0, 0.3, 0.42][i]);
+      });
+    };
+    tints("#s3", 17.85);
+
+    // ---- Sheet 4: the layers land on the house, people come in (19.7 - 24.2)
+    th.to(19.35, 1.5, "d_out").to(20.85, 0.75, "e_end", { ease: "power2.out" }).hideHead(21.6);
+    cam.travel(19.7, rest(4, { x: P[4][0] + 640, z: 0.6, rx: 54, rz: -26 }), 1.3, { via: { z: 0.5 }, blur: 4 });
+    cam.to(21.0, rest(4), 1.75, E.move);
+    gsap.set("#p-heat", { z: 430 });
+    gsap.set("#p-air", { z: 290 });
+    gsap.set("#p-band", { z: 150 });
+    tl.to("#p-heat", { z: 5, duration: 0.85, ease: E.land }, 21.2);
+    tl.to("#p-air", { z: 4, duration: 0.8, ease: E.land }, 21.5);
+    tl.to("#p-band", { z: 3, duration: 0.75, ease: E.land }, 21.8);
+    tints("#s4", 22.35);
+    PH.words(tl, "#t4", 22.3);
+    PH.rise(tl, "#b4", 22.65);
+    gsap.set("#f1", { x: 500, y: 905, opacity: 0 });
+    tl.set("#f1", { opacity: 1 }, 22.55);
+    tl.to("#f1", { x: 235, duration: 1.0, ease: E.move }, 22.55);
+    gsap.set("#f2", { x: 375, y: 560, scale: 0, transformOrigin: "50% 100%" });
+    tl.to("#f2", { scale: 1, duration: 0.45, ease: E.spring }, 23.05);
+
+    // ---- The whole table, back to the last sheet, the call (24.1 - 27.3)
+    cam.to(24.15, { x: 3360, y: 1500, z: 0.285, rz: -1.2 }, 0.9, E.move);
+    cam.to(25.05, { z: 0.3, rz: -0.6 }, 0.35, "none");
+    cam.to(25.4, rest(4), 0.8, E.move);
+    PH.out(tl, "#t4", 24.85);
+    PH.out(tl, "#b4", 24.85);
+    gsap.set("#t5", { opacity: 1 });
+    PH.ink(tl, "#t5", 25.7);
+    PH.rise(tl, "#b5", 25.95);
+
+    PH.outro(tl, 27.2, { x: 430, y: 690 });
+    tl.to({}, { duration: 0.001 }, 29.99);
+    window.__timelines["film"] = tl;
   </script>
-  <script src="assets/scene.js"></script>
 </template>
