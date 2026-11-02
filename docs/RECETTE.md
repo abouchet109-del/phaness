@@ -132,3 +132,7 @@ Limites : aucune vérification des comptes IONOS/Google/Calendly, de leur MFA ou
 28 contrôles ciblés réussis à 1440 et 390 px : deux pages HTTP 200, aucun champ en attente ni mention de brouillon, un H1, identité/adresse/email présents, durées et références de transfert présentes, mention explicite de l’absence de suppression automatique dans les outils externes, pas de débordement ni exception JS. Syntaxe des 18 PHP valide. Captures et checks.json dans docs/captures/legal-complete-2026-11-02/. Le code de sécurité, les vidéos et le fonctionnement Calendly n’ont pas changé ; pas de répétition des audits antérieurs ou de nouveau Lighthouse.
 
 Limites : textes et politique de conservation complétés, mais réglages des comptes non modifiés ; appliquer les échéances dans messagerie/agenda/Calendly. Durées IONOS attribuées à sa documentation standard, sans audit de contrat. L’utilisateur a retiré la demande de déploiement : GitHub uniquement, aucun accès authentifié ou téléversement distant.
+
+## Mesures en ligne du 2026-11-02 (thème 0.2.9, version publiée)
+
+Lighthouse 13 sur https://phaness.fr : mobile 99/100/100/92 (LCP 1,9 s, blocage 60 ms, CLS 0), ordinateur 99/100/100/100 (LCP 0,5 s, blocage 0 ms). Poids initial 276 Ko. Le 92 mobile vient de l'audit robots.txt, voir `docs/REPRISE.md`.
