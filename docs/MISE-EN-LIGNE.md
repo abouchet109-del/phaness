@@ -63,3 +63,7 @@ Le modèle `front-page.html` du thème construit la page d'accueil. Après activ
 - Dans **Extensions**, garder les extensions nécessaires à l'hébergement, à la sécurité et aux sauvegardes. Désactiver seulement celles qui sont inutilisées ou ajoutent des fonctions redondantes, après vérification de leur rôle.
 
 Les identifiants IONOS et WordPress, les choix de contrat et l'acceptation des conditions restent à saisir par le propriétaire dans ses propres comptes.
+
+## Mises à jour du thème
+
+Dans `/wp-admin/`, **Apparence → Thèmes → Ajouter un thème → Téléverser un thème** : choisir le nouveau `dist/phaness.zip`, puis **Remplacer le thème installé par celui que vous avez téléversé**. Le compte administrateur WordPress est distinct du compte IONOS. Les adresses du site sont en `https://phaness.fr` et le thème redirige les visites en http.

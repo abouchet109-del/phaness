@@ -14,7 +14,7 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | 5 | Animations, prise de RDV, pages légales, SEO | Sonnet | high | 4 | `theme/` | Calendly réel et huit liens vérifiés ; informations légales attendues |
 | 6a | Recette : audit Lighthouse, accessibilité, responsive | Haiku | low | 5 | `docs/RECETTE.md` | validée sans vidéos : mobile 98/100/100/100, ordinateur 100/100/100/100 ; mouvement réduit vérifié |
 | 6b | Corrections issues de la recette | Sonnet | medium | 6a | `theme/` | faites pour le périmètre hors vidéos ; voir RECETTE.md |
-| 7 | Mise en ligne sur IONOS | Sonnet | medium | 6b | `scripts/`, `docs/MISE-EN-LIGNE.md` | paquetage testé et ZIP de contrôle installé ; livraison finale attend médias et informations légales |
+| 7 | Mise en ligne sur IONOS | Sonnet | medium | 6b | `scripts/`, `docs/MISE-EN-LIGNE.md` | en ligne sur https://phaness.fr ; 0.2.6 à téléverser, informations légales attendues |
 
 ## Révision visuelle du 2026-10-29
 

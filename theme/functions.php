@@ -28,6 +28,15 @@ if ( ! defined( 'PHANESS_PRESENTATION_POSTER_URL' ) ) {
 	define( 'PHANESS_PRESENTATION_POSTER_URL', '' );
 }
 
+// Send plain HTTP visits to HTTPS when the site address uses it. No effect on a local http install.
+add_action( 'template_redirect', function () {
+	if ( is_ssl() || 'https' !== wp_parse_url( home_url(), PHP_URL_SCHEME ) ) {
+		return;
+	}
+	wp_safe_redirect( home_url( add_query_arg( array() ) ), 301 );
+	exit;
+}, 0 );
+
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'responsive-embeds' );

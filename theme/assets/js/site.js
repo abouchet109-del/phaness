@@ -158,6 +158,7 @@ if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.pr
   external.textContent = 'Ouvrir Calendly';
   external.target = '_blank';
   external.rel = 'noopener noreferrer';
+  external.href = bookingLinks[0].href;
 
   const frame = document.createElement('iframe');
   frame.className = 'ph-booking__frame';
