@@ -1,81 +1,449 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
-    .ph-formula { position: absolute; left: 192px; top: 400px; font-size: 140px; font-weight: 650; letter-spacing: -0.04em; color: var(--night); }
-    .ph-example { top: 580px; color: var(--night-soft); }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .nw { white-space: nowrap; }
+
+    /* Numbered node, sits on the thread. Direct child of #world, above the thread. */
+    .num { position: absolute; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; background: var(--green); color: #fff; font-size: 38px; font-weight: 600; line-height: 72px; text-align: center; }
+
+    /* A: the request */
+    #prompt { position: absolute; left: 360px; top: 540px; width: 1680px; height: 500px; border-radius: 28px; background: #fff; box-shadow: var(--shadow-high); }
+    #prompt > * { position: absolute; }
+    .pl { font-size: 56px; font-weight: 480; letter-spacing: -0.02em; line-height: 72px; color: var(--ink); white-space: pre; }
+    .pl .ty { position: relative; }
+    .pl .ty b { font-weight: inherit; opacity: 0; }
+    .pl .ty i { position: absolute; right: -4px; top: 6px; width: 4px; height: 60px; background: var(--ink); opacity: 0; }
+    .ul { position: absolute; left: 0; right: 0; bottom: -4px; height: 5px; border-radius: 3px; background: var(--green); transform-origin: left; }
+    .ptag { color: var(--green-deep); }
+    #caret0 { left: 56px; top: 110px; width: 4px; height: 60px; background: var(--ink); }
+    #send { left: 1500px; top: 360px; width: 104px; height: 104px; border-radius: 50%; background: var(--green); }
+    #send svg { position: absolute; inset: 0; }
+    #cur { position: absolute; left: 0; top: 0; width: 64px; height: 80px; }
+
+    /* B: three outputs */
+    .out { position: absolute; background: #fff; border-radius: 12px; box-shadow: var(--shadow-high); overflow: hidden; }
+    .out > * { position: absolute; }
+    #doc { left: 2530px; top: 560px; width: 400px; height: 480px; }
+    #img { left: 3000px; top: 540px; width: 620px; height: 520px; }
+    #tab { left: 3690px; top: 575px; width: 500px; height: 470px; }
+    .bl { left: 32px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
+    .tl { left: 60px; height: 12px; border-radius: 6px; background: var(--mist); transform-origin: left; }
+    #pic { left: 32px; top: 32px; border-radius: 6px; }
+    .slot { width: 140px; height: 50px; border-radius: 6px; background: #f1f4f2; }
+    .tile { position: absolute; width: 140px; height: 50px; border-radius: 6px; background: var(--mist); }
+
+    /* C: chart labels */
+    .clab { width: 200px; text-align: center; }
+
+    /* D: answer against source */
+    #ans { position: absolute; left: 4770px; top: 1950px; width: 1000px; height: 504px; border-radius: 16px; background: #fff; box-shadow: var(--shadow-high); }
+    #ans > * { position: absolute; }
+    .row { left: 44px; width: 912px; height: 140px; border-top: 2px solid var(--mist); }
+    .row > * { position: absolute; }
+    .claim { left: 0; top: 44px; font-size: 44px; font-weight: 480; letter-spacing: -0.015em; line-height: 52px; color: var(--ink); white-space: nowrap; }
+    #strike { position: absolute; left: -6px; right: -6px; top: 25px; height: 5px; border-radius: 3px; background: var(--ink); transform-origin: left; }
+    .row .ph-node { left: 850px; top: 70px; }
+    #x2 { background: var(--ink); }
+    #src { left: 1270px; top: 270px; width: 530px; height: 504px; border-radius: 16px; background: var(--ground); }
+    #src > * { position: absolute; }
+    .sb { width: 86px; border-radius: 4px 4px 0 0; background: var(--mist); }
+    .slab { width: 122px; text-align: center; top: 448px; }
+    #loupe { position: absolute; left: 0; top: 0; width: 170px; height: 210px; }
   </style>
-  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="26" data-layout-allow-overlap>
-    <canvas id="film-canvas" width="1920" height="1080" data-layout-allow-overflow></canvas>
 
-    <div class="ph-layer">
-      <!-- opening -->
-      <div class="ph-intro">
-        <div id="kicker" class="ph-kicker"><i></i><span>Former</span></div>
-        <div id="title" class="ph-title">Tension, intensité, puissance</div>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="30" data-layout-allow-overlap data-layout-allow-overflow>
+    <div id="lens" data-layout-allow-overflow><div id="stage" data-layout-allow-overflow>
+      <div id="world" data-layout-allow-overflow>
+        <div class="ph-table" data-layout-allow-overflow></div>
+
+        <!-- Sheet A: the request -->
+        <div class="ph-sheet" style="left: 240px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1 nw" id="t0" style="left: 120px; top: 80px">L’IA, en pratique.</div>
+          <div class="ph-body nw" id="b0" style="left: 120px; top: 196px">Une formation en quatre compétences.</div>
+          <div class="ph-h1 nw" id="t1" style="left: 210px; top: 99px">Formuler une demande</div>
+        </div>
+
+        <!-- Sheet B: producing -->
+        <div class="ph-sheet" style="left: 2400px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1 nw" id="t2" style="left: 210px; top: 99px">Produire des contenus</div>
+        </div>
+
+        <!-- Sheet C: analysing -->
+        <div class="ph-sheet" style="left: 4560px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1 nw" id="t3" style="left: 210px; top: 99px">Analyser des informations</div>
+          <div class="ph-body nw" id="b3a" style="left: 210px; top: 330px">Classer vos données,</div>
+          <div class="ph-body nw" id="b3b" style="left: 210px; top: 380px">voir ce qui ressort.</div>
+          <div class="ph-tag" id="ct" style="left: 640px; top: 620px; color: var(--ink-2)">Retours clients par thème</div>
+          <div class="ph-tag clab" id="l1" style="left: 640px; top: 906px">Prix</div>
+          <div class="ph-tag clab" id="l2" style="left: 900px; top: 906px">Service</div>
+          <div class="ph-tag clab" id="l3" style="left: 1160px; top: 906px">Qualité</div>
+          <div class="ph-tag clab" id="l4" style="left: 1420px; top: 906px">Délais</div>
+          <div class="ph-tag" id="key" style="left: 1392px; top: 326px; color: var(--green-deep)">Le point à traiter</div>
+        </div>
+
+        <!-- Sheet D: verifying -->
+        <div class="ph-sheet" style="left: 4560px; top: 1680px" data-layout-allow-overflow>
+          <div class="ph-h1 nw" id="t4" style="left: 210px; top: 99px">Vérifier les résultats</div>
+          <div class="ph-body nw" id="b4" style="left: 210px; top: 826px">L’IA peut se tromper. Vous gardez la décision.</div>
+          <div id="src">
+            <div class="ph-tag" style="left: 32px; top: 28px; color: var(--ink-2)">La source</div>
+            <div class="sb" id="sb1" style="left: 40px; top: 354px; height: 76px"></div>
+            <div class="sb" id="sb2" style="left: 158px; top: 316px; height: 114px"></div>
+            <div class="sb" id="sb3" style="left: 276px; top: 240px; height: 190px"></div>
+            <div class="sb" id="sb4" style="left: 394px; top: 126px; height: 304px"></div>
+            <div class="ph-tag slab" style="left: 22px">Prix</div>
+            <div class="ph-tag slab" style="left: 140px">Service</div>
+            <div class="ph-tag slab" style="left: 258px">Qualité</div>
+            <div class="ph-tag slab" style="left: 376px">Délais</div>
+          </div>
+        </div>
+
+        <!-- Sheet E: the four skills -->
+        <div class="ph-sheet" style="left: 2400px; top: 1680px" data-layout-allow-overflow>
+          <div class="ph-h1 nw" id="e1" style="left: 230px; top: 259px">Formuler une demande</div>
+          <div class="ph-h1 nw" id="e2" style="left: 230px; top: 384px">Produire des contenus</div>
+          <div class="ph-h1 nw" id="e3" style="left: 230px; top: 509px">Analyser des informations</div>
+          <div class="ph-h1 nw" id="e4" style="left: 230px; top: 634px">Vérifier les résultats</div>
+          <div class="ph-body nw" id="e5" style="left: 230px; top: 806px">Une formation pratique à l’intelligence artificielle.</div>
+        </div>
+
+        <!-- Thread above the sheets, under the lifted objects -->
+        <svg class="ph-layer" width="6720" height="3000" style="transform: translateZ(2px)" data-layout-allow-overflow>
+          <path id="thread" class="ph-thread" />
+        </svg>
+        <div id="head" class="ph-head" style="transform: translateZ(3px)"></div>
+
+        <!-- Numbers on the thread -->
+        <div class="num" id="n1" style="left: 396px; top: 390px">1</div>
+        <div class="num" id="n2" style="left: 2556px; top: 390px">2</div>
+        <div class="num" id="n3" style="left: 4716px; top: 390px">3</div>
+        <div class="num" id="n4" style="left: 4716px; top: 1830px">4</div>
+        <div class="num" id="m1" style="left: 2556px; top: 1990px">1</div>
+        <div class="num" id="m2" style="left: 2556px; top: 2115px">2</div>
+        <div class="num" id="m3" style="left: 2556px; top: 2240px">3</div>
+        <div class="num" id="m4" style="left: 2556px; top: 2365px">4</div>
+
+        <!-- Request field, lifted -->
+        <div id="prompt">
+          <div class="ph-tag" style="left: 56px; top: 36px; color: var(--ink-2)">Votre demande</div>
+          <div id="caret0"></div>
+          <div class="pl" id="p1" style="left: 56px; top: 104px"><span class="tx">Résume ce rapport</span><span class="ul" id="u1"></span></div>
+          <div class="pl" id="p2" style="left: 56px; top: 214px"><span class="tx">pour le comité de direction,</span><span class="ul" id="u2"></span></div>
+          <div class="pl" id="p3" style="left: 56px; top: 324px"><span class="tx">sous forme de liste courte.</span><span class="ul" id="u3"></span></div>
+          <div class="ph-tag ptag" id="g1" style="left: 900px; top: 124px">La tâche</div>
+          <div class="ph-tag ptag" id="g2" style="left: 900px; top: 234px">Le public</div>
+          <div class="ph-tag ptag" id="g3" style="left: 900px; top: 344px">Le format</div>
+          <div id="send"><svg width="104" height="104" viewBox="0 0 104 104"><path d="M52 74 V32 M34 50 L52 32 L70 50" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        </div>
+        <svg id="cur" viewBox="0 0 64 80"><path d="M6 4 L6 62 L21 49 L32 74 L44 69 L33 44 L54 44 Z" fill="#14251d" stroke="#fff" stroke-width="4" stroke-linejoin="round" /></svg>
+
+        <!-- Three outputs, lifted -->
+        <div class="out" id="doc">
+          <div class="ph-tag" style="left: 32px; top: 36px; font-weight: 600">Synthèse du rapport</div>
+          <div class="bl" style="top: 113px"></div><div class="tl" style="top: 113px; width: 290px"></div>
+          <div class="bl" style="top: 169px"></div><div class="tl" style="top: 169px; width: 240px"></div>
+          <div class="bl" style="top: 225px"></div><div class="tl" style="top: 225px; width: 300px"></div>
+          <div class="bl" style="top: 281px"></div><div class="tl" style="top: 281px; width: 210px"></div>
+          <div class="bl" style="top: 337px"></div><div class="tl" style="top: 337px; width: 265px"></div>
+          <div class="ph-tag" style="left: 32px; top: 416px">Un texte</div>
+        </div>
+        <div class="out" id="img">
+          <svg id="pic" width="556" height="400" viewBox="0 0 556 400">
+            <rect width="556" height="400" fill="#eef2ef" />
+            <circle cx="420" cy="104" r="52" fill="#247855" />
+            <path d="M0 280 C 90 200 190 190 290 262 S 480 300 556 232 V400 H0 Z" fill="#dde5df" />
+            <path d="M0 400 V336 C 120 276 240 300 350 340 S 500 366 556 338 V400 Z" fill="#176447" />
+            <path d="M120 322 V212 H172 V252 H232 V322 Z" fill="#14251d" />
+            <g id="mosaic"></g>
+          </svg>
+          <div class="ph-tag" style="left: 32px; top: 456px">Une image</div>
+        </div>
+        <div class="out" id="tab">
+          <div class="ph-tag" style="left: 32px; top: 402px">Un tableau</div>
+        </div>
+
+        <!-- Answer next to its source, lifted -->
+        <div id="ans">
+          <div class="ph-tag" style="left: 44px; top: 26px; color: var(--ink-2)">Réponse de l’IA</div>
+          <div class="row" style="top: 84px">
+            <div class="claim">Les délais arrivent en tête.</div>
+            <div class="ph-node" id="ok1"><svg width="72" height="72" viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+          </div>
+          <div class="row" style="top: 224px">
+            <div class="claim" id="c2a" style="display: inline-block">Le prix vient ensuite.<div id="strike"></div></div>
+            <div class="claim" id="c2b">La qualité vient ensuite.</div>
+            <div class="ph-node" id="x2"><svg width="72" height="72" viewBox="0 0 72 72"><path d="M25 25 L47 47 M47 25 L25 47" /></svg></div>
+            <div class="ph-node" id="ok2"><svg width="72" height="72" viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+          </div>
+          <div class="row" style="top: 364px">
+            <div class="claim">Le prix arrive en dernier.</div>
+            <div class="ph-node" id="ok3"><svg width="72" height="72" viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+          </div>
+        </div>
+        <svg id="loupe" viewBox="0 0 170 210" data-layout-allow-overflow>
+          <path d="M120 126 L158 196" fill="none" stroke="#14251d" stroke-width="20" stroke-linecap="round" />
+          <circle cx="75" cy="75" r="66" fill="rgba(36,120,85,0.07)" stroke="#14251d" stroke-width="10" />
+        </svg>
       </div>
-
-      <!-- 01 voltage -->
-      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">La tension</span></div>
-      <div class="anchor" data-anchor="volt" id="a-volt">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="-50" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 86px; top: -108px">U, en volts</div>
-      </div>
-
-      <!-- 02 current -->
-      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">L’intensité</span></div>
-      <div class="anchor" data-anchor="amp" id="a-amp">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="-50" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 86px; top: -108px">I, en ampères</div>
-      </div>
-
-      <!-- 03 power -->
-      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">La puissance</span></div>
-      <div class="anchor" data-anchor="watt" id="a-watt">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="50" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="right: 86px; top: 22px">P, en watts</div>
-      </div>
-      <div id="formula" class="ph-formula">P = U × I</div>
-      <div id="example" class="ph-line ph-example">12 V × 2 A = <b>24 W</b></div>
-
-      <!-- closing -->
-      <div id="logo" class="ph-logo">phaness</div>
-    </div>
+    </div></div>
+    <div id="end" class="ph-end"><div class="ph-logo">phaness</div><div class="ph-sign">Donnez vie à vos idées en vidéo.</div></div>
   </div>
-  <script src="assets/phaness-type.js"></script>
+
   <script>
-    (function () {
-      var clock = { t: 0 };
-      var host = { clock: clock, render: null };
-      window.__phFilm = host;
-      window.__hf = window.__hf || {};
-      window.__hf.buildReady = window.__hf.buildReady || {};
-      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+    const tl = gsap.timeline({ paused: true });
+    const E = PH.EASE;
 
-      var tl = gsap.timeline({ paused: true });
-      tl.to(clock, { t: 26, duration: 26, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+    // Layout: five sheets, 1920x1080, in two rows, read as an S.
+    const P = [[240, 240], [2400, 240], [4560, 240], [4560, 1680], [2400, 1680]];
+    const v = (i, x, y) => `${P[i][0] + x} ${P[i][1] + y}`;
+    const rest = (i, o = {}) => ({ x: P[i][0] + 960, y: P[i][1] + 540, z: 0.93, rx: 0, ry: 0, rz: 0, ...o });
+    const rng = ((a) => () => { a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; })(11);
+    const world = document.querySelector("#world");
+    const GREEN = "#247855", MIST = "#dde5df";
 
-      PH.fade(tl, "#kicker", 0.45, 2.3);
-      PH.words(tl, "#title", 0.7, 2.35);
+    // Types a line character by character. Each character carries its own caret, so nothing depends on measured widths.
+    function typeIn(sel, at, cps = 38) {
+      const box = document.querySelector(sel + " .tx");
+      const chars = Array.from(box.textContent);
+      box.textContent = "";
+      let last = null;
+      chars.forEach((c, i) => {
+        const s = document.createElement("span");
+        s.className = "ty";
+        const g = document.createElement("b");
+        g.textContent = c;
+        s.appendChild(g);
+        const k = document.createElement("i");
+        s.appendChild(k);
+        box.appendChild(s);
+        const t = at + i / cps;
+        tl.set(g, { opacity: 1 }, t);
+        tl.set(k, { opacity: 1 }, t);
+        if (last) tl.set(last, { opacity: 0 }, t);
+        last = k;
+      });
+      return { caret: last, end: at + chars.length / cps };
+    }
 
-      PH.chapter(tl, "#ch1", 4.6, 10.0);
-      PH.tag(tl, "#a-volt", 6.4, 9.9);
+    // The thread only exists once the request is sent.
+    const th = PH.thread(tl, {
+      paths: ["#thread"],
+      head: "#head",
+      segs: [
+        ["send", `M ${v(0, 1672, 712)} L ${v(0, 1860, 712)}`],
+        ["toB", `C ${v(0, 2020, 712)} ${v(0, 2000, 150)} ${v(1, 0, 150)} L ${v(1, 156, 150)}`],
+        ["c1", `L ${v(1, 156, 520)} Q ${v(1, 156, 580)} ${v(1, 216, 580)} L ${v(1, 330, 580)}`],
+        ["c2", `L ${v(1, 910, 580)}`],
+        ["c3", `L ${v(1, 1540, 580)}`],
+        ["toC", `L ${v(1, 1880, 580)} C ${v(1, 2040, 580)} ${v(1, 2000, 150)} ${v(2, 0, 150)} L ${v(2, 156, 150)}`],
+        ["axis", `L ${v(2, 156, 820)} Q ${v(2, 156, 880)} ${v(2, 216, 880)} L ${v(2, 1630, 880)}`],
+        ["rise", `Q ${v(2, 1670, 880)} ${v(2, 1670, 840)} L ${v(2, 1670, 360)}`],
+        ["toD", `Q ${v(2, 1670, 290)} ${v(2, 1735, 290)} Q ${v(2, 1800, 290)} ${v(2, 1800, 355)} L ${v(2, 1800, 1240)} Q ${v(2, 1800, 1300)} ${v(2, 1740, 1300)} L ${v(2, 216, 1300)} Q ${v(2, 156, 1300)} ${v(2, 156, 1360)} L ${v(3, 156, 150)}`],
+        ["r1", `L ${v(3, 156, 424)}`],
+        ["r2", `L ${v(3, 156, 564)}`],
+        ["r3", `L ${v(3, 156, 704)}`],
+        ["toE", `L ${v(3, 156, 950)} Q ${v(3, 156, 1010)} ${v(3, 96, 1010)} L ${v(4, 1840, 1010)} Q ${v(4, 1780, 1010)} ${v(4, 1780, 950)} L ${v(4, 1780, 170)} Q ${v(4, 1780, 110)} ${v(4, 1720, 110)} L ${v(4, 216, 110)} Q ${v(4, 156, 110)} ${v(4, 156, 170)} L ${v(4, 156, 200)}`],
+        ["e1", `L ${v(4, 156, 310)}`],
+        ["e2", `L ${v(4, 156, 435)}`],
+        ["e3", `L ${v(4, 156, 560)}`],
+        ["e4", `L ${v(4, 156, 685)}`],
+      ],
+    });
 
-      PH.chapter(tl, "#ch2", 10.9, 15.8);
-      PH.tag(tl, "#a-amp", 14.2, 15.7);
+    // Lifted objects
+    gsap.set(".num", { z: 4 });
+    gsap.set("#cur", { x: 2340, y: 1420, z: 90 });
 
-      PH.chapter(tl, "#ch3", 16.4, 21.3);
-      PH.tag(tl, "#a-watt", 17.6, 19.4);
-      PH.words(tl, "#formula", 19.6, 21.4, { stagger: 0.12 });
-      PH.words(tl, "#example", 20.2, 21.4);
+    // ---- Sheet A: title, then the request (0 - 5.7)
+    const cam = PH.camera(tl, rest(0, { x: 1240, y: 830, z: 1.03, rx: 7, ry: -5 }));
+    cam.to(0, rest(0, { z: 0.95 }), 3.0, E.soft);
+    cam.to(3.0, rest(0, { x: 1230, y: 810, z: 0.97 }), 2.7, E.soft);
 
-      PH.letters(tl, "#logo", 23.7);
+    gsap.set("#prompt", { z: 280, y: -40, rotation: -2.5 });
+    tl.to("#prompt", { z: 50, y: 0, rotation: 0, duration: 1.0, ease: E.land }, 0.05);
+    PH.words(tl, "#t0", 0.5, { stagger: 0.09 });
+    PH.rise(tl, "#b0", 0.85);
+    PH.out(tl, "#t0,#b0", 2.45);
 
-      window.__timelines = window.__timelines || {};
-      window.__timelines["film"] = tl;
-    })();
+    gsap.set("#n1", { z: 4 });
+    PH.pop(tl, "#n1", 2.55);
+    PH.ink(tl, "#t1", 2.6, { stagger: 0.1 });
+
+    gsap.set(".ul", { scaleX: 0 });
+    gsap.set(".ptag", { opacity: 0, x: -24 });
+    const tagIn = (u, g, at) => {
+      tl.to(u, { scaleX: 1, duration: 0.3, ease: E.move }, at);
+      tl.to(g, { opacity: 1, duration: 0.2, ease: "none" }, at + 0.1);
+      tl.to(g, { x: 0, duration: 0.4, ease: E.arrive }, at + 0.1);
+    };
+    tl.set("#caret0", { opacity: 0 }, 2.8);
+    const a1 = typeIn("#p1", 2.8);
+    tagIn("#u1", "#g1", a1.end - 0.02);
+    tl.set(a1.caret, { opacity: 0 }, a1.end + 0.08);
+    const a2 = typeIn("#p2", a1.end + 0.08);
+    tagIn("#u2", "#g2", a2.end - 0.02);
+    tl.set(a2.caret, { opacity: 0 }, a2.end + 0.08);
+    const a3 = typeIn("#p3", a2.end + 0.08);
+    tagIn("#u3", "#g3", a3.end - 0.02);
+
+    // The cursor presses send and the thread is born.
+    tl.to("#cur", { x: 1912, y: 952, duration: 0.5, ease: E.move }, 4.7);
+    tl.to("#send", { scale: 0.86, duration: 0.08, ease: "power2.out" }, 5.2);
+    tl.to("#send", { scale: 1, duration: 0.25, ease: "power2.out" }, 5.28);
+    tl.to("#prompt", { z: 40, duration: 0.08, ease: "power2.out" }, 5.2);
+    tl.to("#prompt", { z: 50, duration: 0.3, ease: "power2.out" }, 5.28);
+    tl.set(a3.caret, { opacity: 0 }, 5.23);
+    tl.to("#cur", { x: 2020, y: 1120, duration: 0.5, ease: E.move }, 5.35);
+    tl.set("#cur", { opacity: 0 }, 7.0);
+    th.show(5.25);
+    th.to(5.25, 0.42, "send", { ease: "power2.in" });
+
+    // ---- Sheet B: the thread feeds three outputs (5.7 - 10.6)
+    th.to(5.67, 1.08, "toB", { ease: "power2.out" });
+    cam.travel(5.7, rest(1, { x: P[1][0] + 910, y: P[1][1] + 570, z: 0.97, rx: 5, ry: 4 }), 1.3, { via: { z: 0.68, rz: -2.5 } });
+    cam.to(7.0, rest(1), 3.6, E.soft);
+    PH.pop(tl, "#n2", 6.72);
+    PH.words(tl, "#t2", 6.8);
+
+    // Mosaic tiles over the picture: they clear in a seeded order, the image resolves.
+    const mosaic = document.querySelector("#mosaic");
+    const cols = 12, rows = 8, mw = 556 / cols, mh = 400 / rows;
+    const motes = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const m = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      m.setAttribute("x", c * mw - 0.5); m.setAttribute("y", r * mh - 0.5);
+      m.setAttribute("width", mw + 1); m.setAttribute("height", mh + 1);
+      m.setAttribute("fill", rng() > 0.5 ? "#dde5df" : "#f1f4f2");
+      mosaic.appendChild(m);
+      motes.push(m);
+    }
+    motes.forEach((m) => tl.to(m, { opacity: 0, duration: 0.08, ease: "none" }, 7.95 + rng() * 0.85));
+
+    // Table slots on the card; the cells themselves are world objects, because they leave.
+    const tabEl = document.querySelector("#tab");
+    const tiles = [];
+    for (let r = 0; r < 6; r++) for (let c = 0; c < 3; c++) {
+      const x = 32 + c * 148, y = 40 + r * 58;
+      const s = document.createElement("div");
+      s.className = "slot";
+      s.style.left = x + "px"; s.style.top = y + "px";
+      tabEl.appendChild(s);
+      const t = document.createElement("div");
+      t.className = "tile";
+      t.id = "tile" + tiles.length;
+      t.style.left = 3690 + x + "px"; t.style.top = 575 + y + "px";
+      world.appendChild(t);
+      tiles.push({ el: t, cx: 3690 + x + 70, cy: 575 + y + 25 });
+    }
+    gsap.set(".tile", { z: 41, clipPath: "inset(0 100% 0 0)" });
+
+    const land = (sel, at, z, rot) => {
+      gsap.set(sel, { z: 170, rotation: rot * 4, y: -30 });
+      tl.to(sel, { z, rotation: rot, y: 0, duration: 0.55, ease: E.land }, at);
+    };
+    th.to(6.85, 0.4, "c1");
+    land("#doc", 7.15, 46, -1.5);
+    gsap.set("#doc .tl", { scaleX: 0 });
+    tl.to("#doc .tl", { scaleX: 1, duration: 0.3, stagger: 0.12, ease: "power2.out" }, 7.4);
+    th.to(7.4, 0.45, "c2");
+    land("#img", 7.7, 66, 1.2);
+    th.to(8.0, 0.45, "c3");
+    land("#tab", 8.3, 40, 0);
+    tl.to(".tile", { clipPath: "inset(0 0% 0 0)", duration: 0.22, stagger: 0.045, ease: "power1.out" }, 8.75);
+
+    // ---- Sheet C: the table's cells fly over and become the chart (10.6 - 15.7)
+    const quota = [0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3];
+    for (let i = quota.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [quota[i], quota[j]] = [quota[j], quota[i]]; }
+    const X = [740, 1000, 1260, 1520], seen = [0, 0, 0, 0];
+    const green = [];
+    tiles.forEach((t, i) => {
+      const col = quota[i], k = seen[col]++;
+      const sx = P[2][0] + 300 + rng() * 1420, sy = P[2][1] + 250 + rng() * 580;
+      const gx = P[2][0] + X[col], gy = P[2][1] + 872 - (k + 0.5) * 62;
+      tl.to(t.el, { boxShadow: "0 12px 24px rgba(20,37,29,.18)", duration: 0.4, ease: "none" }, 10.5 + i * 0.02);
+      tl.to(t.el, { x: sx - t.cx, y: sy - t.cy, z: 24 + rng() * 60, rotation: -28 + rng() * 56, duration: 1.4, ease: E.move }, 10.55 + i * 0.022);
+      tl.to(t.el, { x: gx - t.cx, y: gy - t.cy, z: 1, rotation: 0, scaleX: 200 / 140, scaleY: 56 / 50, duration: 0.8, ease: E.move }, 12.55 + i * 0.028);
+      tl.to(t.el, { boxShadow: "0 0 0 rgba(20,37,29,0)", duration: 0.5, ease: "none" }, 12.85 + i * 0.028);
+      if (col === 3) green[k] = t.el;
+    });
+
+    th.to(10.3, 1.55, "toC");
+    cam.travel(10.65, rest(2, { x: P[2][0] + 990, y: P[2][1] + 520, z: 0.97, rx: -4, ry: -5 }), 1.4, { via: { z: 0.62, ry: 9 }, blur: 4 });
+    cam.to(12.05, rest(2), 3.6, E.soft);
+    PH.pop(tl, "#n3", 11.8);
+    PH.rise(tl, "#t3", 11.9);
+    PH.ink(tl, "#b3a", 12.3, { stagger: 0.08 });
+    PH.ink(tl, "#b3b", 12.6, { stagger: 0.08 });
+    th.to(12.05, 1.2, "axis");
+    PH.words(tl, "#ct", 13.2);
+    PH.rise(tl, "#l1,#l2,#l3,#l4", 13.45);
+    tl.to(green, { backgroundColor: GREEN, duration: 0.2, stagger: 0.05, ease: "none" }, 14.0);
+    th.to(14.0, 0.6, "rise");
+    PH.words(tl, "#key", 14.5);
+
+    // ---- Sheet D: the answer is read against its source (15.7 - 21.3)
+    th.to(15.2, 1.65, "toD");
+    cam.travel(15.7, rest(3, { x: P[3][0] + 930, y: P[3][1] + 560, z: 0.97, rx: 5, ry: -3 }), 1.3, { via: { z: 0.66, rx: 13, rz: 2 } });
+    cam.to(17.0, rest(3), 4.3, E.soft);
+    PH.pop(tl, "#n4", 16.8);
+    PH.letters(tl, "#t4", 16.85, { stagger: 0.022 });
+    gsap.set("#ans", { z: 220, y: 30, rotation: 1.5 });
+    tl.to("#ans", { z: 36, y: 0, rotation: 0, duration: 0.6, ease: E.land }, 16.7);
+
+    const L = (x, y) => ({ x: x - 75, y: y - 75 });
+    const R = [2104, 2244, 2384];
+    gsap.set("#loupe", { ...L(6100, 2900), z: 130 });
+    gsap.set("#ok1,#x2,#ok2,#ok3", { scale: 0 });
+    gsap.set("#c2b", { opacity: 0 });
+    gsap.set("#strike", { scaleX: 0 });
+    const lit = (id, at, c) => tl.to(id, { backgroundColor: c, duration: 0.2, ease: "none" }, at);
+
+    tl.to("#loupe", { ...L(4870, R[0]), z: 90, duration: 0.5, ease: E.move }, 17.2);
+    th.to(17.3, 0.35, "r1");
+    lit("#sb4", 17.6, GREEN);
+    tl.to("#loupe", { ...L(5500, R[0]), duration: 0.5, ease: "power1.inOut" }, 17.7);
+    tl.to("#ok1", { scale: 1, duration: 0.35, ease: E.spring }, 18.2);
+
+    tl.to("#loupe", { ...L(4870, R[1]), duration: 0.3, ease: E.move }, 18.35);
+    th.to(18.35, 0.3, "r2");
+    lit("#sb4", 18.45, MIST);
+    lit("#sb3", 18.6, GREEN);
+    tl.to("#loupe", { ...L(5400, R[1]), duration: 0.4, ease: "power1.inOut" }, 18.65);
+    tl.to("#x2", { scale: 1, duration: 0.35, ease: E.spring }, 19.05);
+    tl.to("#strike", { scaleX: 1, duration: 0.25, ease: E.move }, 19.1);
+    tl.to("#c2a", { opacity: 0, duration: 0.15, ease: "none" }, 19.5);
+    tl.to("#c2b", { opacity: 1, duration: 0.2, ease: "none" }, 19.6);
+    tl.to("#ok2", { scale: 1, duration: 0.3, ease: E.spring }, 19.8);
+
+    tl.to("#loupe", { ...L(4870, R[2]), duration: 0.28, ease: E.move }, 20.0);
+    th.to(20.0, 0.28, "r3");
+    lit("#sb3", 20.1, MIST);
+    lit("#sb1", 20.25, GREEN);
+    tl.to("#loupe", { ...L(5460, R[2]), duration: 0.4, ease: "power1.inOut" }, 20.28);
+    tl.to("#ok3", { scale: 1, duration: 0.3, ease: E.spring }, 20.68);
+    tl.to("#loupe", { ...L(7300, 2500), z: 130, duration: 0.6, ease: E.exit }, 20.72);
+    PH.ink(tl, "#b4", 19.9, { stagger: 0.07 });
+
+    // ---- The whole table (21.3 - 23.2)
+    th.to(21.1, 2.7, "toE", { ease: "power2.inOut" });
+    cam.travel(21.35, { x: 3360, y: 1500, z: 0.272, rx: 0, ry: 0, rz: 0 }, 1.55, { via: { rx: 14, rz: -2 }, blur: 2 });
+
+    // ---- Sheet E: the four skills, one per stop of the thread (23.2 - 27.2)
+    cam.travel(23.2, rest(4, { z: 0.96, ry: -3 }), 1.2, { via: { rx: 8 }, blur: 2 });
+    cam.to(24.4, rest(4), 2.8, E.soft);
+    [["e1", "#m1", "#e1"], ["e2", "#m2", "#e2"], ["e3", "#m3", "#e3"], ["e4", "#m4", "#e4"]].forEach(([seg, node, text], i) => {
+      const at = 24.0 + i * 0.5;
+      th.to(at - 0.22, 0.22, seg, { ease: "power2.inOut" });
+      PH.pop(tl, node, at);
+      PH.ink(tl, text, at + 0.05, { stagger: 0.07, dur: 0.22 });
+    });
+    th.hideHead(25.75);
+    PH.rise(tl, "#e5", 26.0);
+
+    // ---- Common ending: opens from the fourth number
+    PH.outro(tl, 27.2, { x: 212, y: 675 });
+
+    tl.to({}, { duration: 0.001 }, 29.99);
+    window.__timelines["film"] = tl;
   </script>
-  <script src="assets/scene.js"></script>
 </template>
