@@ -1,89 +1,628 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    /* Sheet art and floors */
+    .art { left: 0; top: 0; overflow: visible; }
+    .floor { left: 0; width: 1920px; background: var(--mist); }
+    .tg { right: 995px; text-align: right; }
+    .ln { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Rail check marks: above the thread */
+    .nd { position: absolute; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: var(--green); }
+    .nd svg { position: absolute; inset: 0; }
+    .nd path { fill: none; stroke: #fff; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Sheet 3: lifted helmets and gloved hands */
+    .lifted { position: absolute; overflow: visible; }
+    .shadow { width: 860px; height: 70px; border-radius: 50%; background: rgba(6, 30, 20, 0.5); filter: blur(22px); }
+
+    /* Sheet 4: lifted load, clipped to the sheet */
+    #load-plane { position: absolute; left: 4560px; top: 1700px; width: 1920px; height: 1060px; overflow: hidden; transform: translateZ(50px); }
+
   </style>
-  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="26" data-layout-allow-overlap>
-    <canvas id="film-canvas" width="1920" height="1080" data-layout-allow-overflow></canvas>
 
-    <div class="ph-layer">
-      <!-- opening -->
-      <div class="ph-intro">
-        <div id="kicker" class="ph-kicker"><i></i><span>Sécuriser</span></div>
-        <div id="title" class="ph-title">Premier jour à l’usine</div>
-      </div>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="30" data-layout-allow-overlap data-layout-allow-overflow>
+    <div id="lens" data-layout-allow-overflow><div id="stage" data-layout-allow-overflow>
+      <div id="world" data-layout-allow-overflow>
+        <div class="ph-table" data-layout-allow-overflow></div>
 
-      <!-- 01 PPE -->
-      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">Équipement</span></div>
-      <div class="anchor" data-anchor="helmet" id="a-helmet">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="70" y2="-60" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 76px; top: -118px">Casque</div>
-      </div>
-      <div class="anchor" data-anchor="vest" id="a-vest">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="-30" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="right: 86px; top: -62px">Gilet</div>
-      </div>
-      <div class="anchor" data-anchor="shoes" id="a-shoes">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="40" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 86px; top: 12px">Chaussures</div>
-      </div>
+        <!-- Sheet 1: the gate, profile view -->
+        <div class="ph-sheet" id="s0" style="left: 240px; top: 240px" data-layout-allow-overflow>
+          <div class="floor" style="top: 880px; height: 200px"></div>
+          <svg class="art" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-allow-overflow>
+            <defs>
+              <pattern id="hz" width="44" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="44" height="44" fill="#e6a817" /><rect width="22" height="44" fill="#14251d" />
+              </pattern>
+            </defs>
+            <!-- Building under construction -->
+            <rect x="1250" y="340" width="430" height="540" fill="#eef2ef" />
+            <g stroke="#52615a" stroke-width="4">
+              <path class="ln d0" d="M1250 880 V340 H1680 V880" />
+              <path class="ln d0" d="M1250 448 H1680" /><path class="ln d0" d="M1250 556 H1680" /><path class="ln d0" d="M1250 664 H1680" /><path class="ln d0" d="M1250 772 H1680" />
+              <!-- Scaffold -->
+              <path class="ln d0" d="M1180 880 V300" /><path class="ln d0" d="M1250 340 V300" />
+              <path class="ln d0" d="M1180 448 H1250" /><path class="ln d0" d="M1180 556 H1250" /><path class="ln d0" d="M1180 664 H1250" /><path class="ln d0" d="M1180 772 H1250" /><path class="ln d0" d="M1180 340 H1250" />
+              <path class="ln d0" d="M1180 556 L1250 448" /><path class="ln d0" d="M1180 772 L1250 664" />
+            </g>
+            <!-- Crane -->
+            <g stroke="#14251d" stroke-width="5">
+              <path class="ln d0" d="M1778 880 V190" /><path class="ln d0" d="M1822 880 V190" />
+              <path class="ln d0" d="M1778 800 L1822 720 L1778 640 L1822 560 L1778 480 L1822 400 L1778 320 L1822 240" />
+              <path class="ln d0" d="M1420 170 H1890" /><path class="ln d0" d="M1800 190 V110 L1460 170" /><path class="ln d0" d="M1800 110 L1890 170" />
+              <path class="ln d0" d="M1520 170 V270" />
+            </g>
+            <!-- Fence behind the barrier -->
+            <g id="fence" stroke="#52615a" stroke-width="3"></g>
+            <!-- Barrier and sign -->
+            <rect x="896" y="430" width="14" height="450" rx="6" fill="#14251d" />
+            <rect x="1128" y="660" width="14" height="220" rx="6" fill="#14251d" />
+            <rect x="896" y="706" width="246" height="30" rx="6" fill="url(#hz)" />
+            <g id="sign0">
+              <rect x="903" y="410" width="170" height="170" rx="14" fill="#e6a817" />
+              <path d="M944 516 A44 44 0 0 1 1032 516 Z" fill="#14251d" />
+              <rect x="930" y="516" width="116" height="14" rx="7" fill="#14251d" />
+              <rect x="980" y="456" width="16" height="30" rx="6" fill="#e6a817" />
+            </g>
+            <g id="fa"></g>
+          </svg>
+          <div class="ph-h1" id="t0" style="left: 120px; top: 120px">Avant d’entrer</div>
+          <div class="ph-body" id="b0" style="left: 120px; top: 240px">La sécurité commence à la barrière.</div>
+        </div>
 
-      <!-- 02 traffic -->
-      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">Circulation</span></div>
-      <div class="anchor" data-anchor="lane" id="a-lane">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-40" y2="80" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="right: 0px; top: 86px">Allée piétonne</div>
-      </div>
-      <div id="line-stop" class="ph-line">Au croisement, <b>stop</b>.</div>
+        <!-- Sheet 2: the PPE board and the figure, front view -->
+        <div class="ph-sheet" id="s1" style="left: 2400px; top: 240px" data-layout-allow-overflow>
+          <div class="floor" style="top: 1000px; height: 80px"></div>
+          <svg class="art" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-allow-overflow>
+            <g fill="#eef2ef">
+              <rect x="1015" y="150" width="200" height="120" rx="14" />
+              <rect x="1015" y="294" width="200" height="100" rx="14" />
+              <rect x="1015" y="418" width="200" height="200" rx="14" />
+              <rect x="1015" y="642" width="200" height="120" rx="14" />
+              <rect x="1015" y="786" width="200" height="120" rx="14" />
+            </g>
+            <g id="fb"></g>
+          </svg>
+          <div class="ph-h1" id="t1" style="left: 120px; top: 120px">Vos EPI</div>
+          <div class="ph-body" id="b1" style="left: 120px; top: 240px; width: 560px">Équipements de protection individuelle.</div>
+          <div class="ph-tag tg" id="l1" style="top: 193px">Casque</div>
+          <div class="ph-tag tg" id="l2" style="top: 327px">Lunettes</div>
+          <div class="ph-tag tg" id="l3" style="top: 501px">Gilet</div>
+          <div class="ph-tag tg" id="l4" style="top: 685px">Gants</div>
+          <div class="ph-tag tg" id="l5" style="top: 829px">Chaussures</div>
+        </div>
 
-      <!-- 03 evacuation -->
-      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">Évacuation</span></div>
-      <div class="anchor" data-anchor="asm" id="a-asm">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="-50" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag hot" style="right: 86px; top: -108px">Point de rassemblement</div>
-      </div>
+        <!-- Sheet 3: the check, full colour -->
+        <div class="ph-sheet deep" id="s2" style="left: 4560px; top: 240px" data-layout-allow-overflow>
+          <div class="shadow" id="shA" style="left: 880px; top: 790px"></div>
+          <div class="shadow" id="shB" style="left: 880px; top: 790px"></div>
+          <div class="ph-h1" id="t2" style="left: 120px; top: 330px">Un défaut ?</div>
+          <div class="ph-body" id="b2" style="left: 120px; top: 450px">Ne le portez pas :<br />remplacez-le.</div>
+        </div>
 
-      <!-- closing -->
-      <div id="logo" class="ph-logo">phaness</div>
-    </div>
+        <!-- Sheet 4: on site, profile view, walking left -->
+        <div class="ph-sheet" id="s3" style="left: 4560px; top: 1680px" data-layout-allow-overflow>
+          <div class="floor" style="top: 880px; height: 200px"></div>
+          <svg class="art" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-allow-overflow>
+            <rect x="0" y="360" width="260" height="520" fill="#eef2ef" />
+            <g stroke="#52615a" stroke-width="4">
+              <path class="ln d3" d="M260 880 V360 H0" /><path class="ln d3" d="M0 490 H260" /><path class="ln d3" d="M0 620 H260" /><path class="ln d3" d="M0 750 H260" />
+            </g>
+            <rect x="360" y="884" width="820" height="18" fill="url(#hz)" />
+            <rect id="load-sh" x="50" y="0" width="300" height="150" rx="8" fill="#14251d" opacity="0.14" style="filter: blur(12px)" />
+            <rect x="1198" y="690" width="12" height="190" rx="6" fill="#14251d" />
+            <path id="tri3" d="M1204 590 L1274 712 H1134 Z" fill="#e6a817" stroke="#e6a817" stroke-width="12" stroke-linejoin="round" />
+            <path d="M1204 630 V670 M1204 692 V694" class="ln" stroke="#14251d" stroke-width="10" />
+            <g id="fc"></g>
+          </svg>
+          <div class="ph-h1" id="t3" style="right: 120px; top: 120px">Jamais dessous</div>
+          <div class="ph-body" id="b3" style="right: 120px; top: 240px">Attendez que la charge soit passée.</div>
+        </div>
+
+        <!-- Sheet 5: closing -->
+        <div class="ph-sheet" id="s4" style="left: 2400px; top: 1680px" data-layout-allow-overflow>
+          <div class="floor" style="top: 880px; height: 200px"></div>
+          <svg class="art" width="1920" height="1080" viewBox="0 0 1920 1080" data-layout-allow-overflow><g id="fd"></g></svg>
+          <div class="ph-h1" id="t4" style="left: 120px; top: 300px">À chaque poste</div>
+          <div class="ph-body" id="b4" style="left: 120px; top: 420px">Portés et ajustés,<br />vos EPI vous protègent.</div>
+        </div>
+
+        <!-- The thread, with a white copy for the green sheet -->
+        <svg class="ph-layer" width="6800" height="3000" style="transform: translateZ(2px)" data-layout-allow-overflow>
+          <defs><clipPath id="clip2"><rect x="4560" y="240" width="1920" height="1080" /></clipPath></defs>
+          <path id="thread" class="ph-thread" />
+          <g clip-path="url(#clip2)"><path id="thread-w" class="ph-thread" style="stroke: #fff" /></g>
+        </svg>
+        <div id="head" class="ph-head" style="transform: translateZ(3px)"></div>
+
+        <!-- The helmet shell that swallows the frame, above the thread -->
+        <svg class="ph-layer" width="6800" height="3000" style="transform: translateZ(4px)" data-layout-allow-overflow>
+          <circle id="dome" cx="3900" cy="445" r="0" fill="#247855" />
+        </svg>
+
+        <!-- Rail check marks -->
+        <div class="nd" id="n1" style="left: 3365px; top: 450px"><svg viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+        <div class="nd" id="n2" style="left: 3365px; top: 584px"><svg viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+        <div class="nd" id="n3" style="left: 3365px; top: 758px"><svg viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+        <div class="nd" id="n4" style="left: 3365px; top: 942px"><svg viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+        <div class="nd" id="n5" style="left: 3365px; top: 1086px"><svg viewBox="0 0 72 72"><path d="M21 37 L32 48 L52 26" /></svg></div>
+
+        <!-- Lifted helmets. Viewbox 940x560, world position of the sheet-3 close-up. -->
+        <svg class="lifted" id="hA" width="940" height="560" viewBox="0 0 940 560" style="left: 5390px; top: 490px">
+          <use href="#shell" />
+          <path id="crack" class="ln" d="M270 110 L300 165 L262 205 L312 262 L286 310" stroke="#14251d" stroke-width="6" />
+          <circle id="ring" class="ln" cx="288" cy="210" r="128" stroke="#247855" stroke-width="6" transform="rotate(-90 288 210)" />
+        </svg>
+        <svg class="lifted" id="hB" width="940" height="560" viewBox="0 0 940 560" style="left: 5390px; top: 490px">
+          <defs>
+            <g id="shell">
+              <path d="M150 455 C220 545 640 545 730 455" fill="none" stroke-linecap="round" stroke="#dde5df" stroke-width="10" />
+              <path d="M70 400 C70 190 230 50 440 50 C660 50 800 200 810 400 Z" fill="#fff" />
+              <path d="M440 50 C400 150 390 280 390 400 M560 66 C600 170 610 290 610 400 M210 136 C180 220 170 320 170 400" fill="none" stroke-linecap="round" stroke="#dde5df" stroke-width="6" />
+              <rect x="400" y="20" width="80" height="60" rx="18" fill="#fff" />
+              <path d="M50 400 H830 Q925 405 925 438 Q925 455 900 455 H60 Q30 455 30 428 Q30 400 50 400 Z" fill="#dde5df" />
+            </g>
+          </defs>
+          <use href="#shell" />
+          <g id="okB">
+            <circle cx="470" cy="240" r="66" fill="#247855" />
+            <path class="ln" d="M436 242 L460 266 L506 216" stroke="#fff" stroke-width="10" />
+          </g>
+        </svg>
+        <!-- Gloved hands, world size 280x620 -->
+        <svg class="lifted" id="gA" width="280" height="620" viewBox="0 0 280 620" style="left: 5980px; top: 790px"><use href="#bighand" /></svg>
+        <svg class="lifted" id="gB" width="280" height="620" viewBox="0 0 280 620" style="left: 5740px; top: 790px">
+          <defs>
+            <g id="bighand">
+              <rect x="50" y="330" width="180" height="290" fill="#14251d" />
+              <rect x="30" y="0" width="52" height="190" rx="26" fill="#dde5df" />
+              <rect x="88" y="-16" width="52" height="210" rx="26" fill="#dde5df" />
+              <rect x="146" y="-8" width="52" height="200" rx="26" fill="#dde5df" />
+              <rect x="204" y="20" width="48" height="180" rx="24" fill="#dde5df" />
+              <rect x="30" y="120" width="222" height="190" rx="44" fill="#dde5df" />
+              <rect x="-20" y="150" width="54" height="130" rx="27" fill="#dde5df" transform="rotate(-18 7 215)" />
+              <rect x="38" y="290" width="204" height="52" rx="12" fill="#247855" />
+              <path fill="none" stroke-linecap="round" d="M84 120 V170 M142 120 V170 M200 120 V170" stroke="#52615a" stroke-width="4" />
+            </g>
+          </defs>
+          <use href="#bighand" />
+        </svg>
+
+        <!-- Lifted load on sheet 4 -->
+        <div id="load-plane" data-layout-allow-overflow>
+          <svg id="load" class="lifted" width="360" height="300" viewBox="-180 0 360 300" style="left: 0; top: 280px; overflow: visible">
+            <path class="ln" d="M0 -1500 V10" stroke="#14251d" stroke-width="6" />
+            <circle cx="0" cy="22" r="14" fill="none" stroke="#14251d" stroke-width="6" />
+            <path class="ln" d="M0 34 L-130 124 M0 34 L130 124" stroke="#14251d" stroke-width="5" />
+            <rect x="-150" y="122" width="300" height="130" rx="6" fill="#dde5df" />
+            <path class="ln" d="M-150 166 H150 M-150 208 H150 M-70 122 V166 M50 122 V166 M-20 166 V208 M100 166 V208 M-90 208 V252 M30 208 V252" stroke="#52615a" stroke-width="4" />
+            <rect x="-162" y="252" width="324" height="20" rx="4" fill="#14251d" />
+          </svg>
+        </div>
+      </div>
+    </div></div>
+    <div id="end" class="ph-end"><div class="ph-logo">phaness</div><div class="ph-sign">Donnez vie à vos idées en vidéo.</div></div>
   </div>
-  <script src="assets/phaness-type.js"></script>
+
   <script>
-    (function () {
-      var clock = { t: 0 };
-      var host = { clock: clock, render: null };
-      window.__phFilm = host;
-      window.__hf = window.__hf || {};
-      window.__hf.buildReady = window.__hf.buildReady || {};
-      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+    const tl = gsap.timeline({ paused: true });
+    const E = PH.EASE;
+    const P = [[240, 240], [2400, 240], [4560, 240], [4560, 1680], [2400, 1680]];
+    const rest = (i, o = {}) => ({ x: P[i][0] + 960, y: P[i][1] + 540, z: 0.93, rx: 0, ry: 0, rz: 0, ...o });
+    const $ = (s) => document.querySelector(s);
 
-      var tl = gsap.timeline({ paused: true });
-      tl.to(clock, { t: 26, duration: 26, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+    // ---- Sampled tracks: attributes keyed per frame, painted from one clock tween, so poses stay pure functions of time.
+    const FPS = 25;
+    const tracks = [], index = new Map();
+    function put(el, attr, t, val) {
+      const k = el.id + "|" + attr;
+      let tr = index.get(k);
+      if (!tr) { tr = { el, attr, a: [], cur: null }; index.set(k, tr); tracks.push(tr); }
+      tr.a.push([t, val]);
+    }
+    function paint(t) {
+      for (const tr of tracks) {
+        const a = tr.a;
+        let lo = 0, hi = a.length - 1;
+        while (lo < hi) { const m = (lo + hi + 1) >> 1; if (a[m][0] <= t + 1e-4) lo = m; else hi = m - 1; }
+        if (a[lo][1] !== tr.cur) { tr.el.setAttribute(tr.attr, a[lo][1]); tr.cur = a[lo][1]; }
+      }
+    }
+    const ez = (n) => gsap.parseEase(n);
+    const lerp = (a, b, u) => a + (b - a) * u;
+    const f1 = (n) => n.toFixed(1);
 
-      PH.fade(tl, "#kicker", 0.45, 2.3);
-      PH.words(tl, "#title", 0.7, 2.35);
+    // Two-bone inverse kinematics. Returns the joint. bend in [-1, 1] picks the side, 0 is a straight limb.
+    function joint(a, b, l, bend) {
+      let dx = b[0] - a[0], dy = b[1] - a[1], d = Math.hypot(dx, dy) || 1;
+      const m = Math.min(d, 2 * l * 0.998);
+      const ux = dx / d, uy = dy / d;
+      const h = Math.sqrt(Math.max(0, l * l - (m / 2) * (m / 2)));
+      return [a[0] + ux * m * 0.5 - uy * h * bend, a[1] + uy * m * 0.5 + ux * h * bend, a[0] + ux * m, a[1] + uy * m];
+    }
 
-      PH.chapter(tl, "#ch1", 4.6, 10.0);
-      PH.tag(tl, "#a-helmet", 5.9, 9.9);
-      PH.tag(tl, "#a-vest", 7.5, 9.9);
-      PH.tag(tl, "#a-shoes", 8.3, 9.9);
+    // ---- Placed items (SVG groups drawn around their origin, in figure units)
+    function item(id, x, y, sc = 1, rot = 0) {
+      const it = { el: document.getElementById(id), x, y, sc, rot };
+      write(it, -1);
+      return it;
+    }
+    function write(it, t) {
+      put(it.el, "transform", t, `translate(${f1(it.x)} ${f1(it.y)}) rotate(${f1(it.rot)}) scale(${it.sc.toFixed(3)})`);
+    }
+    function slide(it, t, dur, to, { ease = "power2.inOut", arc = 0, sc, rot } = {}) {
+      const f = ez(ease), n = Math.max(1, Math.round(dur * FPS));
+      const x0 = it.x, y0 = it.y, s0 = it.sc, r0 = it.rot;
+      for (let i = 1; i <= n; i++) {
+        const u = f(i / n);
+        it.x = lerp(x0, to[0], u);
+        it.y = lerp(y0, to[1], u) - arc * Math.sin(Math.PI * (i / n));
+        if (sc != null) it.sc = lerp(s0, sc, u);
+        if (rot != null) it.rot = lerp(r0, rot, u);
+        write(it, t + i / FPS);
+      }
+    }
 
-      PH.chapter(tl, "#ch2", 10.6, 15.8);
-      PH.tag(tl, "#a-lane", 11.0, 13.0);
-      PH.words(tl, "#line-stop", 12.3, 15.6);
+    // ---- Drawn kit, in figure units (front view unless named)
+    const SVGK = {
+      helmet: `<path d="M-44 -8 A44 44 0 0 1 44 -8 Z" fill="#247855" /><rect x="-56" y="-14" width="112" height="14" rx="7" fill="#176447" /><rect x="-8" y="-56" width="16" height="30" rx="6" fill="#176447" /><path class="ln" d="M-30 -20 A32 32 0 0 1 -12 -40" stroke="#fff" stroke-width="3" opacity="0.45" />`,
+      glasses: `<path class="ln" d="M-41 -2 H41" stroke="#176447" stroke-width="5" /><rect x="-36" y="-12" width="72" height="24" rx="11" fill="#dde5df" stroke="#176447" stroke-width="4" /><path class="ln" d="M0 -11 V-3" stroke="#176447" stroke-width="4" />`,
+      vest: `<path d="M-44 -76 Q-44 -94 -24 -94 L-12 -94 L0 -62 L12 -94 L24 -94 Q44 -94 44 -76 L50 94 L-50 94 Z" fill="#247855" /><path d="M-48 4 H48 M-49 50 H49" stroke="#fff" stroke-width="12" />`,
+      glove: `<rect x="-19" y="-20" width="38" height="16" rx="5" fill="#176447" /><rect x="-17" y="-8" width="34" height="42" rx="15" fill="#247855" /><rect x="-27" y="0" width="12" height="26" rx="6" fill="#247855" transform="rotate(-18 -21 13)" /><path class="ln" d="M-6 18 V28 M6 18 V28" stroke="#fff" stroke-width="2.5" opacity="0.7" />`,
+      boot: `<rect x="-26" y="-38" width="52" height="38" rx="12" fill="#247855" /><rect x="-29" y="-9" width="58" height="9" rx="4" fill="#176447" /><rect x="-18" y="-24" width="36" height="9" rx="4" fill="#176447" />`,
+      sideHelmet: `<path d="M-36 62 A42 42 0 0 1 48 62 Z" fill="#247855" /><rect x="-40" y="56" width="104" height="12" rx="6" fill="#176447" /><rect x="-2" y="12" width="16" height="26" rx="6" fill="#176447" />`,
+      sideVest: `<rect x="-35" y="120" width="70" height="186" rx="26" fill="#247855" /><path d="M-35 216 H35 M-35 260 H35" stroke="#fff" stroke-width="11" />`,
+    };
 
-      PH.chapter(tl, "#ch3", 16.5, 21.4);
-      PH.tag(tl, "#a-asm", 19.0, 21.4);
+    // ---- Figure rig. side: profile figure, dir 1 faces right, -1 faces left. slot: markup between the rig layers.
+    function makeRig(p, host, o) {
+      const r = { side: false, dir: 1, s: 1, x: 0, g: 880, bob: 0, kit: false, slot: {}, ...o };
+      const s = r.s, side = r.side;
+      const armL = (side ? 78 : 80) * s, legL = (side ? 100 : 96) * s;
+      const armW = (side ? 26 : 28) * s, legW = (side ? 34 : 38) * s;
+      const far = side ? "#52615a" : "#14251d";
+      const limb = (n, w, c) => `<path id="${p}-${n}" class="ln" stroke="${c}" stroke-width="${f1(w)}" />`;
+      const extra = (n, w) => (r.kit && side ? `<path id="${p}-${n}" class="ln" stroke="#247855" stroke-width="${f1(w)}" />` : "");
+      const torso = side ? `<rect x="-34" y="118" width="68" height="190" rx="30" fill="#14251d" />` : `<rect x="-50" y="118" width="100" height="190" rx="38" fill="#14251d" />`;
+      const headC = side ? `<circle cx="6" cy="66" r="40" fill="#14251d" />` : `<circle cx="0" cy="66" r="42" fill="#14251d" />`;
+      const inHead = r.kit ? (side ? SVGK.sideHelmet : `<g transform="translate(0 80)">${SVGK.glasses}</g><g transform="translate(0 66)">${SVGK.helmet}</g>`) : "";
+      const inBody = r.kit ? (side ? SVGK.sideVest : `<g transform="translate(0 212)">${SVGK.vest}</g>`) : "";
+      const feet = r.kit && !side ? `<g transform="translate(-24 506)">${SVGK.boot}</g><g transform="translate(24 506)">${SVGK.boot}</g>` : "";
+      host.innerHTML =
+        limb("armB", armW, far) + extra("gloveB", 30 * s) + limb("legB", legW, far) + extra("bootB", 36 * s) +
+        (side ? "" : limb("legA", legW, "#14251d")) + (r.slot.legs || "") +
+        `<g id="${p}-body">${torso}${inBody}${feet}${r.slot.torso || ""}<g id="${p}-head">${headC}${inHead}</g></g>` +
+        (side ? limb("legA", legW, "#14251d") + extra("bootA", 36 * s) : "") + (r.slot.body || "") +
+        (side ? "" : limb("armB2", armW, "#14251d")) + limb("armA", armW, "#14251d") + extra("gloveA", 30 * s) + (r.slot.arms || "");
+      const el = (n) => document.getElementById(`${p}-${n}`);
+      const armBEl = side ? el("armB") : el("armB2");
+      const U = (u, v) => [r.x + u * s * r.dir, r.g + (v - 500) * s + r.bob];
+      const shoulder = (k) => (side ? U(0, 150) : U(k === "A" ? -43 : 43, 150));
+      const hip = (k) => (side ? U(0, 300) : U(k === "A" ? -20 : 20, 300));
+      const hand = (k) => (side ? U(4, 296) : U(k === "A" ? -72 : 72, 298));
+      const ankleY = () => r.g + (486 - 500) * s;
+      r.hand = { A: hand("A"), B: hand("B") };
+      r.foot = side ? { A: [r.x - 14 * r.dir, ankleY()], B: [r.x + 14 * r.dir, ankleY()] }
+                    : { A: [r.x - 24 * s, ankleY()], B: [r.x + 24 * s, ankleY()] };
+      r.bend = side ? { A: r.dir, B: r.dir } : { A: 0.5, B: -0.5 };
+      r.knee = side ? { A: -r.dir, B: -r.dir } : { A: 0.3, B: -0.3 };
+      r.att = {};
+      r.rest = hand;
 
-      PH.letters(tl, "#logo", 23.7);
+      const writeArm = (k, t) => {
+        const j = joint(shoulder(k), r.hand[k], armL, r.bend[k]);
+        const sh = shoulder(k);
+        put(k === "A" ? el("armA") : armBEl, "d", t, `M${f1(sh[0])} ${f1(sh[1])} L${f1(j[0])} ${f1(j[1])} L${f1(j[2])} ${f1(j[3])}`);
+        if (r.kit && side) put(el("glove" + k), "d", t, `M${f1(j[2])} ${f1(j[3])} L${f1(j[2])} ${f1(j[3])}`);
+        if (r.att[k]) {
+          const it = r.att[k];
+          it.x = j[2]; it.y = j[3];
+          it.rot = (Math.atan2(j[3] - j[1], j[2] - j[0]) * 180) / Math.PI - 90;
+          write(it, t);
+        }
+      };
+      const writeLeg = (k, t) => {
+        const j = joint(hip(k), r.foot[k], legL, r.knee[k]);
+        const h = hip(k);
+        let d = `M${f1(h[0])} ${f1(h[1])} L${f1(j[0])} ${f1(j[1])} L${f1(j[2])} ${f1(j[3])}`;
+        if (side) {
+          const toe = [j[2] + 26 * s * r.dir, j[3] + 4 * s];
+          d += ` L${f1(toe[0])} ${f1(toe[1])}`;
+          if (r.kit) put(el("boot" + k), "d", t, `M${f1(j[2])} ${f1(j[3])} L${f1(toe[0])} ${f1(toe[1])}`);
+        }
+        put(el("leg" + k), "d", t, d);
+      };
+      const writeBody = (t) => put(el("body"), "transform", t, `translate(${f1(r.x)} ${f1(r.g + r.bob)}) scale(${(r.dir * s).toFixed(3)} ${s}) translate(0 -500)`);
+      const writeAll = (t) => { writeBody(t); writeArm("A", t); writeArm("B", t); writeLeg("A", t); writeLeg("B", t); };
+      writeAll(-1);
+      put(el("head"), "transform", -1, "rotate(0 0 110)");
+      r.tilt = 0;
 
-      window.__timelines = window.__timelines || {};
-      window.__timelines["film"] = tl;
-    })();
+      // Move one hand. carry: an item that follows the hand at a fixed offset.
+      r.moveHand = (t, dur, k, to, { ease = "power2.inOut", arc = 0, bend, carry, off = [0, 0], sc, each } = {}) => {
+        const f = ez(ease), n = Math.max(1, Math.round(dur * FPS));
+        const from = [...r.hand[k]], b0 = r.bend[k], b1 = bend ?? b0, s0 = carry ? carry.sc : 0;
+        for (let i = 1; i <= n; i++) {
+          const u = f(i / n), T = t + i / FPS;
+          r.hand[k] = [lerp(from[0], to[0], u), lerp(from[1], to[1], u) - arc * Math.sin(Math.PI * (i / n))];
+          r.bend[k] = lerp(b0, b1, u);
+          writeArm(k, T);
+          if (carry) {
+            carry.x = r.hand[k][0] + off[0]; carry.y = r.hand[k][1] + off[1];
+            if (sc != null) carry.sc = lerp(s0, sc, u);
+            write(carry, T);
+          }
+          if (each) each(u, T, r.hand[k]);
+        }
+      };
+      r.handRest = (t, dur, k, o = {}) => r.moveHand(t, dur, k, hand(k), { bend: side ? r.dir : k === "A" ? 0.5 : -0.5, ...o });
+      r.moveFoot = (t, dur, k, to, { ease = "power2.inOut", arc = 0 } = {}) => {
+        const f = ez(ease), n = Math.max(1, Math.round(dur * FPS)), from = [...r.foot[k]];
+        for (let i = 1; i <= n; i++) {
+          const u = f(i / n);
+          r.foot[k] = [lerp(from[0], to[0], u), lerp(from[1], to[1], u) - arc * Math.sin(Math.PI * (i / n))];
+          writeLeg(k, t + i / FPS);
+        }
+      };
+      r.look = (t, dur, deg, ease = "power2.inOut") => {
+        const f = ez(ease), n = Math.max(1, Math.round(dur * FPS)), a0 = r.tilt;
+        for (let i = 1; i <= n; i++) {
+          r.tilt = lerp(a0, deg, f(i / n));
+          put(el("head"), "transform", t + i / FPS, `rotate(${f1(r.tilt)} 0 110)`);
+        }
+      };
+      // Walk to x1 with planted feet: a foot on the ground never slides.
+      r.walk = (t0, t1, x1, { steps, ease = "none" } = {}) => {
+        const f = ez(ease), x0 = r.x, dt = (t1 - t0) / steps, n = Math.round((t1 - t0) * FPS);
+        const bx = (T) => lerp(x0, x1, f(Math.min(1, (T - t0) / (t1 - t0))));
+        const stride = Math.abs(x1 - x0) / steps;
+        const gy = ankleY();
+        const pos = { A: r.foot.A[0], B: r.foot.B[0] }, plan = [];
+        for (let k = 0; k < steps; k++) {
+          const sw = k % 2 ? "B" : "A";
+          const land = k === steps - 1 ? bx(t1) + r.dir * (k % 2 ? 14 : -14) : bx(t0 + (k + 1) * dt) + r.dir * stride * 0.4;
+          plan.push({ sw, from: pos[sw], to: land, other: pos[sw === "A" ? "B" : "A"] });
+          pos[sw] = land;
+        }
+        const swing = 22 * (Math.PI / 180), L = 150 * s;
+        for (let i = 1; i <= n; i++) {
+          const T = t0 + i / FPS, tt = Math.min(T, t1);
+          const k = Math.min(steps - 1, Math.floor((tt - t0) / dt)), u = Math.min(1, (tt - t0 - k * dt) / dt);
+          const st = plan[k], ss = u * u * (3 - 2 * u);
+          r.x = bx(tt);
+          r.bob = -Math.sin(Math.PI * u) * 5 * s;
+          const other = st.sw === "A" ? "B" : "A";
+          r.foot[st.sw] = [lerp(st.from, st.to, ss), gy - Math.sin(Math.PI * u) * 22 * s];
+          r.foot[other] = [st.other, gy];
+          const th = swing * Math.cos(Math.PI * (k + u));
+          const sh = shoulder("A");
+          r.hand.A = [sh[0] + Math.sin(th) * L * r.dir, sh[1] + Math.cos(th) * L];
+          r.hand.B = [sh[0] - Math.sin(th) * L * r.dir, sh[1] + Math.cos(th) * L];
+          writeAll(T);
+        }
+        r.bob = 0;
+      };
+      return r;
+    }
+
+    // ---- Sheet 2 items and figure
+    const X1 = 1500, S1 = 1.75, FLOOR1 = 1000;
+    const bodyY = (v) => FLOOR1 + (v - 500) * S1;
+    const fb = makeRig("fb", $("#fb"), {
+      x: X1, g: FLOOR1, s: S1,
+      slot: {
+        legs: `<g id="i-bootA">${SVGK.boot}</g><g id="i-bootB">${SVGK.boot}</g>`,
+        body: `<g id="i-vest">${SVGK.vest}</g><path id="i-zip" class="ln" stroke="#176447" stroke-width="7" /><g id="i-glasses">${SVGK.glasses}</g><g id="i-helmet">${SVGK.helmet}</g>`,
+        arms: `<g id="i-gloveA">${SVGK.glove}</g><g id="i-gloveB">${SVGK.glove}</g>`,
+      },
+    });
+    const iHelmet = item("i-helmet", 1115, 246, 1.25);
+    const iGlasses = item("i-glasses", 1115, 344, 1.75);
+    const iVest = item("i-vest", 1115, 518, 0.95);
+    const iGloveA = item("i-gloveA", 1068, 690, 1.35);
+    const iGloveB = item("i-gloveB", 1162, 690, 1.35);
+    const iBootA = item("i-bootA", 1068, 884, 1.25);
+    const iBootB = item("i-bootB", 1162, 884, 1.25);
+    const zip = $("#i-zip");
+    put(zip, "d", -1, `M${X1} ${bodyY(306)} L${X1} ${bodyY(306)}`);
+    put(zip, "opacity", -1, "0");
+
+    // ---- Other figures
+    const fa = makeRig("fa", $("#fa"), { side: true, s: 0.95, x: -130, g: 878 });
+    const fc = makeRig("fc", $("#fc"), { side: true, dir: -1, s: 0.95, x: 2030, g: 878, kit: true });
+    const fd = makeRig("fd", $("#fd"), {
+      x: 1420, g: 868, s: 1.22, kit: true,
+      slot: { arms: `<g id="d-gloveA">${SVGK.glove}</g><g id="d-gloveB">${SVGK.glove}</g>` },
+    });
+    fd.att.A = item("d-gloveA", 0, 0, 1.22);
+    fd.att.B = item("d-gloveB", 0, 0, 1.22);
+    fd.moveHand(-0.5, 0.04, "A", fd.rest("A"));
+    fd.moveHand(-0.5, 0.04, "B", fd.rest("B"));
+
+    // Fence lines on sheet 1
+    let fenceHtml = "";
+    for (let x = 1160; x < 1920; x += 40) fenceHtml += `<path class="ln d0" d="M${x} 880 V640" />`;
+    fenceHtml += `<path class="ln d0" d="M1142 640 H1920" /><path class="ln d0" d="M1142 780 H1920" />`;
+    $("#fence").innerHTML = fenceHtml;
+
+    // ---- Camera and thread
+    const cam = PH.camera(tl, { x: 1200, y: 780, z: 1.0, rx: 5, rz: -0.8 });
+    const th = PH.thread(tl, {
+      paths: ["#thread", "#thread-w"],
+      head: "#head",
+      segs: [
+        ["s0a", "M 240 1120 L 1120 1120"],
+        ["s0b", "L 2210 1120 Q 2280 1120 2280 1050 L 2280 370 Q 2280 300 2350 300 L 3295 300 Q 3365 300 3365 370"],
+        ["r1", "L 3365 450"], ["r2", "L 3365 584"], ["r3", "L 3365 758"], ["r4", "L 3365 942"], ["r5", "L 3365 1086"],
+        ["around", "L 3365 1210 Q 3365 1280 3435 1280 L 4120 1280 Q 4190 1280 4190 1210 L 4190 370 Q 4190 300 4120 300 L 3970 300 Q 3900 300 3900 370"],
+        ["cut", "L 3900 200 Q 3900 130 3970 130 L 4370 130 Q 4440 130 4440 200 L 4440 840 Q 4440 910 4510 910 L 4560 910"],
+        ["toHelmet", "L 5400 910"],
+        ["leave", "L 6560 910 Q 6630 910 6630 980 L 6630 2490 Q 6630 2560 6560 2560 L 5800 2560"],
+        ["s3b", "L 4600 2560"],
+        ["s4", "L 2520 2560"],
+      ],
+    });
+
+    // ---- Sheet 1: the gate (0 to 4.2)
+    cam.to(0, { z: 0.94, rx: 0, rz: 0 }, 4.1, "sine.inOut");
+    th.show(0.1).to(0.1, 2.55, "s0a", { ease: "power1.out" });
+    PH.draw(tl, ".d0", 0.25, { dur: 0.8, stagger: 0.022 });
+    fa.walk(0.25, 2.75, 800, { steps: 6, ease: "power1.out" });
+    fa.handRest(2.75, 0.3, "A");
+    fa.handRest(2.75, 0.3, "B");
+    PH.words(tl, "#t0", 0.7);
+    PH.rise(tl, "#b0", 1.25);
+    PH.pop(tl, "#sign0", 2.45, { origin: "50% 100%" });
+    // He sees the sign and reaches for his bare head.
+    fa.look(2.95, 0.3, -7);
+    fa.moveHand(3.1, 0.38, "A", [812, 878 + (28 - 500) * 0.95], { ease: "power3.out" });
+    fa.moveHand(3.78, 0.34, "A", fa.rest("A"));
+    fa.look(3.8, 0.3, 0);
+
+    // ---- Flight to sheet 2
+    th.to(3.95, 1.35, "s0b");
+    cam.travel(4.2, rest(1), 1.2, { via: { z: 0.66, rz: -3 } });
+
+    // ---- Sheet 2: head to toe (5.4 to 13.9)
+    gsap.set(".nd", { z: 4 });
+    PH.words(tl, "#t1", 5.15);
+    PH.rise(tl, "#b1", 5.45);
+    ["#l1", "#l2", "#l3", "#l4", "#l5"].forEach((s, i) => PH.ink(tl, s, 5.55 + i * 0.09));
+    cam.to(6.3, { x: 3670, y: 560, z: 1.6, rz: -0.6 }, 0.75);
+    // Helmet: caught in one hand, placed from above, the other hand settles the brim.
+    slide(iHelmet, 6.55, 0.42, [1330, 240], { sc: S1 });
+    fb.moveHand(6.5, 0.47, "A", [1330, 152], { bend: -1 });
+    fb.moveHand(6.97, 0.52, "A", [X1, 155], { carry: iHelmet, off: [0, 88], arc: 28 });
+    fb.moveHand(7.25, 0.3, "B", [X1 + 100, 250], { bend: 1 });
+    fb.handRest(7.55, 0.34, "A");
+    fb.handRest(7.65, 0.3, "B");
+    th.to(7.15, 0.3, "r1");
+    PH.pop(tl, "#n1", 7.4);
+    // Glasses: brought to the face by the temple.
+    slide(iGlasses, 7.8, 0.34, [1340, 330]);
+    fb.moveHand(7.72, 0.42, "A", [1282, 330], { bend: -1 });
+    fb.moveHand(8.14, 0.42, "A", [X1 - 58, bodyY(80)], { carry: iGlasses, off: [58, 0], arc: 14 });
+    fb.handRest(8.6, 0.32, "A");
+    th.to(8.25, 0.3, "r2");
+    PH.pop(tl, "#n2", 8.5);
+    // Vest: settled on the shoulders, then zipped from the waist up.
+    cam.to(8.5, { y: 760, rz: 0.4 }, 0.75);
+    slide(iVest, 8.75, 0.36, [1340, 470], { sc: 1.5 });
+    fb.moveHand(8.7, 0.4, "A", [1388, 344], { bend: -1 });
+    fb.moveHand(9.1, 0.4, "A", [X1 + 54, 342], { carry: iVest, off: [-54, 154], sc: S1 });
+    fb.moveHand(9.5, 0.24, "A", [X1, bodyY(304)], { ease: "power2.out", bend: 1 });
+    put(zip, "opacity", 9.72, "1");
+    fb.moveHand(9.74, 0.34, "A", [X1, bodyY(152)], {
+      ease: "power2.inOut",
+      each: (u, T, h) => put(zip, "d", T, `M${X1} ${bodyY(306)} L${X1} ${f1(h[1])}`),
+    });
+    fb.handRest(10.08, 0.34, "A");
+    th.to(9.6, 0.4, "r3");
+    PH.pop(tl, "#n3", 9.95);
+    // Gloves: one hand takes the pair, the hands meet, each ends up gloved.
+    cam.to(10.05, { y: 945, rz: -0.3 }, 0.72);
+    slide(iGloveA, 10.32, 0.3, [1340, 642], { sc: S1 });
+    fb.moveHand(10.28, 0.34, "A", [1340, 642]);
+    slide(iGloveB, 10.32, 0.56, [X1 + 42, 626], { sc: S1, arc: 16, rot: -6 });
+    fb.att.A = iGloveA;
+    fb.moveHand(10.62, 0.28, "A", [X1 - 42, 626]);
+    fb.moveHand(10.6, 0.3, "B", [X1 + 42, 626]);
+    fb.att.B = iGloveB;
+    fb.handRest(10.94, 0.34, "A");
+    fb.handRest(10.94, 0.34, "B");
+    th.to(10.65, 0.3, "r4");
+    PH.pop(tl, "#n4", 10.92);
+    // Boots: each foot lifts and the boot slides under it.
+    const footY = fb.foot.A[1];
+    cam.to(10.98, { y: 1130, z: 1.7, rz: 0 }, 0.7);
+    fb.moveFoot(11.25, 0.22, "A", [fb.foot.A[0], footY - 52], { ease: "power2.out" });
+    slide(iBootA, 11.25, 0.32, [fb.foot.A[0], 1006], { sc: S1 });
+    fb.moveFoot(11.57, 0.18, "A", [fb.foot.A[0], footY], { ease: "power2.in" });
+    fb.moveFoot(11.68, 0.22, "B", [fb.foot.B[0], footY - 52], { ease: "power2.out" });
+    slide(iBootB, 11.68, 0.38, [fb.foot.B[0], 1006], { sc: S1, arc: 96 });
+    fb.moveFoot(12.06, 0.18, "B", [fb.foot.B[0], footY], { ease: "power2.in" });
+    th.to(11.8, 0.4, "r5");
+    PH.pop(tl, "#n5", 12.15);
+    // Pull back: the thread walks around the equipped figure, up to the helmet crown.
+    cam.to(12.3, rest(1), 0.85);
+    th.to(12.35, 1.35, "around");
+
+    // ---- Transition born from the object: dive into the helmet shell (13.85 to 14.68)
+    cam.to(13.85, { x: 3900, y: 442, z: 3.4, rx: 0, ry: 0, rz: 0 }, 0.8, "power3.in");
+    tl.to("#dome", { attr: { r: 430 }, duration: 0.6, ease: "power2.in" }, 14.02);
+    tl.to("#dome", { fill: "#176447", duration: 0.26, ease: "none" }, 14.36);
+    th.to(14.6, 0.03, "cut", { ease: "none" });
+    cam.to(14.66, rest(2, { z: 1.07, rx: 1, ry: -2 }), 0.001, "none");
+    tl.set("#dome", { opacity: 0 }, 14.68);
+
+    // ---- Sheet 3: the check (14.7 to 18.3)
+    cam.to(14.72, { z: 1.01, rx: 0, ry: 0 }, 3.5, "sine.inOut");
+    gsap.set("#hA", { z: 60, y: 1000 });
+    gsap.set("#hB", { z: 60, y: 1100 });
+    gsap.set("#shA", { y: 1000 });
+    gsap.set("#shB", { y: 1100, opacity: 0 });
+    gsap.set("#gA", { z: 80, y: 720 });
+    gsap.set("#gB", { z: 80, y: 1100 });
+    tl.to(["#hA", "#shA"], { y: 0, duration: 0.62, ease: E.land }, 14.75);
+    th.to(14.85, 0.6, "toHelmet");
+    PH.draw(tl, "#crack", 15.3, { dur: 0.32 });
+    PH.draw(tl, "#ring", 15.55, { dur: 0.42 });
+    PH.ink(tl, "#t2", 15.55, { from: "#2f7a5c" });
+    PH.rise(tl, "#b2", 16.45);
+    // One gloved hand takes the damaged helmet away, the other brings the new one.
+    tl.to("#gA", { y: 0, duration: 0.42, ease: E.land }, 16.3);
+    tl.to(["#hA", "#shA", "#gA"], { x: 1240, duration: 0.58, ease: E.exit }, 16.82);
+    tl.set(["#hA", "#shA", "#gA"], { opacity: 0 }, 17.42);
+    tl.set("#shB", { opacity: 1 }, 17.05);
+    tl.to(["#hB", "#shB", "#gB"], { y: 0, duration: 0.62, ease: E.land }, 17.05);
+    tl.to("#gB", { y: 1100, duration: 0.34, ease: E.exit }, 17.72);
+    tl.set("#gB", { opacity: 0 }, 18.08);
+    PH.pop(tl, "#okB", 17.72, { origin: "50% 50%" });
+
+    // ---- Flight to sheet 4
+    th.to(17.95, 1.3, "leave");
+    cam.travel(18.3, rest(3, { x: 5640, z: 1.0 }), 1.2, { via: { z: 0.64, rx: 14 } });
+
+    // ---- Sheet 4: never under a load (19.5 to 23.4)
+    cam.to(19.52, { x: 5470, z: 0.94 }, 3.75, "sine.inOut");
+    PH.draw(tl, ".d3", 19.1, { dur: 0.5, stagger: 0.04 });
+    fc.walk(19.05, 20.55, 1360, { steps: 4, ease: "power1.out" });
+    fc.handRest(20.55, 0.28, "A");
+    fc.handRest(20.55, 0.28, "B");
+    fc.look(20.6, 0.32, -12);
+    gsap.set(["#load", "#load-sh"], { x: -340 });
+    gsap.set("#load-sh", { y: 448 });
+    tl.to(["#load", "#load-sh"], { x: 590, duration: 1.5, ease: "power2.out" }, 19.85);
+    tl.to(["#load", "#load-sh"], { y: "-=860", duration: 0.82, ease: "power2.in" }, 21.45);
+    tl.to("#load-sh", { opacity: 0, duration: 0.5, ease: "none" }, 21.7);
+    fc.look(21.5, 0.5, -20);
+    fc.look(22.05, 0.3, 0);
+    PH.words(tl, "#t3", 20.4);
+    PH.ink(tl, "#b3", 20.85, { stagger: 0.05 });
+    fc.walk(22.1, 23.5, 300, { steps: 4 });
+    fc.handRest(23.5, 0.25, "A");
+    fc.handRest(23.5, 0.25, "B");
+    th.to(21.85, 1.4, "s3b", { ease: "sine.inOut" });
+
+    // ---- The whole table, then the last sheet
+    cam.travel(23.3, { x: 3400, y: 1500, z: 0.285, rx: 0, ry: 0, rz: 0 }, 1.0, { via: { rx: 12, rz: -2 }, blur: 2 });
+    th.to(23.3, 2.35, "s4", { ease: "sine.inOut" });
+    cam.travel(24.5, rest(4), 1.0, { via: { rx: 8 }, blur: 2 });
+    PH.words(tl, "#t4", 25.1);
+    PH.rise(tl, "#b4", 25.45);
+    cam.to(25.52, { x: P[4][0] + 1000, z: 0.97 }, 1.68, "sine.inOut");
+    fd.moveHand(25.75, 0.36, "A", [1420 - 66, 868 + (64 - 500) * 1.22], { bend: -1 });
+    fd.handRest(26.45, 0.36, "A");
+
+    PH.outro(tl, 27.2, { x: 1340, y: 500 });
+    tl.to({}, { duration: 0.001 }, 29.99);
+
+    // ---- Paint the sampled tracks from one clock
+    for (const tr of tracks) tr.a.sort((p, q) => p[0] - q[0]);
+    const clock = { t: 0 };
+    tl.to(clock, { t: 30, duration: 30, ease: "none", onUpdate: () => paint(clock.t) }, 0);
+    paint(0);
+    window.__timelines["film"] = tl;
   </script>
-  <script src="assets/scene.js"></script>
 </template>
