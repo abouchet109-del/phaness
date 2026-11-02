@@ -1,6 +1,6 @@
 # Reprise du projet — 2026-10-29
 
-**Le site est en ligne sur https://phaness.fr en version 0.2.9** (2026-11-02), la version 0.2.10 (lecteur natif sur les quatre films) étant à téléverser, en HTTPS avec redirection depuis http, pages légales complètes. L'utilisateur a demandé cette mise en ligne, ce qui remplace la consigne précédente « GitHub uniquement ». Restent à tester : Safari sur iPhone, une vraie réservation, la réception sur contact@phaness.fr. Les durées de conservation écrites dans les pages restent à appliquer dans les outils (messagerie, agenda, Calendly).
+**Le site est en ligne sur https://phaness.fr en version 0.2.10** (2026-11-02), en HTTPS avec redirection depuis http, pages légales complètes. L'utilisateur a demandé cette mise en ligne, ce qui remplace la consigne précédente « GitHub uniquement ». Restent à tester : Safari sur iPhone, une vraie réservation, la réception sur contact@phaness.fr. Les durées de conservation écrites dans les pages restent à appliquer dans les outils (messagerie, agenda, Calendly).
 
 **Le site est en ligne sur https://phaness.fr** (thème 0.2.5, activé le 2026-11-02 par l’autre session). La révision 0.2.7 fusionne les correctifs 0.2.6 (redirection HTTPS, adresse du lien Calendly) et les projets légaux/protections de cette session. Elle n’est pas encore déployée. Le ZIP Windows 0.2.6 est antérieur à ces protections : le reconstruire après pull, sans perdre les médias non versionnés.
 
@@ -30,7 +30,7 @@ Les MP4 ne sont pas versionnés : ils sont sur le PC Windows, dans `videos/out/`
 | V3. Vidéos | Validés par l'utilisateur | 1080p dans `videos/out/` pour le site, 4K dans `videos/out-4k/` (non versionnés, sur le PC Windows). Le 4K est partiel en netteté sur les plans à caméra inclinée : voir `videos/REVIEW.md`. |
 | 6a. Recette | Validée hors médias et données manquantes | Mesures antérieures à la révision verte : mobile 98/100/100/100, ordinateur 100/100/100/100. Révision contrôlée visuellement à 390 et 1440 px ; refaire Lighthouse avec les médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
-| 7. Mise en ligne | Fait, thème 0.2.9 | Pour une mise à jour, voir `docs/MISE-EN-LIGNE.md`. Sous Windows, `npm test` échoue sur les liens symboliques, refusés par Windows : voir le journal. |
+| 7. Mise en ligne | Fait, thème 0.2.10 | Pour une mise à jour, voir `docs/MISE-EN-LIGNE.md`. Sous Windows, `npm test` échoue sur les liens symboliques, refusés par Windows : voir le journal. |
 
 ## Informations à recevoir
 
