@@ -7,7 +7,7 @@ import { loadNodeRuntime } from '@php-wasm/node';
 
 let php;
 const security = await readFile(new URL('../theme/inc/security.php', import.meta.url), 'utf8');
-const functions = await readFile(new URL('../theme/functions.php', import.meta.url), 'utf8');
+const functions = (await readFile(new URL('../theme/functions.php', import.meta.url), 'utf8')).replace(/\r\n/g, '\n');
 const booking = functions.slice(functions.indexOf('function phaness_booking_config()'), functions.indexOf('/**\n * Booking destination,'));
 const stubs = `define('ABSPATH', '/'); $hooks = array();
 function add_filter($name, $callback, $priority = 10) { global $hooks; $hooks[$name] = $callback; }

@@ -50,7 +50,7 @@ Décision du 2026-10-29 : le mythe reste une origine du nom interne. L'œuf et l
 
 - **Typographie :** Geist (licence OFL), auto-hébergée. Le logo est simplement le mot « phaness » écrit dans la police du site, en minuscules (validé).
 - **Style :** sobre et clair, grands arrondis et ombres douces. Espacements resserrés et échelle typographique commune : titres de section 52 px sur ordinateur / 32 px sur mobile, titres de cartes 24 / 22 px et texte courant 17 px. Les sections ont 72 px de padding vertical sur ordinateur et 48 px sur mobile. Le héros présente le texte à gauche et un cadre vidéo à droite, empilés sur mobile.
-- **Motion :** apparitions au défilement et micro-interactions conservées. Le shader WebGL n'est plus chargé. Vidéo de présentation avec commandes natives, sans lecture automatique ; respect de `prefers-reduced-motion`.
+- **Motion :** apparitions au défilement et micro-interactions conservées. Le shader WebGL n'est plus chargé. Les films de Nos réalisations démarrent seuls quand ils sont à l'écran, en silence, sauf si le visiteur demande moins d'animations. Vidéo de présentation avec commandes natives, sans lecture automatique ; respect de `prefers-reduced-motion`.
 
 ## Structure de la one-page
 

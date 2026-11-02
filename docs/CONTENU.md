@@ -173,7 +173,7 @@ Sans surtitre, introduction, légende descriptive ni mention sous la grille. Les
 | Expliquer et vendre | Comprendre la rénovation énergétique | expliquer-pac |
 | Accompagner | Utiliser une pompe à chaleur | accompagner-solaire |
 
-Chaque film a un bouton « Plein écran » (libellé accessible : « Voir en plein écran : » suivi du titre).
+Chaque film démarre seul à l'écran et a un bouton « Plein écran » (libellé accessible : « Voir en plein écran : » suivi du titre).
 
 Les clés de fichiers restent stables pour le poste de rendu séparé. Les films finaux devront correspondre aux nouveaux sujets avant publication ; les anciens sujets ne doivent pas être livrés sous ces nouveaux titres.
 

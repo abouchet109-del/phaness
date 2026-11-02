@@ -40,8 +40,7 @@ if (toggle && header) {
   });
 }
 
-// Demo videos: play on hover (fine pointers) or on click / tap, with a fullscreen button.
-const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+// Demo videos: play while on screen (silent, loaded only then), with a pause button and a fullscreen button.
 const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.ph-work__media').forEach((media) => {
   const video = media.querySelector('video');
@@ -55,18 +54,26 @@ document.querySelectorAll('.ph-work__media').forEach((media) => {
   };
   video.addEventListener('play', sync);
   video.addEventListener('pause', sync);
-  button.addEventListener('click', () => (video.paused ? play() : video.pause()));
-  if (canHover && !prefersReducedMotion) {
-    media.addEventListener('mouseenter', play);
-    media.addEventListener('mouseleave', () => {
-      if (document.fullscreenElement !== video) video.pause();
-    });
+  // A visitor's pause wins over autoplay until they press play again.
+  let pausedByVisitor = false;
+  button.addEventListener('click', () => {
+    pausedByVisitor = !video.paused;
+    if (video.paused) play();
+    else video.pause();
+  });
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    new IntersectionObserver(([entry]) => {
+      if (document.fullscreenElement === video) return;
+      if (!entry.isIntersecting) video.pause();
+      else if (!pausedByVisitor) play();
+    }, { threshold: 0.5 }).observe(media);
   }
 
   const full = media.querySelector('.ph-work__full');
   if (!full || !(video.requestFullscreen || video.webkitEnterFullscreen)) return;
   full.hidden = false;
   const watch = () => {
+    pausedByVisitor = false;
     video.currentTime = 0;
     play();
   };
@@ -79,9 +86,7 @@ document.querySelectorAll('.ph-work__media').forEach((media) => {
     }
   });
   video.addEventListener('fullscreenchange', () => {
-    const isFull = document.fullscreenElement === video;
-    video.controls = isFull;
-    if (!isFull && !media.matches(':hover')) video.pause();
+    video.controls = document.fullscreenElement === video;
   });
 });
 
