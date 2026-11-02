@@ -29,7 +29,7 @@ if ( ! $phaness_presentation_url && file_exists( get_theme_file_path( 'assets/vi
 		</div>
 		<div class="ph-presentation">
 			<?php if ( $phaness_presentation_url ) : ?>
-				<video class="ph-presentation__video" src="<?php echo $phaness_presentation_url; ?>"<?php echo $phaness_presentation_poster ? ' poster="' . $phaness_presentation_poster . '"' : ''; ?> controls playsinline preload="none" aria-label="Vidéo de présentation de Phaness"></video>
+				<video class="ph-presentation__video" src="<?php echo $phaness_presentation_url; ?>"<?php echo $phaness_presentation_poster ? ' poster="' . $phaness_presentation_poster . '"' : ''; ?> controls muted playsinline preload="none" aria-label="Vidéo de présentation de Phaness"></video>
 			<?php else : ?>
 				<div class="ph-presentation__placeholder" role="img" aria-label="Emplacement de la vidéo de présentation de Phaness">
 					<span class="ph-presentation__play" aria-hidden="true"></span>

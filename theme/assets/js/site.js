@@ -40,31 +40,33 @@ if (toggle && header) {
   });
 }
 
-// Demo videos: native player like the hero, playing while on screen (silent, loaded only then).
-const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if ('IntersectionObserver' in window && !prefersReducedMotion) {
-  document.querySelectorAll('.ph-work__video').forEach((video) => {
-    // A visitor's pause wins over autoplay until they press play again.
-    let pausedByVisitor = false;
-    let pausingOffScreen = false;
-    video.addEventListener('play', () => {
-      pausedByVisitor = false;
-    });
-    video.addEventListener('pause', () => {
-      if (!pausingOffScreen) pausedByVisitor = true;
-      pausingOffScreen = false;
-    });
-    new IntersectionObserver(([entry]) => {
-      if (document.fullscreenElement === video) return;
-      if (entry.isIntersecting) {
-        if (!pausedByVisitor) video.play().catch(() => {});
-      } else if (!video.paused) {
-        pausingOffScreen = true;
-        video.pause();
-      }
-    }, { threshold: 0.5 }).observe(video);
+// Videos: native player, started by resting the pointer on them. They keep playing after it leaves and pause off screen.
+const startsOnHover = matchMedia('(hover: hover) and (pointer: fine)').matches
+  && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.ph-presentation__video, .ph-work__video').forEach((video) => {
+  // A visitor's pause wins over hover until they press play again.
+  let pausedByVisitor = false;
+  let pausingOffScreen = false;
+  video.addEventListener('play', () => {
+    pausedByVisitor = false;
   });
-}
+  video.addEventListener('pause', () => {
+    if (!pausingOffScreen) pausedByVisitor = true;
+    pausingOffScreen = false;
+  });
+  if (startsOnHover) {
+    video.addEventListener('mouseenter', () => {
+      if (!pausedByVisitor) video.play().catch(() => {});
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting || video.paused || document.fullscreenElement === video) return;
+      pausingOffScreen = true;
+      video.pause();
+    }).observe(video);
+  }
+});
 
 // Sector tabs: the selected tab is the only tab in the normal tab sequence.
 document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
