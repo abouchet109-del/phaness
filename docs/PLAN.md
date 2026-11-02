@@ -14,11 +14,11 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | 5 | Animations, prise de RDV, pages légales, SEO | Sonnet | high | 4 | `theme/` | Calendly réel et huit liens vérifiés ; informations légales attendues |
 | 6a | Recette : audit Lighthouse, accessibilité, responsive | Haiku | low | 5 | `docs/RECETTE.md` | validée sans vidéos : mobile 98/100/100/100, ordinateur 100/100/100/100 ; mouvement réduit vérifié |
 | 6b | Corrections issues de la recette | Sonnet | medium | 6a | `theme/` | faites pour le périmètre hors vidéos ; voir RECETTE.md |
-| 7 | Mise en ligne sur IONOS | Sonnet | medium | 6b | `scripts/`, `docs/MISE-EN-LIGNE.md` | paquetage testé et ZIP de contrôle installé ; livraison finale attend médias et informations légales |
+| 7 | Mise en ligne sur IONOS | Sonnet | medium | 6b | `scripts/`, `docs/MISE-EN-LIGNE.md` | en ligne sur https://phaness.fr ; 0.2.6 à téléverser, informations légales attendues |
 
 ## Révision visuelle du 2026-10-29
 
-Complément du 2 novembre 2026, thème 0.2.6 : réécriture des deux pages légales avec identité EI, adresse et TVA fournies, champs non connus conservés ; information avant chargement Calendly, en-têtes de protection, fermeture commentaires/pingbacks, suppression Gravatar. SECURITE.md distingue le code des réglages IONOS/comptes non effectués. Finalisation juridique attend l’inventaire exact, les contrats et durées des traitements.
+Complément du 2 novembre 2026, thème 0.2.7 : réécriture des deux pages légales avec identité EI, adresse et TVA fournies, champs non connus conservés ; information avant chargement Calendly, en-têtes de protection, fermeture commentaires/pingbacks, suppression Gravatar. SECURITE.md distingue le code des réglages IONOS/comptes non effectués. Finalisation juridique attend l’inventaire exact, les contrats et durées des traitements.
 
 Demandée et implémentée : accroche « Donnez vie à vos idées en vidéo », surtitre gris, sous-titre utilisateur, palette verte, retrait des sections Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL devient un emplacement de vidéo de présentation. La promesse, les quatre offres, les secteurs et les réalisations sont conservés. Les descriptions historiques des étapes ci-dessous documentent la construction initiale ; les décisions actuelles sont dans `BRIEF.md`.
 

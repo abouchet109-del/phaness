@@ -4,7 +4,7 @@
 
 Décision du 2 novembre 2026 : l’activité Phaness est exploitée par Rafael DELBECQ ALMELA, entrepreneur individuel en micro-entreprise, SIREN 980 147 409 / RCS Pontoise, SIRET 980 147 409 00018. Adresse fournie : 2 bis rue de Curzay, 95880 Enghien-les-Bains. La franchise de TVA est retenue après réponse affirmative à la question sur ce régime. Messagerie IONOS et Google Meet confirmés ; type de compte Google/agenda et durées encore à préciser. Les anciennes mentions d’une entreprise porteuse appartenant à un associé sont remplacées par cette identité.
 
-Protection des données : textes légaux détaillés en version de travail, sans exonération générale de responsabilité pour une fuite. Information locale avant connexion Calendly avec choix explicite d’afficher les créneaux ; liens directs sans JS et contact email conservés. Aucune fonction d’analytics ajoutée. Protections du thème 0.2.6 et actions serveur/comptes séparées dans SECURITE.md ; hébergement réel non audité.
+Protection des données : textes légaux détaillés en version de travail, sans exonération générale de responsabilité pour une fuite. Information locale avant connexion Calendly avec choix explicite d’afficher les créneaux ; liens directs sans JS et contact email conservés. Aucune fonction d’analytics ajoutée. Protections du thème 0.2.7 et actions serveur/comptes séparées dans SECURITE.md ; hébergement réel non audité.
 
 ## Le projet
 

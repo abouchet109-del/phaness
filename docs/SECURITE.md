@@ -2,13 +2,15 @@
 
 État : protections du thème implémentées et contrôles locaux consignés dans RECETTE. Aucun accès au compte IONOS, à la messagerie ou à Calendly ; leur configuration n’a pas été modifiée ni certifiée. Un texte juridique ne transfère pas la responsabilité d’une faille aux visiteurs et ne garantit pas l’absence de piratage.
 
+La mise en ligne de 0.2.5 a été reçue via le commit 9d6db9d de l’autre session. Contrôle public limité : accueil HTTPS en 200 ; les nouveaux en-têtes de ce thème ne sont pas encore servis. La version 0.2.7 fusionnée est locale/Git, sans téléversement depuis ce Mac. Le ZIP du poste Windows doit être reconstruit après pull pour inclure ces changements ; ne pas confondre version poussée et version déployée.
+
 ## Informations confirmées et restant à fournir
 
 L’utilisateur fournit Rafael DELBECQ ALMELA, entrepreneur individuel en micro-entreprise, SIREN 980 147 409, SIRET 980 147 409 00018, RCS Pontoise et inscription RNE. Adresse professionnelle fournie pour publication : 2 bis rue de Curzay, 95880 Enghien-les-Bains, France. Contact : contact@phaness.fr ; téléphone 07 69 86 01 61. Il confirme la TVA non facturée en réponse à la question sur la franchise en base, Calendly, IONOS pour la messagerie et Google Meet. La mention 293 B est retenue pour le projet daté du 2 novembre 2026 ; vérifier son actualité lors d’une publication ultérieure, la recodification fiscale étant annoncée pour 2027. Le numéro TVA de la capture n’est pas présenté comme numéro actif.
 
 À compléter : type de compte Google (personnel ou Workspace), agenda éventuellement synchronisé, stockage des dossiers clients, accès de maintenance, entité IONOS du contrat, localisation des données, contrats de sous-traitance, garanties de transfert, durées effectives, sauvegardes, clientèle exclusivement professionnelle ou non. L’usage de Google Meet ne prouve pas qu’un contrat Workspace/DPA professionnel a été accepté.
 
-## Protections incluses dans le thème 0.2.6
+## Protections incluses dans le thème 0.2.7
 
 - Aucune collecte par formulaire local, aucun compte client, paiement ou dépôt de fichiers. Aucun traceur publicitaire ou statistique ajouté par le thème. Polices et médias du thème locaux ; avatars Gravatar désactivés.
 - Réservation limitée à l’hôte exact calendly.com en HTTPS, sans identifiants dans l’URL ni port autre que 443. Le premier clic ouvre une information locale ; l’iframe ne reçoit une URL qu’après « Afficher les créneaux ». Le lien externe et les liens sans JavaScript ouvrent directement Calendly. Le choix n’est pas mémorisé et ne vaut pas consentement aux cookies facultatifs du prestataire. Les réglages du fournisseur ne sont pas masqués.

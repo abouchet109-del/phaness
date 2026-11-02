@@ -111,9 +111,14 @@ Sur `http://127.0.0.1:9401/`, lancer Lighthouse avec les profils mobile et ordin
 2. Renseigner email, téléphone, URL Cal.com et informations légales ; confirmer nombre de retours, voix off et sous-titres.
 3. Construire le vrai ZIP, l'installer sur une instance vierge et contrôler les quatre films et la réservation réelle.
 4. Installer sur IONOS, vérifier HTTPS et refaire les audits sur le site publié.
+
+## Mesures en ligne du 2026-11-02 (thème 0.2.5, avec vidéos)
+
+Lighthouse 13 sur https://phaness.fr : mobile 90/100/100/92 (LCP 2,0 s, blocage 60 ms, CLS 0), ordinateur 98/100/100/92 (LCP 0,7 s, blocage 0 ms). Poids initial 273 Ko, les vidéos ne se chargent qu'à la demande. SEO limité par un lien sans adresse, corrigé en 0.2.6. La performance mobile reste sous l'objectif de 95 : à regarder après le téléversement de 0.2.6. Non testé : Safari sur iPhone, réservation réelle sur Calendly.
+
 # Complément sécurité et pages légales — 2 novembre 2026
 
-Thème 0.2.6. Suite complète : 15 tests réussis, dont trois groupes PHP 8.3 vérifiant les en-têtes, le retrait sélectif des pingbacks et dix configurations de réservation valides/hostiles. Les politiques déjà présentes sont préservées. Syntaxe JS valide ; 18 fichiers PHP contrôlés. Les premières tentatives du nouveau harnais PHP nécessitaient un identifiant de processus WASM et l’autorisation d’écoute locale ; corrigées avant la suite finale.
+Thème 0.2.7 après fusion des correctifs 0.2.6 du poste de déploiement. Suite complète : 15 tests réussis, dont trois groupes PHP 8.3 vérifiant les en-têtes, le retrait sélectif des pingbacks et dix configurations de réservation valides/hostiles. Les politiques déjà présentes sont préservées. Syntaxe JS valide ; 18 fichiers PHP contrôlés. Les premières tentatives du nouveau harnais PHP nécessitaient un identifiant de processus WASM et l’autorisation d’écoute locale ; corrigées avant la suite finale.
 
 Chromium : 74 contrôles réussis à 1440 et 390 px. Huit boutons, information locale sans requête externe, choix explicite avant iframe, absence de Referer, fermeture/déchargement, liens sans JS, deux pages légales avec identité fournie et sans débordement, console sans exception, REST et administration toujours disponibles. Les contrôles répétés utilisent un calendrier simulé sans réservation ; un contrôle séparé charge le vrai événement Calendly sur mobile, HTTP 200, sans soumission. Après chargement, le focus reste sur Fermer pour conserver la fermeture native par Échap. Captures et résultats : `docs/captures/securite-2026-11-02/`.
 

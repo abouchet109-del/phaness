@@ -6,6 +6,8 @@ Ce guide concerne une installation WordPress administrée par l'équipe. Les éc
 
 **Complément du 2 novembre 2026 :** les pages légales sont des projets avec identité, adresse, TVA, messagerie IONOS et Google Meet renseignés par l’utilisateur. Restent les contrats et pratiques réelles de traitement, dont les durées et sauvegardes. L’identité EI est définie dans PHANESS_LEGAL_NAME. Consulter [SECURITE.md](SECURITE.md) pour les informations à réunir, les réglages de sécurité IONOS/WordPress/comptes et la procédure d’incident. Aucun de ces réglages externes n’est effectué par une mise à jour du thème.
 
+La branche fusionnée est en version 0.2.7 : elle conserve la redirection HTTPS et le lien Calendly de 0.2.6, mais l’ancien ZIP de l’autre PC ne contient pas les nouveaux textes/protections. Après finalisation des champs inconnus, faire pull sur le PC qui dispose des médias, sauvegarder le site et reconstruire le ZIP avant téléversement. La version en ligne n’a pas été remplacée depuis ce Mac.
+
 Le thème 0.2.6 ajoute des en-têtes pour les documents publics : vérifier leur présence après cache/CDN et leur compatibilité avec le site et l’éditeur, sans écraser une politique serveur plus stricte. Calendly se charge après un choix dans une information locale ; les liens sans JavaScript ouvrent directement Calendly. Vérifier les cookies du site final et des extensions, ainsi que les politiques du compte Calendly. Ne pas déployer Playground ou le clone Git comme site public.
 
 - Avoir un domaine et une offre d'hébergement IONOS compatible avec WordPress.
@@ -67,3 +69,7 @@ Le modèle `front-page.html` du thème construit la page d'accueil. Après activ
 - Dans **Extensions**, garder les extensions nécessaires à l'hébergement, à la sécurité et aux sauvegardes. Désactiver seulement celles qui sont inutilisées ou ajoutent des fonctions redondantes, après vérification de leur rôle.
 
 Les identifiants IONOS et WordPress, les choix de contrat et l'acceptation des conditions restent à saisir par le propriétaire dans ses propres comptes.
+
+## Mises à jour du thème
+
+Dans `/wp-admin/`, **Apparence → Thèmes → Ajouter un thème → Téléverser un thème** : choisir le nouveau `dist/phaness.zip`, puis **Remplacer le thème installé par celui que vous avez téléversé**. Le compte administrateur WordPress est distinct du compte IONOS. Les adresses du site sont en `https://phaness.fr` et le thème redirige les visites en http.
