@@ -1,5 +1,6 @@
 node_modules/
 videos/out/
+videos/out-4k/
 .DS_Store
 Thumbs.db
 desktop.ini

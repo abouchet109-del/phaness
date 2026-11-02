@@ -95,4 +95,4 @@ sh contact-sheet.sh mon-film
 
 Cette commande écrit `D:/Temp/hyperframes/mon-film/planche.jpg`, 16 images réparties sur le film. Consignez ensuite durée, poids, CRF, écarts dans `mon-film/REVIEW.md` et votre section de `videos/REVIEW.md`, si la coordinatrice ne s'en charge pas.
 
-Passage en 4K plus tard : `hf.sh render --resolution landscape-4k`. Tout est vectoriel et en CSS, sans image matricielle.
+Passage en 4K : `sh render-4k.sh [film]` écrit `out-4k/`. Les plans à caméra inclinée y gagnent peu en netteté (voir `REVIEW.md`).

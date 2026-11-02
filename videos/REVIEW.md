@@ -45,3 +45,9 @@ La feuille « Former » : le personnage reste petit à côté des marches. Avec 
 | `accompagner-solaire` | 30 s | 5,3 Mo | 13,4 s | `accompagner-solaire/REVIEW.md` |
 
 Contrôlés sur images extraites, pas en lecture continue. Validation par l'utilisateur à venir.
+
+## Rendu 4K (2026-11-02)
+
+`sh render-4k.sh` écrit `out-4k/` (non versionné) : `presentation-phaness` 18,9 Mo, `former-electricite` 20,8 Mo, `securiser-usine` 15,5 Mo, `expliquer-pac` 25,2 Mo, `accompagner-solaire` 27,5 Mo. 3840 × 2160, 25 i/s, durées conformes, muets. Le site garde les fichiers 1080p de `out/`.
+
+Netteté mesurée contre le 1080p agrandi : les plans à plat gagnent vraiment en détail (rapport 3 à 7 sur l'énergie des contours), les plans où la caméra est inclinée très peu (1,5 à 2), et le texte y reste aussi doux qu'un 1080p agrandi. La cause probable est la rastérisation des couches 3D inclinées par Chrome, non confirmée. Un essai avec `zoom: 2` et une composition en 3840 × 2160 change le cadrage : écarté.

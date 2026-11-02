@@ -19,7 +19,7 @@ Les MP4 ne sont pas versionnés : ils sont sur le PC Windows, dans `videos/out/`
 | 3. Héros vidéo | Fait | Le film `presentation-phaness` du thème s'affiche ; `PHANESS_PRESENTATION_VIDEO_URL` reste possible pour en changer. Le prototype WebGL reste archivé, sans chargement sur le site. |
 | 4. Mise en page | Fait | Captures de contrôle à 1440 et 390 px dans docs/captures/recette-2026-10-29/. |
 | 5. Finitions | Code vérifié | Calendly réel affiché et huit liens vérifiés. Email et téléphone renseignés ; informations légales encore attendues. |
-| V3. Vidéos | Rendus en 1080p, à relire | Cinq films dans `videos/out/` (`videos/REVIEW.md`). Contrôlés sur images extraites, pas en lecture continue. Reste la validation de l'utilisateur et le 4K si le budget le permet. |
+| V3. Vidéos | Validés par l'utilisateur | 1080p dans `videos/out/` pour le site, 4K dans `videos/out-4k/` (non versionnés, sur le PC Windows). Le 4K est partiel en netteté sur les plans à caméra inclinée : voir `videos/REVIEW.md`. |
 | 6a. Recette | Validée hors médias et données manquantes | Mesures antérieures à la révision verte : mobile 98/100/100/100, ordinateur 100/100/100/100. Révision contrôlée visuellement à 390 et 1440 px ; refaire Lighthouse avec les médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
 | 7. Mise en ligne | ZIP de livraison construit | `dist/phaness.zip` contient les cinq films, mais pas encore les informations légales. Sous Windows, `npm test` donne 9 sur 12 : Windows refuse les liens symboliques de trois tests. Installation sur WordPress vierge à refaire avec ce ZIP, puis IONOS. |
