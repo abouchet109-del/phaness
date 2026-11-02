@@ -40,7 +40,7 @@ if (toggle && header) {
   });
 }
 
-// Demo videos: play on hover (fine pointers) or on click / tap.
+// Demo videos: play on hover (fine pointers) or on click / tap, with a fullscreen button.
 const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
 const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.ph-work__media').forEach((media) => {
@@ -58,8 +58,31 @@ document.querySelectorAll('.ph-work__media').forEach((media) => {
   button.addEventListener('click', () => (video.paused ? play() : video.pause()));
   if (canHover && !prefersReducedMotion) {
     media.addEventListener('mouseenter', play);
-    media.addEventListener('mouseleave', () => video.pause());
+    media.addEventListener('mouseleave', () => {
+      if (document.fullscreenElement !== video) video.pause();
+    });
   }
+
+  const full = media.querySelector('.ph-work__full');
+  if (!full || !(video.requestFullscreen || video.webkitEnterFullscreen)) return;
+  full.hidden = false;
+  const watch = () => {
+    video.currentTime = 0;
+    play();
+  };
+  full.addEventListener('click', () => {
+    // iOS Safari only offers fullscreen on the video element, through this legacy call.
+    if (video.requestFullscreen) video.requestFullscreen().then(watch).catch(() => {});
+    else {
+      watch();
+      video.webkitEnterFullscreen();
+    }
+  });
+  video.addEventListener('fullscreenchange', () => {
+    const isFull = document.fullscreenElement === video;
+    video.controls = isFull;
+    if (!isFull && !media.matches(':hover')) video.pause();
+  });
 });
 
 // Sector tabs: the selected tab is the only tab in the normal tab sequence.

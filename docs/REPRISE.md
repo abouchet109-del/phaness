@@ -1,6 +1,6 @@
 # Reprise du projet — 2026-10-29
 
-Dernière mise à jour (thème 0.2.4, 2026-11-02) : les cinq films V3 sont rendus en 1080p et branchés sur le site : le film de marque dans le héros, les quatre films métier dans Nos réalisations. Le ZIP de livraison se construit (24,3 Mo). Restent les informations légales, la relecture des films par l'utilisateur, le 4K si le budget le permet, puis la mise en ligne.
+Dernière mise à jour (thème 0.2.5, 2026-11-02) : les films de Nos réalisations ont un bouton plein écran. Les cinq films V3 sont rendus en 1080p et branchés sur le site : le film de marque dans le héros, les quatre films métier dans Nos réalisations. Le ZIP de livraison se construit (24,3 Mo). Restent les informations légales, la relecture des films par l'utilisateur, le 4K si le budget le permet, puis la mise en ligne.
 
 Révision précédente (thème 0.2.3) : les huit boutons de rendez-vous/contact utilisent le lien Calendly fourni : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Module réel vérifié sur ordinateur et mobile, chargement au clic uniquement, fermeture et retour du focus, lien d’ouverture séparée et fonctionnement sans JavaScript. Le service Cal.com a été remplacé par Calendly. Email corrigé : contact@phaness.fr.
 
