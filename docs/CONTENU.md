@@ -173,7 +173,7 @@ Sans surtitre, introduction, légende descriptive ni mention sous la grille. Les
 | Expliquer et vendre | Comprendre la rénovation énergétique | expliquer-pac |
 | Accompagner | Utiliser une pompe à chaleur | accompagner-solaire |
 
-Chaque film démarre au survol de la souris, avec le lecteur natif du navigateur, comme le film du héros.
+Chaque film démarre au survol de la souris, avec le lecteur natif du navigateur, comme le film du héros. Un seul tourne à la fois : le précédent s'arrête là où il était et reprend au survol.
 
 Les clés de fichiers restent stables pour le poste de rendu séparé. Les films finaux devront correspondre aux nouveaux sujets avant publication ; les anciens sujets ne doivent pas être livrés sous ces nouveaux titres.
 

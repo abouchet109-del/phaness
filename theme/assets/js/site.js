@@ -40,30 +40,34 @@ if (toggle && header) {
   });
 }
 
-// Videos: native player, started by resting the pointer on them. They keep playing after it leaves and pause off screen.
+// Videos: native player, started by resting the pointer on them. One plays at a time; the others stop where they were.
+// They keep playing after the pointer leaves and pause off screen.
 const startsOnHover = matchMedia('(hover: hover) and (pointer: fine)').matches
   && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('.ph-presentation__video, .ph-work__video').forEach((video) => {
-  // A visitor's pause wins over hover until they press play again.
-  let pausedByVisitor = false;
-  let pausingOffScreen = false;
+const videos = [...document.querySelectorAll('.ph-presentation__video, .ph-work__video')];
+const pausedBySite = new WeakSet();
+const pausedByVisitor = new WeakSet(); // A visitor's pause wins over hover until they press play again.
+const pauseQuietly = (video) => {
+  if (video.paused) return;
+  pausedBySite.add(video);
+  video.pause();
+};
+videos.forEach((video) => {
   video.addEventListener('play', () => {
-    pausedByVisitor = false;
+    pausedByVisitor.delete(video);
+    videos.filter((other) => other !== video).forEach(pauseQuietly);
   });
   video.addEventListener('pause', () => {
-    if (!pausingOffScreen) pausedByVisitor = true;
-    pausingOffScreen = false;
+    if (!pausedBySite.delete(video) && !video.ended) pausedByVisitor.add(video);
   });
   if (startsOnHover) {
     video.addEventListener('mouseenter', () => {
-      if (!pausedByVisitor) video.play().catch(() => {});
+      if (!pausedByVisitor.has(video)) video.play().catch(() => {});
     });
   }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting || video.paused || document.fullscreenElement === video) return;
-      pausingOffScreen = true;
-      video.pause();
+      if (!entry.isIntersecting && document.fullscreenElement !== video) pauseQuietly(video);
     }).observe(video);
   }
 });
