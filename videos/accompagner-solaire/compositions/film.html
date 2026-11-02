@@ -1,77 +1,527 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f7fb; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    .note { color: var(--ink-2); font-weight: 420; }
+
+    /* Step discs sit above the thread, which runs underneath them. */
+    .disc { position: absolute; left: 0; top: 0; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; background: var(--green); color: #fff; }
+    .disc span { position: absolute; left: 0; right: 0; top: 14px; text-align: center; font-size: 38px; font-weight: 600; line-height: 44px; }
+    .disc svg { position: absolute; inset: 0; }
+    .disc path { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* The wall controller: the one object that travels. Direct child of #world, animated in x, y, z, scale. */
+    #dev { position: absolute; left: 0; top: 0; width: 900px; height: 760px; transform-style: preserve-3d; transform-origin: 50% 50%; }
+    .dev-plate { position: absolute; inset: -22px; border-radius: 58px; background: #c9d4cd; transform: translateZ(-34px); }
+    .dev-side { position: absolute; inset: 0; border-radius: 44px; background: #0d1a14; }
+    .dev-face { position: absolute; inset: 0; border-radius: 44px; background: var(--ink); }
+    #dev-sh { position: absolute; left: 0; top: 0; width: 900px; height: 760px; border-radius: 58px; background: rgba(20, 37, 29, 0.3); filter: blur(38px); transform-origin: 50% 50%; }
+    #led { position: absolute; left: 442px; top: 739px; width: 16px; height: 10px; border-radius: 5px; background: #52615a; }
+
+    /* The screen, 840 x 700. Styled by class only: prints on the sheets are clones of these layers. */
+    .screen { position: absolute; left: 30px; top: 30px; width: 840px; height: 700px; border-radius: 20px; overflow: hidden; background: #fff; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .scr { position: absolute; left: 0; top: 0; width: 840px; height: 700px; background: #fff; }
+    .scr > * { position: absolute; }
+    .ui { font-size: 30px; font-weight: 500; letter-spacing: -0.01em; line-height: 36px; white-space: nowrap; }
+    .ui.dim { color: var(--ink-2); font-weight: 440; }
+    .ui.big { font-size: 52px; line-height: 60px; font-weight: 540; letter-spacing: -0.025em; }
+    .ui.head { font-size: 38px; line-height: 44px; font-weight: 580; letter-spacing: -0.02em; }
+    .rule { left: 36px; width: 768px; height: 3px; background: var(--mist); }
+    .roll { overflow: hidden; }
+    .roll-set > div { text-align: inherit; }
+
+    .chip { padding: 0 20px; height: 48px; line-height: 46px; border-radius: 24px; border: 3px solid var(--green); color: var(--green); box-sizing: border-box; }
+    .state-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--green); }
+
+    .tile { top: 430px; width: 240px; height: 230px; border-radius: 24px; background: #eef2ef; }
+    .tile > * { position: absolute; }
+    .tile svg { left: 28px; top: 28px; }
+    .tile svg * { fill: none; stroke: var(--ink); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .tile .ui { left: 28px; top: 166px; }
+    .tile.on { background: var(--green); color: #fff; }
+    .tile.on svg * { stroke: #fff; }
+    .home-ic { left: 36px; top: 26px; }
+    .home-ic * { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .dial { left: 0; top: 0; }
+    .dial * { fill: none; stroke-linecap: round; }
+    .arm { left: 300px; top: 390px; width: 0; height: 0; transform-origin: 0 0; }
+    .knob { position: absolute; left: -28px; top: -238px; width: 56px; height: 56px; border-radius: 50%; background: #fff; border: 7px solid var(--green); box-sizing: border-box; }
+    .btn { left: 580px; top: 560px; width: 224px; height: 96px; border-radius: 20px; background: var(--ink); color: #fff; text-align: center; line-height: 96px; }
+    .btn-fill { left: 580px; top: 560px; width: 224px; height: 96px; border-radius: 20px; background: var(--green); color: #fff; text-align: center; line-height: 96px; }
+    .saved { left: 180px; top: 626px; display: flex; align-items: center; gap: 12px; color: var(--green); }
+
+    .day { left: 40px; width: 40px; text-align: center; }
+    .track { left: 104px; width: 700px; height: 34px; border-radius: 8px; background: var(--mist); overflow: hidden; }
+    .blk { position: absolute; top: 0; height: 34px; background: var(--green); transform-origin: 0 50%; }
+    .now { left: 643px; top: 148px; width: 4px; height: 352px; background: var(--ink); border-radius: 2px; transform-origin: 50% 0; }
+    .sel { left: 28px; width: 788px; height: 50px; border-radius: 12px; border: 4px solid var(--ink); box-sizing: border-box; }
+    .sw { width: 30px; height: 30px; border-radius: 7px; }
+    .detail { left: 36px; top: 586px; width: 768px; height: 84px; border-radius: 18px; background: #eef2ef; line-height: 84px; text-indent: 28px; }
+    .detail b { font-weight: 600; }
+
+    /* Finger and tap ring, in screen coordinates. */
+    .touch { left: 0; top: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: rgba(20, 37, 29, 0.16); border: 2px solid rgba(20, 37, 29, 0.42); box-sizing: border-box; }
+    #ripple { left: 0; top: 0; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 4px solid var(--green); box-sizing: border-box; }
+    .screen > #touch, .screen > #ripple, .screen > #wipe, .screen > #off { position: absolute; }
+    #wipe { left: 0; top: 0; width: 840px; height: 700px; background: var(--green); }
+    #off { left: 0; top: 0; width: 840px; height: 700px; background: var(--ink); }
+    .touch-k { position: absolute; left: -38px; top: -248px; width: 76px; height: 76px; border-radius: 50%; background: rgba(20, 37, 29, 0.16); border: 2px solid rgba(20, 37, 29, 0.42); box-sizing: border-box; }
+
+    /* Print: what the controller leaves on the sheet when it takes off. */
+    .print { width: 900px; height: 760px; border-radius: 44px; background: var(--mist); }
+    .print .screen { background: #fff; }
+    .print .mark { position: absolute; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; border: 5px solid #fff; box-sizing: border-box; }
+
+    #curve-dash { stroke-dasharray: 3 16; }
   </style>
-  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="26" data-layout-allow-overlap>
-    <canvas id="film-canvas" width="1920" height="1080" data-layout-allow-overflow></canvas>
+  <div id="root" data-composition-id="film" data-width="1920" data-height="1080" data-duration="30" data-layout-allow-overlap data-layout-allow-overflow>
+    <div id="lens" data-layout-allow-overflow><div id="stage" data-layout-allow-overflow>
+      <div id="world" data-layout-allow-overflow>
+        <div class="ph-table" data-layout-allow-overflow></div>
 
-    <div class="ph-layer">
-      <!-- opening -->
-      <div class="ph-intro">
-        <div id="kicker" class="ph-kicker"><i></i><span>Accompagner</span></div>
-        <div id="title" class="ph-title">Votre installation solaire</div>
+        <!-- 0: the house -->
+        <div class="ph-sheet" id="s0" style="left: 240px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-tag note" id="t0a" style="left: 120px; top: 170px">Pompe à chaleur air-eau</div>
+          <div class="ph-h1" id="t0" style="left: 120px; top: 230px; width: 560px">Premiers réglages</div>
+          <div class="ph-body" id="b0" style="left: 120px; top: 470px; width: 740px">Votre appareil est en service.<br />Le confort se règle depuis<br />la commande d’ambiance.</div>
+          <svg width="1920" height="1080" style="left: 0; top: 0" data-layout-allow-overflow>
+            <path id="h-fill" d="M 1270 860 L 1270 449 L 1500 250 L 1730 449 L 1730 860 Z" fill="#eef2ef" />
+            <path class="ph-line h-s" d="M 930 860 L 1840 860" stroke="#14251d" stroke-width="6" />
+            <path class="ph-line h-s" d="M 1205 505 L 1500 250 L 1795 505" stroke="#14251d" stroke-width="6" />
+            <path class="ph-line h-s" d="M 1270 455 L 1270 860" stroke="#14251d" stroke-width="6" />
+            <path class="ph-line h-s" d="M 1730 455 L 1730 860" stroke="#14251d" stroke-width="6" />
+            <g id="unit">
+              <rect x="990" y="670" width="220" height="190" rx="12" fill="#fff" stroke="#14251d" stroke-width="6" />
+              <circle cx="1100" cy="765" r="66" fill="none" stroke="#14251d" stroke-width="5" />
+              <g id="fan">
+                <path d="M 1100 765 C 1078 735 1090 712 1110 708 C 1122 730 1118 750 1100 765 Z" fill="#14251d" />
+                <path d="M 1100 765 C 1136 770 1148 792 1138 810 C 1114 811 1098 790 1100 765 Z" fill="#14251d" />
+                <path d="M 1100 765 C 1086 798 1062 800 1048 786 C 1058 764 1080 758 1100 765 Z" fill="#14251d" />
+              </g>
+            </g>
+            <g id="rad">
+              <rect class="rad-b" x="1356" y="664" width="24" height="136" rx="10" fill="#c9d4cd" />
+              <rect class="rad-b" x="1390" y="664" width="24" height="136" rx="10" fill="#c9d4cd" />
+              <rect class="rad-b" x="1424" y="664" width="24" height="136" rx="10" fill="#c9d4cd" />
+              <rect class="rad-b" x="1458" y="664" width="24" height="136" rx="10" fill="#c9d4cd" />
+              <rect class="rad-b" x="1492" y="664" width="24" height="136" rx="10" fill="#c9d4cd" />
+            </g>
+            <rect id="wall-print" x="1540" y="470" width="120" height="100" rx="10" fill="#dde5df" />
+          </svg>
+        </div>
+
+        <!-- 1: access -->
+        <div class="ph-sheet" id="s1" style="left: 2400px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t1" style="left: 120px; top: 250px; width: 660px">Accéder au chauffage</div>
+          <div class="ph-body" id="b1" style="left: 120px; top: 490px; width: 660px">Depuis l’accueil, touchez<br />la vignette Chauffage.</div>
+          <div class="ph-tag note" id="n1" style="left: 120px; top: 920px">Interface fictive, valeurs d’exemple</div>
+          <div class="print" id="pr1" style="left: 880px; top: 160px"><div class="screen"></div></div>
+        </div>
+
+        <!-- 2: setpoint -->
+        <div class="ph-sheet" id="s2" style="left: 4560px; top: 240px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t2" style="left: 1020px; top: 250px; width: 620px">Régler la consigne</div>
+          <div class="ph-body" id="b2" style="left: 1020px; top: 490px; width: 700px">Faites glisser le curseur<br />jusqu’à la température souhaitée.</div>
+          <div class="ph-tag note" id="n2" style="left: 1020px; top: 920px">Interface fictive, valeurs d’exemple</div>
+          <div class="print" id="pr2" style="left: 60px; top: 160px"><div class="screen"></div></div>
+        </div>
+
+        <!-- 3: schedule -->
+        <div class="ph-sheet" id="s3" style="left: 4560px; top: 1680px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t3a" style="left: 120px; top: 250px">Consulter</div>
+          <div class="ph-h1" id="t3b" style="left: 120px; top: 352px">le programme</div>
+          <div class="ph-body" id="b3" style="left: 120px; top: 490px; width: 700px">Repérez les plages de confort<br />et de réduit, jour par jour.</div>
+          <div class="ph-tag note" id="n3" style="left: 120px; top: 920px">Interface fictive, valeurs d’exemple</div>
+          <div class="print" id="pr3" style="left: 880px; top: 160px"><div class="screen"></div></div>
+        </div>
+
+        <!-- 4: regulation. The thread becomes the room temperature. -->
+        <div class="ph-sheet" id="s4" style="left: 2400px; top: 1680px" data-layout-allow-overflow>
+          <div class="ph-h1" id="t4" style="left: 1020px; top: 250px">Laisser faire</div>
+          <div class="ph-body" id="b4" style="left: 1020px; top: 378px; width: 780px">La régulation ajuste le chauffage selon<br />votre consigne et votre programme.</div>
+          <svg id="dash-svg" width="1920" height="1080" style="left: 0; top: 0" data-layout-allow-overflow>
+            <path id="curve-dash" class="ph-line" d="M 1000 640 L 1800 640" stroke="#52615a" stroke-width="5" />
+          </svg>
+          <div class="ph-tag" id="l-set" style="right: 120px; top: 586px">Consigne</div>
+          <div class="ph-tag note" id="l-room" style="left: 1310px; top: 760px">Température de la pièce</div>
+          <div class="ph-tag note" id="n4" style="left: 1020px; top: 920px">Exemple : la durée varie selon le logement.</div>
+        </div>
+
+        <!-- Thread above the sheets, under the discs and the controller. -->
+        <svg class="ph-layer" width="6800" height="3000" style="transform: translateZ(2px)" data-layout-allow-overflow>
+          <path id="thread" class="ph-thread" />
+        </svg>
+        <div id="head" class="ph-head" style="transform: translateZ(3px)"></div>
+
+        <div class="disc" id="d1"><span>1</span><svg width="72" height="72"><path d="M 22 37 L 32 47 L 51 26" /></svg></div>
+        <div class="disc" id="d2"><span>2</span><svg width="72" height="72"><path d="M 22 37 L 32 47 L 51 26" /></svg></div>
+        <div class="disc" id="d3"><span>3</span><svg width="72" height="72"><path d="M 22 37 L 32 47 L 51 26" /></svg></div>
+        <div class="disc" id="d4"><span>4</span><svg width="72" height="72"><path d="M 22 37 L 32 47 L 51 26" /></svg></div>
+
+        <div id="dev-sh"></div>
+        <div id="dev" data-layout-allow-overflow>
+          <div class="dev-plate"></div>
+          <div class="dev-side" style="transform: translateZ(-24px)"></div>
+          <div class="dev-side" style="transform: translateZ(-16px)"></div>
+          <div class="dev-side" style="transform: translateZ(-8px)"></div>
+          <div class="dev-face">
+            <div id="led"></div>
+            <div class="screen" id="screen" data-layout-allow-overflow>
+
+              <!-- Home -->
+              <div class="scr scr-home">
+                <div class="ui dim" style="left: 36px; top: 28px">Mardi 18 h 30</div>
+                <div class="ui chip" style="right: 36px; top: 22px">Auto</div>
+                <div class="ui dim" style="left: 36px; top: 92px">Température de la pièce</div>
+                <div class="roll amb" style="left: 32px; top: 122px; width: 350px; height: 190px; font-size: 170px; line-height: 190px; font-weight: 520; letter-spacing: -0.04em">
+                  <div class="roll-set"><div>18,5</div><div>19,0</div><div>19,5</div><div>20,0</div></div>
+                </div>
+                <div class="ui" style="left: 384px; top: 158px; font-size: 56px; line-height: 60px; font-weight: 500">°C</div>
+                <div class="ui" style="left: 36px; top: 322px; font-size: 38px; line-height: 44px"><span class="ui-set-a">Consigne 19,0 °C</span></div>
+                <div class="ui set-b" style="left: 36px; top: 322px; font-size: 38px; line-height: 44px">Consigne 20,0 °C</div>
+                <div class="state-dot" style="left: 524px; top: 335px"></div>
+                <div class="ui state-a" style="left: 554px; top: 326px">Chauffage actif</div>
+                <div class="ui state-b" style="left: 554px; top: 326px">Consigne atteinte</div>
+                <div class="tile tile-heat" style="left: 36px">
+                  <svg width="72" height="72" viewBox="0 0 72 72"><path d="M 10 14 H 62 V 54 H 10 Z M 23 14 V 54 M 36 14 V 54 M 49 14 V 54 M 18 54 V 64 M 54 54 V 64" /></svg>
+                  <div class="ui">Chauffage</div>
+                </div>
+                <div class="tile" style="left: 300px">
+                  <svg width="72" height="72" viewBox="0 0 72 72"><path d="M 36 8 C 52 28 58 36 58 44 A 22 22 0 0 1 14 44 C 14 36 20 28 36 8 Z" /></svg>
+                  <div class="ui">Eau chaude</div>
+                </div>
+                <div class="tile" style="left: 564px">
+                  <svg width="72" height="72" viewBox="0 0 72 72"><path d="M 8 20 H 64 M 8 52 H 64" /><circle cx="26" cy="20" r="9" fill="#eef2ef" /><circle cx="46" cy="52" r="9" fill="#eef2ef" /></svg>
+                  <div class="ui">Réglages</div>
+                </div>
+              </div>
+
+              <!-- Heating: setpoint dial -->
+              <div class="scr scr-heat">
+                <svg class="home-ic" width="52" height="52" viewBox="0 0 52 52"><path d="M 8 26 L 26 9 L 44 26 M 14 22 V 43 H 38 V 22" /></svg>
+                <div class="ui head" style="left: 104px; top: 30px">Chauffage</div>
+                <div class="ui dim" style="right: 36px; top: 34px">18 h 30</div>
+                <div class="rule" style="top: 92px"></div>
+                <svg class="dial" width="840" height="700" viewBox="0 0 840 700">
+                  <g class="ticks" stroke="#c9d4cd" stroke-width="4"></g>
+                  <path d="M 151.5 538.5 A 210 210 0 1 1 448.5 538.5" stroke="#dde5df" stroke-width="22" />
+                  <path class="arc" d="M 151.5 538.5 A 210 210 0 0 1 300 180" stroke="#247855" stroke-width="22" />
+                </svg>
+                <div class="ui dim" style="left: 200px; width: 200px; top: 272px; text-align: center">Consigne</div>
+                <div class="roll setp" style="left: 136px; top: 307px; width: 270px; height: 150px; font-size: 118px; line-height: 150px; font-weight: 540; letter-spacing: -0.04em; text-align: center">
+                  <div class="roll-set"><div>19,0</div><div>19,5</div><div>20,0</div></div>
+                </div>
+                <div class="ui" style="left: 404px; top: 338px; font-size: 40px; line-height: 44px">°C</div>
+                <div class="ui dim" style="left: 96px; top: 556px">18</div>
+                <div class="ui dim" style="left: 472px; top: 556px">22</div>
+                <div class="ui saved" style="font-weight: 560">
+                  <svg width="36" height="36" viewBox="0 0 36 36"><path d="M 7 19 L 15 27 L 29 10" fill="none" stroke="#247855" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span>Enregistrée</span>
+                </div>
+                <div class="arm"><div class="knob"></div><div class="touch-k"></div></div>
+                <div class="ui dim" style="left: 580px; top: 190px">Pièce</div>
+                <div class="ui big" style="left: 580px; top: 228px">18,5 °C</div>
+                <div class="ui dim" style="left: 580px; top: 330px">Mode</div>
+                <div class="ui big" style="left: 580px; top: 368px">Auto</div>
+                <div class="ui btn" style="font-weight: 540">Programme</div>
+                <div class="ui btn-fill" style="font-weight: 540">Programme</div>
+              </div>
+
+              <!-- Schedule: week grid -->
+              <div class="scr scr-prog">
+                <svg class="home-ic" width="52" height="52" viewBox="0 0 52 52"><path d="M 8 26 L 26 9 L 44 26 M 14 22 V 43 H 38 V 22" /></svg>
+                <div class="ui head" style="left: 104px; top: 30px">Programme</div>
+                <div class="ui dim" style="right: 36px; top: 34px">18 h 30</div>
+                <div class="rule" style="top: 92px"></div>
+                <div class="ui dim" style="left: 250px; width: 60px; top: 106px; text-align: center">6 h</div>
+                <div class="ui dim" style="left: 414px; width: 80px; top: 106px; text-align: center">12 h</div>
+                <div class="ui dim" style="left: 589px; width: 80px; top: 106px; text-align: center">18 h</div>
+                <div class="grid"></div>
+                <div class="now"></div>
+                <div class="sel" style="top: 400px"></div>
+                <div class="sw" style="left: 40px; top: 528px; background: var(--green)"></div>
+                <div class="ui" style="left: 84px; top: 525px">Confort 20,0 °C</div>
+                <div class="sw" style="left: 430px; top: 528px; background: var(--mist)"></div>
+                <div class="ui" style="left: 474px; top: 525px">Réduit 18,0 °C</div>
+                <div class="ui detail"><b>Samedi</b> : confort de 7 h à 23 h</div>
+              </div>
+
+              <div id="wipe"></div>
+              <div id="off"></div>
+              <div id="ripple"></div>
+              <div class="touch" id="touch"></div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <!-- 01 orientation -->
-      <div id="ch1" class="ph-chapter"><span class="n">01</span><span class="w">Orientation</span></div>
-      <div class="anchor" data-anchor="compass" id="a-compass">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="-80" y2="50" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="right: 86px; top: 22px">Plein sud</div>
-      </div>
-      <div class="anchor" data-anchor="tilt" id="a-tilt">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="-50" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag hot" style="left: 86px; top: -108px">Inclinaison 30°</div>
-      </div>
-
-      <!-- 02 inverter -->
-      <div id="ch2" class="ph-chapter"><span class="n">02</span><span class="w">Production</span></div>
-      <div class="anchor" data-anchor="inv" id="a-inv">
-        <svg class="ph-lead" width="1" height="1"><line x1="0" y1="0" x2="80" y2="-60" /></svg>
-        <div class="ph-dot"></div>
-        <div class="ph-tag" style="left: 86px; top: -118px">Onduleur</div>
-      </div>
-
-      <!-- 03 monitoring -->
-      <div id="ch3" class="ph-chapter"><span class="n">03</span><span class="w">Suivi</span></div>
-      <div id="line-day" class="ph-line">Lancez vos appareils <b>en journée</b>.</div>
-
-      <!-- closing -->
-      <div id="logo" class="ph-logo">phaness</div>
-    </div>
+    </div></div>
+    <div id="end" class="ph-end"><div class="ph-logo">phaness</div><div class="ph-sign">Donnez vie à vos idées en vidéo.</div></div>
   </div>
-  <script src="assets/phaness-type.js"></script>
+
   <script>
-    (function () {
-      var clock = { t: 0 };
-      var host = { clock: clock, render: null };
-      window.__phFilm = host;
-      window.__hf = window.__hf || {};
-      window.__hf.buildReady = window.__hf.buildReady || {};
-      window.__hf.buildReady["film"] = new Promise(function (resolve) { host.ready = resolve; });
+    const tl = gsap.timeline({ paused: true });
+    const E = PH.EASE;
+    const P = [[240, 240], [2400, 240], [4560, 240], [4560, 1680], [2400, 1680]];
+    const v = (i, x, y) => `${P[i][0] + x} ${P[i][1] + y}`;
+    const rest = (i, o = {}) => ({ x: P[i][0] + 960, y: P[i][1] + 540, z: 0.93, rx: 0, ry: 0, rz: 0, ...o });
 
-      var tl = gsap.timeline({ paused: true });
-      tl.to(clock, { t: 26, duration: 26, ease: "none", onUpdate: function () { if (host.render) host.render(clock.t); } }, 0);
+    // ---- Static interface content: dial ticks and the week grid (example values).
+    const ticks = document.querySelector("#dev .ticks");
+    for (let i = 0; i <= 8; i++) {
+      const a = ((-135 + i * 33.75) * Math.PI) / 180;
+      const l = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const p = (r) => `${(300 + r * Math.sin(a)).toFixed(1)} ${(390 - r * Math.cos(a)).toFixed(1)}`;
+      l.setAttribute("d", `M ${p(182)} L ${p(166)}`);
+      ticks.appendChild(l);
+    }
+    const WEEK = [
+      ["L", [[6, 9], [17, 22]]], ["M", [[6, 9], [17, 22]]], ["M", [[6, 9], [12, 22]]], ["J", [[6, 9], [17, 22]]],
+      ["V", [[6, 9], [17, 23]]], ["S", [[7, 23]]], ["D", [[7, 23]]],
+    ];
+    const grid = document.querySelector("#dev .grid");
+    grid.style.cssText = "left:0;top:0;width:840px;height:700px";
+    const H_PX = 700 / 24;
+    WEEK.forEach(([d, spans], r) => {
+      const y = 150 + r * 50;
+      const day = document.createElement("div");
+      day.className = "ui day";
+      day.style.cssText = `position:absolute;top:${y + 7}px`;
+      day.textContent = d;
+      grid.appendChild(day);
+      const tr = document.createElement("div");
+      tr.className = "track";
+      tr.style.cssText = `position:absolute;top:${y + 8}px`;
+      spans.forEach(([a, b]) => {
+        const k = document.createElement("div");
+        k.className = "blk";
+        k.dataset.row = r;
+        k.style.cssText = `left:${a * H_PX}px;width:${(b - a) * H_PX}px`;
+        tr.appendChild(k);
+      });
+      grid.appendChild(tr);
+    });
 
-      PH.fade(tl, "#kicker", 0.45, 2.3);
-      PH.words(tl, "#title", 0.7, 2.35);
+    // ---- Prints: flat copies of each screen in the state the controller leaves it. Must run before any gsap.set on #dev.
+    const clone = (host, src) => document.querySelector(host + " .screen").appendChild(document.querySelector("#dev " + src).cloneNode(true));
+    clone("#pr1", ".scr-home");
+    clone("#pr2", ".scr-heat");
+    clone("#pr3", ".scr-prog");
+    document.querySelector("#pr1 .tile-heat").classList.add("on");
+    gsap.set("#pr1 .set-b, #pr1 .state-b, #pr2 .touch-k, #pr2 .btn-fill", { opacity: 0 });
+    gsap.set("#pr2 .roll-set", { y: -300 });
 
-      PH.chapter(tl, "#ch1", 4.6, 10.0);
-      PH.tag(tl, "#a-compass", 6.2, 9.9);
-      PH.tag(tl, "#a-tilt", 7.6, 9.9);
+    // ---- Controller positions, world px (top-left of the 900 x 760 body).
+    const DEV = [
+      { x: 1390, y: 380, s: 0.13 }, // on the wall of the house
+      { x: P[1][0] + 880, y: P[1][1] + 160, s: 1 },
+      { x: P[2][0] + 60, y: P[2][1] + 160, s: 1 },
+      { x: P[3][0] + 880, y: P[3][1] + 160, s: 1 },
+      { x: P[4][0] + 60, y: P[4][1] + 160, s: 1 },
+    ];
+    const REST_Z = 70;
+    const SH = { x: 30, y: 44 };
+    const fly = (at, dur, to, { rx = 0, ry = 0, rz = 0, peak = 240 } = {}) => {
+      tl.to("#dev", { x: to.x, y: to.y, scale: to.s, duration: dur, ease: E.move }, at);
+      tl.to("#dev", { z: peak, rotationX: rx, rotationY: ry, rotation: rz, duration: dur / 2, ease: E.soft }, at);
+      tl.to("#dev", { z: REST_Z, rotationX: 0, rotationY: 0, rotation: 0, duration: dur / 2, ease: E.soft }, at + dur / 2);
+      tl.to("#dev-sh", { x: to.x + SH.x, y: to.y + SH.y, scale: to.s, duration: dur, ease: E.move }, at);
+      tl.to("#dev-sh", { opacity: 0.45, duration: dur / 2, ease: E.soft }, at);
+      tl.to("#dev-sh", { opacity: 1, duration: dur / 2, ease: E.soft }, at + dur / 2);
+    };
 
-      PH.chapter(tl, "#ch2", 10.6, 15.8);
-      PH.tag(tl, "#a-inv", 12.9, 15.7);
+    // ---- Finger helpers, screen coordinates.
+    const go = (at, x, y, dur = 0.5) => tl.to("#touch", { x, y, duration: dur, ease: E.move }, at);
+    const tap = (at, x, y) => {
+      tl.to("#touch", { scale: 0.82, duration: 0.09, ease: "power2.out" }, at);
+      tl.to("#touch", { scale: 1, duration: 0.18, ease: "power2.out" }, at + 0.09);
+      tl.set("#ripple", { x, y, scale: 0.5, opacity: 0.8 }, at + 0.02);
+      tl.to("#ripple", { scale: 1.4, opacity: 0, duration: 0.42, ease: "power2.out" }, at + 0.02);
+    };
 
-      PH.chapter(tl, "#ch3", 16.5, 21.4);
-      PH.words(tl, "#line-day", 19.2, 21.4);
+    // ---- Disc: pops when the thread reaches it, ticks when the step is done.
+    const discAt = (id, i, x, y, popAt, doneAt) => {
+      gsap.set(id, { x: P[i][0] + x, y: P[i][1] + y, z: 4 });
+      PH.pop(tl, id, popAt, { dur: 0.42 });
+      tl.to(id + " span", { opacity: 0, duration: 0.12, ease: "none" }, doneAt);
+      PH.draw(tl, id + " path", doneAt + 0.05, { dur: 0.3 });
+    };
 
-      PH.letters(tl, "#logo", 23.7);
+    const cam = PH.camera(tl, rest(0, { z: 0.99, x: P[0][0] + 1000, ry: -4 }));
+    const th = PH.thread(tl, {
+      paths: ["#thread"],
+      head: "#head",
+      segs: [
+        ["house", `M ${v(0, 1210, 800)} L ${v(0, 1560, 800)} Q ${v(0, 1600, 800)} ${v(0, 1600, 760)} L ${v(0, 1600, 580)}`],
+        ["d1", `L ${v(0, 1600, 210)} Q ${v(0, 1600, 170)} ${v(0, 1640, 170)} L ${v(1, 156, 170)}`],
+        ["plug1", `L ${v(1, 900, 170)}`],
+        ["d2", `L ${v(2, 1056, 170)}`],
+        ["d3", `L ${v(2, 1780, 170)} Q ${v(2, 1820, 170)} ${v(2, 1820, 210)} L ${v(2, 1820, 1220)} Q ${v(2, 1820, 1260)} ${v(2, 1780, 1260)} L ${v(3, 1370, -180)} Q ${v(3, 1330, -180)} ${v(3, 1330, -140)} L ${v(3, 1330, 130)} Q ${v(3, 1330, 170)} ${v(3, 1290, 170)} L ${v(3, 156, 170)}`],
+        ["d4", `L ${v(4, 1056, 170)}`],
+        ["under", `L ${v(4, 900, 170)} Q ${v(4, 860, 170)} ${v(4, 860, 210)} L ${v(4, 860, 820)} Q ${v(4, 860, 860)} ${v(4, 900, 860)} L ${v(4, 982, 860)}`],
+        ["curve", `C ${v(4, 1180, 860)} ${v(4, 1260, 640)} ${v(4, 1460, 632)} S ${v(4, 1640, 642)} ${v(4, 1800, 640)}`],
+      ],
+    });
 
-      window.__timelines = window.__timelines || {};
-      window.__timelines["film"] = tl;
-    })();
+    // ---- Initial states of the controller (after the prints were cloned).
+    gsap.set("#dev", { x: DEV[0].x, y: DEV[0].y, z: 30, scale: 0 });
+    gsap.set("#dev-sh", { x: DEV[0].x + 6, y: DEV[0].y + 8, scale: 0 });
+    gsap.set("#dev .scr-heat, #dev .scr-prog, #dev .set-b, #dev .state-b, #dev .saved, #dev .touch-k, #dev .btn-fill, #dev .sel, #dev .detail, #wipe, #touch, #ripple", { opacity: 0 });
+    gsap.set("#dev .scr-prog", { x: 840 });
+    gsap.set("#dev .arc", { attr: { pathLength: 1, "stroke-dasharray": "1 1.01", "stroke-dashoffset": 0.5 } });
+    gsap.set("#dev .arm", { rotation: -67.5 });
+    gsap.set("#dev .blk", { scaleX: 0 });
+    gsap.set("#dev .now", { scaleY: 0 });
+    gsap.set("#pr1, #pr2, #pr3, #wall-print, #d1 path, #d2 path, #d3 path, #d4 path", { opacity: 0 });
+
+    // ---- Beat 0: the house (0 - 3.4)
+    cam.to(0, rest(0), 3.4, E.soft);
+    tl.to("#fan", { rotation: 1300, svgOrigin: "1100 765", duration: 27.2, ease: "none" }, 0);
+    PH.grow(tl, "#h-fill", 0.1, { dir: "up", dur: 0.9 });
+    PH.draw(tl, ".h-s", 0.15, { dur: 0.75, stagger: 0.09 });
+    PH.grow(tl, "#unit", 0.35, { dir: "up", dur: 0.55 });
+    PH.grow(tl, "#rad", 0.75, { dir: "up", dur: 0.55 });
+    PH.rise(tl, "#t0a", 0.3, { y: 0 });
+    PH.words(tl, "#t0", 0.5, { stagger: 0.12 });
+    PH.rise(tl, "#b0", 1.0);
+    th.show(1.05).to(1.05, 1.35, "house");
+    tl.to(".rad-b", { fill: "#247855", duration: 0.3, stagger: 0.07, ease: "none" }, 1.55);
+    tl.to("#dev", { scale: DEV[0].s, duration: 0.42, ease: E.spring }, 2.05);
+    tl.to("#dev-sh", { scale: DEV[0].s, duration: 0.42, ease: E.spring }, 2.05);
+
+    // ---- Beat 1: access heating (3.4 - 8.6)
+    th.to(3.0, 1.6, "d1");
+    tl.set("#wall-print", { opacity: 1 }, 3.3);
+    fly(3.3, 1.45, DEV[1], { ry: -16, rx: 8, peak: 260 });
+    cam.travel(3.4, rest(1, { ry: 7, rx: 3 }), 1.35, { via: { z: 0.72, rz: -2 } });
+    cam.to(4.75, rest(1, { x: P[1][0] + 1010, z: 0.97 }), 3.8, E.soft);
+    discAt("#d1", 1, 156, 170, 4.45, 7.95);
+    th.to(4.65, 0.4, "plug1", { ease: "power2.inOut" });
+    tl.to("#off", { opacity: 0, duration: 0.3, ease: "power2.out" }, 5.05);
+    tl.to("#led", { backgroundColor: "#6fce9f", duration: 0.2, ease: "none" }, 5.05);
+    PH.words(tl, "#t1", 4.85);
+    PH.rise(tl, "#b1", 5.25);
+    PH.rise(tl, "#n1", 5.6, { y: 0 });
+
+    gsap.set("#touch", { x: 520, y: 640 });
+    tl.to("#touch", { opacity: 1, duration: 0.2, ease: "none" }, 5.85);
+    go(5.85, 156, 545, 0.65);
+    tap(6.5, 156, 545);
+    tl.to("#dev .scr-home .tile-heat", { backgroundColor: "#247855", duration: 0.12, ease: "none" }, 6.52);
+    tl.to("#dev .tile-heat .ui", { color: "#fff", duration: 0.12, ease: "none" }, 6.52);
+    tl.to("#dev .tile-heat svg *", { stroke: "#fff", duration: 0.12, ease: "none" }, 6.52);
+    // Container transform: the tile opens to the whole screen and clears on the heating page.
+    gsap.set("#wipe", { clipPath: "inset(430px 564px 40px 36px round 24px)" });
+    tl.set("#wipe", { opacity: 1 }, 6.66);
+    tl.to("#wipe", { clipPath: "inset(0px 0px 0px 0px round 0px)", duration: 0.46, ease: E.move }, 6.66);
+    tl.to("#touch", { opacity: 0, duration: 0.18, ease: "none" }, 6.75);
+    tl.set("#dev .scr-heat", { opacity: 1 }, 7.1);
+    tl.to("#wipe", { opacity: 0, duration: 0.3, ease: "none" }, 7.12);
+
+    // ---- Beat 2: set the setpoint (8.6 - 13.7)
+    th.to(8.15, 1.6, "d2");
+    tl.set("#pr1", { opacity: 1 }, 8.5);
+    fly(8.55, 1.4, DEV[2], { ry: 14, rz: 2, peak: 220 });
+    cam.travel(8.6, rest(2, { ry: -7, rx: 4 }), 1.3, { via: { z: 0.74, rz: 2.5 } });
+    cam.to(9.9, rest(2, { x: P[2][0] + 910, z: 0.98 }), 3.8, E.soft);
+    discAt("#d2", 2, 1056, 170, 9.55, 13.0);
+    PH.ink(tl, "#t2", 9.95);
+    PH.rise(tl, "#b2", 10.35);
+    PH.rise(tl, "#n2", 10.6, { y: 0 });
+
+    gsap.set("#dev .setp .roll-set", { y: 0 });
+    // Knob at -67.5 deg, radius 210, from the dial centre (300, 390).
+    tl.set("#touch", { x: 620, y: 460 }, 10.3);
+    tl.to("#touch", { opacity: 1, duration: 0.2, ease: "none" }, 10.4);
+    go(10.4, 106, 310, 0.6);
+    tl.to("#touch", { scale: 0.82, duration: 0.09, ease: "power2.out" }, 11.0);
+    tl.set("#touch", { opacity: 0 }, 11.09);
+    tl.set("#dev .touch-k", { opacity: 1, scale: 0.82 }, 11.09);
+    tl.to("#dev .knob", { scale: 1.16, duration: 0.14, ease: "power2.out" }, 11.02);
+    tl.to("#dev .arm", { rotation: 0, duration: 1.2, ease: "power2.inOut" }, 11.12);
+    tl.to("#dev .arc", { attr: { "stroke-dashoffset": 0 }, duration: 1.2, ease: "power2.inOut" }, 11.12);
+    tl.to("#dev .setp .roll-set", { y: -150, duration: 0.24, ease: E.move }, 11.5);
+    tl.to("#dev .setp .roll-set", { y: -300, duration: 0.24, ease: E.move }, 11.92);
+    tl.to("#dev .knob", { scale: 1, duration: 0.2, ease: "power2.out" }, 12.3);
+    tl.to("#dev .touch-k", { opacity: 0, scale: 1, duration: 0.25, ease: "none" }, 12.34);
+    tl.to("#dev .saved", { opacity: 1, duration: 0.22, ease: "none" }, 12.5);
+    PH.draw(tl, "#dev .saved path", 12.5, { dur: 0.3 });
+
+    // ---- Beat 3: read the schedule (13.7 - 18.9)
+    th.to(13.2, 1.85, "d3");
+    tl.set("#pr2", { opacity: 1 }, 13.6);
+    fly(13.65, 1.4, DEV[3], { rx: -18, rz: -2, peak: 250 });
+    cam.travel(13.7, rest(3, { rx: 9, ry: 4 }), 1.3, { via: { z: 0.72, rx: 22 } });
+    cam.to(15.0, rest(3, { x: P[3][0] + 1010, z: 0.97 }), 3.8, E.soft);
+    discAt("#d3", 3, 156, 170, 14.9, 18.35);
+    PH.letters(tl, "#t3a", 15.0, { stagger: 0.03 });
+    PH.letters(tl, "#t3b", 15.25, { stagger: 0.03 });
+    PH.rise(tl, "#b3", 15.5);
+    PH.rise(tl, "#n3", 15.75, { y: 0 });
+
+    tl.set("#touch", { x: 500, y: 300 }, 15.2);
+    tl.to("#touch", { opacity: 1, duration: 0.2, ease: "none" }, 15.25);
+    go(15.25, 692, 608, 0.5);
+    tap(15.75, 692, 608);
+    tl.to("#dev .btn-fill", { opacity: 1, duration: 0.1, ease: "none" }, 15.77);
+    tl.to("#dev .scr-heat", { x: -220, duration: 0.46, ease: E.move }, 15.88);
+    tl.set("#dev .scr-prog", { opacity: 1 }, 15.87);
+    tl.to("#dev .scr-prog", { x: 0, duration: 0.46, ease: E.move }, 15.88);
+    tl.to("#touch", { x: 560, y: 300, duration: 0.5, ease: E.move }, 15.95);
+    document.querySelectorAll("#dev .blk").forEach((k, i) => {
+      tl.to(k, { scaleX: 1, duration: 0.42, ease: E.arrive }, 16.2 + Number(k.dataset.row) * 0.07);
+    });
+    tl.to("#dev .now", { scaleY: 1, duration: 0.4, ease: E.arrive }, 16.75);
+    go(17.05, 460, 425, 0.45);
+    tap(17.5, 460, 425);
+    tl.to("#dev .sel", { opacity: 1, duration: 0.14, ease: "none" }, 17.54);
+    PH.rise(tl, "#dev .detail", 17.62, { y: 14, dur: 0.45 });
+
+    // ---- Beat 4: let the regulation work (18.9 - 24.4)
+    th.to(18.5, 1.55, "d4");
+    tl.set("#pr3", { opacity: 1 }, 18.8);
+    tl.to("#touch", { opacity: 0, duration: 0.2, ease: "none" }, 18.5);
+    fly(18.85, 1.4, DEV[4], { ry: 16, rz: 2.5, peak: 240 });
+    cam.travel(18.9, rest(4, { ry: -8, rx: 4 }), 1.3, { via: { z: 0.72, rz: 2 } });
+    cam.to(20.2, rest(4, { x: P[4][0] + 930, z: 0.97 }), 4.1, E.soft);
+    discAt("#d4", 4, 1056, 170, 19.95, 23.95);
+    PH.ink(tl, "#t4", 20.25);
+    PH.rise(tl, "#b4", 20.6);
+
+    tl.set("#touch", { x: 240, y: 200 }, 20.3);
+    tl.to("#touch", { opacity: 1, duration: 0.2, ease: "none" }, 20.3);
+    go(20.3, 62, 52, 0.42);
+    tap(20.72, 62, 52);
+    tl.set("#dev .scr-heat", { opacity: 0 }, 20.78);
+    tl.set("#dev .set-b", { opacity: 1 }, 20.78);
+    tl.set("#dev .ui-set-a", { opacity: 0 }, 20.78);
+    tl.to("#dev .scr-prog", { x: 840, duration: 0.44, ease: E.move }, 20.8);
+    tl.set("#dev .scr-prog", { opacity: 0 }, 21.3);
+    // The finger leaves: nothing more to do.
+    tl.to("#touch", { x: 900, y: 40, opacity: 0, duration: 0.6, ease: E.exit }, 21.0);
+
+    th.to(20.7, 0.8, "under", { ease: "none" });
+    gsap.set("#dash-svg", { clipPath: "inset(0px 100% 0px 0px)" });
+    tl.to("#dash-svg", { clipPath: "inset(0px 0% 0px 0px)", duration: 0.7, ease: "power2.inOut" }, 21.1);
+    PH.rise(tl, "#l-set", 21.5, { y: 0 });
+    th.to(21.5, 2.3, "curve", { ease: "power1.inOut" });
+    PH.rise(tl, "#l-room", 22.1, { y: 0 });
+    PH.rise(tl, "#n4", 22.4, { y: 0 });
+    tl.to("#dev .amb .roll-set", { y: -190, duration: 0.3, ease: E.move }, 21.9);
+    tl.to("#dev .amb .roll-set", { y: -380, duration: 0.3, ease: E.move }, 22.35);
+    tl.to("#dev .amb .roll-set", { y: -570, duration: 0.3, ease: E.move }, 22.8);
+    tl.to("#dev .state-a", { opacity: 0, duration: 0.16, ease: "none" }, 23.2);
+    tl.to("#dev .state-b", { opacity: 1, duration: 0.2, ease: "none" }, 23.3);
+    th.hideHead(23.8);
+
+    // ---- Beat 5: the whole table (24.4 - 27.2): the tutorial is laid out on it.
+    cam.travel(24.4, { x: 3360, y: 1500, z: 0.272, rx: 0, ry: 0, rz: 0 }, 1.75, { via: { rx: 15, rz: -2.5 }, blur: 2 });
+    cam.to(26.15, { z: 0.286 }, 1.5, "none");
+
+    // ---- Beat 6: common ending, opening from the controller
+    PH.outro(tl, 27.2, { x: 838, y: 736 });
+
+    tl.to({}, { duration: 0.001 }, 29.99);
+    window.__timelines["film"] = tl;
   </script>
-  <script src="assets/scene.js"></script>
 </template>
