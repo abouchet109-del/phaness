@@ -19,7 +19,7 @@ const BRAND_FILM = 'presentation-phaness';
 const REQUIRED = [
   'style.css', 'theme.json', 'functions.php',
   'templates/front-page.html', 'templates/index.html', 'parts/header.html', 'parts/footer.html',
-  'inc/cleanup.php', 'inc/legal-pages.php', 'inc/seo.php',
+  'inc/cleanup.php', 'inc/legal-pages.php', 'inc/seo.php', 'inc/security.php',
   'assets/css/site.css', 'assets/js/site.js', 'assets/js/hero.js',
   'assets/fonts/Geist-Variable.woff2', 'assets/fonts/OFL.txt',
   'assets/img/favicon.svg', 'assets/img/og.png', 'assets/img/og.svg',

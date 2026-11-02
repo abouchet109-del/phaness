@@ -18,7 +18,7 @@ if ( ! defined( 'PHANESS_CONTACT_PHONE' ) ) {
 	define( 'PHANESS_CONTACT_PHONE', '07 69 86 01 61' );
 }
 if ( ! defined( 'PHANESS_LEGAL_NAME' ) ) {
-	define( 'PHANESS_LEGAL_NAME', '' );
+	define( 'PHANESS_LEGAL_NAME', 'Rafael DELBECQ ALMELA — Entrepreneur individuel' );
 }
 // The team supplies the introduction film separately. Keep its player unloaded until requested.
 if ( ! defined( 'PHANESS_PRESENTATION_VIDEO_URL' ) ) {
@@ -87,6 +87,7 @@ function phaness_video_card( $slug, $offer, $title, $text ) {
 }
 
 require_once get_theme_file_path( 'inc/cleanup.php' );
+require_once get_theme_file_path( 'inc/security.php' );
 require_once get_theme_file_path( 'inc/legal-pages.php' );
 require_once get_theme_file_path( 'inc/seo.php' );
 
@@ -118,7 +119,10 @@ function phaness_booking_config() {
 		return null;
 	}
 	$parts = wp_parse_url( $url );
-	if ( empty( $parts['host'] ) || empty( $parts['path'] ) || 'https' !== ( $parts['scheme'] ?? '' ) ) {
+	if ( empty( $parts['host'] ) || empty( $parts['path'] ) || 'https' !== ( $parts['scheme'] ?? '' )
+		|| 'calendly.com' !== strtolower( $parts['host'] )
+		|| isset( $parts['user'] ) || isset( $parts['pass'] )
+		|| ( isset( $parts['port'] ) && 443 !== $parts['port'] ) ) {
 		return null;
 	}
 	$link = trim( $parts['path'], '/' );

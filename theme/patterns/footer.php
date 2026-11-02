@@ -23,7 +23,7 @@ $phaness_home = esc_url( home_url( '/' ) );
 		</nav>
 	</div>
 	<div class="ph-container">
-		<p class="ph-footer__legal">© 2026 Phaness. Phaness est une marque de [À FOURNIR : raison sociale de l'entreprise porteuse].</p>
+		<p class="ph-footer__legal">© 2026 Phaness — <?php echo esc_html( PHANESS_LEGAL_NAME ); ?>.</p>
 	</div>
 </div>
 <!-- /wp:html -->

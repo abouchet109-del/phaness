@@ -1,5 +1,9 @@
 # Reprise du projet — 2026-10-29
 
+Révision du 2 novembre 2026, thème 0.2.6 : les mentions légales et la politique de confidentialité sont rédigées en projets détaillés, visibles localement. Identité confirmée : Rafael DELBECQ ALMELA, entrepreneur individuel, SIREN 980 147 409, SIRET 980 147 409 00018, RCS Pontoise. Adresse fournie : 2 bis rue de Curzay, 95880 Enghien-les-Bains. Franchise de TVA retenue après réponse de l’utilisateur ; contact@phaness.fr, messagerie IONOS, réservation Calendly et Google Meet confirmés. Restent le type de compte Google/agenda, le contrat d’hébergement, les durées et pratiques réelles. Ne pas publier les champs incomplets.
+
+Protections du thème : étape d’information avant chargement Calendly, URL restreinte au fournisseur, no-referrer, en-têtes HTTP ciblés, commentaires/pings fermés et avatars externes désactivés. L’API REST et les méthodes d’administration XML-RPC non liées aux pingbacks restent disponibles. Ces protections ne remplacent pas MFA, mises à jour, sauvegardes testées et configuration serveur ; rien n’a été changé dans les comptes externes. Voir SECURITE.md et RECETTE.md. Sur ce Mac, les MP4 et le vrai ZIP restent absents ; ne pas les rendre ici.
+
 Dernière mise à jour (thème 0.2.5, 2026-11-02) : les films de Nos réalisations ont un bouton plein écran. Les cinq films V3 sont rendus en 1080p et branchés sur le site : le film de marque dans le héros, les quatre films métier dans Nos réalisations. Le ZIP de livraison se construit (24,3 Mo). Restent les informations légales, la relecture des films par l'utilisateur, le 4K si le budget le permet, puis la mise en ligne.
 
 Révision précédente (thème 0.2.3) : les huit boutons de rendez-vous/contact utilisent le lien Calendly fourni : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Module réel vérifié sur ordinateur et mobile, chargement au clic uniquement, fermeture et retour du focus, lien d’ouverture séparée et fonctionnement sans JavaScript. Le service Cal.com a été remplacé par Calendly. Email corrigé : contact@phaness.fr.
@@ -27,8 +31,8 @@ Les MP4 ne sont pas versionnés : ils sont sur le PC Windows, dans `videos/out/`
 ## Informations à recevoir
 
 - Calendly, email et téléphone sont déjà renseignés. La garantie de transfert applicable au contrat Calendly et les autres champs légaux restent à compléter par l’entreprise.
-- Raison sociale, forme juridique, capital, siège, immatriculation/SIREN, TVA si applicable et responsable de publication.
-- Informations propres au traitement des données à compléter dans les pages légales : contacts, durées et garanties applicables.
+- Identité EI, adresse, SIREN/SIRET/RCS, directeur de publication et TVA sont renseignés à partir des informations de l’utilisateur ; aucun capital n’est requis pour l’EI.
+- Informations propres au traitement à compléter : type de compte Google/agenda, stockage et maintenance, durées, garanties et contrat d’hébergement.
 
 Les valeurs absentes restent `[À FOURNIR]` ou `[À CONFIRMER]`. Ne pas les inventer. Voir `docs/MISE-EN-LIGNE.md` pour leur emplacement.
 

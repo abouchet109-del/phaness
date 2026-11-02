@@ -163,12 +163,46 @@ if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.pr
   frame.className = 'ph-booking__frame';
   frame.title = 'Prendre rendez-vous avec Phaness';
   frame.loading = 'lazy';
-  frame.referrerPolicy = 'strict-origin-when-cross-origin';
-  dialog.append(external, close, frame);
+  frame.referrerPolicy = 'no-referrer';
+  frame.hidden = true;
+
+  // Explain the third-party connection before assigning any iframe URL.
+  const notice = document.createElement('div');
+  notice.className = 'ph-booking__notice';
+  const title = document.createElement('h2');
+  title.textContent = 'Réserver avec Calendly';
+  const details = document.createElement('p');
+  details.textContent = 'En affichant les créneaux, vous vous connectez à Calendly. Ce service reçoit votre adresse IP et des informations sur votre navigateur, et peut traiter des données aux États-Unis. Ses choix de cookies restent disponibles dans le module.';
+  const privacy = document.createElement('a');
+  privacy.href = document.querySelector('a[href*="/politique-de-confidentialite/"]')?.href || new URL('/politique-de-confidentialite/', window.location.origin).href;
+  privacy.textContent = 'Lire notre politique de confidentialité';
+  const load = document.createElement('button');
+  load.type = 'button';
+  load.className = 'ph-btn ph-btn--primary';
+  load.textContent = 'Afficher les créneaux';
+  const alternative = document.createElement('p');
+  alternative.append('Vous pouvez aussi nous écrire à ');
+  // Reuse the configured contact address instead of maintaining a second setting.
+  const email = document.querySelector('.ph-contact a[href^="mailto:"]');
+  if (email) alternative.append(email.cloneNode(true));
+  else alternative.append('l’adresse email indiquée dans la rubrique Contact.');
+  notice.append(title, details, privacy, load, alternative);
+  dialog.append(external, close, notice, frame);
   document.body.append(dialog);
   let opener;
+  let destination;
+  load.addEventListener('click', () => {
+    if (!dialog.open || !destination) return;
+    notice.hidden = true;
+    frame.hidden = false;
+    frame.src = destination;
+    close.focus();
+  });
   dialog.addEventListener('close', () => {
     frame.removeAttribute('src');
+    frame.hidden = true;
+    notice.hidden = false;
+    destination = null;
     if (opener?.getClientRects().length && !opener.closest('[inert]')) opener.focus();
     else if (toggle?.getClientRects().length) toggle.focus();
   });
@@ -180,11 +214,11 @@ if (bookingLinks.length && 'HTMLDialogElement' in window && HTMLDialogElement.pr
     link.addEventListener('click', (event) => {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const bookingUrl = new URL(link.href, window.location.href);
-      if (bookingUrl.protocol !== 'https:') return;
+      if (bookingUrl.origin !== 'https://calendly.com' || bookingUrl.username || bookingUrl.password) return;
       event.preventDefault();
       opener = link;
       external.href = bookingUrl.href;
-      frame.src = bookingUrl.href;
+      destination = bookingUrl.href;
       dialog.showModal();
     });
   });

@@ -42,6 +42,8 @@ npm run build:zip    # produit dist/phaness.zip ; refuse les fichiers ou rendus 
 - [`CLAUDE.md`](CLAUDE.md) : les consignes pour Claude Code.
 
 ## État
+
+**2 novembre 2026 — thème 0.2.6.** Projets légaux renseignés avec l’identité EI, l’adresse et la TVA fournies ; messagerie IONOS et Google Meet déclarés. Contrats, pratiques et durées restent à compléter avant publication. Protection du thème et procédure d’incident dans [SECURITE.md](docs/SECURITE.md). Calendly s’affiche après information et choix local ; protections HTTP ciblées, pingbacks et avatars externes retirés. La configuration IONOS et des comptes n’a pas été modifiée. `npm run test:security` vérifie les gardes PHP ; `npm test` l’inclut. Les paragraphes suivants décrivent les révisions antérieures.
 Révision visuelle du 2026-10-29 : nouvelle accroche, palette verte, retrait de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. L'œuf est remplacé par un cadre pour la vidéo de présentation de l'équipe, encore à fournir. Le thème est en version 0.2.3. Les huit boutons de rendez-vous/contact ouvrent le lien Calendly fourni, chargé au clic. Espacements et typographie harmonisés, icônes linéaires, nouveaux sujets vidéo et coordonnées renseignées (contact@phaness.fr, 07 69 86 01 61). La section « Le pouvoir de la vidéo, au service de votre entreprise. » reprend le titre, les textes et les trois cartes de la référence fournie par l'utilisateur.
 
 Les scores Lighthouse ci-dessous concernent la version précédant cette révision ; les contrôles visuels actuels sont décrits dans `docs/RECETTE.md`.
