@@ -1,5 +1,7 @@
 # Mise en ligne de Phaness chez IONOS
 
+**Consigne la plus récente : ne pas déployer.** L’utilisateur demande le 2 novembre 2026 de pousser uniquement sur GitHub. La version 0.2.8 complète les textes ; aucun accès authentifié ni téléversement distant n’a été réalisé. Les procédures ci-dessous restent une référence pour une future demande explicite. Avant celle-ci, vérifier la correspondance entre la politique de conservation et son application dans messagerie/Calendly/agenda ; les chiffres IONOS sont les informations publiées pour l’offre Hébergement Web, sans audit du contrat privé.
+
 Ce guide concerne une installation WordPress administrée par l'équipe. Les écrans IONOS peuvent différer selon le contrat et la variante WordPress.
 
 ## Avant de commencer

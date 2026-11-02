@@ -18,6 +18,8 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 
 ## Révision visuelle du 2026-10-29
 
+Finalisation suivante, thème 0.2.8 : plus de champs en attente dans les deux pages légales ; politique de conservation définie, informations IONOS sourcées, Google et maintenance décrits sans supposer une configuration privée. Les réglages réels restent à vérifier et les échéances à appliquer. Livraison GitHub uniquement ; déploiement annulé par l’utilisateur.
+
 Complément du 2 novembre 2026, thème 0.2.7 : réécriture des deux pages légales avec identité EI, adresse et TVA fournies, champs non connus conservés ; information avant chargement Calendly, en-têtes de protection, fermeture commentaires/pingbacks, suppression Gravatar. SECURITE.md distingue le code des réglages IONOS/comptes non effectués. Finalisation juridique attend l’inventaire exact, les contrats et durées des traitements.
 
 Demandée et implémentée : accroche « Donnez vie à vos idées en vidéo », surtitre gris, sous-titre utilisateur, palette verte, retrait des sections Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. Le héros WebGL devient un emplacement de vidéo de présentation. La promesse, les quatre offres, les secteurs et les réalisations sont conservés. Les descriptions historiques des étapes ci-dessous documentent la construction initiale ; les décisions actuelles sont dans `BRIEF.md`.

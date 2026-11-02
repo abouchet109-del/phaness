@@ -1,5 +1,17 @@
 # Sécurité et données personnelles — 2 novembre 2026
 
+## Dernière consigne : GitHub uniquement, thème 0.2.8
+
+L’utilisateur a demandé de compléter tous les champs puis a retiré la demande de mise à jour du site public. Aucun téléversement, changement de réglage ni connexion à WordPress distant effectué. L’onglet de connexion avait été ouvert en lecture seule ; l’accès n’est plus nécessaire pour cette étape.
+
+Les deux pages sont désormais sans placeholder. Les mentions retiennent IONOS SARL à partir du fournisseur déclaré par l’utilisateur et de son identité française officielle ; le contrat privé n’a pas été consulté. Les informations techniques sont explicitement attribuées aux pages officielles de l’offre Hébergement Web : journaux huit semaines et sauvegardes standard d’espace Web disponibles quatorze jours au maximum. Ces références ne prouvent pas un réglage particulier, une sauvegarde de messagerie ou une restauration testée.
+
+Politique retenue par défaut dans le cadre de la demande de compléter les textes : demandes sans suite au plus douze mois après clôture, échanges commerciaux suivis au plus trois ans après le dernier contact émanant du prospect, invitations de rendez-vous douze mois après tenue/annulation, dossiers de droits douze mois après clôture et justificatifs d’identité supprimés après vérification. Une archive minimale pour une obligation ou un contentieux reste possible selon la durée nécessaire. Ces choix ne constituent ni des obligations légales générales ni des suppressions déjà effectuées.
+
+Le texte renvoie aux mécanismes de transfert officiellement décrits par Calendly et Google. Le type de compte Google reste non précisé : aucune souscription Workspace ni acceptation de son DPA n’est affirmée. Le recours éventuel à un agenda connecté ou à un mainteneur est décrit conditionnellement plutôt qu’inventé. La politique distingue les traceurs navigateur et les statistiques techniques de l’hébergeur.
+
+À appliquer par l’équipe avant de présenter ces règles comme effectives : inventorier les emplacements de données, noter date de clôture/dernier contact et échéance, prévoir une revue mensuelle des échéances puis effacer dans messagerie, Calendly et agendas concernés. Ne pas purger sans revue les preuves nécessaires à un contrat, à une obligation légale ou à un litige. Respecter la nouvelle consigne GitHub uniquement ; une autorisation ultérieure sera nécessaire pour modifier le site ou les comptes.
+
 État : protections du thème implémentées et contrôles locaux consignés dans RECETTE. Aucun accès au compte IONOS, à la messagerie ou à Calendly ; leur configuration n’a pas été modifiée ni certifiée. Un texte juridique ne transfère pas la responsabilité d’une faille aux visiteurs et ne garantit pas l’absence de piratage.
 
 La mise en ligne de 0.2.5 a été reçue via le commit 9d6db9d de l’autre session. Contrôle public limité : accueil HTTPS en 200 ; les nouveaux en-têtes de ce thème ne sont pas encore servis. La version 0.2.7 fusionnée est locale/Git, sans téléversement depuis ce Mac. Le ZIP du poste Windows doit être reconstruit après pull pour inclure ces changements ; ne pas confondre version poussée et version déployée.
@@ -51,6 +63,10 @@ Pour Calendly, vérifier le contrat de traitement, les garanties applicables aux
 Les mentions du site ne remplacent pas des CGV/devis adaptés aux clients professionnels. Encadrer le périmètre, livrables et formats, validation du script et des informations techniques par le client, nombre de retours, changements de périmètre, paiement/acompte, suspension, cession/licence des droits, droits sur les supports reçus, confidentialité, recours aux prestataires, conservation/suppression des fichiers et autorisation distincte d’utiliser le projet en portfolio. Si Phaness traite des données pour un client, ajouter un accord de sous-traitance RGPD adapté. Toute limitation de responsabilité doit être proportionnée, négociable selon le contexte et compatible avec les règles impératives ; aucune clause ne neutralise toutes les conséquences d’un piratage ou la responsabilité RGPD. Vérifier les garanties RC professionnelle/cyber avec l’assureur.
 
 ## Sources officielles consultées le 2 novembre 2026
+
+- [IONOS : données des visiteurs, huit semaines](https://www.ionos.fr/assistance/protection-des-donnees/traitement-des-donnees-des-visiteurs-du-site-web-de-votre-produit-ionos/ionos-hebergement/)
+- [IONOS : sauvegardes standard, quatorze jours](https://www.ionos.fr/assistance/hebergement/sauvegarde-et-restauration-de-fichiers/creer-des-sauvegardes-regulieres/)
+- [Google : mécanismes de transfert](https://policies.google.com/privacy/frameworks?hl=fr)
 
 - [Information des personnes — CNIL](https://www.cnil.fr/fr/informer-les-personnes)
 - [Durées de conservation — CNIL](https://www.cnil.fr/fr/passer-laction/les-durees-de-conservation-des-donnees)

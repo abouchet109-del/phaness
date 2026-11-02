@@ -10,7 +10,6 @@
 <section class="ph-section ph-legal" aria-labelledby="ph-legal-title">
 	<div class="ph-container ph-legal__inner">
 		<h1 id="ph-legal-title">Mentions légales</h1>
-		<p class="ph-note">Projet de texte : les coordonnées de l’hébergeur restent à vérifier dans le contrat avant publication.</p>
 		<h2>Éditeur du site</h2>
 		<p>Le site phaness.fr présente les prestations du studio Phaness, nom commercial exploité par :</p>
 		<ul>
@@ -27,8 +26,7 @@
 		<h2>Directeur de la publication</h2>
 		<p>Rafael DELBECQ ALMELA, entrepreneur individuel.</p>
 		<h2>Hébergement</h2>
-		<p>Prestataire prévu : IONOS SARL, 7, place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France. Téléphone : 09 70 80 89 11. Site : <a href="https://www.ionos.fr" rel="noreferrer">www.ionos.fr</a>.</p>
-		<p>[À CONFIRMER : entité hébergeuse exacte et coordonnées figurant dans le contrat IONOS du site].</p>
+		<p>Le site est hébergé par IONOS SARL, 7, place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France. Téléphone : 09 70 80 89 11. Site : <a href="https://www.ionos.fr" rel="noreferrer">www.ionos.fr</a>.</p>
 		<h2>Contenus et propriété intellectuelle</h2>
 		<p>Les textes, vidéos, animations, visuels et signes distinctifs du site sont protégés selon les droits qui leur sont applicables. L’éditeur les exploite en qualité de titulaire des droits ou au titre des autorisations et licences correspondantes.</p>
 		<p>Sauf exception légale ou licence applicable, leur reproduction, adaptation, diffusion ou exploitation commerciale nécessite une autorisation écrite préalable. Une consultation du site ou un échange commercial ne transfère aucun droit d’exploitation. Les droits accordés sur une prestation sont précisés dans le devis ou le contrat signé.</p>
@@ -44,7 +42,7 @@
 		<p>Signalez une anomalie à <?php echo phaness_contact_link( 'email' ); ?> avec la page concernée et une description du problème. Ne transmettez aucun mot de passe, secret de connexion ni donnée personnelle d’un tiers. Une prise de contact ne vaut pas autorisation de tester, d’exploiter une faille ou d’accéder à des données sans autorisation.</p>
 		<h2>Données personnelles et droit applicable</h2>
 		<p>Les traitements et vos droits figurent dans notre <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">politique de confidentialité</a>. Ces mentions sont soumises au droit français, sous réserve des dispositions impératives applicables.</p>
-		<p class="ph-legal__updated"><em>Dernière mise à jour du projet de texte : 2 novembre 2026.</em></p>
+		<p class="ph-legal__updated"><em>Dernière mise à jour : 2 novembre 2026.</em></p>
 	</div>
 </section>
 <!-- /wp:html -->

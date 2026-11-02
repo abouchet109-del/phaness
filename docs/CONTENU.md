@@ -246,13 +246,11 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 
 ## 13. Pages légales
 
-Projets du 2 novembre 2026 : identité, adresse et TVA fournies par l’utilisateur ; messagerie IONOS et Google Meet confirmés. Contrats, réglages et durées restent à vérifier. Les champs entre crochets doivent être complétés avant publication. Sources et procédure : [SECURITE.md](SECURITE.md). Les patterns PHP alimentent les pages locales.
+Textes complétés le 2 novembre 2026, thème 0.2.8, sans champ en attente dans les pages. Les durées de Phaness constituent une politique définie pour cette révision et doivent être appliquées dans les outils ; elles ne décrivent pas un effacement automatique déjà configuré. Les durées IONOS sont attribuées à sa documentation Hébergement Web. Le type de compte Google non précisé est traité conditionnellement, sans affirmer l’existence d’un contrat Workspace. Sources et actions dans [SECURITE.md](SECURITE.md). Publication limitée à GitHub sur instruction finale de l’utilisateur.
 
 ### 13.1 Mentions légales — `/mentions-legales/`
 
 **Mentions légales**
-
-Projet de texte : les coordonnées de l’hébergeur restent à vérifier dans le contrat avant publication.
 
 **Éditeur du site**
 
@@ -282,9 +280,7 @@ Rafael DELBECQ ALMELA, entrepreneur individuel.
 
 **Hébergement**
 
-Prestataire prévu : IONOS SARL, 7, place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France. Téléphone : 09 70 80 89 11. Site : [www.ionos.fr](https://www.ionos.fr).
-
-[À CONFIRMER : entité hébergeuse exacte et coordonnées figurant dans le contrat IONOS du site].
+Le site est hébergé par IONOS SARL, 7, place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France. Téléphone : 09 70 80 89 11. Site : [www.ionos.fr](https://www.ionos.fr).
 
 **Contenus et propriété intellectuelle**
 
@@ -316,15 +312,13 @@ Signalez une anomalie à [contact@phaness.fr](mailto:contact@phaness.fr) avec la
 
 Les traitements et vos droits figurent dans notre [politique de confidentialité](/politique-de-confidentialite/). Ces mentions sont soumises au droit français, sous réserve des dispositions impératives applicables.
 
-Dernière mise à jour du projet de texte : 2 novembre 2026.
+Dernière mise à jour : 2 novembre 2026.
 
 ---
 
 ### 13.2 Politique de confidentialité — `/politique-de-confidentialite/`
 
 **Politique de confidentialité**
-
-Version de travail : les champs entre crochets et les pratiques de conservation doivent être complétés avant publication.
 
 Cette politique concerne la consultation de phaness.fr, les prises de contact et les rendez-vous sollicités auprès du studio Phaness. Le site ne propose ni compte client, ni dépôt de fichiers, ni paiement en ligne.
 
@@ -346,31 +340,41 @@ Elles servent à vous répondre, organiser un échange et préparer une proposit
 
 Les champs obligatoires sont indiqués dans Calendly. Sans les coordonnées nécessaires, nous ne pouvons pas confirmer un rendez-vous ou répondre. Les autres précisions sont facultatives. N’envoyez aucun mot de passe, donnée de santé ou document confidentiel lors du premier contact.
 
-Conservation : pendant le traitement de la demande, puis [À FOURNIR : délai après clôture ou dernier échange utile]. En cas de prestation, les données nécessaires à son exécution et à la facturation relèvent des durées du dossier client, à préciser dans les documents contractuels.
+Notre politique de conservation distingue les usages suivants :
+
+- Une demande ponctuelle sans suite commerciale : pendant son traitement, puis au maximum douze mois après sa clôture.
+
+- Un projet ou un échange commercial suivi : au maximum trois ans après le dernier contact émanant de vous, sauf si une prestation est conclue ou si vous demandez un effacement applicable plus tôt.
+
+- Les invitations et données d’organisation d’un rendez-vous : au maximum douze mois après sa tenue ou son annulation. Les échanges utiles à un projet suivent la durée du projet ci-dessus.
+
+En cas de prestation, les données nécessaires à son exécution sont conservées pendant la relation contractuelle. Les pièces devant servir de preuve ou répondre à une obligation comptable sont ensuite archivées pendant les délais légaux applicables, avec un accès limité.
 
 **Données techniques**
 
-L’hébergement peut enregistrer des journaux comprenant l’adresse IP, la date, la ressource demandée et des informations sur le navigateur. Leur usage pour diagnostiquer les incidents et protéger le service repose sur l’intérêt légitime à assurer sa sécurité et son fonctionnement (article 6.1.f).
+L’hébergement enregistre des données d’accès : ressource consultée, heure, navigateur, système d’exploitation, type d’appareil, référent lorsqu’il est transmis et adresse IP traitée selon les modalités d’IONOS. Leur usage pour diagnostiquer les incidents et protéger le service repose sur l’intérêt légitime à assurer sa sécurité et son fonctionnement (article 6.1.f).
 
-[À CONFIRMER : champs enregistrés, personnes ayant accès aux journaux et durée paramétrée chez l’hébergeur]. Les données techniques nécessaires à l’acheminement d’une page ne peuvent pas être désactivées tout en conservant cet accès.
+Pour son offre Hébergement Web, IONOS indique une conservation de huit semaines et une anonymisation de l’adresse IP pour l’analyse. Ces traitements comprennent ses statistiques techniques WebStat. Les précisions figurent dans la [documentation de l’hébergeur](https://www.ionos.fr/assistance/protection-des-donnees/traitement-des-donnees-des-visiteurs-du-site-web-de-votre-produit-ionos/ionos-hebergement/). L’accès est réservé à l’hébergeur et aux personnes habilitées à administrer le site. Les données techniques nécessaires à l’acheminement d’une page ne peuvent pas être désactivées tout en conservant cet accès.
 
 **Demandes relatives à vos droits**
 
-Les informations d’une demande d’accès, de rectification ou d’effacement servent à la traiter et à justifier notre réponse, au titre de nos obligations légales (article 6.1.c). Conservation du dossier : [À FOURNIR]. Une vérification supplémentaire d’identité n’est demandée qu’en cas de doute raisonnable et doit rester proportionnée.
+Les informations d’une demande d’accès, de rectification ou d’effacement servent à la traiter au titre de nos obligations légales (article 6.1.c). Nous prévoyons de conserver la demande et sa réponse pendant douze mois après clôture pour en assurer le suivi. Une preuve minimale peut être archivée au-delà lorsqu’un contentieux ou la défense d’un droit le justifie, sur la base de notre intérêt légitime (article 6.1.f), pendant la durée nécessaire à son règlement.
+
+Une vérification supplémentaire d’identité n’est demandée qu’en cas de doute raisonnable et doit rester proportionnée. Une pièce d’identité éventuellement reçue est supprimée une fois la vérification achevée, sauf obligation légale justifiant sa conservation.
 
 **3. Destinataires et prestataires**
 
 Les destinataires sont les personnes habilitées à traiter votre demande et les prestataires nécessaires :
 
-- Hébergement : IONOS, entité contractuelle et localisation à confirmer.
+- Hébergement et journaux techniques : IONOS SARL, dont les coordonnées figurent dans les mentions légales. Pour les données de visiteurs de son offre Hébergement Web, IONOS indique l’absence de transfert hors de l’Union européenne.
 
 - Réservation : Calendly, LLC, pour les créneaux, invitations et rappels configurés.
 
 - Messagerie : IONOS, pour les échanges avec contact@phaness.fr.
 
-- Visioconférence : Google Meet, pour les réunions à distance et les informations d’invitation nécessaires. [À CONFIRMER : type de compte Google et agenda éventuellement synchronisé]. Les traitements de Google sont décrits dans sa [politique de confidentialité](https://policies.google.com/privacy?hl=fr).
+- Visioconférence : Google Meet, pour les réunions à distance et leurs invitations. Un agenda connecté à la réservation reçoit, lorsqu’une telle connexion est utilisée, les informations nécessaires à l’événement. Les traitements de Google sont décrits dans sa [politique de confidentialité](https://policies.google.com/privacy?hl=fr).
 
-- Maintenance, si un prestataire accède aux données : [À CONFIRMER].
+- Administration et maintenance : les personnes habilitées à gérer le site. Lorsqu’un intervenant extérieur doit accéder à des données pour une opération technique, son accès doit être limité à cette intervention et encadré par des obligations de confidentialité et de protection des données.
 
 Une autorité peut recevoir des données lorsqu’une obligation légale l’exige. Nous ne vendons ni ne louons les données reçues par le site. Le site ne propose pas d’inscription à une newsletter.
 
@@ -380,19 +384,27 @@ Avec JavaScript, un premier clic sur un bouton de rendez-vous ouvre une informat
 
 À l’ouverture, Calendly reçoit votre adresse IP et des informations techniques sur votre navigateur, même sans réservation. Les données du rendez-vous sont traitées pour notre compte ; Calendly est aussi responsable de certains traitements propres à son service, décrits dans sa [politique de confidentialité](https://calendly.com/legal/privacy-notice).
 
-Des traitements ont lieu aux États-Unis et dans d’autres pays. Le [contrat de traitement de Calendly](https://calendly.com/legal/data-processing-addendum) prévoit des mécanismes d’encadrement, dont le cadre de protection des données UE–États-Unis lorsqu’il s’applique et des clauses contractuelles types dans les situations prévues au contrat. Les garanties de Google dépendent notamment du type de compte utilisé ; celles de Google Workspace figurent dans son [accord de traitement des données](https://workspace.google.com/terms/dpa_terms.html). [À CONFIRMER : garanties applicables aux comptes utilisés, pays et moyen d’en obtenir une copie]. Vous pouvez nous écrire pour les demander.
+Calendly et Google peuvent traiter des données aux États-Unis et dans d’autres pays où ils disposent d’infrastructures ou de prestataires. Le [contrat de traitement de Calendly](https://calendly.com/legal/data-processing-addendum) prévoit le cadre de protection des données UE–États-Unis pour les transferts couverts par ce mécanisme, et des clauses contractuelles types dans les situations de remplacement prévues au contrat.
+
+Google décrit ses décisions d’adéquation, sa participation au cadre UE–États-Unis et le recours aux clauses contractuelles types sur sa page consacrée aux [garanties de transfert](https://policies.google.com/privacy/frameworks?hl=fr). Un compte Google Workspace relève en outre des engagements de son [accord de traitement des données](https://workspace.google.com/terms/dpa_terms.html) lorsqu’il est applicable. Ces références décrivent les mécanismes des fournisseurs ; elles ne signifient pas que toutes les données restent en Europe. Pour obtenir des précisions ou une copie des garanties concernant vos échanges avec Phaness, écrivez à notre adresse de contact.
 
 Les réunions Google Meet ont lieu hors de ce site. Selon les fonctions choisies, Google traite aussi des informations de connexion et les flux audio et vidéo. Ce site n’enregistre pas les réunions. Un éventuel enregistrement ou une transcription doit faire l’objet d’une information et d’un cadre adaptés avant son activation.
 
 **5. Cookies et services intégrés**
 
-Le thème n’ajoute aucun outil de publicité ni de mesure d’audience. Les polices et les vidéos livrées avec le thème sont servies par le site ; les avatars Gravatar sont désactivés. Les cookies de connexion WordPress concernent l’administration. L’hébergement ou ses extensions peuvent ajouter des dispositifs techniques, à vérifier avant mise en ligne.
+Le thème n’ajoute aucun traceur publicitaire ni outil d’audience côté navigateur. Les statistiques techniques de l’hébergement sont décrites plus haut. Les polices et les vidéos livrées avec le thème sont servies par le site ; les avatars Gravatar sont désactivés. Les cookies de connexion WordPress concernent l’administration, avec une durée liée à la session et à l’option de mémorisation choisie par l’administrateur.
 
-Calendly propose ses choix de cookies selon votre région. Afficher les créneaux ne vaut pas accord à tous ses cookies facultatifs. Vous pouvez utiliser ses réglages et ceux de votre navigateur. Fermer le module interrompt son affichage sans supprimer les cookies déjà enregistrés. [À CONFIRMER : inventaire et durées sur l’hébergement définitif].
+Calendly peut utiliser des cookies de session et des cookies persistants pour son fonctionnement et, selon vos choix, pour des usages facultatifs. Leur durée varie selon leur rôle. Son lien « Cookie Settings » ou « Your Privacy Choices », disponible sur les pages de réservation, permet de consulter et modifier les choix proposés. Afficher les créneaux ne vaut pas accord à tous ses cookies facultatifs. Les cookies de session expirent à la fin de la session ; les cookies persistants suivent leur échéance ou peuvent être supprimés dans votre navigateur.
+
+Fermer le module interrompt son affichage sans supprimer les cookies déjà enregistrés. Vous pouvez les supprimer ou les bloquer avec votre navigateur ; certaines fonctions du service peuvent alors ne plus fonctionner.
 
 **6. Conservation et suppression**
 
-Les durées sont indiquées par usage ci-dessus. Les données inutiles doivent être supprimées ou, si une obligation légale ou la défense d’un droit le justifie, archivées avec un accès limité pendant la durée nécessaire. Les sauvegardes suivent un cycle de rotation : [À FOURNIR : durée, accès et prise en compte des suppressions].
+Les durées ci-dessus fixent notre politique de conservation. Leur application nécessite une revue des messages, rendez-vous et dossiers dans les outils utilisés ; ce site n’automatise pas la suppression des données conservées dans la messagerie, Calendly ou Google.
+
+Les données devenues inutiles sont à supprimer des espaces de travail. Les archives conservées pour une obligation légale ou un contentieux doivent être séparées et accessibles aux seules personnes qui en ont besoin.
+
+Les sauvegardes techniques ne sont pas destinées à la consultation courante. IONOS annonce pour les sauvegardes automatiques standard de son espace Web une disponibilité de quatorze jours au maximum, selon sa [documentation de sauvegarde](https://www.ionos.fr/assistance/hebergement/sauvegarde-et-restauration-de-fichiers/creer-des-sauvegardes-regulieres/). Cette indication ne décrit pas les sauvegardes propres à la messagerie ou aux agendas. Lors d’une restauration, les demandes d’effacement déjà traitées doivent être réappliquées avant la remise en service des données concernées.
 
 **7. Vos droits**
 
@@ -412,7 +424,7 @@ Signalez un problème à [contact@phaness.fr](mailto:contact@phaness.fr) sans jo
 
 Cette page doit être actualisée lorsque les usages ou prestataires changent. Sa modification ne vaut pas consentement à un nouveau traitement qui en nécessiterait un.
 
-Dernière mise à jour du projet de texte : 2 novembre 2026.
+Dernière mise à jour : 2 novembre 2026.
 
 ---
 

@@ -10,7 +10,7 @@ $phaness_steps = array(
 	array( 'Collecte des supports', 'Vous nous transmettez vos documents existants : notices, procédures, plans, photos.' ),
 	array( 'Script', 'Nous rédigeons le script et le découpage, que vous validez avant toute animation.' ),
 	array( 'Production', 'Nous réalisons l\'animation en motion design 3D, à partir de nos formats standardisés.' ),
-	array( 'Retours', 'Vous regroupez vos remarques en [À CONFIRMER : nombre] séries de retours, fixées dès le devis.' ),
+	array( 'Retours', 'Vous regroupez vos remarques selon le nombre de séries de retours fixé dans le devis.' ),
 	array( 'Livraison', 'Vous recevez la vidéo finale, prête à diffuser sur vos supports.' ),
 );
 ?>
