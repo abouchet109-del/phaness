@@ -12,7 +12,7 @@ if ( ! defined( 'PHANESS_BOOKING_URL' ) ) {
 	define( 'PHANESS_BOOKING_URL', 'https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness' );
 }
 if ( ! defined( 'PHANESS_CONTACT_EMAIL' ) ) {
-	define( 'PHANESS_CONTACT_EMAIL', 'contact@phanes.fr' );
+	define( 'PHANESS_CONTACT_EMAIL', 'contact@phaness.fr' );
 }
 if ( ! defined( 'PHANESS_CONTACT_PHONE' ) ) {
 	define( 'PHANESS_CONTACT_PHONE', '07 69 86 01 61' );

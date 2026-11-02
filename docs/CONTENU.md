@@ -196,7 +196,7 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 
 | Libellé | Valeur |
 |---|---|
-| Email | `contact@phanes.fr` (lien `mailto:contact@phanes.fr`) |
+| Email | `contact@phaness.fr` (lien `mailto:contact@phaness.fr`) |
 | Téléphone | `07 69 86 01 61` (lien `tel:0769860161`) |
 
 ---
@@ -231,7 +231,7 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 - `name` : Phaness
 - `url` : https://phaness.fr
 - `description` : Studio de vidéos explicatives et de tutoriels en motion design 3D pour les entreprises.
-- `email` : `contact@phanes.fr`
+- `email` : `contact@phaness.fr`
 - `telephone` : `07 69 86 01 61`
 - `legalName` : `[À FOURNIR]` (entreprise porteuse)
 

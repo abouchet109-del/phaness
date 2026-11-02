@@ -13,7 +13,7 @@ Ce guide concerne une installation WordPress administrée par l'équipe. Les éc
 
 Le lien Calendly fourni est configuré : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Les huit boutons de rendez-vous/contact l’utilisent. Le module s’ouvre au clic dans une fenêtre et propose un lien « Ouvrir Calendly » ; sans JavaScript, les liens mènent directement à la page de réservation.
 
-Les constantes `PHANESS_BOOKING_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone : `contact@phanes.fr` et `07 69 86 01 61`. La raison sociale reste vide. Pour conserver la configuration lors des mises à jour, ces constantes peuvent être définies dans `wp-config.php` avant WordPress. L’ancienne constante `PHANESS_CAL_URL` est remplacée par `PHANESS_BOOKING_URL`.
+Les constantes `PHANESS_BOOKING_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone : `contact@phaness.fr` et `07 69 86 01 61`. La raison sociale reste vide. Pour conserver la configuration lors des mises à jour, ces constantes peuvent être définies dans `wp-config.php` avant WordPress. L’ancienne constante `PHANESS_CAL_URL` est remplacée par `PHANESS_BOOKING_URL`.
 
 L’iframe native suit la [documentation Calendly](https://calendly.com/help/how-to-embed-calendly-with-an-iframe), sans script externe ajouté au site. Les choix de cookies du service restent disponibles. Les mentions du fournisseur sont reprises de sa [politique de confidentialité](https://calendly.com/legal/privacy-notice) ; compléter les champs légaux et la garantie applicable au contrat de l’entreprise avant publication.
 

@@ -9,7 +9,7 @@ Les étapes 1, 2, 3 et V sont indépendantes : elles tournent en parallèle, cha
 | 1 | Fondations : environnement local, squelette du thème, Git | Sonnet | medium | 0 | `theme/`, `package.json`, `.gitignore`, section Commandes de `CLAUDE.md` | fait |
 | 2 | Rédaction de tous les textes | Opus | medium | 0 | `docs/CONTENU.md` | fait (relecture utilisateur à faire) |
 | 3 | Héros 3D WebGL (prototype autonome) | Opus | high | 0 | `lab/hero/` | fait |
-| V | Vidéos de démonstration (HyperFrames + three.js) | Opus | high | 0 | `videos/` | V2 WIP sur Windows : anciens films rendus ; adapter aux nouveaux sujets IA/EPI/rénovation/PAC et à la palette verte avant livraison |
+| V | Vidéos de démonstration (HyperFrames) | Opus | high | 0 | `videos/` | V3 en cours : 5 films (film de marque et 4 films métier) dans la DA verte, sobre, scripts dans `videos/SCRIPTS.md` ; validation en 1080p, 4K après coup |
 | 4 | Mise en page de la one-page dans le thème | Opus | medium | 1, 2, 3, V | `theme/` | fait |
 | 5 | Animations, prise de RDV, pages légales, SEO | Sonnet | high | 4 | `theme/` | Calendly réel et huit liens vérifiés ; informations légales attendues |
 | 6a | Recette : audit Lighthouse, accessibilité, responsive | Haiku | low | 5 | `docs/RECETTE.md` | validée sans vidéos : mobile 98/100/100/100, ordinateur 100/100/100/100 ; mouvement réduit vérifié |
@@ -24,7 +24,7 @@ Mise à jour suivante : la section Promesse est remplacée par « Le pouvoir de 
 
 Révision suivante (thème 0.2.2) : espacement réduit, ancres à environ 16 px sous la navigation, typographie commune, pictogrammes linéaires. Offres et Nos réalisations affichent les nouveaux sujets (IA, EPI, rénovation énergétique, utilisation PAC). Email et téléphone renseignés ; lien Cal.com et informations légales attendus.
 
-Correction suivante : email `contact@phanes.fr`, onglet Énergie et rénovation recentré sur une présentation générale des solutions et de leurs bénéfices, exemples et bouton actualisés. L’utilisateur fournira ensuite un lien Calendly ; adapter le module de réservation après réception.
+Correction suivante : email `contact@phaness.fr`, onglet Énergie et rénovation recentré sur une présentation générale des solutions et de leurs bénéfices, exemples et bouton actualisés. L’utilisateur fournira ensuite un lien Calendly ; adapter le module de réservation après réception.
 
 Intégration Calendly (thème 0.2.3) : lien fourni raccordé aux huit appels à rendez-vous/contact ; iframe chargée au clic, ouverture séparée disponible, retour du focus, liens utilisables sans JavaScript. Page réelle et parcours mobile vérifiés ; détails dans RECETTE. Les mentions Cal.com des étapes historiques ci-dessous décrivent l’implémentation remplacée.
 
