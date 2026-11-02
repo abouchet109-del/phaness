@@ -40,55 +40,31 @@ if (toggle && header) {
   });
 }
 
-// Demo videos: play while on screen (silent, loaded only then), with a pause button and a fullscreen button.
+// Demo videos: native player like the hero, playing while on screen (silent, loaded only then).
 const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('.ph-work__media').forEach((media) => {
-  const video = media.querySelector('video');
-  const button = media.querySelector('.ph-work__play');
-  if (!video || !button) return;
-  const play = () => video.play().catch(() => {});
-  const sync = () => {
-    const playing = !video.paused;
-    media.classList.toggle('is-playing', playing);
-    button.setAttribute('aria-pressed', String(playing));
-  };
-  video.addEventListener('play', sync);
-  video.addEventListener('pause', sync);
-  // A visitor's pause wins over autoplay until they press play again.
-  let pausedByVisitor = false;
-  button.addEventListener('click', () => {
-    pausedByVisitor = !video.paused;
-    if (video.paused) play();
-    else video.pause();
-  });
-  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+  document.querySelectorAll('.ph-work__video').forEach((video) => {
+    // A visitor's pause wins over autoplay until they press play again.
+    let pausedByVisitor = false;
+    let pausingOffScreen = false;
+    video.addEventListener('play', () => {
+      pausedByVisitor = false;
+    });
+    video.addEventListener('pause', () => {
+      if (!pausingOffScreen) pausedByVisitor = true;
+      pausingOffScreen = false;
+    });
     new IntersectionObserver(([entry]) => {
       if (document.fullscreenElement === video) return;
-      if (!entry.isIntersecting) video.pause();
-      else if (!pausedByVisitor) play();
-    }, { threshold: 0.5 }).observe(media);
-  }
-
-  const full = media.querySelector('.ph-work__full');
-  if (!full || !(video.requestFullscreen || video.webkitEnterFullscreen)) return;
-  full.hidden = false;
-  const watch = () => {
-    pausedByVisitor = false;
-    video.currentTime = 0;
-    play();
-  };
-  full.addEventListener('click', () => {
-    // iOS Safari only offers fullscreen on the video element, through this legacy call.
-    if (video.requestFullscreen) video.requestFullscreen().then(watch).catch(() => {});
-    else {
-      watch();
-      video.webkitEnterFullscreen();
-    }
+      if (entry.isIntersecting) {
+        if (!pausedByVisitor) video.play().catch(() => {});
+      } else if (!video.paused) {
+        pausingOffScreen = true;
+        video.pause();
+      }
+    }, { threshold: 0.5 }).observe(video);
   });
-  video.addEventListener('fullscreenchange', () => {
-    video.controls = document.fullscreenElement === video;
-  });
-});
+}
 
 // Sector tabs: the selected tab is the only tab in the normal tab sequence.
 document.querySelectorAll('[role="tablist"]').forEach((tablist) => {

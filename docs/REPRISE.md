@@ -1,6 +1,6 @@
 # Reprise du projet — 2026-10-29
 
-**Le site est en ligne sur https://phaness.fr en version 0.2.9** (2026-11-02), en HTTPS avec redirection depuis http, pages légales complètes. L'utilisateur a demandé cette mise en ligne, ce qui remplace la consigne précédente « GitHub uniquement ». Restent à tester : Safari sur iPhone, une vraie réservation, la réception sur contact@phaness.fr. Les durées de conservation écrites dans les pages restent à appliquer dans les outils (messagerie, agenda, Calendly).
+**Le site est en ligne sur https://phaness.fr en version 0.2.9** (2026-11-02), la version 0.2.10 (lecteur natif sur les quatre films) étant à téléverser, en HTTPS avec redirection depuis http, pages légales complètes. L'utilisateur a demandé cette mise en ligne, ce qui remplace la consigne précédente « GitHub uniquement ». Restent à tester : Safari sur iPhone, une vraie réservation, la réception sur contact@phaness.fr. Les durées de conservation écrites dans les pages restent à appliquer dans les outils (messagerie, agenda, Calendly).
 
 **Le site est en ligne sur https://phaness.fr** (thème 0.2.5, activé le 2026-11-02 par l’autre session). La révision 0.2.7 fusionne les correctifs 0.2.6 (redirection HTTPS, adresse du lien Calendly) et les projets légaux/protections de cette session. Elle n’est pas encore déployée. Le ZIP Windows 0.2.6 est antérieur à ces protections : le reconstruire après pull, sans perdre les médias non versionnés.
 

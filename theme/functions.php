@@ -70,15 +70,9 @@ function phaness_video_card( $slug, $offer, $title, $text ) {
 	<article class="ph-work" id="realisation-<?php echo esc_attr( $slug ); ?>">
 		<div class="ph-work__media<?php echo $has_mp4 ? '' : ' is-pending'; ?>">
 			<?php if ( $has_mp4 ) : ?>
-				<video class="ph-work__video" muted loop playsinline preload="none" aria-label="<?php echo esc_attr( $label ); ?>"<?php echo $has_img ? ' poster="' . esc_url( get_theme_file_uri( $dir . '.webp' ) ) . '"' : ''; ?> width="1280" height="720">
+				<video class="ph-work__video" controls muted loop playsinline preload="none" aria-label="<?php echo esc_attr( $label ); ?>"<?php echo $has_img ? ' poster="' . esc_url( get_theme_file_uri( $dir . '.webp' ) ) . '"' : ''; ?> width="1280" height="720">
 					<source src="<?php echo esc_url( get_theme_file_uri( $dir . '.mp4' ) ); ?>" type="video/mp4">
 				</video>
-				<button class="ph-work__play" type="button" aria-label="<?php echo esc_attr( 'Lire la ' . lcfirst( $label ) ); ?>" aria-pressed="false">
-					<span class="ph-work__play-icon" aria-hidden="true"></span>
-				</button>
-				<button class="ph-work__full" type="button" aria-label="<?php echo esc_attr( 'Voir en plein écran : ' . $title ); ?>" title="Plein écran" hidden>
-					<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
-				</button>
 			<?php else : ?>
 				<div class="ph-work__placeholder" role="img" aria-label="<?php echo esc_attr( $label ); ?>"><span class="ph-orb ph-orb--glow" aria-hidden="true"></span></div>
 			<?php endif; ?>
