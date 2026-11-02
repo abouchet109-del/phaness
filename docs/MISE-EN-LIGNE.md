@@ -1,8 +1,16 @@
 # Mise en ligne de Phaness chez IONOS
 
+**Consigne la plus récente : ne pas déployer.** L’utilisateur demande le 2 novembre 2026 de pousser uniquement sur GitHub. La version 0.2.8 complète les textes ; aucun accès authentifié ni téléversement distant n’a été réalisé. Les procédures ci-dessous restent une référence pour une future demande explicite. Avant celle-ci, vérifier la correspondance entre la politique de conservation et son application dans messagerie/Calendly/agenda ; les chiffres IONOS sont les informations publiées pour l’offre Hébergement Web, sans audit du contrat privé.
+
 Ce guide concerne une installation WordPress administrée par l'équipe. Les écrans IONOS peuvent différer selon le contrat et la variante WordPress.
 
 ## Avant de commencer
+
+**Complément du 2 novembre 2026 :** les pages légales sont des projets avec identité, adresse, TVA, messagerie IONOS et Google Meet renseignés par l’utilisateur. Restent les contrats et pratiques réelles de traitement, dont les durées et sauvegardes. L’identité EI est définie dans PHANESS_LEGAL_NAME. Consulter [SECURITE.md](SECURITE.md) pour les informations à réunir, les réglages de sécurité IONOS/WordPress/comptes et la procédure d’incident. Aucun de ces réglages externes n’est effectué par une mise à jour du thème.
+
+La branche fusionnée est en version 0.2.7 : elle conserve la redirection HTTPS et le lien Calendly de 0.2.6, mais l’ancien ZIP de l’autre PC ne contient pas les nouveaux textes/protections. Après finalisation des champs inconnus, faire pull sur le PC qui dispose des médias, sauvegarder le site et reconstruire le ZIP avant téléversement. La version en ligne n’a pas été remplacée depuis ce Mac.
+
+Le thème 0.2.6 ajoute des en-têtes pour les documents publics : vérifier leur présence après cache/CDN et leur compatibilité avec le site et l’éditeur, sans écraser une politique serveur plus stricte. Calendly se charge après un choix dans une information locale ; les liens sans JavaScript ouvrent directement Calendly. Vérifier les cookies du site final et des extensions, ainsi que les politiques du compte Calendly. Ne pas déployer Playground ou le clone Git comme site public.
 
 - Avoir un domaine et une offre d'hébergement IONOS compatible avec WordPress.
 - Vérifier les coordonnées déjà renseignées, puis compléter les champs légaux `[À FOURNIR]` aux emplacements indiqués ci-dessous.
@@ -13,11 +21,11 @@ Ce guide concerne une installation WordPress administrée par l'équipe. Les éc
 
 Le lien Calendly fourni est configuré : https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness. Les huit boutons de rendez-vous/contact l’utilisent. Le module s’ouvre au clic dans une fenêtre et propose un lien « Ouvrir Calendly » ; sans JavaScript, les liens mènent directement à la page de réservation.
 
-Les constantes `PHANESS_BOOKING_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone : `contact@phaness.fr` et `07 69 86 01 61`. La raison sociale reste vide. Pour conserver la configuration lors des mises à jour, ces constantes peuvent être définies dans `wp-config.php` avant WordPress. L’ancienne constante `PHANESS_CAL_URL` est remplacée par `PHANESS_BOOKING_URL`.
+Les constantes `PHANESS_BOOKING_URL`, `PHANESS_CONTACT_EMAIL`, `PHANESS_CONTACT_PHONE` et `PHANESS_LEGAL_NAME` sont configurées dans `theme/functions.php`. Email et téléphone : `contact@phaness.fr` et `07 69 86 01 61`. Le nom légal est Rafael DELBECQ ALMELA — Entrepreneur individuel. Pour conserver la configuration lors des mises à jour, ces constantes peuvent être définies dans `wp-config.php` avant WordPress. L’ancienne constante `PHANESS_CAL_URL` est remplacée par `PHANESS_BOOKING_URL`.
 
 L’iframe native suit la [documentation Calendly](https://calendly.com/help/how-to-embed-calendly-with-an-iframe), sans script externe ajouté au site. Les choix de cookies du service restent disponibles. Les mentions du fournisseur sont reprises de sa [politique de confidentialité](https://calendly.com/legal/privacy-notice) ; compléter les champs légaux et la garantie applicable au contrat de l’entreprise avant publication.
 
-Les autres informations légales se trouvent dans `theme/patterns/legal-mentions.php` et `theme/patterns/legal-privacy.php`. La raison sociale du pied de page se trouve dans `theme/patterns/footer.php`. Ces textes ne sont pas tous alimentés par `PHANESS_LEGAL_NAME` : remplacer chaque champ avec les informations validées de l'entreprise, puis reporter les textes dans `docs/CONTENU.md`. Ne pas renseigner de durée, de garantie ou d'identifiant supposé.
+Les autres informations légales se trouvent dans `theme/patterns/legal-mentions.php` et `theme/patterns/legal-privacy.php`. Le pied de page utilise aussi PHANESS_LEGAL_NAME. Les autres champs restent dans les patterns : les compléter avec les informations validées, puis les reporter dans `docs/CONTENU.md`. Ne pas renseigner de durée, de garantie ou d’identifiant supposé.
 
 Les pages créées par le thème restent liées à leurs patterns et reflètent leurs mises à jour. Une page dont le contenu a été personnalisé dans l'éditeur est conservée ; dans ce cas, vérifier et mettre à jour cette page séparément. La mention voix off/sous-titres a été retirée de la page. Le nombre de retours n'est plus affiché depuis le retrait de la section Méthode.
 

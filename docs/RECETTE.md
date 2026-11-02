@@ -119,3 +119,16 @@ Lighthouse 13 sur https://phaness.fr : mobile 90/100/100/92 (LCP 2,0 s, blocage 
 ## Mesures en ligne du 2026-11-02 (thème 0.2.6, avec vidéos)
 
 Lighthouse 13 sur https://phaness.fr : mobile 99/100/100/100 (FCP 1,4 s, LCP 2,0 s, blocage 10 ms, CLS 0), ordinateur 100/100/100/100 (LCP 0,5 s, blocage 0 ms). La mesure 0.2.5 donnait 90 en mobile : l'écart de performance tient sans doute à la variabilité du serveur et au cache, pas au correctif, donc à reprendre avant d'en tirer une conclusion.
+
+# Complément sécurité et pages légales — 2 novembre 2026
+
+Thème 0.2.7 après fusion des correctifs 0.2.6 du poste de déploiement. Suite complète : 15 tests réussis, dont trois groupes PHP 8.3 vérifiant les en-têtes, le retrait sélectif des pingbacks et dix configurations de réservation valides/hostiles. Les politiques déjà présentes sont préservées. Syntaxe JS valide ; 18 fichiers PHP contrôlés. Les premières tentatives du nouveau harnais PHP nécessitaient un identifiant de processus WASM et l’autorisation d’écoute locale ; corrigées avant la suite finale.
+
+Chromium : 74 contrôles réussis à 1440 et 390 px. Huit boutons, information locale sans requête externe, choix explicite avant iframe, absence de Referer, fermeture/déchargement, liens sans JS, deux pages légales avec identité fournie et sans débordement, console sans exception, REST et administration toujours disponibles. Les contrôles répétés utilisent un calendrier simulé sans réservation ; un contrôle séparé charge le vrai événement Calendly sur mobile, HTTP 200, sans soumission. Après chargement, le focus reste sur Fermer pour conserver la fermeture native par Échap. Captures et résultats : `docs/captures/securite-2026-11-02/`.
+
+Limites : aucune vérification des comptes IONOS/Google/Calendly, de leur MFA ou de leurs sauvegardes ; aucune configuration de production modifiée. Les politiques du serveur/cache final, les cookies d’extensions et la chaîne HTTPS restent à vérifier sur IONOS. Les MP4 ne sont pas présents sur ce Mac : ni lecture ni nouveau ZIP de livraison testés. Pas de nouvel audit Lighthouse. Les textes restent des projets tant que contrats, garanties, durées et champs inconnus ne sont pas complétés. Voir SECURITE.md.
+## Pages légales complétées — 2 novembre 2026, thème 0.2.8
+
+28 contrôles ciblés réussis à 1440 et 390 px : deux pages HTTP 200, aucun champ en attente ni mention de brouillon, un H1, identité/adresse/email présents, durées et références de transfert présentes, mention explicite de l’absence de suppression automatique dans les outils externes, pas de débordement ni exception JS. Syntaxe des 18 PHP valide. Captures et checks.json dans docs/captures/legal-complete-2026-11-02/. Le code de sécurité, les vidéos et le fonctionnement Calendly n’ont pas changé ; pas de répétition des audits antérieurs ou de nouveau Lighthouse.
+
+Limites : textes et politique de conservation complétés, mais réglages des comptes non modifiés ; appliquer les échéances dans messagerie/agenda/Calendly. Durées IONOS attribuées à sa documentation standard, sans audit de contrat. L’utilisateur a retiré la demande de déploiement : GitHub uniquement, aucun accès authentifié ou téléversement distant.

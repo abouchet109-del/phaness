@@ -42,10 +42,14 @@ npm run build:zip    # produit dist/phaness.zip ; refuse les fichiers ou rendus 
 - [`CLAUDE.md`](CLAUDE.md) : les consignes pour Claude Code.
 
 ## État
+
+**Version 0.2.8, 2 novembre 2026 :** pages légales complétées sans champs en attente ; politique de conservation définie et informations d’hébergement sourcées. Les durées doivent être appliquées dans les outils, dont les réglages privés n’ont pas été modifiés. Nouvelle consigne utilisateur : GitHub uniquement, aucune mise à jour du site public. Les versions décrites ci-dessous sont antérieures.
+
+**2 novembre 2026 — thème 0.2.7.** Projets légaux renseignés avec l’identité EI, l’adresse et la TVA fournies ; messagerie IONOS et Google Meet déclarés. Contrats, pratiques et durées restent à compléter avant publication. Protection du thème et procédure d’incident dans [SECURITE.md](docs/SECURITE.md). Calendly s’affiche après information et choix local ; protections HTTP ciblées, pingbacks et avatars externes retirés. La configuration IONOS et des comptes n’a pas été modifiée. `npm run test:security` vérifie les gardes PHP ; `npm test` l’inclut. Les paragraphes suivants décrivent les révisions antérieures.
 Révision visuelle du 2026-10-29 : nouvelle accroche, palette verte, retrait de Méthode / Notre différence / Pourquoi Phaness ? et de la zone d'intervention. L'œuf est remplacé par un cadre pour la vidéo de présentation de l'équipe, encore à fournir. Le thème est en version 0.2.3. Les huit boutons de rendez-vous/contact ouvrent le lien Calendly fourni, chargé au clic. Espacements et typographie harmonisés, icônes linéaires, nouveaux sujets vidéo et coordonnées renseignées (contact@phaness.fr, 07 69 86 01 61). La section « Le pouvoir de la vidéo, au service de votre entreprise. » reprend le titre, les textes et les trois cartes de la référence fournie par l'utilisateur.
 
 Les scores Lighthouse ci-dessous concernent la version précédant cette révision ; les contrôles visuels actuels sont décrits dans `docs/RECETTE.md`.
 
 Code et recette terminés dans le périmètre sans vidéos : Lighthouse mobile 98/100/100/100 et ordinateur 100/100/100/100. Paquetage couvert par 10 tests ; installation du thème et réservation simulée vérifiées sur WordPress vierge. La livraison finale attend les vidéos V2 produites sur l'autre PC, les informations légales. Le ZIP final et la mise en ligne IONOS restent à faire après réception de ces éléments. Détail dans [`docs/REPRISE.md`](docs/REPRISE.md).
 
-Vidéos V3 validées et branchées sur le site en 1080p le 2026-11-02, avec des rendus 4K à part : cinq films dans la DA verte, scripts et règles dans [`videos/SCRIPTS.md`](videos/SCRIPTS.md). Site en ligne sur https://phaness.fr depuis le 2026-11-02. Reste à compléter les informations légales.
+Vidéos V3 validées et branchées sur le site en 1080p le 2026-11-02, avec des rendus 4K à part : cinq films dans la DA verte, scripts et règles dans [`videos/SCRIPTS.md`](videos/SCRIPTS.md). Site en ligne sur https://phaness.fr depuis le 2026-11-02. La version 0.2.8 ajoute les pages légales complètes et les protections du thème.

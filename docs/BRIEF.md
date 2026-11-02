@@ -2,11 +2,17 @@
 
 > Source de vérité pour toutes les sessions. Toute décision qui change ce brief s'écrit ici.
 
+Dernière révision du 2 novembre 2026, thème 0.2.8 : tous les champs des deux pages légales sont complétés. Le propriétaire délègue leur rédaction ; les durées de conservation de Phaness sont définies comme politique à appliquer, sans prétendre que des effacements sont automatisés. Journaux et sauvegardes standard IONOS sont documentés avec attribution à l’hébergeur. Compte Google/agenda et intervenants éventuels décrits sans inventer de contrat ou de prestataire. Consigne finale : pousser sur GitHub uniquement, aucune mise à jour du site public.
+
+Décision du 2 novembre 2026 : l’activité Phaness est exploitée par Rafael DELBECQ ALMELA, entrepreneur individuel en micro-entreprise, SIREN 980 147 409 / RCS Pontoise, SIRET 980 147 409 00018. Adresse fournie : 2 bis rue de Curzay, 95880 Enghien-les-Bains. La franchise de TVA est retenue après réponse affirmative à la question sur ce régime. Messagerie IONOS et Google Meet confirmés ; type de compte Google/agenda et durées encore à préciser. Les anciennes mentions d’une entreprise porteuse appartenant à un associé sont remplacées par cette identité.
+
+Protection des données : textes légaux détaillés en version de travail, sans exonération générale de responsabilité pour une fuite. Information locale avant connexion Calendly avec choix explicite d’afficher les créneaux ; liens directs sans JS et contact email conservés. Aucune fonction d’analytics ajoutée. Protections du thème 0.2.7 et actions serveur/comptes séparées dans SECURITE.md ; hébergement réel non audité.
+
 ## Le projet
 
 - Studio B2B de vidéos explicatives et tutoriels en motion design (style 3D).
 - Site **vitrine one-page**, en **français**, sur **phaness.fr** (domaine et hébergement chez IONOS).
-- Entreprise réelle : portée juridiquement par l'entreprise existante d'un associé (nom différent de Phaness). Les mentions légales seront à son nom.
+- Entreprise réelle : Rafael DELBECQ ALMELA, entrepreneur individuel en micro-entreprise, exploitant le nom commercial Phaness.
 - Les modifications après livraison se font par l'équipe, avec Claude Code : le code est la source, pas l'interface WordPress.
 
 ## Positionnement et ton

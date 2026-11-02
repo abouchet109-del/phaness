@@ -191,8 +191,8 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 
 **Bouton** — ≤ 20 : `Prendre rendez-vous` → [https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness](https://calendly.com/rafael-delbecq/appel-de-decouverte-phaness)
 
-**Note sous le bouton** — ≤ 140
-> La réservation sur Calendly s’ouvre au clic. En savoir plus dans notre [politique de confidentialité](/politique-de-confidentialite/).
+**Note sous le bouton**
+> La réservation utilise Calendly. Vous choisissez de charger les créneaux après avoir lu l’information sur ce service. Sans JavaScript, le lien ouvre directement Calendly. En savoir plus dans notre [politique de confidentialité](/politique-de-confidentialite/).
 
 **Coordonnées**
 
@@ -246,123 +246,185 @@ Les clés de fichiers restent stables pour le poste de rendu séparé. Les films
 
 ## 13. Pages légales
 
-> Gabarits conformes à la LCEN (art. 6 III et art. 19 de la loi n° 2004-575 du 21 juin 2004) et au RGPD (règlement UE 2016/679). À faire relire par l'entreprise porteuse avant mise en ligne.
-> Coordonnées d'IONOS vérifiées le 2026-10-29 sur ses mentions légales officielles (https://www.ionos.fr/terms-gtc/terms-imprint/).
+Textes complétés le 2 novembre 2026, thème 0.2.8, sans champ en attente dans les pages. Les durées de Phaness constituent une politique définie pour cette révision et doivent être appliquées dans les outils ; elles ne décrivent pas un effacement automatique déjà configuré. Les durées IONOS sont attribuées à sa documentation Hébergement Web. Le type de compte Google non précisé est traité conditionnellement, sans affirmer l’existence d’un contrat Workspace. Sources et actions dans [SECURITE.md](SECURITE.md). Publication limitée à GitHub sur instruction finale de l’utilisateur.
 
 ### 13.1 Mentions légales — `/mentions-legales/`
 
-**Titre (H1) :** Mentions légales
+**Mentions légales**
 
 **Éditeur du site**
 
-Le site phaness.fr est édité par :
-- Raison sociale : [À FOURNIR]
-- Forme juridique et capital social : [À FOURNIR]
-- Adresse du siège social : [À FOURNIR]
-- Immatriculation (RCS ou RNE) et numéro SIREN : [À FOURNIR]
-- Numéro de TVA intracommunautaire : [À FOURNIR]
-- Téléphone : [À FOURNIR]
-- Email : [À FOURNIR]
+Le site phaness.fr présente les prestations du studio Phaness, nom commercial exploité par :
 
-Phaness est une marque commerciale exploitée par [À FOURNIR : raison sociale].
+- Entrepreneur : Rafael DELBECQ ALMELA — Entrepreneur individuel
+
+- Régime : micro-entreprise, sans capital social.
+
+- Adresse professionnelle : 2 bis rue de Curzay, 95880 Enghien-les-Bains, France.
+
+- SIREN : 980 147 409.
+
+- SIRET du siège : 980 147 409 00018.
+
+- Immatriculation : 980 147 409 RCS Pontoise ; inscription au RNE.
+
+- TVA non applicable, article 293 B du CGI.
+
+- Email : [contact@phaness.fr](mailto:contact@phaness.fr)
+
+- Téléphone : [07 69 86 01 61](tel:0769860161)
 
 **Directeur de la publication**
 
-[À FOURNIR : prénom, nom et qualité].
+Rafael DELBECQ ALMELA, entrepreneur individuel.
 
-**Hébergeur**
+**Hébergement**
 
-Le site est hébergé par :
-IONOS SARL, SARL au capital de 100 000 €
-7, place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France
-RCS Sarreguemines B 431 303 775
-Téléphone : 09 70 80 89 11
-Site : https://www.ionos.fr
+Le site est hébergé par IONOS SARL, 7, place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France. Téléphone : 09 70 80 89 11. Site : [www.ionos.fr](https://www.ionos.fr).
 
-**Propriété intellectuelle**
+**Contenus et propriété intellectuelle**
 
-L'ensemble des contenus de ce site (textes, vidéos, animations, visuels, logo) est la propriété de [À FOURNIR : raison sociale], sauf mention contraire. Toute reproduction, représentation ou adaptation, totale ou partielle, sans autorisation écrite préalable, est interdite.
+Les textes, vidéos, animations, visuels et signes distinctifs du site sont protégés selon les droits qui leur sont applicables. L’éditeur les exploite en qualité de titulaire des droits ou au titre des autorisations et licences correspondantes.
 
-La police de caractères Geist est utilisée sous licence SIL Open Font License 1.1.
+Sauf exception légale ou licence applicable, leur reproduction, adaptation, diffusion ou exploitation commerciale nécessite une autorisation écrite préalable. Une consultation du site ou un échange commercial ne transfère aucun droit d’exploitation. Les droits accordés sur une prestation sont précisés dans le devis ou le contrat signé.
 
-Les vidéos présentées dans la section Réalisations sont des démonstrations réalisées par Phaness. Elles ne représentent pas des commandes de clients.
+Les composants libres conservent leurs licences respectives : notamment WordPress et le code du thème sous licence GPL, et la police Geist sous licence SIL Open Font License 1.1.
 
-**Responsabilité**
+**Prestations et démonstrations**
 
-Nous nous efforçons de tenir à jour des informations exactes. Nous ne pouvons toutefois garantir l'absence d'erreur ou d'omission. Les liens vers des sites tiers sont fournis à titre d'information : nous ne sommes pas responsables de leur contenu.
+Les films de « Nos réalisations » sont des démonstrations de notre travail, et ne sont pas présentés comme des commandes de clients. Le contenu, le prix, les livrables, les délais et les droits d’utilisation d’une prestation sont définis dans un devis ou un contrat accepté par les parties.
 
-**Données personnelles et cookies**
+Les exemples pédagogiques, de sécurité ou de rénovation illustrent des usages de la vidéo. Ils ne remplacent ni les consignes d’un employeur, ni la notice d’un fabricant, ni l’analyse d’un professionnel qualifié. Ils ne constituent pas une garantie de performance, d’économie d’énergie ou de conformité d’une installation.
 
-Le traitement de vos données personnelles est décrit dans notre [politique de confidentialité](/politique-de-confidentialite/).
+**Accès, liens externes et responsabilité**
 
-**Droit applicable**
+L’éditeur peut interrompre l’accès au site pour maintenance ou correction. Il veille à l’exactitude des informations ; une erreur peut être signalée à [contact@phaness.fr](mailto:contact@phaness.fr).
 
-Le présent site et ses mentions légales sont soumis au droit français.
+Les services externes, dont Calendly, ont leurs propres conditions et politiques de confidentialité. L’éditeur ne contrôle pas leurs évolutions. Cela ne supprime pas ses obligations concernant le choix et l’utilisation de ses prestataires.
 
-*Dernière mise à jour : [À FOURNIR : date de mise en ligne].*
+Aucune disposition de cette page n’exclut une responsabilité ou un droit auquel la loi ne permet pas de déroger, notamment en matière de protection des données personnelles.
+
+**Signalement de sécurité**
+
+Signalez une anomalie à [contact@phaness.fr](mailto:contact@phaness.fr) avec la page concernée et une description du problème. Ne transmettez aucun mot de passe, secret de connexion ni donnée personnelle d’un tiers. Une prise de contact ne vaut pas autorisation de tester, d’exploiter une faille ou d’accéder à des données sans autorisation.
+
+**Données personnelles et droit applicable**
+
+Les traitements et vos droits figurent dans notre [politique de confidentialité](/politique-de-confidentialite/). Ces mentions sont soumises au droit français, sous réserve des dispositions impératives applicables.
+
+Dernière mise à jour : 2 novembre 2026.
 
 ---
 
 ### 13.2 Politique de confidentialité — `/politique-de-confidentialite/`
 
-**Titre (H1) :** Politique de confidentialité
+**Politique de confidentialité**
 
-Cette page explique quelles données personnelles nous traitons lorsque vous visitez phaness.fr, pourquoi, et quels sont vos droits.
+Cette politique concerne la consultation de phaness.fr, les prises de contact et les rendez-vous sollicités auprès du studio Phaness. Le site ne propose ni compte client, ni dépôt de fichiers, ni paiement en ligne.
 
-**Responsable du traitement**
+**1. Responsable du traitement**
 
-[À FOURNIR : raison sociale], [À FOURNIR : adresse du siège], représentée par [À FOURNIR : nom du représentant].
-Contact pour toute question sur vos données : [À FOURNIR : email].
+Rafael DELBECQ ALMELA — Entrepreneur individuel, SIREN 980 147 409, exploitant du nom commercial Phaness.
 
-**Les données que nous traitons**
+Adresse professionnelle : 2 bis rue de Curzay, 95880 Enghien-les-Bains, France.
 
-1. **Prise de rendez-vous.** Lorsque vous réservez un échange, vous saisissez votre nom, votre adresse email et, le cas échéant, les informations que vous choisissez d'ajouter sur votre projet.
-   - Finalité : organiser le rendez-vous et préparer votre devis.
-   - Base légale : mesures précontractuelles prises à votre demande (art. 6.1.b du RGPD).
-   - Durée de conservation : [À FOURNIR] (par exemple 3 ans après le dernier contact pour un prospect, selon la recommandation de la CNIL).
+Contact pour vos données : [contact@phaness.fr](mailto:contact@phaness.fr).
 
-2. **Échanges par email ou par téléphone.** Nous traitons les informations que vous nous communiquez.
-   - Finalité : répondre à votre demande.
-   - Base légale : mesures précontractuelles ou intérêt légitime à répondre aux demandes reçues (art. 6.1.b et 6.1.f du RGPD).
-   - Durée de conservation : [À FOURNIR].
+**2. Données traitées et finalités**
 
-3. **Journaux techniques de l'hébergeur.** Comme tout site, l'hébergement enregistre des données de connexion (adresse IP, date et heure, page demandée, navigateur).
-   - Finalité : sécurité et bon fonctionnement du site.
-   - Base légale : intérêt légitime (art. 6.1.f du RGPD).
-   - Durée de conservation : [À FOURNIR : durée appliquée par IONOS ou par le réglage de l'hébergement].
+**Demandes et rendez-vous**
 
-Nous ne vendons ni ne louons vos données. Nous ne les utilisons pas à des fins de prospection sans votre accord.
+Nous traitons les informations communiquées : nom, email, téléphone si nécessaire, entreprise, objet de la demande et contenu des échanges. Une réservation inclut le créneau choisi et les réponses au formulaire Calendly.
 
-**Destinataires et sous-traitants**
+Elles servent à vous répondre, organiser un échange et préparer une proposition. Pour une personne demandant une prestation pour elle-même, la base légale est la préparation d’un contrat à sa demande (article 6.1.b du RGPD). Pour les représentants d’une entreprise ou les autres demandes, elle est notre intérêt légitime à gérer ces relations professionnelles (article 6.1.f).
 
-Vos données ne sont accessibles qu'aux personnes de [À FOURNIR : raison sociale] qui en ont besoin, et aux sous-traitants suivants :
-- **IONOS SARL** (France), hébergeur du site.
-- **Calendly, LLC** fournit le service de réservation et traite les données nécessaires au rendez-vous pour notre compte. Des transferts vers les États-Unis peuvent intervenir. Garantie applicable à notre contrat : [À FOURNIR]. Voir la [politique de confidentialité de Calendly](https://calendly.com/legal/privacy-notice).
+Les champs obligatoires sont indiqués dans Calendly. Sans les coordonnées nécessaires, nous ne pouvons pas confirmer un rendez-vous ou répondre. Les autres précisions sont facultatives. N’envoyez aucun mot de passe, donnée de santé ou document confidentiel lors du premier contact.
 
-**Cookies et traceurs**
+Notre politique de conservation distingue les usages suivants :
 
-- Phaness n’installe aucun outil de mesure d’audience ni de publicité. Les choix de cookies du service de réservation sont gérés dans Calendly.
-- Les polices de caractères sont hébergées sur notre serveur : aucune donnée n'est transmise à un service de polices tiers.
-- Calendly se charge après un clic de réservation et propose ses propres choix de cookies selon votre région. Aucun contenu Calendly n’est chargé avant ce clic.
-- Les cookies techniques de WordPress ne concernent que les personnes qui administrent le site.
+- Une demande ponctuelle sans suite commerciale : pendant son traitement, puis au maximum douze mois après sa clôture.
 
-**Vos droits**
+- Un projet ou un échange commercial suivi : au maximum trois ans après le dernier contact émanant de vous, sauf si une prestation est conclue ou si vous demandez un effacement applicable plus tôt.
 
-Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données. Vous pouvez aussi définir des directives sur le sort de vos données après votre décès.
+- Les invitations et données d’organisation d’un rendez-vous : au maximum douze mois après sa tenue ou son annulation. Les échanges utiles à un projet suivent la durée du projet ci-dessus.
 
-Pour exercer ces droits, écrivez-nous à [À FOURNIR : email] ou à [À FOURNIR : adresse postale]. Nous vous répondons dans un délai d'un mois, comme le prévoit le RGPD.
+En cas de prestation, les données nécessaires à son exécution sont conservées pendant la relation contractuelle. Les pièces devant servir de preuve ou répondre à une obligation comptable sont ensuite archivées pendant les délais légaux applicables, avec un accès limité.
 
-Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL : www.cnil.fr, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.
+**Données techniques**
 
-**Sécurité**
+L’hébergement enregistre des données d’accès : ressource consultée, heure, navigateur, système d’exploitation, type d’appareil, référent lorsqu’il est transmis et adresse IP traitée selon les modalités d’IONOS. Leur usage pour diagnostiquer les incidents et protéger le service repose sur l’intérêt légitime à assurer sa sécurité et son fonctionnement (article 6.1.f).
 
-Le site est servi en HTTPS. Nous limitons l'accès aux données aux seules personnes et sous-traitants qui en ont besoin.
+Pour son offre Hébergement Web, IONOS indique une conservation de huit semaines et une anonymisation de l’adresse IP pour l’analyse. Ces traitements comprennent ses statistiques techniques WebStat. Les précisions figurent dans la [documentation de l’hébergeur](https://www.ionos.fr/assistance/protection-des-donnees/traitement-des-donnees-des-visiteurs-du-site-web-de-votre-produit-ionos/ionos-hebergement/). L’accès est réservé à l’hébergeur et aux personnes habilitées à administrer le site. Les données techniques nécessaires à l’acheminement d’une page ne peuvent pas être désactivées tout en conservant cet accès.
 
-**Modification de cette politique**
+**Demandes relatives à vos droits**
 
-Nous pouvons mettre à jour cette page. La date ci-dessous indique la dernière version.
+Les informations d’une demande d’accès, de rectification ou d’effacement servent à la traiter au titre de nos obligations légales (article 6.1.c). Nous prévoyons de conserver la demande et sa réponse pendant douze mois après clôture pour en assurer le suivi. Une preuve minimale peut être archivée au-delà lorsqu’un contentieux ou la défense d’un droit le justifie, sur la base de notre intérêt légitime (article 6.1.f), pendant la durée nécessaire à son règlement.
 
-*Dernière mise à jour : [À FOURNIR : date de mise en ligne].*
+Une vérification supplémentaire d’identité n’est demandée qu’en cas de doute raisonnable et doit rester proportionnée. Une pièce d’identité éventuellement reçue est supprimée une fois la vérification achevée, sauf obligation légale justifiant sa conservation.
+
+**3. Destinataires et prestataires**
+
+Les destinataires sont les personnes habilitées à traiter votre demande et les prestataires nécessaires :
+
+- Hébergement et journaux techniques : IONOS SARL, dont les coordonnées figurent dans les mentions légales. Pour les données de visiteurs de son offre Hébergement Web, IONOS indique l’absence de transfert hors de l’Union européenne.
+
+- Réservation : Calendly, LLC, pour les créneaux, invitations et rappels configurés.
+
+- Messagerie : IONOS, pour les échanges avec contact@phaness.fr.
+
+- Visioconférence : Google Meet, pour les réunions à distance et leurs invitations. Un agenda connecté à la réservation reçoit, lorsqu’une telle connexion est utilisée, les informations nécessaires à l’événement. Les traitements de Google sont décrits dans sa [politique de confidentialité](https://policies.google.com/privacy?hl=fr).
+
+- Administration et maintenance : les personnes habilitées à gérer le site. Lorsqu’un intervenant extérieur doit accéder à des données pour une opération technique, son accès doit être limité à cette intervention et encadré par des obligations de confidentialité et de protection des données.
+
+Une autorité peut recevoir des données lorsqu’une obligation légale l’exige. Nous ne vendons ni ne louons les données reçues par le site. Le site ne propose pas d’inscription à une newsletter.
+
+**4. Calendly et transferts internationaux**
+
+Avec JavaScript, un premier clic sur un bouton de rendez-vous ouvre une information locale. Calendly n’est contacté que si vous choisissez « Afficher les créneaux » ou « Ouvrir Calendly ». Sans JavaScript, le bouton mène directement à Calendly. Vous pouvez toujours nous contacter par email.
+
+À l’ouverture, Calendly reçoit votre adresse IP et des informations techniques sur votre navigateur, même sans réservation. Les données du rendez-vous sont traitées pour notre compte ; Calendly est aussi responsable de certains traitements propres à son service, décrits dans sa [politique de confidentialité](https://calendly.com/legal/privacy-notice).
+
+Calendly et Google peuvent traiter des données aux États-Unis et dans d’autres pays où ils disposent d’infrastructures ou de prestataires. Le [contrat de traitement de Calendly](https://calendly.com/legal/data-processing-addendum) prévoit le cadre de protection des données UE–États-Unis pour les transferts couverts par ce mécanisme, et des clauses contractuelles types dans les situations de remplacement prévues au contrat.
+
+Google décrit ses décisions d’adéquation, sa participation au cadre UE–États-Unis et le recours aux clauses contractuelles types sur sa page consacrée aux [garanties de transfert](https://policies.google.com/privacy/frameworks?hl=fr). Un compte Google Workspace relève en outre des engagements de son [accord de traitement des données](https://workspace.google.com/terms/dpa_terms.html) lorsqu’il est applicable. Ces références décrivent les mécanismes des fournisseurs ; elles ne signifient pas que toutes les données restent en Europe. Pour obtenir des précisions ou une copie des garanties concernant vos échanges avec Phaness, écrivez à notre adresse de contact.
+
+Les réunions Google Meet ont lieu hors de ce site. Selon les fonctions choisies, Google traite aussi des informations de connexion et les flux audio et vidéo. Ce site n’enregistre pas les réunions. Un éventuel enregistrement ou une transcription doit faire l’objet d’une information et d’un cadre adaptés avant son activation.
+
+**5. Cookies et services intégrés**
+
+Le thème n’ajoute aucun traceur publicitaire ni outil d’audience côté navigateur. Les statistiques techniques de l’hébergement sont décrites plus haut. Les polices et les vidéos livrées avec le thème sont servies par le site ; les avatars Gravatar sont désactivés. Les cookies de connexion WordPress concernent l’administration, avec une durée liée à la session et à l’option de mémorisation choisie par l’administrateur.
+
+Calendly peut utiliser des cookies de session et des cookies persistants pour son fonctionnement et, selon vos choix, pour des usages facultatifs. Leur durée varie selon leur rôle. Son lien « Cookie Settings » ou « Your Privacy Choices », disponible sur les pages de réservation, permet de consulter et modifier les choix proposés. Afficher les créneaux ne vaut pas accord à tous ses cookies facultatifs. Les cookies de session expirent à la fin de la session ; les cookies persistants suivent leur échéance ou peuvent être supprimés dans votre navigateur.
+
+Fermer le module interrompt son affichage sans supprimer les cookies déjà enregistrés. Vous pouvez les supprimer ou les bloquer avec votre navigateur ; certaines fonctions du service peuvent alors ne plus fonctionner.
+
+**6. Conservation et suppression**
+
+Les durées ci-dessus fixent notre politique de conservation. Leur application nécessite une revue des messages, rendez-vous et dossiers dans les outils utilisés ; ce site n’automatise pas la suppression des données conservées dans la messagerie, Calendly ou Google.
+
+Les données devenues inutiles sont à supprimer des espaces de travail. Les archives conservées pour une obligation légale ou un contentieux doivent être séparées et accessibles aux seules personnes qui en ont besoin.
+
+Les sauvegardes techniques ne sont pas destinées à la consultation courante. IONOS annonce pour les sauvegardes automatiques standard de son espace Web une disponibilité de quatorze jours au maximum, selon sa [documentation de sauvegarde](https://www.ionos.fr/assistance/hebergement/sauvegarde-et-restauration-de-fichiers/creer-des-sauvegardes-regulieres/). Cette indication ne décrit pas les sauvegardes propres à la messagerie ou aux agendas. Lors d’une restauration, les demandes d’effacement déjà traitées doivent être réappliquées avant la remise en service des données concernées.
+
+**7. Vos droits**
+
+Selon les conditions du RGPD, vous pouvez demander accès, rectification, effacement ou limitation. Vous pouvez vous opposer à un traitement fondé sur notre intérêt légitime pour des raisons tenant à votre situation. La portabilité concerne les données fournies et traitées automatiquement sur la base d’un contrat ou de votre consentement. Lorsqu’un traitement repose sur votre consentement, vous pouvez le retirer pour l’avenir. Vous pouvez aussi définir des directives sur vos données après votre décès.
+
+Écrivez à [contact@phaness.fr](mailto:contact@phaness.fr) ou à l’adresse professionnelle indiquée plus haut. La réponse intervient en principe sous un mois. Une prolongation de deux mois est possible en cas de complexité ou de demandes nombreuses ; les motifs vous sont communiqués pendant le premier mois.
+
+Vous pouvez adresser une [réclamation à la CNIL](https://www.cnil.fr/fr/adresser-une-plainte), sans renoncer à un autre recours. Le site ne met en œuvre aucune décision entièrement automatisée produisant un effet juridique ou comparable.
+
+**8. Sécurité et incidents**
+
+La protection des données nécessite des accès limités, des logiciels à jour, HTTPS en production et des sauvegardes maîtrisées. Ces mesures doivent être vérifiées avec les prestataires et adaptées aux risques. Aucun service connecté ne peut garantir l’absence de tout incident.
+
+Signalez un problème à [contact@phaness.fr](mailto:contact@phaness.fr) sans joindre de secret ni de donnée d’un tiers. En cas de violation, l’incident doit être documenté et, lorsque les conditions légales sont réunies, notifié à l’autorité compétente et communiqué aux personnes concernées.
+
+**9. Mise à jour**
+
+Cette page doit être actualisée lorsque les usages ou prestataires changent. Sa modification ne vaut pas consentement à un nouveau traitement qui en nécessiterait un.
+
+Dernière mise à jour : 2 novembre 2026.
 
 ---
 

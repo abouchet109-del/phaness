@@ -1,6 +1,12 @@
 # Reprise du projet — 2026-10-29
 
-**Le site est en ligne sur https://phaness.fr** (thème 0.2.6, le 2026-11-02), en HTTPS avec redirection depuis http. Lighthouse : mobile 99/100/100/100, ordinateur 100/100/100/100. Les informations légales manquent encore : le pied de page et les pages légales affichent `[À FOURNIR]`, ne pas annoncer le site avant de les remplir.
+**Le site est en ligne sur https://phaness.fr**, en HTTPS avec redirection depuis http. Le 2026-11-02, l'utilisateur a demandé de mettre en ligne la version 0.2.8 avec les pages légales complètes : cette demande remplace la consigne précédente « GitHub uniquement ». Les durées de conservation écrites dans les pages restent à appliquer dans les outils (messagerie, agenda, Calendly).
+
+**Le site est en ligne sur https://phaness.fr** (thème 0.2.5, activé le 2026-11-02 par l’autre session). La révision 0.2.7 fusionne les correctifs 0.2.6 (redirection HTTPS, adresse du lien Calendly) et les projets légaux/protections de cette session. Elle n’est pas encore déployée. Le ZIP Windows 0.2.6 est antérieur à ces protections : le reconstruire après pull, sans perdre les médias non versionnés.
+
+Révision du 2 novembre 2026, thème 0.2.7 : les mentions légales et la politique de confidentialité sont rédigées en projets détaillés, visibles localement. Identité confirmée : Rafael DELBECQ ALMELA, entrepreneur individuel, SIREN 980 147 409, SIRET 980 147 409 00018, RCS Pontoise. Adresse fournie : 2 bis rue de Curzay, 95880 Enghien-les-Bains. Franchise de TVA retenue après réponse de l’utilisateur ; contact@phaness.fr, messagerie IONOS, réservation Calendly et Google Meet confirmés. Restent le type de compte Google/agenda, le contrat d’hébergement, les durées et pratiques réelles. Ne pas publier les champs incomplets.
+
+Protections du thème : étape d’information avant chargement Calendly, URL restreinte au fournisseur, no-referrer, en-têtes HTTP ciblés, commentaires/pings fermés et avatars externes désactivés. L’API REST et les méthodes d’administration XML-RPC non liées aux pingbacks restent disponibles. Ces protections ne remplacent pas MFA, mises à jour, sauvegardes testées et configuration serveur ; rien n’a été changé dans les comptes externes. Voir SECURITE.md et RECETTE.md. Sur ce Mac, les MP4 et le vrai ZIP restent absents ; ne pas les rendre ici.
 
 Dernière mise à jour (thème 0.2.5, 2026-11-02) : les films de Nos réalisations ont un bouton plein écran. Les cinq films V3 sont rendus en 1080p et branchés sur le site : le film de marque dans le héros, les quatre films métier dans Nos réalisations. Le ZIP de livraison se construit (24,3 Mo). Restent les informations légales, la relecture des films par l'utilisateur, le 4K si le budget le permet, puis la mise en ligne.
 
@@ -24,13 +30,13 @@ Les MP4 ne sont pas versionnés : ils sont sur le PC Windows, dans `videos/out/`
 | V3. Vidéos | Validés par l'utilisateur | 1080p dans `videos/out/` pour le site, 4K dans `videos/out-4k/` (non versionnés, sur le PC Windows). Le 4K est partiel en netteté sur les plans à caméra inclinée : voir `videos/REVIEW.md`. |
 | 6a. Recette | Validée hors médias et données manquantes | Mesures antérieures à la révision verte : mobile 98/100/100/100, ordinateur 100/100/100/100. Révision contrôlée visuellement à 390 et 1440 px ; refaire Lighthouse avec les médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
-| 7. Mise en ligne | En ligne, thème 0.2.6 | Compléter le légal, refaire le zip et le téléverser. Sous Windows, `npm test` donne 9 sur 12 : Windows refuse les liens symboliques de trois tests. |
+| 7. Mise en ligne | En ligne | Déploiement de 0.2.8 demandé le 2026-11-02. Sous Windows, `npm test` échoue sur les liens symboliques, refusés par Windows : voir le journal. |
 
 ## Informations à recevoir
 
 - Calendly, email et téléphone sont déjà renseignés. La garantie de transfert applicable au contrat Calendly et les autres champs légaux restent à compléter par l’entreprise.
-- Raison sociale, forme juridique, capital, siège, immatriculation/SIREN, TVA si applicable et responsable de publication.
-- Informations propres au traitement des données à compléter dans les pages légales : contacts, durées et garanties applicables.
+- Identité EI, adresse, SIREN/SIRET/RCS, directeur de publication et TVA sont renseignés à partir des informations de l’utilisateur ; aucun capital n’est requis pour l’EI.
+- Informations propres au traitement à compléter : type de compte Google/agenda, stockage et maintenance, durées, garanties et contrat d’hébergement.
 
 Les valeurs absentes restent `[À FOURNIR]` ou `[À CONFIRMER]`. Ne pas les inventer. Voir `docs/MISE-EN-LIGNE.md` pour leur emplacement.
 

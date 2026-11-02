@@ -19,9 +19,7 @@
 					<a class="ph-btn ph-btn--primary ph-btn--lg" href="<?php echo esc_url( phaness_booking_href() ); ?>"<?php echo phaness_booking_attributes(); ?>>Prendre rendez-vous</a>
 				</div>
 				<?php if ( phaness_booking_config() ) : ?>
-					<p class="ph-note">La réservation sur Calendly s’ouvre au clic. En savoir plus dans notre <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">politique de confidentialité</a>.</p>
-				<?php else : ?>
-					<p class="ph-note">Lien de réservation : <span class="ph-todo">[À FOURNIR]</span></p>
+					<p class="ph-note">La réservation utilise Calendly. Vous choisissez de charger les créneaux après avoir lu l’information sur ce service. Sans JavaScript, le lien ouvre directement Calendly. En savoir plus dans notre <a href="<?php echo esc_url( home_url( '/politique-de-confidentialite/' ) ); ?>">politique de confidentialité</a>.</p>
 				<?php endif; ?>
 			</div>
 			<dl class="ph-contact__details" id="contact-details">
