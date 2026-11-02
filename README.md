@@ -48,4 +48,4 @@ Les scores Lighthouse ci-dessous concernent la version précédant cette révisi
 
 Code et recette terminés dans le périmètre sans vidéos : Lighthouse mobile 98/100/100/100 et ordinateur 100/100/100/100. Paquetage couvert par 10 tests ; installation du thème et réservation simulée vérifiées sur WordPress vierge. La livraison finale attend les vidéos V2 produites sur l'autre PC, les informations légales. Le ZIP final et la mise en ligne IONOS restent à faire après réception de ces éléments. Détail dans [`docs/REPRISE.md`](docs/REPRISE.md).
 
-Vidéos V3 validées et branchées sur le site en 1080p le 2026-11-02, avec des rendus 4K à part : cinq films dans la DA verte, scripts et règles dans [`videos/SCRIPTS.md`](videos/SCRIPTS.md). Site en ligne sur https://phaness.fr depuis le 2026-11-02. Restent les informations légales et le téléversement du thème 0.2.6.
+Vidéos V3 validées et branchées sur le site en 1080p le 2026-11-02, avec des rendus 4K à part : cinq films dans la DA verte, scripts et règles dans [`videos/SCRIPTS.md`](videos/SCRIPTS.md). Site en ligne sur https://phaness.fr depuis le 2026-11-02. Reste à compléter les informations légales.

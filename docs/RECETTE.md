@@ -115,3 +115,7 @@ Sur `http://127.0.0.1:9401/`, lancer Lighthouse avec les profils mobile et ordin
 ## Mesures en ligne du 2026-11-02 (thème 0.2.5, avec vidéos)
 
 Lighthouse 13 sur https://phaness.fr : mobile 90/100/100/92 (LCP 2,0 s, blocage 60 ms, CLS 0), ordinateur 98/100/100/92 (LCP 0,7 s, blocage 0 ms). Poids initial 273 Ko, les vidéos ne se chargent qu'à la demande. SEO limité par un lien sans adresse, corrigé en 0.2.6. La performance mobile reste sous l'objectif de 95 : à regarder après le téléversement de 0.2.6. Non testé : Safari sur iPhone, réservation réelle sur Calendly.
+
+## Mesures en ligne du 2026-11-02 (thème 0.2.6, avec vidéos)
+
+Lighthouse 13 sur https://phaness.fr : mobile 99/100/100/100 (FCP 1,4 s, LCP 2,0 s, blocage 10 ms, CLS 0), ordinateur 100/100/100/100 (LCP 0,5 s, blocage 0 ms). La mesure 0.2.5 donnait 90 en mobile : l'écart de performance tient sans doute à la variabilité du serveur et au cache, pas au correctif, donc à reprendre avant d'en tirer une conclusion.
