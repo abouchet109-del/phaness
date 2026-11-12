@@ -170,6 +170,7 @@
   function flat(tl, pre, t, dur) {
     const go = (sel, vars) => (tl ? tl.to(sel, Object.assign({ duration: dur, ease: "power3.inOut" }, vars), t) : gsap.set(sel, vars));
     go("#" + pre + "ground rect", { fill: "#00043E" });
+    go("#" + pre + "ground path", { opacity: 0 });
     go("#" + pre + "items > g:not([id])", { opacity: 0 });
     B.forEach((b) => {
       go(["#" + pre + "w" + b.id, "#" + pre + "sh" + b.id, "#" + pre + "b" + b.id + " > g:not([id])"], { opacity: 0 });

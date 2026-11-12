@@ -30,6 +30,7 @@ Les MP4 ne sont pas versionnés : ils sont sur le PC Windows, dans `videos/out/`
 | V3. Vidéos | Validés par l'utilisateur | 1080p dans `videos/out/` pour le site, 4K dans `videos/out-4k/` (non versionnés, sur le PC Windows). Le 4K est partiel en netteté sur les plans à caméra inclinée : voir `videos/REVIEW.md`. |
 | 6a. Recette | Validée hors médias et données manquantes | Mesures antérieures à la révision verte : mobile 98/100/100/100, ordinateur 100/100/100/100. Révision contrôlée visuellement à 390 et 1440 px ; refaire Lighthouse avec les médias et sur IONOS. |
 | 6b. Corrections | Fait pour le périmètre vérifié | Menu clavier, focus réservation, compilation du héros, pages légales et JSON-LD corrigés. |
+| Film démo HELIUP (hors site) | Fait, rendu 4K filigrané | `videos/out/heliup-demo.mp4` (non versionné, sur le PC Windows) ; sources, mode d'emploi et filigrane désactivable dans `videos/heliup/README.md`. À faire : validation de l'utilisateur à l'œil (mouvement jamais vu en continu), envoi à HELIUP, puis, après accord seulement, version propre (`data-hidden` sur `#wm`) et recadrages 1:1 et 9:16. |
 | 7. Mise en ligne | Fait, thème 0.2.11 | Pour une mise à jour, voir `docs/MISE-EN-LIGNE.md`. Sous Windows, `npm test` échoue sur les liens symboliques, refusés par Windows : voir le journal. |
 
 ## Informations à recevoir
