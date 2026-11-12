@@ -1,0 +1,108 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #s3-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #F7FAFF 0%, #E6E6F8 52%, #D0CDF1 100%); clip-path: circle(0px at 1215px 300px); }
+    #s3-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s3-num { display: flex; align-items: baseline; gap: 14px; left: 1000px; top: 292px; color: #F7FAFF; }
+    #s3-tilde { display: inline-block; }
+    .s3-lab { text-align: right; width: 400px; color: #00043E; }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080" data-duration="6.4" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="s3-bg"></div>
+    <svg id="s3-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+    <p class="hf-t hf-eyebrow" id="s3-eye" style="left: 440px; top: 198px; color: #00043E"><span class="ln"><span>PANNEAU STYKON®</span></span></p>
+    <p class="hf-t" id="s3-num"><span class="hf-num"><span id="s3-tilde">~</span><span id="s3-val">15</span></span><span class="hf-unit">kg/m²</span></p>
+    <p class="hf-t hf-sub" id="s3-60" style="left: 440px; top: 420px; color: #00043E"><span class="ln"><span>60 % plus léger que les</span></span><span class="ln"><span>panneaux conventionnels</span></span></p>
+    <p class="hf-t hf-cap s3-lab" id="s3-l1" style="left: 445px; top: 538px"><span class="ln"><span>Verre mince</span></span></p>
+    <p class="hf-t hf-cap s3-lab" id="s3-l2" style="left: 445px; top: 630px"><span class="ln"><span>Cellules en silicium cristallin</span></span></p>
+    <p class="hf-t hf-cap s3-lab" id="s3-l3" style="left: 445px; top: 722px"><span class="ln"><span>Face arrière</span></span></p>
+    <p class="hf-t hf-cap s3-lab" id="s3-l4" style="left: 445px; top: 814px"><span class="ln"><span>Bandes adhésives intégrées</span></span></p>
+    <p class="hf-t hf-cap" id="s3-3mm" style="left: 1342px; top: 770px; color: #00043E; font-weight: 700"><span class="ln"><span>3 mm</span></span></p>
+    <p class="hf-t hf-sub" id="s3-cea" style="left: 930px; top: 842px; color: #00043E"><span class="ln"><span>Technologie brevetée issue du CEA</span></span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const O = 8.4, A = (t) => t - O;
+      // panel 1949 x 789 mm = 24 x 10 plan units; k = 21 puts its centre at (1190, 560)
+      const I = new Iso(21, 1063, 381.5);
+      const svg = document.getElementById("s3-svg");
+      const I2 = new Iso(2.7, 990, 600 + 36 * 2.7 - 500 * 2.7), XC = 1468, YT = I2.p(620, 430, 50)[1], YB = I2.p(620, 430, 0)[1], YM = (YT + YB) / 2;
+      const T = 0.1; // exaggerated layer thickness (the 3 mm is carried by the cote)
+      const edge = (c) => ({ top: c, l: "#AEB6DA", r: "#8B95C4" });
+      const poly = [[0, 0], [24, 0], [24, 10], [0, 10]];
+      const topPts = (z) => I.pts(poly.map((q) => [q[0], q[1], z]));
+      let cl = "";
+      for (let i = 1; i < 10; i++) cl += `M${i * 2.4} 0V10`;
+      for (let j = 1; j < 4; j++) cl += `M0 ${j * 2.5}H24`;
+      let s = `<defs>
+        <clipPath id="s3-clip"><polygon points="${topPts(4 * T)}"/></clipPath>
+        <linearGradient id="s3-sheen" gradientUnits="userSpaceOnUse" x1="-260" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".62"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      </defs>`;
+      // drawing order: adhesive (bottom), back sheet, cells, glass
+      s += `<g id="s3-panel"><g id="s3-ly4">${I.box(0, 0, 0, 24, 10, T, { top: "#DDE2F4", l: "#9AA4D0", r: "#7C87BB" })}
+          <g transform="${I.top(T)}">${[3.2, 8.6, 14, 19.4].map((x) => `<rect x="${x}" y="0.4" width="1.4" height="9.2" fill="#07BDF0"/>`).join("")}</g></g>
+        <g id="s3-ly3">${I.box(0, 0, T, 24, 10, T, { top: "#EEF1FB", l: "#B3BBDD", r: "#8F99C8" })}</g>
+        <g id="s3-ly2">${I.box(0, 0, 2 * T, 24, 10, T, { top: "#0A2A86", l: "#16379B", r: "#0D2A7C" })}
+          <g transform="${I.top(3 * T)}"><rect width="24" height="10" fill="#0B2F94"/><path d="${cl}" stroke="#5D86DD" stroke-opacity=".6" stroke-width=".9" fill="none" vector-effect="non-scaling-stroke"/><path d="M0 3.3H24M0 6.7H24" stroke="#BFD0F5" stroke-opacity=".5" stroke-width=".8" fill="none" vector-effect="non-scaling-stroke"/></g></g>
+        <g id="s3-ly1">${I.box(0, 0, 3 * T, 24, 10, T, { top: "rgba(159,182,238,0.16)", l: "#C9D6F7", r: "#A2B4E4" })}
+          <g id="s3-glass" transform="${I.top(4 * T)}"><rect width="24" height="10" fill="#BFD0F8" opacity=".14"/></g>
+          <g clip-path="url(#s3-clip)"><rect id="s3-sheen-r" x="1100" y="300" width="260" height="520" fill="url(#s3-sheen)" transform="skewX(-28)"/></g></g>
+      </g>`;
+      // dimension tick pair that becomes the panel's edge
+      s += `<g id="s3-cote" stroke="#F7FAFF" stroke-width="2" fill="none"><path id="s3-cote-l" d="M${XC} ${YT}V${YB}"/><path id="s3-tk1" d="M${XC - 16} ${YT}H${XC + 16}"/><path id="s3-tk2" d="M${XC - 16} ${YB}H${XC + 16}"/></g>`;
+      // leader lines for the exploded view (from the left vertex of each layer) and the 3 mm cote
+      const vx = 881, vy = [486, 578, 670, 762], ly = [556, 648, 740, 832];
+      s += `<g id="s3-leaders" stroke="#00043E" stroke-width="1.2" fill="none" opacity="0">` + vy.map((y, i) => `<path id="s3-ld${i + 1}" d="M852 ${ly[i]}L${vx - 8} ${y}"/><circle cx="${vx - 8}" cy="${y}" r="3" fill="#00043E" stroke="none"/>`).join("") + `</g>`;
+      s += `<g id="s3-3cote" stroke="#00043E" stroke-width="1.6" fill="none" opacity="0"><path d="M1330 720V748M1320 720H1340M1320 748H1340"/><path d="M1340 748L1352 768"/></g>`;
+      svg.innerHTML = s;
+      gsap.set("#s3-panel", { svgOrigin: "1190 560" });
+
+      // ---- iris: the light ground floods outward from the figure ----
+      tl.to("#s3-bg", { clipPath: "circle(2600px at 1215px 300px)", duration: 0.6, ease: "power2.inOut" }, A(8.4));
+      tl.to("#s3-num", { color: "#00043E", duration: 0.35, ease: "power1.inOut" }, A(8.55));
+      // the cote closes: ticks come together into a thin bar, which widens into the panel edge
+      tl.to("#s3-cote-l", { attr: { d: `M${XC} ${YM}V${YM + 1}` }, duration: 0.35, ease: "power3.inOut" }, A(8.55));
+      tl.to("#s3-tk1", { attr: { d: `M${XC - 16} ${YM}H${XC + 16}` }, duration: 0.35, ease: "power3.inOut" }, A(8.55));
+      tl.to("#s3-tk2", { attr: { d: `M${XC - 16} ${YM + 1}H${XC + 16}` }, duration: 0.35, ease: "power3.inOut" }, A(8.55));
+      tl.to("#s3-cote", { attr: { stroke: "#00043E" }, duration: 0.3 }, A(8.55));
+      tl.fromTo("#s3-cote", { x: 0, y: 0, scaleX: 1 }, { x: 1190 - XC, y: 560 - YM, scaleX: 12, svgOrigin: `${XC} ${YM}`, duration: 0.32, ease: "power3.inOut" }, A(8.85));
+      tl.to("#s3-cote", { opacity: 0, duration: 0.1 }, A(9.12));
+      // the figure glides to the left column
+      tl.fromTo("#s3-num", { x: 0, y: 0 }, { x: -560, y: -60, duration: 0.6, ease: "power3.inOut" }, A(8.7));
+      FX.rise(tl, "#s3-eye .ln > span", A(9.15), 0.4);
+
+      // panel: fast and exact, no rebound
+      tl.fromTo("#s3-panel", { opacity: 0, scale: 1.08, clipPath: "inset(48% 0 48% 0)" }, { opacity: 1, scale: 1.08, clipPath: "inset(0% 0 0% 0)", duration: 0.32, ease: "power4.out" }, A(9.05));
+      tl.fromTo("#s3-sheen-r", { x: 0 }, { x: 1700, duration: 0.7, ease: "power2.inOut" }, A(9.5));
+
+      // counter 15 -> 5
+      const cnt = { v: 15 };
+      tl.to(cnt, { v: 5, duration: 0.7, ease: "power2.inOut", onUpdate: () => { document.getElementById("s3-val").textContent = Math.round(cnt.v); } }, A(9.4));
+      tl.to("#s3-tilde", { opacity: 0, width: 0, duration: 0.25, ease: "power2.in" }, A(9.4));
+      tl.to("#s3-num", { color: "#07BDF0", duration: 0.25, ease: "power1.out" }, A(9.95));
+      FX.rise(tl, "#s3-60 .ln > span", A(9.9), 0.45, 0.1);
+
+      // exploded view
+      tl.to("#s3-panel", { scale: 1, duration: 0.4, ease: "power3.inOut" }, A(10.55));
+      tl.to("#s3-ly2", { y: 92, duration: 0.5, ease: "power3.out" }, A(10.95));
+      tl.to("#s3-ly3", { y: 184, duration: 0.5, ease: "power3.out" }, A(11.03));
+      tl.to("#s3-ly4", { y: 276, duration: 0.5, ease: "power3.out" }, A(11.11));
+      tl.to("#s3-leaders", { opacity: 1, duration: 0.2 }, A(11.25));
+      ["l1", "l2", "l3", "l4"].forEach((id, i) => FX.rise(tl, `#s3-${id} .ln > span`, A(11.25 + i * 0.12), 0.4));
+      FX.out(tl, ["#s3-l1", "#s3-l2", "#s3-l3", "#s3-l4", "#s3-leaders"], A(12.25), 0.2);
+      tl.to("#s3-ly4", { y: 0, duration: 0.5, ease: "power3.inOut" }, A(12.3));
+      tl.to("#s3-ly3", { y: 0, duration: 0.5, ease: "power3.inOut" }, A(12.38));
+      tl.to("#s3-ly2", { y: 0, duration: 0.5, ease: "power3.inOut" }, A(12.46));
+      tl.to("#s3-3cote", { opacity: 1, duration: 0.2 }, A(12.9));
+      FX.rise(tl, "#s3-3mm .ln > span", A(12.95), 0.35);
+      FX.rise(tl, "#s3-cea .ln > span", A(13.0), 0.45);
+
+      // leave: texts out, the panel keeps going (sequence 4 takes it over at its own scale)
+      FX.out(tl, ["#s3-eye", "#s3-num", "#s3-60", "#s3-3mm", "#s3-cea", "#s3-3cote"], A(14.4), 0.2);
+      tl.to("#s3-panel", { opacity: 0, duration: 0.05 }, A(14.6));
+
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

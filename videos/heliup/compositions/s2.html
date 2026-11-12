@@ -1,0 +1,153 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #00043E; clip-path: inset(0 100% 0 0); }
+    #s2-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s2-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 50% 56%, rgba(40, 52, 140, 0.38) 0%, rgba(0, 4, 62, 0) 72%); }
+    #s2-edge { position: absolute; top: 0; left: 0; width: 3px; height: 1080px; background: #F7FAFF; opacity: 0; }
+    #s2-num { display: flex; align-items: baseline; gap: 14px; color: #F7FAFF; }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080" data-duration="5.5" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="s2-vig"></div>
+    <svg id="s2-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+    <p class="hf-t hf-h1" id="s2-title" style="left: 440px; top: 150px; color: #F7FAFF"><span class="ln"><span>Trop lourd pour</span></span><span class="ln"><span>de nombreuses charpentes</span></span></p>
+    <p class="hf-t" id="s2-num" style="left: 1000px; top: 292px"><span class="hf-num">~15</span><span class="hf-unit">kg/m²</span></p>
+    <div id="s2-leg" class="hf-box" style="left: 1004px; top: 462px; padding: 10px 18px 12px"><p class="hf-t hf-cap" style="position: static; line-height: 1.3">Panneaux conventionnels et<br />structures de fixation</p></div>
+    <div id="s2-c1" class="hf-box" style="left: 440px; top: 374px; padding: 8px 16px 10px"><p class="hf-t hf-cap" style="position: static">Percement de l’étanchéité</p></div>
+    <div id="s2-c2" class="hf-box" style="left: 1046px; top: 722px; padding: 8px 16px 10px"><p class="hf-t hf-cap" style="position: static">Lestage</p></div>
+    <div id="s2-edge"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const O = 3.7, A = (t) => t - O;
+      const CEN = Park.CEN, h = CEN.h; // 36
+      const I = new Iso(2.7, 990, 600 + h * 2.7 - 500 * 2.7); // roof centre (500,500,36) -> (990,600): same as the end of the dive
+      const svg = document.getElementById("s2-svg");
+      const st = { top: "#AEB6D8", l: "#7782AE", r: "#525D8C" };      // steel
+      const st2 = { top: "#C3CAE6", l: "#8B95BE", r: "#636E9C" };     // lighter steel (purlins)
+      const x0 = CEN.x, y0 = CEN.y, W = CEN.w, D = CEN.d;
+      const xf = [0, 1, 2, 3, 4, 5, 6].map((i) => x0 + 2 + i * 38);
+
+      let s = `<defs><pattern id="s2-rib" patternUnits="userSpaceOnUse" width="5" height="400"><rect width="1" height="400" fill="rgba(0,4,62,.38)"/></pattern>
+        <pattern id="s2-deckp" patternUnits="userSpaceOnUse" width="6" height="400"><rect width="3" height="400" fill="rgba(0,4,62,.22)"/></pattern></defs>`;
+      // ground grid, faint
+      let gr = "";
+      for (let v = -400; v <= 1400; v += 50) gr += `M${v} -400V1400M-400 ${v}H1400`;
+      s += `<g id="s2-grid" transform="${I.top(0)}"><path d="${gr}" stroke="#D0CDF1" stroke-opacity=".07" stroke-width="1" fill="none" vector-effect="non-scaling-stroke"/></g>`;
+      // far walls (seen from inside) and the floor slab
+      s += `<g id="s2-back">
+        <g transform="${I.faceX(x0, 0)}"><rect x="${y0}" y="0" width="${D}" height="31" fill="#2D3770"/><rect x="${y0}" y="0" width="${D}" height="31" fill="url(#s2-rib)"/></g>
+        <g transform="${I.faceY(y0, 0)}"><rect x="${x0}" y="0" width="${W}" height="31" fill="#3A4585"/><rect x="${x0}" y="0" width="${W}" height="31" fill="url(#s2-rib)"/></g>
+        <g transform="${I.top(0)}"><rect x="${x0}" y="${y0}" width="${W}" height="${D}" fill="#141C66"/></g>
+        ${I.box(x0 - 2, y0 - 2, -4, W + 4, D + 4, 4, { top: "#141C66", l: "#2B3680", r: "#1F2872" })}
+        <g transform="${I.top(0)}"><rect x="${x0}" y="${y0}" width="${W}" height="${D}" fill="#141C66"/></g>
+      </g>`;
+      // layer 1: portiques (posts + beam), far to near
+      let fr = "";
+      xf.forEach((x) => {
+        fr += I.box(x, y0 + 2, 0, 3, 3, 23, st);
+        fr += I.box(x, y0 + 2, 23, 3, D - 4, 4, st);
+        fr += I.box(x, y0 + D - 5, 0, 3, 3, 23, st);
+      });
+      s += `<g id="s2-gFr">${fr}</g>`;
+      // layer 2: purlins along x
+      let pu = "";
+      for (let j = 0; j < 9; j++) pu += I.box(x0, y0 + 4 + j * 16.5, 27, W, 2.2, 3, st2);
+      s += `<g id="s2-gPu">${pu}</g>`;
+      // layer 3: profiled steel deck
+      s += `<g id="s2-gDk">${I.box(x0, y0, 30, W, D, 1.2, { top: "#9BA5CC", l: "#6D78A4", r: "#505B8A" })}<g transform="${I.top(31.2)}"><rect x="${x0}" y="${y0}" width="${W}" height="${D}" fill="url(#s2-deckp)"/></g></g>`;
+      // layer 4: insulation
+      s += `<g id="s2-gIn">${I.box(x0, y0, 31.2, W, D, 3.9, { top: "#DAD8EE", l: "#B3AED6", r: "#9893C0" })}</g>`;
+      // layer 5: membrane, parapet, rooftop volumes
+      let me = `<g transform="${I.top(h)}"><rect x="${x0}" y="${y0}" width="${W}" height="${D}" fill="#F0F3FF"/><path d="${Array.from({ length: 13 }, (_, j) => `M${x0 + 4} ${y0 + 10 + j * 10}h${W - 8}`).join("")}" stroke="#B9C0E6" stroke-width="1" fill="none" vector-effect="non-scaling-stroke"/></g>`;
+      const par = { top: "#FFFFFF", l: "#D9DEF3", r: "#B5BCE0" };
+      me += I.box(x0, y0, h, W, 3, 2.5, par) + I.box(x0, y0, h, 3, D, 2.5, par);
+      CEN.ex.forEach((e) => { me += I.box(e[0], e[1], h, e[2], e[3], e[4], { top: "#FFFFFF", l: "#C7CEEC", r: "#9AA5D2" }); });
+      me += I.box(x0, y0 + D - 3, h, W, 3, 2.5, par) + I.box(x0 + W - 3, y0, h, 3, D, 2.5, par);
+      s += `<g id="s2-gMe">${me}</g>`;
+
+      // conventional photovoltaic system: framed modules, rails, ballast. Drawn at rest just above the membrane.
+      const zr = h + 3; // lowest point of the ballast
+      let sy = `<g id="s2-shadow" transform="${I.top(h)}" opacity="0"><rect x="438" y="478" width="122" height="52" fill="rgba(0,4,62,.45)"/></g>`;
+      sy += `<g id="s2-gSys">`;
+      [472, 492, 512].forEach((yy) => {
+        [436, 466, 496, 526].forEach((xx) => {
+          sy += I.box(xx + 3, yy + 1, zr, 20, 2.2, 2.5, { top: "#9AA2C4", l: "#6C77A6", r: "#555F8F" }); // rails
+          sy += I.box(xx + 2, yy + 10, zr, 7, 3.5, 3, { top: "#C2C6D4", l: "#8E94A8", r: "#767C92" }); // ballast, front
+          sy += I.box(xx + 16, yy + 10, zr, 7, 3.5, 3, { top: "#C2C6D4", l: "#8E94A8", r: "#767C92" });
+          const zl = zr + 3.5, zh = zl + 4.2, w = 26, d = 13;
+          const top = [[xx, yy, zh], [xx + w, yy, zh], [xx + w, yy + d, zl], [xx, yy + d, zl]];
+          sy += I.poly([[xx, yy + d, zl], [xx + w, yy + d, zl], [xx + w, yy + d, zl - 2.4], [xx, yy + d, zl - 2.4]], "#8D97BF");
+          sy += I.poly([[xx + w, yy, zh], [xx + w, yy + d, zl], [xx + w, yy + d, zl - 2.4], [xx + w, yy, zh - 2.4]], "#6A74A2");
+          sy += I.poly(top, "#14307F", `stroke="#D3D9EE" stroke-width="2.6" stroke-linejoin="miter"`);
+          let cl = "";
+          for (let q = 1; q < 6; q++) { const t = q / 6; cl += `M${I.p(xx + w * t, yy, zh).map(HF.f).join(" ")}L${I.p(xx + w * t, yy + d, zl).map(HF.f).join(" ")}`; }
+          for (let q = 1; q < 3; q++) { const t = q / 3; cl += `M${I.p(xx, yy + d * t, zh + (zl - zh) * t).map(HF.f).join(" ")}L${I.p(xx + w, yy + d * t, zh + (zl - zh) * t).map(HF.f).join(" ")}`; }
+          sy += `<path d="${cl}" stroke="#5F84D8" stroke-opacity=".55" stroke-width=".9" fill="none"/>`;
+        });
+      });
+      sy += `</g>`;
+      s += sy;
+
+      // vertical dimension (cote) at the right of the building
+      const xc = 1468, yTop = I.p(620, 430, 50)[1], yBot = I.p(620, 430, 0)[1];
+      s += `<g id="s2-cote" fill="none" stroke="#F7FAFF" stroke-width="2" opacity="0"><path id="s2-cote-l" d="M${xc} ${yTop}V${yBot}"/><path d="M${xc - 16} ${yTop}H${xc + 16}M${xc - 16} ${yBot}H${xc + 16}"/><path id="s2-cote-up" d="M${xc} ${yTop}V${yTop - 150}" stroke-dasharray="3 7"/></g>`;
+      // details: drill above the membrane, ballast block on it
+      const dp = I.p(400, 545, h);
+      s += `<g id="s2-drill" transform="translate(${HF.f(dp[0])} ${HF.f(dp[1])})" opacity="0"><g id="s2-drill-in"><rect x="-9" y="-92" width="18" height="34" fill="#C3CAE6"/><rect x="-5" y="-58" width="10" height="46" fill="#9BA5CC"/><path d="M-5 -52l10 5M-5 -42l10 5M-5 -32l10 5M-5 -22l10 5" stroke="#00043E" stroke-opacity=".5" stroke-width="1.6"/><path d="M-5 -12l5 12l5 -12z" fill="#C3CAE6"/></g></g>`;
+      const lp = I.p(560, 556, h);
+      s += `<g id="s2-lest" transform="translate(${HF.f(lp[0])} ${HF.f(lp[1])})" opacity="0">` + `</g>`;
+      svg.innerHTML = s;
+      // ballast block drawn in plan space (needs the iso helper)
+      document.getElementById("s2-lest").insertAdjacentHTML("beforeend", "");
+      const lestBlock = I.box(556, 552, h, 18, 9, 7, { top: "#C2C6D4", l: "#8E94A8", r: "#767C92" });
+      svg.insertAdjacentHTML("beforeend", `<g id="s2-lestb" opacity="0">${lestBlock}</g>`);
+      const dr = I.p(446, 512, h), lb = I.p(565, 561, h);
+
+      // ---------- timeline ----------
+      // reveal from the dive: a vertical edge sweeps right and uncovers the section view
+      tl.fromTo("#root", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power2.inOut" }, A(3.75));
+      tl.fromTo("#s2-edge", { x: 0, opacity: 1 }, { x: 1917, opacity: 1, duration: 0.4, ease: "power2.inOut" }, A(3.75));
+      tl.to("#s2-edge", { opacity: 0, duration: 0.05 }, A(4.15));
+      tl.fromTo("#s2-back, #s2-grid", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0);
+
+      // layers part, then close again
+      [["#s2-gPu", -46], ["#s2-gDk", -92], ["#s2-gIn", -138], ["#s2-gMe", -190]].forEach((a, i) => {
+        tl.to(a[0], { y: a[1], duration: 0.55, ease: "power3.out" }, A(4.15 + i * 0.09));
+      });
+      [["#s2-gMe", 0], ["#s2-gIn", 0], ["#s2-gDk", 0], ["#s2-gPu", 0]].forEach((a, i) => {
+        tl.to(a[0], { y: 0, duration: 0.55, ease: "power3.inOut" }, A(5.0 + i * 0.08));
+      });
+
+      // the conventional system comes down slowly and stops above the membrane
+      tl.fromTo("#s2-gSys", { y: -460 }, { y: 0, duration: 1.5, ease: "power2.out" }, A(5.2));
+      tl.fromTo("#s2-shadow", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power1.in" }, A(5.6));
+      FX.rise(tl, "#s2-title .ln > span", A(5.7), 0.5, 0.12);
+
+      tl.fromTo("#s2-cote", { opacity: 0 }, { opacity: 1, duration: 0.2 }, A(6.6));
+      tl.fromTo("#s2-cote-l", { attr: { d: `M${xc} ${yTop}V${yTop}` } }, { attr: { d: `M${xc} ${yTop}V${yBot}` }, duration: 0.45, ease: "power3.out" }, A(6.6));
+      tl.fromTo("#s2-num", { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, A(6.75));
+      tl.fromTo("#s2-leg", { opacity: 0, y: 16, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, y: 0, clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" }, A(7.0));
+
+      // two short details: drill bit above the membrane, ballast on it
+      tl.fromTo("#s2-drill", { opacity: 0 }, { opacity: 1, duration: 0.2 }, A(7.15));
+      tl.fromTo("#s2-drill-in", { y: -60 }, { y: 0, duration: 0.5, ease: "power2.out" }, A(7.15));
+      tl.fromTo("#s2-c1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, A(7.35));
+      tl.fromTo("#s2-lestb", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, A(7.45));
+      tl.fromTo("#s2-c2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, A(7.65));
+
+      // system leaves through the top, texts leave before it
+      FX.out(tl, ["#s2-title", "#s2-c1", "#s2-c2"], A(7.85), 0.22);
+      tl.fromTo("#s2-gSys", { opacity: 0 }, { opacity: 1, duration: 0.3 }, A(5.15));
+      tl.to(["#s2-drill", "#s2-lestb"], { opacity: 0, duration: 0.25, ease: "power1.in" }, A(7.85));
+      tl.to("#s2-gSys", { y: -760, duration: 0.7, ease: "power2.in" }, A(7.95));
+      tl.to("#s2-shadow", { opacity: 0, duration: 0.4 }, A(8.0));
+      FX.out(tl, "#s2-leg", A(8.1), 0.2);
+      tl.to(["#s2-num", "#s2-cote"], { opacity: 0, duration: 0.01 }, A(8.4)); // sequence 3 carries them on
+      tl.to("#s2-back, #s2-gFr, #s2-gPu, #s2-gDk, #s2-gIn, #s2-gMe, #s2-grid", { opacity: 0, duration: 0.45, ease: "power1.in" }, A(8.35));
+      tl.to("#s2-vig", { opacity: 0, duration: 0.45 }, A(8.35));
+
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

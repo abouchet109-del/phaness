@@ -1,0 +1,81 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #BEC7E6; clip-path: inset(0 0 0 100%); }
+    #s5-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s5-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(247, 250, 255, 0.86) 0%, rgba(247, 250, 255, 0.6) 40%, rgba(247, 250, 255, 0) 72%); }
+    #s5-edge { position: absolute; top: 0; left: 0; width: 3px; height: 1080px; background: #F7FAFF; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1920" data-height="1080" data-duration="5.4" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg id="s5-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="s5-scrim"></div>
+    <h1 class="hf-t hf-h1" id="s5-h1" style="left: 440px; top: 200px; color: #00043E"><span class="ln"><span>Des surfaces déjà construites,</span></span><span class="ln"><span>enfin productives</span></span></h1>
+    <p class="hf-t hf-sub" id="s5-sub" style="left: 440px; top: 392px; color: #00043E"><span class="ln"><span>Aucune emprise au sol</span></span></p>
+    <div class="hf-box" id="s5-fr" style="left: 440px; top: 880px; padding: 16px 26px 18px">
+      <p class="hf-t hf-eyebrow" style="position: static; color: #07BDF0; margin-bottom: 10px">FABRIQUÉS EN FRANCE</p>
+      <p class="hf-t hf-sub" style="position: static; font-size: 28px; color: #F7FAFF">Usine du Cheylas, Isère · 100 MWc par an</p>
+    </div>
+    <div id="s5-edge"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const O = 20.6, A = (t) => t - O;
+      const svg = document.getElementById("s5-svg");
+      const P = Park.build(svg, "day", "s5-"), I = P.I, K = Park.K, CEN = Park.CEN;
+      gsap.set("#s5-cam", { svgOrigin: "960 " + Park.roofY });
+      // sequence 4 ends on the central roof at 2.7x; this view starts from the same framing and pulls back to the angle of sequence 1
+      const start = { scale: Park.Z, x: 30, y: 600 - Park.roofY };
+      tl.fromTo("#s5-cam", start, { scale: 1, x: 0, y: 0, duration: 0.95, ease: "power3.inOut" }, A(21.0));
+      tl.to("#s5-cam", { x: -20, duration: 3.9, ease: "none" }, A(21.95));
+
+      // reveal from sequence 4: an edge sweeps right to left
+      tl.fromTo("#root", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.4, ease: "power2.inOut" }, A(20.7));
+      tl.fromTo("#s5-edge", { x: 1917, opacity: 1 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" }, A(20.7));
+      tl.to("#s5-edge", { opacity: 0, duration: 0.05 }, A(21.1));
+      gsap.set("#s5-o0 polygon, #s5-o1 polygon, #s5-o2 polygon", { opacity: 0 });
+      Park.B.forEach((b) => gsap.set("#s5-o" + b.id, { opacity: 0 }));
+
+      // central roof is already covered; it glows, then the other roofs fill from the centre outward
+      gsap.set("#s5-p" + CEN.id, { opacity: 1 });
+      const c = (b) => [b.x + b.w / 2 - 500, b.y + b.d / 2 - 500];
+      const rest = Park.B.filter((b) => !b.central).sort((a, b) => Math.hypot(...c(a)) - Math.hypot(...c(b)));
+      rest.forEach((b, n) => {
+        const t = 21.95 + n * 0.14;
+        tl.fromTo("#s5-p" + b.id, { opacity: 0 }, { opacity: 1, duration: 0.01 }, A(t));
+        tl.fromTo("#s5-cr" + b.id, { attr: { width: 0 } }, { attr: { width: b.w }, duration: 0.42, ease: "power2.out" }, A(t));
+        gsap.set("#s5-cr" + b.id, { attr: { width: 0 } });
+      });
+      // soft glow on the central building
+      const ro = [[CEN.x, CEN.y, CEN.h], [CEN.x + CEN.w, CEN.y, CEN.h], [CEN.x + CEN.w, CEN.y + CEN.d, CEN.h], [CEN.x, CEN.y + CEN.d, CEN.h]];
+      document.getElementById("s5-items").insertAdjacentHTML("beforeend", '<g id="s5-glow" opacity="0"><polygon points="' + I.pts(ro) + '" fill="none" stroke="#07BDF0" stroke-width="7" stroke-linejoin="round" opacity=".5"/><polygon points="' + I.pts(ro) + '" fill="none" stroke="#F7FAFF" stroke-width="1.6" stroke-linejoin="round" opacity=".9"/></g>');
+      tl.fromTo("#s5-glow", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, A(21.2));
+
+      // energy traces: from roof to the building's front foot, produced and used on site
+      const spots = [1, 4, 6, 9, 11, 13];
+      const tr = spots.map((id) => {
+        const b = Park.B[id], x = b.x + b.w * 0.7, y = b.y + b.d;
+        const pts = [I.p(x, b.y + b.d * 0.5, b.h), I.p(x, y, b.h), I.p(x, y, 0), I.p(x, y + 26, 0)];
+        return '<path id="s5-tr' + id + '" d="M' + pts.map((q) => q.map(HF.f).join(" ")).join("L") + '" stroke="#07BDF0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>';
+      }).join("");
+      document.getElementById("s5-traces").innerHTML = tr;
+      spots.forEach((id, n) => tl.fromTo("#s5-tr" + id, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, A(22.9 + n * 0.16)));
+
+      // texts
+      tl.fromTo("#s5-scrim", { opacity: 0 }, { opacity: 1, duration: 0.4 }, A(21.9));
+      FX.rise(tl, "#s5-h1 .ln > span", A(22.1), 0.5, 0.12);
+      FX.rise(tl, "#s5-sub .ln > span", A(22.85), 0.45);
+      tl.fromTo("#s5-fr", { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" }, A(24.0));
+      FX.out(tl, ["#s5-h1", "#s5-sub"], A(25.0), 0.22);
+      tl.to("#s5-scrim", { opacity: 0, duration: 0.3 }, A(25.0));
+      tl.to("#s5-fr", { opacity: 0, duration: 0.2 }, A(25.75));
+
+      // the zone becomes a grid of cyan and navy rectangles; the camera rises once more
+      Park.flat(tl, "s5-", A(25.2), 0.8);
+      tl.to("#s5-glow", { opacity: 0, duration: 0.3 }, A(25.2));
+      tl.to("#s5-traces", { opacity: 0, duration: 0.4 }, A(25.2));
+      tl.to("#s5-cam", { scale: 0.62, x: 0, y: 0, svgOrigin: "960 540", duration: 0.8, ease: "power3.inOut" }, A(25.2));
+
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

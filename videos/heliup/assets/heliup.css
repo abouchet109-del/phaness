@@ -1,0 +1,16 @@
+/* HELIUP demo film: palette and type (base 1920x1080, rendered x2 in 4K). Fonts: Lexend (Google Fonts, OFL), Roboto (bundled). */
+@font-face { font-family: "Lexend"; font-weight: 100 900; font-style: normal; src: url("fonts/Lexend-latin.woff2") format("woff2"); }
+:root { --navy: #00043E; --cyan: #07BDF0; --wb: #F7FAFF; --lav: #D0CDF1; --bk: #000F08; }
+.hf-t { position: absolute; margin: 0; font-kerning: normal; text-rendering: geometricPrecision; white-space: nowrap; }
+.hf-eyebrow { font: 600 20px/1 "Lexend", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
+.hf-h1 { font: 600 62px/1.14 "Lexend", sans-serif; letter-spacing: -0.01em; }
+.hf-sub { font: 500 32px/1.3 "Roboto", sans-serif; }
+.hf-cap { font: 500 24px/1.25 "Roboto", sans-serif; }
+.hf-num { font: 700 150px/1 "Lexend", sans-serif; letter-spacing: -0.02em; }
+.hf-unit { font: 600 58px/1 "Lexend", sans-serif; letter-spacing: 0; }
+/* one text line: the mask. The inner span rises 22 px into it. */
+.ln { display: block; overflow: hidden; padding: 6px 0 10px; margin: -6px 0 -10px; }
+.ln > span { display: block; will-change: transform; }
+.on-dark { color: var(--wb); }
+.on-light { color: var(--navy); }
+.hf-box { position: absolute; background: var(--navy); color: var(--wb); }

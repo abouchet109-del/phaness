@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/iso.js"></script>
+    <script src="assets/park.js"></script>
+    <script src="assets/fx.js"></script>
+    <link rel="stylesheet" href="assets/heliup.css" />
+    <style>
+      @font-face { font-family: "Lexend"; font-weight: 100 900; font-style: normal; src: url("assets/fonts/Lexend-latin.woff2") format("woff2"); }
+      html, body { margin: 0; background: #00043E; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #00043E; font-family: "Roboto", sans-serif; }
+      /* PHANESS demo watermark: three text layers in one block, above every scene. */
+      #wm { position: absolute; inset: 0; z-index: 100; pointer-events: none; }
+      .wm-c { color: #F7FAFF; }
+      #wm-big { position: absolute; left: 960px; top: 540px; margin: 0; font: 600 150px/1 "Lexend", sans-serif; letter-spacing: 0.01em; white-space: nowrap; opacity: 0.21; transform: translate(-50%, -50%) rotate(-20deg); }
+      .wm-s { position: absolute; margin: 0; font: 600 30px/1 "Lexend", sans-serif; letter-spacing: 0.04em; white-space: nowrap; opacity: 0.1; transform: translate(-50%, -50%) rotate(-20deg); }
+      #wm-tag { position: absolute; top: 40px; right: 40px; padding: 12px 18px 12px; background: rgba(0, 4, 62, 0.58); color: #F7FAFF; font: 600 22px/1.3 "Lexend", sans-serif; letter-spacing: 0.06em; text-align: right; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <!--
+      Watermark switch: add the attribute data-hidden to the element #wm (below) to render the clean version. Nothing else changes.
+      Light/dark colour of the two text layers follows the scene behind (tweens at the end of this file).
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/s1.html" data-start="0" data-duration="4.4" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 1"></div>
+
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/s2.html" data-start="3.7" data-duration="5.5" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 2"></div>
+
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/s3.html" data-start="8.4" data-duration="6.4" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 3"></div>
+      <div id="wm" data-layout-allow-overflow data-layout-allow-overlap data-layout-allow-occlusion>
+        <p id="wm-big" class="wm-c">PHANESS</p>
+        <p class="wm-s wm-c" style="left: 96px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 480px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 864px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 1248px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 1632px; top: 190px">PHANESS</p>
+        <p class="wm-s wm-c" style="left: 288px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 672px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 1056px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 1440px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 1824px; top: 540px">PHANESS</p>
+        <p class="wm-s wm-c" style="left: 96px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 480px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 864px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 1248px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 1632px; top: 890px">PHANESS</p>
+        <div id="wm-tag">DÉMONSTRATION PHANESS<br />PROPOSITION NON VALIDÉE</div>
+      </div>
+    </div>
+    <script>
+      const mt = gsap.timeline({ paused: true });
+      // dark scenes: s1, s2, s6 (light text); light scenes: s3, s4, s5 (navy text)
+      mt.to(".wm-c", { color: "#00043E", duration: 0.3, ease: "power1.inOut" }, 8.6);
+      mt.to(".wm-c", { color: "#F7FAFF", duration: 0.3, ease: "power1.inOut" }, 25.7);
+      window.__timelines["main"] = mt;
+    </script>
+  </body>
+</html>

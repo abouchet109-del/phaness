@@ -1,0 +1,52 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0A1050; }
+    #s1-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s1-haze { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(208, 205, 241, 0.34) 0%, rgba(208, 205, 241, 0) 38%); }
+    #s1-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 4, 62, 0.84) 0%, rgba(0, 4, 62, 0.62) 40%, rgba(0, 4, 62, 0) 72%); }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080" data-duration="4.4" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg id="s1-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="s1-haze"></div>
+    <div id="s1-scrim"></div>
+    <p class="hf-t hf-eyebrow" id="s1-eye" style="left: 440px; top: 200px; color: #D0CDF1"><span class="ln"><span>GRANDES TOITURES</span></span></p>
+    <h1 class="hf-t hf-h1" id="s1-h1" style="left: 440px; top: 246px; color: #F7FAFF"><span class="ln"><span>Un immense gisement solaire</span></span><span class="ln"><span>encore inexploité</span></span></h1>
+    <p class="hf-t hf-sub" id="s1-l2" style="left: 440px; top: 438px; color: #F7FAFF"><span class="ln"><span>La réglementation pousse à les équiper.</span></span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const svg = document.getElementById("s1-svg");
+      Park.build(svg, "dawn", "s1-");
+
+      gsap.set("#s1-cam", { svgOrigin: "960 " + Park.roofY });
+      tl.fromTo("#s1-ground", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0);
+
+      // buildings draw themselves by their outlines, nearest first, then take their materials
+      const near = Park.B.slice().sort((a, b) => b.x + b.y - (a.x + a.y));
+      near.forEach((b, n) => {
+        const t1 = 0.05 + n * 0.075, t2 = 0.95 + n * 0.07;
+        tl.fromTo("#s1-o" + b.id + " polygon", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut", stagger: 0.06 }, t1);
+        tl.fromTo(["#s1-w" + b.id, "#s1-R" + b.id, "#s1-sh" + b.id], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, t2);
+        tl.to("#s1-o" + b.id, { opacity: 0.35, duration: 0.5, ease: "power1.out" }, t2 + 0.15);
+        tl.fromTo("#s1-g" + b.id, { opacity: 0 }, { opacity: 0.8, duration: 0.45, ease: "power2.out" }, 1.85 + n * 0.03);
+        tl.to("#s1-g" + b.id, { opacity: 0, duration: 0.5, ease: "power1.in" }, 2.75 + n * 0.015);
+      });
+      // trees and trucks come in with the materials
+      tl.fromTo("#s1-items > g:not([id])", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out", stagger: { each: 0.012, from: "end" } }, 1.2);
+
+      // camera: slow glide, then the dive onto the central roof (lands exactly on the framing of sequence 2)
+      tl.to("#s1-cam", { x: -50, duration: 2.95, ease: "none" }, 0);
+      tl.to("#s1-cam", { scale: Park.Z, x: 30, y: 600 - Park.roofY, duration: 1.0, ease: "power3.inOut" }, 2.95);
+
+      // texts
+      FX.rise(tl, "#s1-eye .ln > span", 0.4, 0.4);
+      FX.rise(tl, "#s1-h1 .ln > span", 0.6, 0.5, 0.12);
+      FX.rise(tl, "#s1-l2 .ln > span", 2.65, 0.45);
+      FX.out(tl, ["#s1-eye", "#s1-h1", "#s1-l2"], 3.95, 0.2);
+      tl.to("#s1-scrim", { opacity: 0, duration: 0.3, ease: "power1.in" }, 3.9);
+
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>
