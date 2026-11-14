@@ -1,0 +1,92 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse 70% 70% at 55% 55%, #373640 0%, #1D1C23 78%); }
+    #s3-green { position: absolute; inset: 0; background: #0B8457; clip-path: circle(0px at 1310px 540px); }
+    #s3-green::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 72% 50%, rgba(255,255,255,.07) 0%, rgba(0,0,0,0) 60%), linear-gradient(90deg, rgba(0,0,0,.16) 0%, rgba(0,0,0,0) 45%); }
+    #s3-deep { position: absolute; inset: 0; background: #1D1C23; opacity: 0; }
+    #s3-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .s3-lab { font-family: "Poppins", sans-serif; font-weight: 600; font-size: 32px; fill: #373640; }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080" data-duration="4.2" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="s3-green"></div>
+    <div id="s3-deep"></div>
+    <p class="hv-t hv-h2 on-dark" id="s3-title" style="left: 96px; top: 408px"><span class="ln"><span>Commencer par</span></span><span class="ln"><span>votre simulation solaire</span></span></p>
+    <svg id="s3-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+      <g id="s3-all">
+      <g id="s3-rot">
+        <rect x="840" y="172" width="940" height="780" rx="24" fill="rgba(0,0,0,.14)"/><rect x="840" y="160" width="940" height="780" rx="24" fill="rgba(0,0,0,.26)"/>
+        <rect x="840" y="150" width="940" height="780" rx="24" fill="#EBEBEC"/><rect x="880" y="190" width="860" height="320" rx="16" fill="#F0F5FA"/>
+        <g id="s3-mini"><g id="s3-cam"></g></g>
+        <g id="s3-card"></g>
+        <g id="s3-ui">
+          <g id="s3-rowA" opacity="0"><rect x="880" y="540" width="860" height="96" rx="14" fill="#FFFFFF" stroke="#C9CCD1" stroke-width="2"/><rect id="s3-fillA" x="880" y="540" width="860" height="96" rx="14" fill="#E3F3EB" opacity="0"/>
+            <circle cx="948" cy="576" r="11" fill="#373640"/><path d="M926 612a22 22 0 0 1 44 0z" fill="#373640"/>
+            <text class="s3-lab" x="1000" y="600">Propriétaire</text>
+            <circle cx="1700" cy="588" r="15" fill="none" stroke="#B3B6BD" stroke-width="3"/><circle id="s3-rdA" cx="1700" cy="588" r="9" fill="#0B8457" opacity="0"/>
+            <rect id="s3-bdA" x="880" y="540" width="860" height="96" rx="14" fill="none" stroke="#0B8457" stroke-width="4" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1"/></g>
+          <g id="s3-rowB" opacity="0"><rect x="880" y="656" width="860" height="96" rx="14" fill="#FFFFFF" stroke="#C9CCD1" stroke-width="2"/><rect id="s3-fillB" x="880" y="656" width="860" height="96" rx="14" fill="#E3F3EB" opacity="0"/>
+            <path d="M924 708l24-22 24 22v20h-48z" fill="#373640"/><rect x="942" y="712" width="12" height="16" fill="#EBEBEC"/>
+            <text class="s3-lab" x="1000" y="716">Maison</text>
+            <circle cx="1700" cy="704" r="15" fill="none" stroke="#B3B6BD" stroke-width="3"/><circle id="s3-rdB" cx="1700" cy="704" r="9" fill="#0B8457" opacity="0"/>
+            <rect id="s3-bdB" x="880" y="656" width="860" height="96" rx="14" fill="none" stroke="#0B8457" stroke-width="4" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1"/></g>
+          <g id="s3-foot" opacity="0"><rect x="880" y="857" width="600" height="6" rx="3" fill="#D3D5DA"/><rect id="s3-prog" x="880" y="857" width="0" height="6" rx="3" fill="#0B8457"/></g>
+          <g id="s3-btn1"><rect id="s3-btnr" x="1560" y="828" width="180" height="64" rx="32" fill="#0B8457" opacity="0"/><path id="s3-arr1" d="M1630 860h40m-14-14l14 14l-14 14" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
+        </g>
+      </g>
+      </g>
+      <rect id="s3-btn2" x="1560" y="828" width="180" height="64" rx="32" fill="#0B8457" opacity="0"/>
+    </svg>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 7, A = (T) => T - T0, I = HV.I0, PF = HV.PF, st = HV.camAt(7.0);
+      const cam = document.getElementById("s3-cam");
+      const P = (u, v) => I.p(HV.rp(u, v));
+      const W = HV.G.W, Lv = HV.G.Lv;
+      const q = [P(-0.35, 0), P(W + 0.35, 0), P(W + 0.35, Lv), P(-0.35, Lv)].map((p) => p.join(",")).join(" ");
+      cam.innerHTML = HV.house("c", I) + `<polygon id="s3-roofhi" points="${q}" fill="rgba(11,132,87,.22)" stroke="#0B8457" stroke-width="3.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" opacity="0"/>`;
+      HV.applyCam(cam, PF, st, []);
+      const ug = (T) => 7.4 + 0.75 * T;
+      tl.fromTo("#cglint", { x: ug(7.0) }, { x: ug(7.0) + 0.75 * 4.2, duration: 4.2, ease: "none" }, 0);
+      gsap.set("#crev", { x: ug(7.0) + 0.45 + 3 });
+      // the card outline drawn in sequence 2 is complete at the cut
+      const card = `M840 540V174Q840 150 864 150H1756Q1780 150 1780 174V906Q1780 930 1756 930H864Q840 930 840 906Z`;
+      document.getElementById("s3-card").innerHTML = HV.trace("s3-trE", card);
+      HV.setW(document.getElementById("s3-trE"), 1);
+      gsap.set("#s3-trE", { opacity: 1 }); gsap.set("#s3-trE path", { strokeDashoffset: 0 });
+
+      // the green floods out of the card, the card straightens
+      tl.to("#s3-green", { clipPath: "circle(1500px at 1310px 540px)", duration: 0.8, ease: "power3.out" }, 0);
+      tl.fromTo("#s3-rot", { rotation: -3, svgOrigin: "1310 540" }, { rotation: 0, svgOrigin: "1310 540", duration: 1.2, ease: "power3.out" }, 0);
+      HV.FX.lines(tl, "#s3-title .ln > span", A(7.5), 0.55, 0.12);
+      // choices
+      tl.fromTo("#s3-rowA", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, A(8.1));
+      tl.fromTo("#s3-rowB", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, A(8.3));
+      tl.fromTo("#s3-foot", { opacity: 0 }, { opacity: 1, duration: 0.4 }, A(8.4));
+      tl.fromTo("#s3-btnr, #s3-arr1", { opacity: 0 }, { opacity: 1, duration: 0.4 }, A(8.5));
+      // selections: a green border builds, the background shifts slightly; the miniature roof answers
+      tl.to("#s3-bdA", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, A(8.9));
+      tl.to("#s3-fillA", { opacity: 1, duration: 0.4 }, A(9.05));
+      tl.to("#s3-rdA", { opacity: 1, duration: 0.25 }, A(9.3));
+      tl.to("#s3-prog", { attr: { width: 200 }, duration: 0.5, ease: "power3.out" }, A(9.0));
+      tl.to("#s3-roofhi", { opacity: 1, duration: 0.5, ease: "power2.out" }, A(9.0));
+      tl.to("#s3-mini", { rotation: 1.4, svgOrigin: "1310 350", duration: 0.9, ease: "power3.inOut" }, A(8.95));
+      tl.to("#s3-bdB", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, A(9.6));
+      tl.to("#s3-fillB", { opacity: 1, duration: 0.4 }, A(9.75));
+      tl.to("#s3-rdB", { opacity: 1, duration: 0.25 }, A(10.0));
+      tl.to("#s3-prog", { attr: { width: 420 }, duration: 0.5, ease: "power3.out" }, A(9.7));
+      tl.to("#s3-mini", { rotation: -0.6, svgOrigin: "1310 350", duration: 0.9, ease: "power3.inOut" }, A(9.65));
+
+      // transition: the progress button stretches into the project progress line (s4)
+      tl.set("#s3-btn2", { opacity: 1 }, A(10.4));
+      tl.set("#s3-btn1", { opacity: 0 }, A(10.4));
+      tl.to("#s3-all", { opacity: 0, duration: 0.45, ease: "power2.in" }, A(10.4));
+      tl.to("#s3-title", { opacity: 0, duration: 0.3, ease: "power2.in" }, A(10.35));
+      tl.to("#s3-green", { opacity: 0, duration: 0.45, ease: "power2.inOut" }, A(10.45));
+      tl.to("#s3-deep", { opacity: 1, duration: 0.45, ease: "power2.inOut" }, A(10.45));
+      tl.to("#s3-btn2", { attr: { x: -20, y: 796.5, width: 1960, height: 7, rx: 3.5 }, duration: 0.6, ease: "power3.inOut" }, A(10.4));
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

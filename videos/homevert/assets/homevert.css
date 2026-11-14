@@ -1,0 +1,17 @@
+/* HOME Vert demo film: palette and type (base 1920x1080, rendered x2 in 4K). Font: Poppins (Google Fonts, OFL). */
+@font-face { font-family: "Poppins"; font-weight: 400; font-style: normal; src: url("fonts/Poppins-400.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 500; font-style: normal; src: url("fonts/Poppins-500.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; font-style: normal; src: url("fonts/Poppins-600.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; font-style: normal; src: url("fonts/Poppins-700.woff2") format("woff2"); }
+:root { --green: #0B8457; --anth: #373640; --deep: #1D1C23; --grey: #EBEBEC; --blue: #F0F5FA; --white: #FFFFFF; --amber: #F2B45A; }
+.hv-t { position: absolute; margin: 0; font-family: "Poppins", sans-serif; font-kerning: normal; text-rendering: geometricPrecision; white-space: nowrap; }
+.hv-h1 { font-weight: 600; font-size: 72px; line-height: 1.16; letter-spacing: -0.01em; }
+.hv-h2 { font-weight: 600; font-size: 56px; line-height: 1.16; letter-spacing: -0.005em; }
+.hv-sub { font-weight: 400; font-size: 30px; line-height: 1.3; }
+.hv-cap { font-weight: 500; font-size: 28px; line-height: 1.25; }
+.hv-lab { font-weight: 500; font-size: 26px; line-height: 1.25; }
+/* one text line: a mask; the inner span rises 18 px into it */
+.ln { display: block; overflow: hidden; padding: 8px 0 12px; margin: -8px 0 -12px; }
+.ln > span { display: block; will-change: transform; }
+.on-dark { color: #fff; }
+.on-light { color: var(--anth); }

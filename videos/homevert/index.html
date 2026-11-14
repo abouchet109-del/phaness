@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/hv.js"></script>
+    <link rel="stylesheet" href="assets/homevert.css" />
+    <style>
+      html, body { margin: 0; background: #1D1C23; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #1D1C23; font-family: "Poppins", sans-serif; }
+      /* PHANESS demo watermark: three text layers in one block, above every scene. */
+      #wm { position: absolute; inset: 0; z-index: 100; pointer-events: none; }
+      .wm-c { color: #F4F4F6; }
+      #wm-big, #wm-big2 { position: absolute; left: 960px; top: 540px; margin: 0; font: 600 150px/1 "Poppins", sans-serif; letter-spacing: 0.01em; white-space: nowrap; opacity: 0.21; transform: translate(-50%, -50%) rotate(-20deg); }
+      #wm-clip { position: absolute; inset: 0; clip-path: inset(130px 1020px 610px 96px round 24px); opacity: 0; }
+      #wm-big2 { color: #373640; }
+      .wm-s { position: absolute; margin: 0; font: 600 30px/1 "Poppins", sans-serif; letter-spacing: 0.04em; white-space: nowrap; opacity: 0.1; transform: translate(-50%, -50%) rotate(-20deg); }
+      #wm-tag { position: absolute; top: 40px; right: 40px; padding: 12px 18px 12px; background: rgba(29, 28, 35, 0.62); color: #F4F4F6; font: 600 22px/1.3 "Poppins", sans-serif; letter-spacing: 0.05em; text-align: right; white-space: nowrap; border-radius: 8px; }
+    </style>
+  </head>
+  <body>
+    <!--
+      Watermark switch: add the attribute data-hidden to the element #wm to hide it. Nothing else changes. Only the watermarked version is delivered.
+      The two text layers follow the scene behind (light on dark, anthracite on light): tweens at the end of this file.
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/s1.html" data-start="0" data-duration="3.3" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 1"></div>
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/s2.html" data-start="3" data-duration="4.2" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 2"></div>
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/s3.html" data-start="7" data-duration="4.2" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 3"></div>
+      <div id="s4" data-composition-id="s4" data-composition-src="compositions/s4.html" data-start="11" data-duration="5.2" data-track-index="4" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 4"></div>
+      <div id="s5" data-composition-id="s5" data-composition-src="compositions/s5.html" data-start="16" data-duration="5.2" data-track-index="5" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 5"></div>
+      <div id="s6" data-composition-id="s6" data-composition-src="compositions/s6.html" data-start="21" data-duration="4.7" data-track-index="6" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 6"></div>
+      <div id="s7" data-composition-id="s7" data-composition-src="compositions/s7.html" data-start="25.5" data-duration="4.5" data-track-index="7" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index: 7"></div>
+      <div id="wm" data-layout-allow-overflow data-layout-allow-overlap data-layout-allow-occlusion>
+        <p id="wm-big" class="wm-c">PHANESS</p>
+        <div id="wm-clip"><p id="wm-big2">PHANESS</p></div>
+        <p class="wm-s wm-c" style="left: 96px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 480px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 864px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 1248px; top: 190px">PHANESS</p><p class="wm-s wm-c" style="left: 1632px; top: 190px">PHANESS</p>
+        <p class="wm-s wm-c" style="left: 288px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 672px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 1056px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 1440px; top: 540px">PHANESS</p><p class="wm-s wm-c" style="left: 1824px; top: 540px">PHANESS</p>
+        <p class="wm-s wm-c" style="left: 96px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 480px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 864px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 1248px; top: 890px">PHANESS</p><p class="wm-s wm-c" style="left: 1632px; top: 890px">PHANESS</p>
+        <div id="wm-tag">DÉMONSTRATION PHANESS<br />PROPOSITION NON VALIDÉE</div>
+      </div>
+    </div>
+    <script>
+      const mt = gsap.timeline({ paused: true });
+      // s1-s2 dark (light text); s3 green + light card (anthracite text); s4-s7 dark (light text); s7 also shows an anthracite copy of the big mark over the logo plate
+      mt.to(".wm-c", { color: "#373640", duration: 0.3, ease: "power1.inOut" }, 7.3);
+      mt.to(".wm-c", { color: "#F4F4F6", duration: 0.3, ease: "power1.inOut" }, 10.9);
+      mt.fromTo("#wm-clip", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 25.5);
+      window.__timelines["main"] = mt;
+    </script>
+  </body>
+</html>

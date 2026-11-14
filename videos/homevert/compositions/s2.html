@@ -1,0 +1,97 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse 70% 70% at 55% 55%, #373640 0%, #1D1C23 78%); }
+    #s2-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080" data-duration="4.2" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg id="s2-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="s2-glow"><stop offset="0" stop-color="#FFC66E" stop-opacity=".75"/><stop offset="1" stop-color="#FFC66E" stop-opacity="0"/></radialGradient>
+      </defs>
+      <g id="s2-rot">
+        <g id="s2-cardfill" opacity="0">
+          <rect x="840" y="172" width="940" height="780" rx="24" fill="rgba(0,0,0,.14)"/><rect x="840" y="160" width="940" height="780" rx="24" fill="rgba(0,0,0,.26)"/>
+          <rect x="840" y="150" width="940" height="780" rx="24" fill="#EBEBEC"/><rect x="880" y="190" width="860" height="320" rx="16" fill="#F0F5FA"/>
+        </g>
+        <g id="s2-cam"></g>
+        <g id="s2-card"></g>
+      </g>
+    </svg>
+    <p class="hv-t hv-h2 on-dark" id="s2-title" style="left: 96px; top: 118px"><span class="ln"><span>Produire une partie</span></span><span class="ln"><span>de son électricité</span></span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 3, DUR = 4.2, A = (T) => T - T0, I = HV.I0, PF = HV.PF;
+      const P = (u, v) => I.p(HV.rp(u, v));
+      const cam = document.getElementById("s2-cam");
+      const U = HV.PFUV;
+      const pa = P(8.75, 1.687), pb = P(U[0], 1.687);
+      const dA = `M${pa[0]} ${pa[1]}L${pb[0]} ${pb[1]}L${PF[0]} ${PF[1]}`;
+      const pr = P(12.54, 1.0), bx = 1470;
+      const dB = `M${PF[0]} ${PF[1]}L${pr[0]} ${pr[1]}L${bx - 26} ${pr[1]}Q${bx} ${pr[1]} ${bx} ${pr[1] - 26}`;
+      const dC = `M${bx} ${pr[1] - 26}V520Q${bx} 485 ${bx + 36} 485H1556`;
+      const dD = `M${bx} ${pr[1]}V710Q${bx} 745 ${bx + 36} 745H1556`;
+      // usage cards: a lamp and a household appliance (washing machine), drawn in the film's flat language
+      const usage = `
+        <g id="s2-u1" opacity="0"><rect x="1560" y="386" width="230" height="210" rx="16" fill="rgba(0,0,0,.3)" transform="translate(0 8)"/><rect x="1560" y="380" width="230" height="210" rx="16" fill="#EBEBEC"/>
+          <circle id="s2-gl" cx="1675" cy="462" r="110" fill="url(#s2-glow)" opacity="0"/>
+          <path d="M1653 478a42 42 0 1 1 44 0v18h-44z" fill="#F3EFE2" id="s2-bulb" stroke="#B9BDC4" stroke-width="3"/>
+          <path d="M1664 470l8-14 6 10 6-10 8 14" fill="none" stroke="#C7A15E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="1651" y="496" width="48" height="12" rx="3" fill="#8E939B"/><rect x="1655" y="510" width="40" height="10" rx="3" fill="#6C7079"/><rect x="1663" y="522" width="24" height="9" rx="4" fill="#4A4D58"/></g>
+        <g id="s2-u2" opacity="0"><rect x="1560" y="646" width="230" height="210" rx="16" fill="rgba(0,0,0,.3)" transform="translate(0 8)"/><rect x="1560" y="640" width="230" height="210" rx="16" fill="#EBEBEC"/>
+          <rect x="1606" y="662" width="138" height="168" rx="12" fill="#D4D7DC" stroke="#9A9EA6" stroke-width="3"/>
+          <rect x="1606" y="662" width="138" height="30" rx="12" fill="#C3C7CE"/><circle cx="1626" cy="677" r="7" fill="#7A7E88"/><rect x="1690" y="671" width="40" height="12" rx="4" fill="#373640"/><circle id="s2-led" cx="1716" cy="677" r="3" fill="#6C7079"/>
+          <circle cx="1675" cy="762" r="48" fill="#4A4D58" stroke="#B9BDC4" stroke-width="7"/><circle id="s2-door" cx="1675" cy="762" r="36" fill="#2D3340"/><path d="M1650 748a28 28 0 0 1 22-14" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/></g>`;
+      // the grid stays: a thin neutral line from the wall box to a small pylon (the house is not cut off from the network)
+      const pyl = `<g id="s2-grid" opacity="0"><path d="M${I.p(12.44, 9.6, 1.5)[0]} ${I.p(12.44, 9.6, 1.5)[1]}C 900 940 760 960 640 905" fill="none" stroke="#9A9EA6" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+        <path d="M640 905l-22 60M640 905l22 60M640 905l0-96M613 840h54M622 868h36M628 886l24-46M652 886l-24-46" fill="none" stroke="#9A9EA6" stroke-width="3" stroke-linecap="round"/></g>`;
+      const dots = `<circle id="s2-dot1" r="8" fill="#FFD9A0" opacity="0"/><circle id="s2-dot2" r="8" fill="#FFD9A0" opacity="0"/>`;
+      cam.innerHTML = HV.house("b", I) + `<rect id="s2-dark" x="-6000" y="-6000" width="14000" height="14000" fill="#1D1C23" opacity=".2"/>` + pyl + HV.trace("s2-trA", dA) + HV.trace("s2-trB", dB) + HV.trace("s2-trC", dC) + HV.trace("s2-trD", dD) + usage + dots;
+      const traces = ["s2-trA", "s2-trB", "s2-trC", "s2-trD"].map((i) => document.getElementById(i));
+      // the first green line was drawn in sequence 1: same frame at the cut
+      gsap.set("#s2-trA, #s2-trA path", { opacity: 1 }); gsap.set("#s2-trA path", { strokeDashoffset: 0 });
+      HV.applyCam(cam, PF, HV.camAt(T0), traces);
+      const px = { t: 0 };
+      tl.to(px, { t: DUR, duration: DUR, ease: "none", onUpdate() { HV.applyCam(cam, PF, HV.camAt(T0 + px.t), traces); } }, 0);
+      const ug = (T) => 7.4 + 0.75 * T;
+      tl.fromTo("#bglint", { x: ug(T0) }, { x: ug(T0 + DUR), duration: DUR, ease: "none" }, 0);
+      tl.fromTo("#brev", { x: ug(T0) + 0.45 }, { x: ug(T0 + DUR) + 0.45, duration: DUR, ease: "none" }, 0);
+
+      tl.fromTo("#s2-dark", { opacity: 0.2 }, { opacity: 0, duration: 1.7, ease: "sine.inOut" }, 0);
+      // title
+      HV.FX.lines(tl, "#s2-title .ln > span", A(4.4), 0.55, 0.12);
+      HV.FX.out(tl, "#s2-title", A(6.0), 0.25);
+      // the line leaves the panel corner and follows the row to the usages
+      HV.draw(tl, "s2-trB", A(4.0), 1.5, 0, 1, "power2.inOut");
+      tl.fromTo("#s2-u1, #s2-u2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out", stagger: 0.15 }, A(5.0));
+      tl.to("#s2-grid", { opacity: 1, duration: 0.6, ease: "power2.out" }, A(4.9));
+      HV.draw(tl, "s2-trC", A(5.5), 0.55, 0, 1, "power2.out");
+      HV.draw(tl, "s2-trD", A(5.5), 0.55, 0, 1, "power2.out");
+      // small light packets travel the line: self-consumption, no figure shown
+      const route = (pts) => { const L = [0]; for (let i = 1; i < pts.length; i++) L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1])); return (p) => { const g = p * L[L.length - 1]; let i = 1; while (i < L.length - 1 && L[i] < g) i++; const q = (g - L[i - 1]) / (L[i] - L[i - 1]); return [pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * q, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * q]; }; };
+      const r1 = route([PF, pr, [bx, pr[1]], [bx, 485], [1556, 485]]), r2 = route([PF, pr, [bx, pr[1]], [bx, 745], [1556, 745]]);
+      [["s2-dot1", r1, 5.55], ["s2-dot2", r2, 5.7]].forEach(([id, r, t]) => {
+        const o = { p: 0 };
+        tl.set("#" + id, { opacity: 1 }, A(t));
+        tl.to(o, { p: 1, duration: 0.95, ease: "power1.inOut", onUpdate() { const q = r(o.p); const el = document.getElementById(id); el.setAttribute("cx", q[0]); el.setAttribute("cy", q[1]); } }, A(t));
+        tl.set("#" + id, { opacity: 0 }, A(t) + 0.96);
+      });
+      tl.to("#s2-bulb", { fill: "#FFE3A6", duration: 0.3 }, A(6.0));
+      tl.to("#s2-gl", { opacity: 1, duration: 0.4, ease: "power2.out" }, A(6.0));
+      tl.to("#s2-door", { fill: "#3E6F8C", duration: 0.3 }, A(6.1));
+      tl.to("#s2-led", { fill: "#46C08F", duration: 0.2 }, A(6.1));
+      tl.to("#s2-u1, #s2-u2, #s2-grid", { opacity: 0, duration: 0.3, ease: "power2.in" }, A(6.25));
+      tl.to("#s2-trC, #s2-trD, #s2-trB", { opacity: 0, duration: 0.3, ease: "power2.in" }, A(6.25));
+
+      // transition: the line leaves the plinth and draws a rounded card; the roof shrinks into it, the view straightens
+      const card = `M840 540V174Q840 150 864 150H1756Q1780 150 1780 174V906Q1780 930 1756 930H864Q840 930 840 906Z`;
+      document.getElementById("s2-card").innerHTML = HV.trace("s2-trE", card);
+      HV.setW(document.getElementById("s2-trE"), 1);
+      HV.draw(tl, "s2-trE", A(6.2), 0.75, 0, 1, "power2.inOut");
+      tl.to("#s2-cardfill", { opacity: 1, duration: 0.5, ease: "power2.out" }, A(6.45));
+      tl.fromTo("#s2-rot", { rotation: 0, svgOrigin: "1310 540" }, { rotation: -3, svgOrigin: "1310 540", duration: 0.8, ease: "power3.inOut" }, A(6.2));
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

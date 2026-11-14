@@ -1,0 +1,39 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: radial-gradient(ellipse 70% 70% at 55% 55%, #373640 0%, #1D1C23 78%); }
+    #s1-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #s1-prot { position: absolute; left: 0; top: 0; width: 1240px; height: 1080px; background: linear-gradient(90deg, rgba(29,28,35,.92) 0%, rgba(29,28,35,.78) 45%, rgba(29,28,35,0) 100%); }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080" data-duration="3.3" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg id="s1-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"><g id="s1-cam"></g></svg>
+    <div id="s1-prot"></div>
+    <p class="hv-t hv-h1 on-dark" id="s1-title" style="left: 96px; top: 372px"><span class="ln"><span>Votre toiture</span></span><span class="ln"><span>a de l’énergie à offrir.</span></span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 0, DUR = 3.3, I = HV.I0, PF = HV.PF;
+      const P = (u, v) => I.p(HV.rp(u, v));
+      const cam = document.getElementById("s1-cam");
+      const a = P(8.75, 1.687), b = P(HV.PFUV[0], 1.687), c = P(HV.PFUV[0], HV.PFUV[1]);
+      const d = `M${a[0]} ${a[1]}L${b[0]} ${b[1]}L${c[0]} ${c[1]}`;
+      cam.innerHTML = HV.house("a", I) + `<rect id="s1-dark" x="-6000" y="-6000" width="14000" height="14000" fill="#1D1C23" opacity=".5"/>` + HV.trace("s1-tr", d);
+      const traces = [document.getElementById("s1-tr")];
+      HV.applyCam(cam, PF, HV.camAt(T0), traces);
+      const px = { t: 0 };
+      tl.to(px, { t: DUR, duration: DUR, ease: "none", onUpdate() { HV.applyCam(cam, PF, HV.camAt(T0 + px.t), traces); } }, 0);
+      // light band and reveal front share one slow diagonal sweep along the panel row
+      const ug = (T) => 7.4 + 0.75 * T;
+      tl.fromTo("#aglint", { x: ug(T0) }, { x: ug(T0 + DUR), duration: DUR, ease: "none" }, 0);
+      tl.fromTo("#arev", { x: ug(T0) + 0.45 }, { x: ug(T0 + DUR) + 0.45, duration: DUR, ease: "none" }, 0);
+      // the text: masked rise, no letter-by-letter
+      HV.FX.lines(tl, "#s1-title .ln > span", 0.5, 0.55, 0.12);
+      HV.FX.out(tl, "#s1-title", 2.85, 0.3);
+      HV.FX.out(tl, "#s1-prot", 2.7, 0.5);
+      tl.fromTo("#s1-dark", { opacity: 0.5 }, { opacity: 0.2, duration: 1.3, ease: "sine.inOut" }, 1.7);
+      // the green line is born from the light band at 1.7 s, follows a cell line and joins the panel edge
+      HV.draw(tl, "s1-tr", 1.7, 1.0, 0, 1, "power2.inOut");
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

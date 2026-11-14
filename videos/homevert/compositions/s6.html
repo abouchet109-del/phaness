@@ -1,0 +1,77 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #1D1C23; }
+    #s6-svg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1920" data-height="1080" data-duration="4.7" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg id="s6-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="s6-lc"><rect id="s6-lcr" x="-20" y="780" width="1960" height="40"/></clipPath>
+        <pattern id="s6-cell" patternUnits="userSpaceOnUse" width="14" height="14"><rect x=".6" y=".6" width="12.8" height="12.8" rx="1.5" fill="#2F5686"/><path d="M4.7 1v12M9.3 1v12" stroke="#C9DBEF" stroke-opacity=".4" stroke-width=".6"/></pattern>
+        <pattern id="s6-tile" patternUnits="userSpaceOnUse" width="36" height="18"><rect width="36" height="18" fill="#B2573B"/><rect width="18" height="9" fill="#A44F35"/><rect x="18" y="9" width="18" height="9" fill="#BA5E41"/><path d="M0 9H36M0 18H36" stroke="#5C2415" stroke-opacity=".5" stroke-width="1.4"/></pattern>
+        <radialGradient id="s6-dg"><stop offset="0" stop-color="#7CF0BC" stop-opacity=".9"/><stop offset="1" stop-color="#0B8457" stop-opacity="0"/></radialGradient>
+      </defs>
+      <g id="s6-base" clip-path="url(#s6-lc)"></g>
+      <g id="s6-loop"></g>
+      <!-- 1: project sheet -->
+      <g id="s6-i1" opacity="0"><rect x="380" y="494" width="280" height="256" rx="18" fill="rgba(0,0,0,.3)"/><rect x="380" y="482" width="280" height="256" rx="18" fill="#EBEBEC"/>
+        <g transform="translate(380 482)"><rect x="28" y="26" width="224" height="30" rx="8" fill="#373640"/><circle cx="46" cy="41" r="5" fill="#0B8457"/>
+          <polygon points="30,128 62,82 120,82 152,128" fill="url(#s6-tile)"/><rect x="66" y="88" width="50" height="16" fill="#C5C9CF"/><rect x="68" y="90" width="46" height="12" fill="url(#s6-cell)"/><rect x="38" y="128" width="104" height="30" fill="#D9CBAE"/>
+          <path d="M172 92H236M172 114H228M172 136H240" stroke="#9AA0AA" stroke-width="5" stroke-linecap="round"/>
+          <path d="M28 184H252M28 206H190" stroke="#C5CAD2" stroke-width="5" stroke-linecap="round"/><circle cx="228" cy="214" r="16" fill="#0B8457"/><path d="M220 214l6 6l11-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <!-- 2: equipped roof -->
+      <g id="s6-i2" opacity="0"><rect x="810" y="494" width="300" height="256" rx="18" fill="rgba(0,0,0,.3)"/><rect x="810" y="482" width="300" height="256" rx="18" fill="#F0F5FA"/>
+        <g transform="translate(810 482)"><polygon points="24,176 80,40 220,40 276,176" fill="url(#s6-tile)"/><polygon points="80,40 220,40 222,48 78,48" fill="#8A3E2A"/><rect x="24" y="176" width="252" height="10" fill="#E6E7EA"/><rect x="44" y="186" width="212" height="46" fill="#D9CBAE"/>
+          <g fill="#C5C9CF"><rect x="92" y="58" width="52" height="46"/><rect x="154" y="58" width="52" height="46"/><rect x="78" y="112" width="52" height="46"/><rect x="140" y="112" width="52" height="46"/><rect x="202" y="112" width="52" height="46"/></g>
+          <g fill="#1B2E48"><rect x="95" y="61" width="46" height="40"/><rect x="157" y="61" width="46" height="40"/><rect x="81" y="115" width="46" height="40"/><rect x="143" y="115" width="46" height="40"/><rect x="205" y="115" width="46" height="40"/></g>
+          <g fill="url(#s6-cell)"><rect x="95" y="61" width="46" height="40"/><rect x="157" y="61" width="46" height="40"/><rect x="81" y="115" width="46" height="40"/><rect x="143" y="115" width="46" height="40"/><rect x="205" y="115" width="46" height="40"/></g>
+          <rect x="80" y="196" width="34" height="28" fill="#2D3948"/><rect x="186" y="196" width="34" height="28" fill="#2D3948"/></g></g>
+      <!-- 3: follow-up panel: tool, control line, contact point, continuity mark -->
+      <g id="s6-i3" opacity="0"><rect x="1250" y="494" width="300" height="256" rx="18" fill="rgba(0,0,0,.3)"/><rect x="1250" y="482" width="300" height="256" rx="18" fill="#EBEBEC"/>
+        <g transform="translate(1250 482)">
+          <g transform="translate(28 24)"><circle cx="24" cy="24" r="30" fill="#373640"/><path d="M14 36l14-14a9 9 0 0 1 11-11l-6 6l3 5l5 3l6-6a9 9 0 0 1-11 11L22 44a4 4 0 0 1-8-8z" fill="#fff" transform="translate(-1 0)"/></g>
+          <path d="M104 48H272" stroke="#C5CAD2" stroke-width="5" stroke-linecap="round"/><path d="M104 48H196" stroke="#0B8457" stroke-width="5" stroke-linecap="round"/><circle cx="196" cy="48" r="9" fill="#0B8457"/>
+          <path d="M104 74H224" stroke="#C5CAD2" stroke-width="5" stroke-linecap="round"/>
+          <rect x="28" y="108" width="244" height="3" fill="#C5CAD2"/>
+          <g transform="translate(28 136)"><circle cx="38" cy="38" r="36" fill="#fff" stroke="#373640" stroke-width="4"/><circle cx="38" cy="30" r="10" fill="#373640"/><path d="M18 58a20 18 0 0 1 40 0z" fill="#373640"/><circle cx="62" cy="10" r="12" fill="#0B8457"/><path d="M56 10l4 4l8-8" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g transform="translate(186 150)"><path d="M16 42a30 30 0 0 1 8-34M80 38a30 30 0 0 1-12 24" fill="none" stroke="#0B8457" stroke-width="5" stroke-linecap="round" transform="translate(0 -4)"/><path d="M60 22l8 12l-14 4z" fill="#0B8457" transform="translate(10 26)"/><path d="M20 4l-4 12l14-2z" fill="#0B8457" transform="translate(-4 -8)"/><path d="M28 24h40M28 38h26" stroke="#9AA0AA" stroke-width="5" stroke-linecap="round" transform="translate(-4 0)"/></g>
+        </g></g>
+      <g id="s6-dotg" opacity="0"><circle id="s6-dotglow" cx="460" cy="800" r="30" fill="url(#s6-dg)"/><circle cx="460" cy="800" r="9" fill="#C9F7E2"/></g>
+    </svg>
+    <p class="hv-t hv-h2 on-dark" id="s6-title" style="left: 96px; top: 118px"><span class="ln"><span>Un suivi</span></span><span class="ln"><span>après les travaux</span></span></p>
+    <p class="hv-t hv-sub" id="s6-sub" style="left: 96px; top: 318px; color: #EBEBEC"><span class="ln"><span>Conseil • Garanties • SAV</span></span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 21, A = (T) => T - T0;
+      // the base line of sequence 5 is still here: it is cropped to the bottom of the loop
+      document.getElementById("s6-base").innerHTML = HV.trace("s6-trb", "M-20 800H1940");
+      HV.setW(document.getElementById("s6-trb"), 1);
+      gsap.set("#s6-trb", { opacity: 1 }); gsap.set("#s6-trb path", { strokeDashoffset: 0 });
+      // open loop around the three elements: starts at the right end of the base, goes up, over, down and almost back to the start
+      const q = "M1580 800A200 200 0 0 0 1580 400H340A200 200 0 0 0 340 800H460";
+      document.getElementById("s6-loop").innerHTML = HV.trace("s6-trl", q);
+      HV.setW(document.getElementById("s6-trl"), 1);
+
+      HV.FX.lines(tl, "#s6-title .ln > span", A(21.4), 0.55, 0.12);
+      HV.FX.lines(tl, "#s6-sub .ln > span", A(22.5), 0.5, 0);
+      // base line shortens to its place at the bottom of the loop; the loop climbs from its right end
+      tl.to("#s6-lcr", { attr: { x: 640, width: 940 }, duration: 0.7, ease: "power3.inOut" }, A(21.3));
+      HV.draw(tl, "s6-trl", A(21.7), 2.5, 0, 1, "power1.inOut");
+      [["#s6-i1", 22.3], ["#s6-i2", 22.7], ["#s6-i3", 23.1]].forEach(([id, t]) => tl.fromTo(id, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power4.out" }, A(t)));
+      // the loop closes gently, stays open on a small green light: the project keeps a contact
+      tl.set("#s6-dotg", { opacity: 1 }, A(24.1));
+      tl.fromTo("#s6-dotglow", { scale: 0.4, svgOrigin: "460 800" }, { scale: 1.15, svgOrigin: "460 800", duration: 0.7, ease: "power2.out" }, A(24.1));
+      tl.to("#s6-dotglow", { scale: 0.85, svgOrigin: "460 800", duration: 0.7, ease: "sine.inOut" }, A(24.8));
+      // transition: the loop simplifies into a horizontal stroke that goes to underline the final composition
+      tl.to("#s6-trl path", { strokeDashoffset: -1, duration: 0.45, ease: "power2.inOut" }, A(24.9));
+      tl.to("#s6-dotg", { opacity: 0, duration: 0.2 }, A(24.9));
+      tl.to("#s6-i1, #s6-i2, #s6-i3", { opacity: 0, duration: 0.3, ease: "power2.in" }, A(24.85));
+      HV.FX.out(tl, "#s6-title", A(24.85), 0.3); HV.FX.out(tl, "#s6-sub", A(24.85), 0.3);
+      // base line (940 wide, y 800) becomes the 520 px underline at y 725, x 96
+      tl.to("#s6-base", { svgOrigin: "640 800", scaleX: 0.553, x: -544, y: -75, duration: 0.55, ease: "power3.inOut" }, A(24.95));
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>
