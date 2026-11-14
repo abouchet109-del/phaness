@@ -65,7 +65,7 @@
       tl.fromTo("#s6-dotglow", { scale: 0.4, svgOrigin: "460 800" }, { scale: 1.15, svgOrigin: "460 800", duration: 0.7, ease: "power2.out" }, A(24.1));
       tl.to("#s6-dotglow", { scale: 0.85, svgOrigin: "460 800", duration: 0.7, ease: "sine.inOut" }, A(24.8));
       // transition: the loop simplifies into a horizontal stroke that goes to underline the final composition
-      tl.to("#s6-trl path", { strokeDashoffset: -1, duration: 0.45, ease: "power2.inOut" }, A(24.9));
+      HV.retract(tl, "s6-trl", A(24.9), 0.45, "power2.inOut");
       tl.to("#s6-dotg", { opacity: 0, duration: 0.2 }, A(24.9));
       tl.to("#s6-i1, #s6-i2, #s6-i3", { opacity: 0, duration: 0.3, ease: "power2.in" }, A(24.85));
       HV.FX.out(tl, "#s6-title", A(24.85), 0.3); HV.FX.out(tl, "#s6-sub", A(24.85), 0.3);

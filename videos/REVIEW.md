@@ -75,3 +75,27 @@ Film de prospection hors site, d'après `prompts/prompt-video-heliup.md`. Direct
 - Temps de lecture : seule la ligne de la séquence 1 a été mesurée par `check` ; les autres durées d'affichage (légendes de la séquence 4, de 1,0 à 1,5 s pour la plus courte) n'ont pas été jugées à l'œil.
 - Les faits affichés viennent du prompt (section 9) ; le site de HELIUP n'a pas été relu pour les recouper.
 - Aucun second regard extérieur ; aucune version propre rendue (volontairement, avant accord de HELIUP).
+
+## `homevert` : film démo HOME Vert (rendu du 2026-11-14, Windows)
+
+Film de prospection hors site, d'après `prompts/prompt-video-homevert.md`. Production : Sonnet 5.5 ; rendus, extractions d'images et relances : sous-agents Haiku en effort low.
+
+| Fichier | Valeur |
+|---|---|
+| `out/homevert-demo.mp4` | 30,0 s, 750 images, 37,5 Mo, H.264 High, yuv420p, 3840 × 2160, 25 i/s, faststart, sans piste audio, filigrane PHANESS actif. Rendu en 4 à 5 min. |
+| `out/homevert-demo-20mo.mp4` | même définition et même durée, 19,1 Mo (H.264 High, 2 passes, 5,2 Mb/s), sans piste audio |
+| `homevert/keyframes/seq1.jpg` à `seq7.jpg` | une image fixe par séquence (2,2 s ; 5,8 s ; 9,6 s ; 14,9 s ; 19,0 s ; 24,4 s ; 28,5 s), 1920 × 1080, extraites du MP4 |
+
+### Contrôlé (sur images extraites du MP4 final)
+- Liste de la section 12 du prompt : durée 30,000 s et 750 images (ffprobe) ; aucun flux audio (ffprobe : un seul flux, vidéo) ; logo officiel net, non déformé, signature « L'habitat Econome » lisible (28,5 s et dernière image) ; palette (vert, anthracite, gris clair, matières autorisées) ; Poppins sur tous les textes ; trait vert continu de 1,7 s à 25,5 s sur les images extraites (s1, s2, carte, ligne de s3 à s5, boucle de s6, soulignement de s7) ; filigranes présents sur toutes les images extraites (17 + 7 + 6), carton final compris ; aucun chiffre, montant, pourcentage ni libellé de fausse interface.
+- Tracés : l'apparition progressive du trait a été contrôlée à 2,0 s, 2,3 s, 6,45 s, 16,25 s et 22,6 s (après correction du piège décrit dans `docs/JOURNAL.md`).
+- Raccords : différences d'images (PSNR) de part et d'autre des six raccords (3,0 ; 7,0 ; 11,0 ; 16,0 ; 21,0 ; 25,5 s), sans saut isolé.
+- `hyperframes check` : 0 erreur ; avertissements gardés : `film_silent`, `audio_none`, `text_below_floor` (cartouche de démonstration à 22 px, taille demandée).
+- Textes : contrôle `avoid-ai-writing` (voix professional, détection seule), aucun texte modifié.
+
+### Non vérifié
+- Le mouvement n'a pas été regardé en lecture continue : fluidité des raccords s1 → s2 (zoom autour d'un coin de panneau) et s2 → s3 (maison réduite dans la carte), lecture réelle des textes.
+- Les 750 images ne sont pas toutes contrôlées : le filigrane est une couche toujours affichée, vérifiée sur 30 images extraites et par construction.
+- Temps de lecture des étiquettes courtes (s4, s5 : 1,0 à 1,5 s pour la plus courte).
+- Recoupement des offres avec le site : le prompt fait foi. Les cartes de s4 et s6 et la maison sont abstraites.
+- Aucun second regard extérieur ; aucune version propre rendue (volontairement, avant accord de HOME Vert).

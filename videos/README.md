@@ -14,6 +14,8 @@ Les dossiers métier gardent leur ancien nom pour ne pas toucher au site. Tant q
 
 Un sixième film hors site : `heliup/`, film démo de prospection pour HELIUP (30 s, 4K, filigrané PHANESS), avec son propre `render.sh` ; voir `heliup/README.md`. Il n'entre pas dans `build.mjs`, `render-all.sh` ni `render-4k.sh`, et sort dans `out/heliup-demo.mp4`.
 
+Un septième film hors site : `homevert/`, film démo de prospection pour HOME Vert (30 s, 4K, filigrané PHANESS, plus une version email d'environ 19 Mo), avec son propre `render.sh` ; voir `homevert/README.md`. Même règles que `heliup/` : hors `build.mjs`, `render-all.sh` et `render-4k.sh`, sortie dans `out/homevert-demo.mp4` et `out/homevert-demo-20mo.mp4`.
+
 Rendus (non versionnés) : `out/<nom>.mp4` (H.264 High, yuv420p, faststart, muet, 25 i/s) et `out/<nom>.webp` (affiche 1280×720).
 
 ## Structure

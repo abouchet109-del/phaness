@@ -23,12 +23,12 @@
             <circle cx="948" cy="576" r="11" fill="#373640"/><path d="M926 612a22 22 0 0 1 44 0z" fill="#373640"/>
             <text class="s3-lab" x="1000" y="600">Propriétaire</text>
             <circle cx="1700" cy="588" r="15" fill="none" stroke="#B3B6BD" stroke-width="3"/><circle id="s3-rdA" cx="1700" cy="588" r="9" fill="#0B8457" opacity="0"/>
-            <rect id="s3-bdA" x="880" y="540" width="860" height="96" rx="14" fill="none" stroke="#0B8457" stroke-width="4" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1"/></g>
+            <rect id="s3-bdA" x="880" y="540" width="860" height="96" rx="14" fill="none" stroke="#0B8457" stroke-width="4"/></g>
           <g id="s3-rowB" opacity="0"><rect x="880" y="656" width="860" height="96" rx="14" fill="#FFFFFF" stroke="#C9CCD1" stroke-width="2"/><rect id="s3-fillB" x="880" y="656" width="860" height="96" rx="14" fill="#E3F3EB" opacity="0"/>
             <path d="M924 708l24-22 24 22v20h-48z" fill="#373640"/><rect x="942" y="712" width="12" height="16" fill="#EBEBEC"/>
             <text class="s3-lab" x="1000" y="716">Maison</text>
             <circle cx="1700" cy="704" r="15" fill="none" stroke="#B3B6BD" stroke-width="3"/><circle id="s3-rdB" cx="1700" cy="704" r="9" fill="#0B8457" opacity="0"/>
-            <rect id="s3-bdB" x="880" y="656" width="860" height="96" rx="14" fill="none" stroke="#0B8457" stroke-width="4" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1"/></g>
+            <rect id="s3-bdB" x="880" y="656" width="860" height="96" rx="14" fill="none" stroke="#0B8457" stroke-width="4"/></g>
           <g id="s3-foot" opacity="0"><rect x="880" y="857" width="600" height="6" rx="3" fill="#D3D5DA"/><rect id="s3-prog" x="880" y="857" width="0" height="6" rx="3" fill="#0B8457"/></g>
           <g id="s3-btn1"><rect id="s3-btnr" x="1560" y="828" width="180" height="64" rx="32" fill="#0B8457" opacity="0"/><path id="s3-arr1" d="M1630 860h40m-14-14l14 14l-14 14" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></g>
         </g>
@@ -66,13 +66,14 @@
       tl.fromTo("#s3-foot", { opacity: 0 }, { opacity: 1, duration: 0.4 }, A(8.4));
       tl.fromTo("#s3-btnr, #s3-arr1", { opacity: 0 }, { opacity: 1, duration: 0.4 }, A(8.5));
       // selections: a green border builds, the background shifts slightly; the miniature roof answers
-      tl.to("#s3-bdA", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, A(8.9));
+      const bd = (id) => { const e = document.getElementById(id), L = e.getTotalLength(); e.style.strokeDasharray = L + " " + (L * 3); return [e, L]; };
+      { const [e, L] = bd("s3-bdA"); tl.fromTo(e, { strokeDashoffset: L + 6 }, { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, A(8.9)); }
       tl.to("#s3-fillA", { opacity: 1, duration: 0.4 }, A(9.05));
       tl.to("#s3-rdA", { opacity: 1, duration: 0.25 }, A(9.3));
       tl.to("#s3-prog", { attr: { width: 200 }, duration: 0.5, ease: "power3.out" }, A(9.0));
       tl.to("#s3-roofhi", { opacity: 1, duration: 0.5, ease: "power2.out" }, A(9.0));
       tl.to("#s3-mini", { rotation: 1.4, svgOrigin: "1310 350", duration: 0.9, ease: "power3.inOut" }, A(8.95));
-      tl.to("#s3-bdB", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, A(9.6));
+      { const [e, L] = bd("s3-bdB"); tl.fromTo(e, { strokeDashoffset: L + 6 }, { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, A(9.6)); }
       tl.to("#s3-fillB", { opacity: 1, duration: 0.4 }, A(9.75));
       tl.to("#s3-rdB", { opacity: 1, duration: 0.25 }, A(10.0));
       tl.to("#s3-prog", { attr: { width: 420 }, duration: 0.5, ease: "power3.out" }, A(9.7));

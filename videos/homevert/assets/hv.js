@@ -121,7 +121,7 @@
 
   // ---------- the green line: shadow, body, satin highlight. Constant on-screen thickness via setW ----------
   function trace(id, d, extra) {
-    return `<g class="tr" id="${id}" opacity="0" ${extra || ""}><path d="${d}" pathLength="1" fill="none" stroke="rgba(0,0,0,.38)" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 2" stroke-dashoffset="1"/><path d="${d}" pathLength="1" fill="none" stroke="#0B8457" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 2" stroke-dashoffset="1"/><path d="${d}" pathLength="1" fill="none" stroke="#5AD1A0" stroke-opacity=".7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 2" stroke-dashoffset="1"/></g>`;
+    return `<g class="tr" id="${id}" opacity="0" ${extra || ""}><path d="${d}" fill="none" stroke="rgba(0,0,0,.38)" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#0B8457" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#5AD1A0" stroke-opacity=".7" stroke-linecap="round" stroke-linejoin="round"/></g>`;
   }
   const TW = 7; // on-screen px at 1080p
   function setW(g, s) {
@@ -130,16 +130,19 @@
     p[1].setAttribute("stroke-width", f(TW / s));
     p[2].setAttribute("stroke-width", f(TW * 0.28 / s)); p[2].setAttribute("transform", `translate(0 ${f(-TW * 0.2 / s)})`);
   }
-  // draw a trace from a to b of its path (0..1)
+  // draw a trace from a to b of its length (0..1). Uses real path lengths (no pathLength scaling).
+  const PADL = 6;
+  function lens(id) { return Array.from(document.querySelectorAll('#' + id + ' path')).map((p) => ({ p, L: p.getTotalLength() })); }
   function draw(tl, id, t, dur, from, to, ease) {
-    const sel = `#${id} path`;
-    tl.set(`#${id}`, { opacity: 1 }, t);
-    tl.fromTo(sel, { strokeDashoffset: 1 - (from || 0) + 0.0001 }, { strokeDashoffset: 1 - (to == null ? 1 : to), duration: dur, ease: ease || "power2.inOut" }, t);
+    tl.set('#' + id, { opacity: 1 }, t);
+    lens(id).forEach(({ p, L }) => {
+      p.style.strokeDasharray = L + ' ' + (L * 3 + 20);
+      tl.fromTo(p, { strokeDashoffset: L * (1 - (from || 0)) + (from ? 0 : PADL) }, { strokeDashoffset: L * (1 - (to == null ? 1 : to)), duration: dur, ease: ease || 'power2.inOut' }, t);
+    });
   }
-  // erase from the start (head stays): used to retract a path
+  // erase from the start (the head stays): the tail leaves first
   function retract(tl, id, t, dur, ease) {
-    // dash [0,1]: shifting the offset to negative moves the dash forward, so the tail leaves first
-    tl.to(`#${id} path`, { strokeDashoffset: -1, duration: dur, ease: ease || "power2.inOut" }, t);
+    lens(id).forEach(({ p, L }) => { p.style.strokeDasharray = L + ' ' + (L * 3 + 20); tl.to(p, { strokeDashoffset: -L - PADL, duration: dur, ease: ease || 'power2.inOut' }, t); });
   }
 
   // ---------- text entrances ----------
